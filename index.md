@@ -11,6 +11,8 @@ layout: home
 <span class="fs-5">[Workflows](/Workflow.html){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Guidance & Best Practices](/BestPractice.html){: .btn .btn-green .mr-8 }</span>
 
+We are excited to introduce you to the official documentation website for the B-Cubed project - your gateway to unlocking the full potential of data cubes. 
+
 The website will contain comprehensive explanations of the available APIs (Application Programming Interfaces), making it
 easier for users to integrate the toolbox with external systems and services. Special attention will be given to maintaining
 the B-Cubed toolbox's cloud-agnostic nature. Detailed guidelines will be provided for utilizing occurrence cubes on various cloud platforms.
