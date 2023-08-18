@@ -1,8 +1,8 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: B-Cubed: Documentation and Tutorials 
+description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+url: https://LauraAbr.github.io/B-Cubed.Documentation
 
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  Template Repository: https://github.com/LauraAbr/B-Cubed.Documentation
