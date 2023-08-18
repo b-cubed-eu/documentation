@@ -4,7 +4,7 @@ layout: home
 ---
 # B-Cubed Documentation and Tutorials 
 
-<span style="font-size:24px">This documentation and tutorial website will serve as a hub for information on how to effectively use the B-Cubed toolbox.</span>
+<span style="font-size:24px">This website will serve as a hub for information on how to effectively use the B-Cubed toolbox.</span>
 										
 <span class="fs-5">[Data cubes Quick Start Guide](/DigQuickStart.md){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Literature & Links](/Literature/Literature.html){: .btn .btn-green .mr-8 }</span>
