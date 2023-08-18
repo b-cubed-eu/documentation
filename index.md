@@ -1,5 +1,5 @@
 ---
-title: B-Cubed: Documentation and Tutorials
+title: B-Cubed Documentation and Tutorials
 layout: home
 ---
 
