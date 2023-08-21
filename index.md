@@ -11,8 +11,7 @@ layout: home
 <span class="fs-5">[Workflows](/Workflow.html){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Guidance & Best Practices](/BestPractice.html){: .btn .btn-green .mr-8 }</span>
 
-We are excited to introduce you to the official documentation website for the B-Cubed project - your gateway to unlocking
-the full potential of data cubes. 
+We are excited to introduce you to the official documentation website for the [(B-Cubed project](http://b-cubed.eu/). - your gateway to unlocking the full potential of data cubes. 
 
 This website contains comprehensive explanations of the available APIs (Application Programming Interfaces), making it
 easier for users to integrate the B-Cubed toolbox with external systems and services. Particular emphasis is placed on
