@@ -2,6 +2,9 @@ title: "Documentation and Tutorials"
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 theme: just-the-docs
 search_enabled: true
+description: B-Cubed Documentation and Tutorials
+color_scheme: 
+logo: "images/B3_logo_full.png"
 url: https://lauraAbr.github.io/B-Cubed.Documentation
 
 aux_links:
