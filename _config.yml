@@ -9,3 +9,5 @@ url: https://lauraAbr.github.io/B-Cubed.Documentation
 
 aux_links:
   Template Repository: https://github.com/LauraAbr/B-Cubed.Documentation
+plugins:
+  - jekyll-default-layout
