@@ -6,7 +6,8 @@ nav_order: 2
 
 # About
 
-<img src="/images/B3_logo_3.png" alt="The B-Cubed logo" width="250;" style="margin-right:30px">
+<img src="/images/B3_logo_full.png" alt="The B-Cubed logo" width="250;" style="margin-right:30px"> B-Cubed Toolbox for biodiversity Monitoring
+
 
 ### Funding
 <img src="/images/Logos/LogoEU.png" alt="The EU" width="250;" style="margin-right:30px">
