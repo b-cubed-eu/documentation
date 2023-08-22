@@ -1,4 +1,4 @@
-.site-logo img {
-    max-width: 500px; /* Adjust this value to your desired logo width */
+.page-header .logo img {
+    max-width: 1000px; /* Adjust this value to your desired logo width */
     height: auto;
 }
