@@ -7,10 +7,11 @@ nav_order: 1
 
 <span style="font-size:24px">This website will serve as a hub for information on how to effectively use the B-Cubed toolbox.</span>
 										
-<span class="fs-5">[Data cubes Quick Start Guide](/DigQuickStart.md){: .btn .btn-green .mr-8 }</span>
-<span class="fs-5">[Literature & Links](/Literature/Literature.html){: .btn .btn-green .mr-8 }</span>
-<span class="fs-5">[Workflows](/Workflow.html){: .btn .btn-green .mr-8 }</span>
-<span class="fs-5">[Guidance & Best Practices](/BestPractice.html){: .btn .btn-green .mr-8 }</span>
+<span class="fs-5">[Data Cubes Quick Start Guide](DataCubesQuickStartGuide.md){: .btn .btn-green .mr-8 }</span>
+
+<span class="fs-5">[Literature & Links](/){: .btn .btn-green .mr-8 }</span>
+<span class="fs-5">[Workflows](/){: .btn .btn-green .mr-8 }</span>
+<span class="fs-5">[Guidance & Best Practices](/){: .btn .btn-green .mr-8 }</span>
 
 We are excited to introduce you to the official documentation website for the [B-Cubed project](http://b-cubed.eu/) - your gateway to unlocking the full potential of data cubes. 
 
