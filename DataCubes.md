@@ -1,5 +1,6 @@
 ---
 title: Data Cubes Quick Start Guide
+has_children: true
 permalink: /datacubes/
 nav_order: 3
 ---
