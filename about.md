@@ -1,7 +1,7 @@
 ---
 title: About 
 permalink: /about/
-nav_order: 
+nav_order: 2
 ---
 
 # About
