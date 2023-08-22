@@ -1,7 +1,7 @@
 ---
 title: Data Cubes Quick Start Guide
 permalink: /DataCubesQuickStartGuide/
-nav_order: 4
+nav_order: 
 parent: B-Cubed
 has_toc: false
 ---
