@@ -8,7 +8,7 @@ nav_order: 2
 
 ### B-Cubed Toolbox for biodiversity Monitoring  
 <div style="display: flex; align-items: center;">
-    <img src="/images/B3_logo_full.png" alt="The B-Cubed logo" width="250;" style="margin-right:30px"> 
+    <img src="../images/B3_logo_full.png" alt="The B-Cubed logo" width="250;" style="margin-right:30px"> 
     </div>
 Addressing urgent global challenges, the B-Cubed toolbox transforms
 biodiversity monitoring. With climate change, environmental
