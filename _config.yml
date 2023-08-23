@@ -7,7 +7,7 @@ extra_css:
 search_enabled: true
 description: B-Cubed Documentation and Tutorials
 color_scheme: 
-logo: "images/Blogo.png"
+logo: "../images/Blogo.png"
 url: https://lauraAbr.github.io/B-Cubed.Documentation
 
 aux_links:
