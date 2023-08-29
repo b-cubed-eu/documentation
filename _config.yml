@@ -6,6 +6,11 @@ extra_css:
 
 search_enabled: true
 description: B-Cubed Documentation and Tutorials
+sass:
+  style: compressed
+  sass_dir: _sass
+  plugings:
+    - jekyll-sass-converter
 color_schemes: B-Cubedtheme
 logo: "../images/Blogo.png"
 url: https://lauraAbr.github.io/B-Cubed.Documentation
