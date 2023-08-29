@@ -1,6 +1,6 @@
 ---
 title: Data Cubes Quick Start Guide
-permalink: /datacubes/
+
 nav_order: 3
 ---
 
