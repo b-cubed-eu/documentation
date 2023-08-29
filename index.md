@@ -1,6 +1,6 @@
 ---
 title: B-Cubed 
-layout: home
+layout: Home
 nav_order: 1
 ---
 # B-Cubed Documentation and Tutorials 
