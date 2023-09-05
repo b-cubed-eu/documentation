@@ -7,7 +7,7 @@ nav_order: 1
 
 <span style="font-size:24px">This website will serve as a hub for information on how to effectively use the B-Cubed toolbox.</span>								
 
-<span class="fs-5">[Data Cubes Quick Start Guide](./datacubes.html){: .btn .btn-green .mr-8 }</span>
+<span class="fs-5">[Data Cubes Quick Start Guide](./datacube.html){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Literature & Links](./literature.html){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Workflows](./workflows.html){: .btn .btn-green .mr-8 }</span>
 <span class="fs-5">[Guidance & Best Practices](./guidance.html){: .btn .btn-green .mr-8 }</span>
