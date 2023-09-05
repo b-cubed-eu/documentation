@@ -16,6 +16,6 @@ logo: "../images/Blogo.png"
 url: https://b-cubed-eu.github.io/documentation/
 
 aux_links:
-  Template Repository: https://b-cubed-eu.github.io/documentation/
+  Template Repository: https://github.com/b-cubed-eu/documentation
 plugins:
   - jekyll-default-layout
