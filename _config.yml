@@ -11,7 +11,7 @@ sass:
   sass_dir: _sass
   plugings:
     - jekyll-sass-converter
-color_scheme: B-Cubedtheme
+# color_scheme: B-Cubedtheme
 logo: "../images/Blogo.png"
 url: https://b-cubed-eu.github.io/documentation/
 
