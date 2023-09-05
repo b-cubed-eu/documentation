@@ -1,14 +1,14 @@
 title: "Documentation and Tutorials" 
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 theme: just-the-docs
-extra_css:
+# extra_css:
   - style.css
 
-search_enabled: true
+# search_enabled: true
 description: B-Cubed Documentation and Tutorials
-sass:
-  style: compressed
-  sass_dir: _sass
+# sass:
+  # style: compressed
+  # sass_dir: _sass
   plugings:
     - jekyll-sass-converter
 # color_scheme: B-Cubedtheme
