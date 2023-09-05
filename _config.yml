@@ -13,9 +13,9 @@ sass:
     - jekyll-sass-converter
 color_scheme: B-Cubedtheme
 logo: "../images/Blogo.png"
-url: https://lauraAbr.github.io/B-Cubed.Documentation
+url: https://b-cubed-eu.github.io/documentation/
 
 aux_links:
-  Template Repository: https://github.com/LauraAbr/B-Cubed.Documentation
+  Template Repository: https://b-cubed-eu.github.io/documentation/
 plugins:
   - jekyll-default-layout
