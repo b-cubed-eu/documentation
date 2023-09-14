@@ -1,21 +1,24 @@
-title: "Documentation and Tutorials" 
+# SITE SETTINGS
+title: Documentation and Tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
-theme: just-the-docs
-# extra_css:
-  # - style.css
-
-# search_enabled: true
-description: B-Cubed Documentation and Tutorials
-# sass:
-  # style: compressed
-  # sass_dir: _sass
-  plugings:
-    - jekyll-sass-converter
-# color_scheme: B-Cubedtheme
-logo: "../images/Blogo.png"
 url: https://b-cubed-eu.github.io/documentation/
 
+# THEME SETTINGS
+theme: just-the-docs
+logo: "../images/Blogo.png"
+search_enabled: true
 aux_links:
   Template Repository: https://github.com/b-cubed-eu/documentation
+# color_scheme: B-Cubedtheme
+extra_css:
+  - style.css
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# BUILD SETTINGS
+markdown: kramdown
 plugins:
-  - jekyll-default-layout
+  - jekyll-default-layout  
+  - jekyll-sass-converter
+  
