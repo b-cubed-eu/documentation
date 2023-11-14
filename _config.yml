@@ -1,7 +1,8 @@
 # SITE SETTINGS
 title: Documentation and Tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
-url: https://b-cubed-eu.github.io/documentation/
+url: https://b-cubed-eu.github.io
+baseurl: /documentation
 
 # THEME SETTINGS
 theme: just-the-docs
