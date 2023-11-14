@@ -21,4 +21,5 @@ markdown: kramdown
 plugins:
   - jekyll-default-layout  
   - jekyll-sass-converter
-  
+exclude:
+  - README.md
