@@ -1,7 +1,8 @@
 ---
-title: B-Cubed 
+title: B-Cubed
 layout: home
 nav_order: 1
+permalink: /
 ---
 
 # B-Cubed Documentation and Tutorials
