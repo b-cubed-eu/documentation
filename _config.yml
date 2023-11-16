@@ -3,6 +3,7 @@ title: Documentation and Tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 url: https://b-cubed-eu.github.io
 baseurl: /documentation
+<link rel="icon" href="/documentation/favicon.ico" type="image/x-icon">
 
 # THEME SETTINGS
 theme: just-the-docs
