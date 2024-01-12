@@ -25,3 +25,4 @@ plugins:
   - jekyll-sass-converter
 exclude:
   - README.md
+  
