@@ -1,0 +1,24 @@
+# Footer content is organized in columns.
+# You can also add a small print license statement at the bottom.
+
+columns:
+  - links: 
+    - text: "What is B-Cubed?"
+      href: /about/
+   
+  - name: Code
+    description: | # Can be Markdown
+      This project is open source. See our [GitHub](https://github.com/b-cubed-eu/documentation) page
+  
+  - name: Contact
+    description: | # Can be Markdown
+      **What to put for contacts?**    
+      Nieuwelaan 38  
+      1860 Meise, Belgium  
+      Tel. +32 2 260 09 70  
+      Email: 
+    connectIcons: true
+  - name: Funding
+    description: | # Can be Markdown
+      B-Cubed (Biodiversity Building Blocks for policy) receives funding from the European Union’s Horizon Europe Research and Innovation Programme (ID No 101059592). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Commission. Neither the EU nor the EC can be held responsible for them.
+      <img src="/static/images/logo-eu.png" alt="Logo" style="width: 100px; height: 100px"/> 
