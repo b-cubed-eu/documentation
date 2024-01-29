@@ -1,5 +1,7 @@
 # B-Cubed Documentation and Tutorials 
 
+[![Build Status](https://builds.gbif.org/b-cubed-eu/documentation/badge/icon)](https://builds.gbif.org/b-cubed-eu/documentation/lastBuild/console)
+
 This repository is part of WP3 - Developing specifications and guidlines for reproducible use - of the B-Cubed (Biodiversity Building Blocks for Policy) project. 
 
 It uses GitHub Pages with the [Just the Docs](https://just-the-docs.github.io/just-the-docs/) Jekyll theme. 
