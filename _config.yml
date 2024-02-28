@@ -19,6 +19,11 @@ last_edit_timestamp: true
 gh_edit_link: true
 gh_edit_repository: https://github.com/b-cubed-eu/documentation
 
+# Just the docs colours
+callouts:
+  note:
+    color: blue
+
 # Just the docs style
 # color_scheme: B-Cubedtheme
 extra_css:
@@ -36,3 +41,9 @@ exclude:
   - README.md
 
 # FRONTMATTER DEFAULTS
+defaults:
+  - scope:
+      path: "guides" # TODO: should be possible to remove this, but breaks styling
+      type: "pages"
+    values:
+      permalink: "/:path/:basename/"
