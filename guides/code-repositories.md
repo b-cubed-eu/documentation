@@ -10,6 +10,8 @@ last_modified_date: 2024-02-28
 # Code repositories
 {: .no_toc }
 
+Lead author: Peter Desmet
+
 <details closed markdown="block">
   <summary>
     Table of contents
@@ -123,7 +125,7 @@ Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([withou
 
 ## Extend your README.md file
 
-See the [README file](/guides/readme-file/) guide.
+See the [README file](/guides/the-readme-file/) guide.
 
 ## Setup your local environment, contribute code and collaborate
 
