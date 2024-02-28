@@ -1,6 +1,7 @@
 ---
 title: The README file
 parent: Guides
+nav_order: 2
 authors:
 - name: Pieter Huybrechts
   orcid: 0000-0002-6658-6062

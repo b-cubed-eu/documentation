@@ -1,6 +1,7 @@
 ---
 title: Code repositories
 parent: Guides
+nav_order: 1
 authors:
 - name: Peter Desmet
   orcid: 0000-0002-8442-8025
