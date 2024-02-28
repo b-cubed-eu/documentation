@@ -3,17 +3,26 @@ title: Documentation and Tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 url: https://b-cubed-eu.github.io
 baseurl: /documentation
-favicon: "favicon.ico"
+favicon: favicon.ico
 
 # THEME SETTINGS
 theme: just-the-docs
+
+# Just the docs settings
 logo: /assets/images/b3-logo.png
 search_enabled: true
 aux_links:
   GitHub: https://github.com/b-cubed-eu/documentation
+
+# Just the docs footer (TODO: currently missing)
+last_edit_timestamp: true
+gh_edit_link: true
+gh_edit_repository: https://github.com/b-cubed-eu/documentation
+
+# Just the docs style
 # color_scheme: B-Cubedtheme
 extra_css:
-  - style.css
+  - assets/css/style.css # TODO: does this work?
 sass:
   style: compressed
   sass_dir: _sass
@@ -25,4 +34,5 @@ plugins:
   - jekyll-sass-converter
 exclude:
   - README.md
-  
+
+# FRONTMATTER DEFAULTS
