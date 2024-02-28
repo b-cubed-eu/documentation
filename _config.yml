@@ -3,11 +3,11 @@ title: Documentation and Tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 url: https://b-cubed-eu.github.io
 baseurl: /documentation
-favicon = "favicon.ico"
+favicon: "favicon.ico"
 
 # THEME SETTINGS
 theme: just-the-docs
-logo: "/static/images/b3-logo.png"
+logo: /assets/images/b3-logo.png
 search_enabled: true
 aux_links:
   GitHub: https://github.com/b-cubed-eu/documentation
