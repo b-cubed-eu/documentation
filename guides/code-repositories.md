@@ -112,7 +112,7 @@ Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([withou
 ## Add topics
 
 1. Follow the [Classify with topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
-2. Add a number of topics, including the language (`r` and `rstats` or `python`), the type of software (e.g. `r-package`, `analysis`) and related subjects (e.g. `invasive-species`), cf. the [GitHub repo topics section](https://devguide.ropensci.org/grooming.html#github-repo-topics) of [rOpenSci (2021)](ropens_2021).
+2. Add a number of topics, including the language (`r` and `rstats` or `python`), the type of software (e.g. `r-package`, `analysis`) and related subjects (e.g. `invasive-species`), cf. rOpenSci’s [GitHub repo topics section](https://devguide.ropensci.org/grooming.html#github-repo-topics).
 
 ## Hide irrelevant tabs
 
@@ -136,4 +136,3 @@ See the [README file](/guides/the-readme-file/) guide.
 See the [Code collaboration](/guides/code-collaboration/) guide.
 
 [yovche_2023]: https://b-cubed.eu/storage/app/uploads/public/64e/f45/6cd/64ef456cd4da1356663578.pdf "Yovcheva N, Metodiev T, Stoev P, Ruffino FR, Castro FJ (2023). Data Management Plan. B3 project deliverable D1.3."
-[ropens_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
