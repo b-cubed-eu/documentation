@@ -21,7 +21,7 @@ Lead author: Peter Desmet
 {:toc}
 </details>
 
-{: .note-title }
+{: .important-title }
 > Requirements
 > 
 > - All software code MUST be maintained on GitHub.
@@ -33,7 +33,10 @@ Lead author: Peter Desmet
 
 All software code MUST be maintained on GitHub. Code is maintained in a **repository**, which contains all files, discussions and version history related to a single software package or analysis.
 
-Note: all steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
+{: .note-title }
+> Note
+> 
+> All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
 
 ## Create a repository
 

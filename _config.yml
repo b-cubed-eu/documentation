@@ -21,8 +21,10 @@ gh_edit_repository: https://github.com/b-cubed-eu/documentation
 
 # Just the docs colours
 callouts:
-  note:
+  important:
     color: blue
+  note:
+    color: yellow
 
 # Just the docs style
 # color_scheme: B-Cubedtheme
