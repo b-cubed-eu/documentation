@@ -23,7 +23,7 @@ Lead author: Peter Desmet
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
 > - All participants to software MUST abide by its code of conduct.
@@ -55,7 +55,7 @@ To add a `CODE_OF_CONDUCT.md`:
 
 Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_coc()
 ```
 
@@ -97,7 +97,7 @@ To add a `CONTRIBUTING.md` file:
 
 Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_contributing()
 ```
 
@@ -115,7 +115,7 @@ Just like the [README file](/guides/the-readme-file/), issues (and pull request)
 
 As a maintainer, you can nudge participants in the right direction by providing an issue template. Follow the [Configuring issue templates for your repository](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository) instructions to do so. Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_issue_template()
 ```
 
@@ -127,4 +127,5 @@ While some contributions can be made directly in the browser (one file at a time
 
 GitHub desktop is a visual interface that allows you to commit your changes (include file parts and multiple related files), push those to GitHub.com, pull changes from contributors, resolve merge conflicts, and switch branches. It works well next to other code editors such as R Studio. See the [GitHub Desktop](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/setting-up-github-desktop) instructions to get started.
 
+<!-- References -->
 [bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."

@@ -8,7 +8,7 @@ authors:
 last_modified_date: 2024-02-28
 ---
 
-# Code collaboration
+# Versioning
 {: .no_toc }
 
 Lead author: Maarten Trekels
@@ -23,7 +23,7 @@ Lead author: Maarten Trekels
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - Software MUST use semantic versioning.
 > - Major and minor versions MUST have an associated GitHub release.
@@ -69,10 +69,10 @@ The purpose of this guide is to outline the requirements for software and script
 
 ## Changelog
 
-To communicate and explain version changes, each repository SHOULD have a changelog. This changelog SHOULD be expressed as a `NEWS.md` file for R code (see the [rOpenSci recommendations](https://devguide.ropensci.org/releasing.html#news)). 
+To communicate and explain version changes, each repository SHOULD have a changelog. This changelog SHOULD be expressed as a `NEWS.md` file for R code (see the [rOpenSci recommendations](https://devguide.ropensci.org/releasing.html#news)).
 
 In R you can create a `NEWS.md` file using:
 
-```R
+```r
 usethis::use_news_md()
 ```

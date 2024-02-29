@@ -23,7 +23,7 @@ Lead author: Peter Desmet
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - All software code MUST be maintained on GitHub.
 > - An installable software tool MUST be maintained in its own repository.
@@ -135,4 +135,5 @@ See the [README file](/guides/the-readme-file/) guide.
 
 See the [Code collaboration](/guides/code-collaboration/) guide.
 
+<!-- References -->
 [yovcheva_2023]: https://b-cubed.eu/storage/app/uploads/public/64e/f45/6cd/64ef456cd4da1356663578.pdf "Yovcheva N, Metodiev T, Stoev P, Ruffino FR, Castro FJ (2023). Data Management Plan. B3 project deliverable D1.3."
