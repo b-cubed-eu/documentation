@@ -1,8 +1,8 @@
 # SITE SETTINGS
-title: Documentation and Tutorials
+title: B-Cubed documentation and tutorials
 description: Documentation, tutorials and workflows for the B-Cubed toolbox.
 url: https://b-cubed-eu.github.io
-baseurl: /documentation
+baseurl: ""
 favicon: favicon.ico
 
 # THEME SETTINGS
@@ -45,7 +45,7 @@ exclude:
 # FRONTMATTER DEFAULTS
 defaults:
   - scope:
-      path: "guides" # TODO: should be possible to remove this, but breaks styling
+      path: "dev-guide" # TODO: should be possible to remove this, but breaks styling
       type: "pages"
     values:
       permalink: "/:path/:basename/"

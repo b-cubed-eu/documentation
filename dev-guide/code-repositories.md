@@ -1,6 +1,6 @@
 ---
 title: Code repositories
-parent: Guides
+parent: Software development guide
 nav_order: 1
 authors:
 - name: Peter Desmet
@@ -23,7 +23,7 @@ Lead author: Peter Desmet
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - All software code MUST be maintained on GitHub.
 > - An installable software tool MUST be maintained in its own repository.
@@ -56,7 +56,7 @@ The easiest way to create a repository is in your browser:
     4. The visibility MUST be set to `public`. This makes it easier to collaborate and reference files and code.
     5. Check `Add a README file`.
     6. You MUST select a `.gitignore` template (e.g. R, Python)
-    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B3 Data Management Plan ([Yovcheva et al. 2023][yovcheva_2023]).
+    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B-Cubed Data Management Plan ([Yovcheva et al. 2023][yovcheva_2023]).
 
 If you already have your code (locally), follow [About adding existing source code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#initializing-a-git-repository). Using GitHub Desktop is the easiest option.
 
@@ -65,7 +65,7 @@ If your code is already on GitHub under a personal account, it MUST be transferr
 Once you have created a repository (see [Figure 1](#figure-1)), you SHOULD complete a number of additional steps.
 
 {: #figure-1 }
-![Screenshot of a newly created repository](../../assets/images/code-repositories-figure-1.png)
+![Screenshot of a newly created repository](/assets/images/code-repositories-figure-1.png)
 **Figure 1: Screenshot of a newly created repository.**
 
 ## Set the copyright holder
@@ -95,7 +95,7 @@ Mac operating systems create [.DS_Store](https://en.wikipedia.org/wiki/.DS_Store
 
 ## Add a CITATION.cff file
 
-Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](/guides/versioning/#github-releases)). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
+Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](/dev-guide/versioning/#github-releases)). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
 
 1. Go to the main page of your repository.
 2. Click `Add file` then `Create new file`.
@@ -107,7 +107,7 @@ Repositories MUST contain a `CITATION.cff` file so users know how to cite the so
 
 Note: this file can be updated later (manually or through functions).
 
-Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](/guides/R/#citation)).
+Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](/dev-guide/r/#citation)).
 
 ## Add topics
 
@@ -129,10 +129,11 @@ Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([withou
 
 ## Extend your README.md file
 
-See the [README file](/guides/the-readme-file/) guide.
+See the [README file](/dev-guide/the-readme-file/) chapters.
 
 ## Setup your local environment, contribute code and collaborate
 
-See the [Code collaboration](/guides/code-collaboration/) guide.
+See the [Code collaboration](/dev-guide/code-collaboration/) chapter.
 
+<!-- References -->
 [yovcheva_2023]: https://b-cubed.eu/storage/app/uploads/public/64e/f45/6cd/64ef456cd4da1356663578.pdf "Yovcheva N, Metodiev T, Stoev P, Ruffino FR, Castro FJ (2023). Data Management Plan. B3 project deliverable D1.3."

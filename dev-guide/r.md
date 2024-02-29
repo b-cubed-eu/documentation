@@ -1,6 +1,6 @@
 ---
 title: R
-parent: Guides
+parent: Software development guide
 nav_order: 5
 authors:
 - name: Pieter Huybrechts
@@ -8,7 +8,7 @@ authors:
 last_modified_date: 2024-02-28
 ---
 
-# The README file
+# R
 {: .no_toc }
 
 Lead author: Pieter Huybrechts
@@ -23,7 +23,7 @@ Lead author: Pieter Huybrechts
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - R code MUST be placed in the `R/` directory of the repository.
 > - Data files included in the repository MUST be placed in the `data/` directory.
@@ -50,9 +50,9 @@ R is a programming language for statistical computing and data visualization.
 
 R code is run in a specific context, with an associated working directory, history, etc. If that context is undefined or too broad, it can create conflicts between projects or make it hard for others to run your code.
 
-To solve this, software MUST make the context explicit by including an [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) file (file with `.Rproj` extension) in the root of the repository to make the context explicit. This file will set your and everyone’s working directory at the root of the repository. In addition, software MUST only use relative paths starting at that project root to refer to files and MUST NOT use absolute paths. The implications of using absolute paths are described in the British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2018/12/BES-Reproducible-Code.pdf) ([BES 2017][bes_2017]). R code should strive to be as portable as possible, for example by never referring to a drive letter, network location or storage mounting point. 
+To solve this, software MUST make the context explicit by including an [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) file (file with `.Rproj` extension) in the root of the repository to make the context explicit. This file will set your and everyone’s working directory at the root of the repository. In addition, software MUST only use relative paths starting at that project root to refer to files and MUST NOT use absolute paths. The implications of using absolute paths are described in the British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2018/12/BES-Reproducible-Code.pdf) ([BES 2017][bes_2017]). R code should strive to be as portable as possible, for example by never referring to a drive letter, network location or storage mounting point.
 
-Further benefits of RStudio Projects are described in [this section](https://r-pkgs.org/workflow101.html#benefits-of-rstudio-projects) of the R Packages book. Software carpentry provides [a guide on project management with Rstudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html). 
+Further benefits of RStudio Projects are described in [this section](https://r-pkgs.org/workflow101.html#benefits-of-rstudio-projects) of the R Packages book. Software carpentry provides [a guide on project management with Rstudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html).
 
 ## Dependencies
 
@@ -69,7 +69,7 @@ In general it is recommended to use packages from the tidyverse over base R func
 
 Adding a dependency to your `DESCRIPTION` file is easy using [usethis](https://usethis.r-lib.org/):
 
-```R
+```r
 usethis::use_package("dplyr")
 ```
 
@@ -85,15 +85,15 @@ A number of useful packages exist to help you stick to the tidyverse style. To a
 
 Have you ever written any code that turned out to not really do what you wanted it to do? Made a change to a helper function that introduced bugs in other functions or scripts using it? Or found yourself running the same little ad hoc tests in the console time and time again to see if a function is behaving as expected? These are all signs that you could benefit from using automated testing.
 
-By writing tests that check the major functionality of your software, you are ensuring that changes along the line don’t break existing functionality. And that updates to underlying dependencies didn’t have unexpected consequences. 
+By writing tests that check the major functionality of your software, you are ensuring that changes along the line don’t break existing functionality. And that updates to underlying dependencies didn’t have unexpected consequences.
 
-A general overview of the how and why of testing R code is found in R packages ([Wickham & Bryan 2023][wickham_bryan_2023]) in [chapter testing basics.](https://r-pkgs.org/testing-basics.html) [rOpenSci (2021)][ropensci_2021] offers some helpful advice regarding tests in the [section on testing](https://devguide.ropensci.org/building.html#testing). Other interesting resources include [the blogpost](https://mtlynch.io/good-developers-bad-tests/) by Michael Lynch on why good developers write bad tests, the documentation of [testthat](https://testthat.r-lib.org/) and [covr](https://covr.r-lib.org/). And rOpenSci ([Chamberlain & Salmon 2024][chamberlain_2024]) also offers a [book](https://books.ropensci.org/http-testing/) on HTTP testing. For more information on unit testing in general, you might find "Unit Testing Principles, Practices, and Patterns" by [Khorikov (2020)][khorikov_2020] a good resource.
+A general overview of the how and why of testing R code is found in R packages ([Wickham & Bryan 2023][wickham_bryan_2023]) in [chapter testing basics](https://r-pkgs.org/testing-basics.html). [rOpenSci (2021)][ropensci_2021] offers some helpful advice regarding tests in the [section on testing](https://devguide.ropensci.org/building.html#testing). Other interesting resources include [the blogpost](https://mtlynch.io/good-developers-bad-tests/) by Michael Lynch on why good developers write bad tests, the documentation of [testthat](https://testthat.r-lib.org/) and [covr](https://covr.r-lib.org/). And rOpenSci ([Chamberlain & Salmon 2024][chamberlain_2024]) also offers a [book](https://books.ropensci.org/http-testing/) on HTTP testing. For more information on unit testing in general, you might find "Unit Testing Principles, Practices, and Patterns" by [Khorikov (2020)][khorikov_2020] a good resource.
 
 ### Using testthat in practise
 
 Start using testthat for an existing R project by running:
 
-```R
+```r
 usethis::use_testthat()
 ```
 
@@ -101,7 +101,7 @@ Which will create `⁠tests/testthat/`⁠ and `tests/testthat.R`, and adds the [
 
 Creating a test for an existing function is automated via [usethis](https://usethis.r-lib.org/):
 
-```R
+```r
 # Explicitly refer to the file we want to test
 usethis::use_test("filename_to_test")
 
@@ -111,7 +111,7 @@ usethis::use_test()
 
 While it is a good idea to regularly run your tests locally, it is also a good idea to automate this in the form of continuous integration:
 
-```R
+```r
 # Runs R CMD CHECK which includes running all tests
 usethis::use_github_action("check-standard")
 
@@ -121,14 +121,14 @@ usethis::use_github_action("test-coverage")
 
 You can also add badges to your README page to signal your `R CMD CHECK` status (which includes your unit tests) and test coverage:
 
-```R
+```r
 usethis::use_github_action("check-standard", badge = TRUE)
 usethis::use_github_action("test-coverage", badge = TRUE)
 ```
 
 Tests can then be run by:
 
-```R
+```r
 # For a package
 devtools::test()
 
@@ -140,7 +140,7 @@ testthat::test_dir("tests/testthat")
 
 The goal of unit testing is to compare the output of a function to some expectation or expected value, however, for some outputs this isn’t very practical. One example is binary outputs such as figures or plots. While [testthat](https://testthat.r-lib.org/) offers a solution for this in the form of [snapshots](https://testthat.r-lib.org/articles/snapshotting.html) (and this is certainly a very powerful and useful feature), these snapshot tests are very sensitive to minute changes.
 
-[vdiffr](https://vdiffr.r-lib.org/) is a package that forms an extension to [testthat](https://testthat.r-lib.org/), it converts your visual outputs to reproducible svg files that are then compared as [testthat](https://testthat.r-lib.org/) snapshots. This offers some relief, but might still result in false positive test failures. After all, if your plotting library changes its rendering slightly, the test will fail. 
+[vdiffr](https://vdiffr.r-lib.org/) is a package that forms an extension to [testthat](https://testthat.r-lib.org/), it converts your visual outputs to reproducible svg files that are then compared as [testthat](https://testthat.r-lib.org/) snapshots. This offers some relief, but might still result in false positive test failures. After all, if your plotting library changes its rendering slightly, the test will fail.
 
 A final option is to use a public accessor of your plotting library, for example [ggplot2](https://ggplot2.tidyverse.org/) offers [a number](https://ggplot2.tidyverse.org/reference/ggplot_build.html?q=layer_data#details) of these assessors that allow you to test specific parts of every layer. [This post](https://www.tidyverse.org/blog/2022/09/playing-on-the-same-team-as-your-dependecy/#testing-testing) on the tidyverse blog offers more insight on why you might want to go about testing this way.
 
@@ -155,6 +155,7 @@ There are several packages to check how well your R code is following best pract
 - [goodpractice](http://mangothecat.github.io/goodpractice/) ([Marks et al. 2022][marks_2022]) informs about different good practices for packages.
 - [dupree](https://russhyde.github.io/dupree/) ([Hyde 2024][hyde_2024]) identifies sections of code that are very similar or repeated.
 
+<!-- References -->
 [adler_2010]: https://www.oreilly.com/library/view/r-in-a/9781449358204/ "R in a nutshell: A desktop quick reference. O'Reilly Media, Inc."
 [bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
 [chamberlain_2024]: https://doi.org/10.5281/zenodo.10608847 "Chamberlain S, Salmon M (2024). HTTP testing in R. rOpenSci."

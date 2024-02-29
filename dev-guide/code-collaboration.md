@@ -1,6 +1,6 @@
 ---
 title: Code collaboration
-parent: Guides
+parent: Software development guide
 nav_order: 3
 authors:
 - name: Peter Desmet
@@ -23,7 +23,7 @@ Lead author: Peter Desmet
 </details>
 
 {: .important-title }
-> Requirements
+> B-Cubed software requirements
 > 
 > - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
 > - All participants to software MUST abide by its code of conduct.
@@ -55,7 +55,7 @@ To add a `CODE_OF_CONDUCT.md`:
 
 Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_coc()
 ```
 
@@ -72,7 +72,7 @@ When receiving a notification by email, click the `view it on GitHub` link at th
 {: #github-flow }
 ## Follow the GitHub flow
 
-The GitHub flow is an easy-to-adopt practice for code collaboration that MUST be followed for all code contributions to B3 software. It consists of making a **branch**, making changes, creating a **pull request**, addressing review comments, merging the pull request and deleting the branch. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow) for more information, including links to further documentation for all the steps.
+The GitHub flow is an easy-to-adopt practice for code collaboration that MUST be followed for all code contributions to B-Cubed software. It consists of making a **branch**, making changes, creating a **pull request**, addressing review comments, merging the pull request and deleting the branch. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow) for more information, including links to further documentation for all the steps.
 
 ## Protect the main branch
 
@@ -97,7 +97,7 @@ To add a `CONTRIBUTING.md` file:
 
 Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_contributing()
 ```
 
@@ -109,13 +109,13 @@ While the [GitHub flow](#github-flow) lowers the barrier for making code contrib
 
 Issues can be used to report and discuss a bug, idea or task. Issues are typically not used to ask for support in using the software. Anyone can create an issue or comment on it, and all participants watching the repository will get a [notification](#enable-notifications-15). Once an issue is resolved (by fixing the bug, implementing the feature, or deciding not to act upon it) it can be closed. Closed issues are still accessible and can act as a history of decisions ([BES 2017][bes_2017]).
 
-Writing a good issue takes skill, see [this blog post](https://dev.to/opensauced/how-to-write-a-good-issue-tips-for-effective-communication-in-open-source-5443) or the t[idyverse code review guide](https://code-review.tidyverse.org/issues/) for guidance, and follow the [contributing guide](#contributing-guide).
+Writing a good issue takes skill, see [this blog post](https://dev.to/opensauced/how-to-write-a-good-issue-tips-for-effective-communication-in-open-source-5443) or the [tidyverse code review guide](https://code-review.tidyverse.org/issues/) for guidance, and follow the [contributing guide](#contributing-guide).
 
-Just like the [README file](/guides/the-readme-file/), issues (and pull request) support **Markdown** formatting that can improve readability, link issues to code and other issues, and notify people. See the GitHub’s [Basic formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) guide for more information.
+Just like the [README file](/dev-guide/the-readme-file/), issues (and pull request) support **Markdown** formatting that can improve readability, link issues to code and other issues, and notify people. See the GitHub’s [Basic formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) guide for more information.
 
 As a maintainer, you can nudge participants in the right direction by providing an issue template. Follow the [Configuring issue templates for your repository](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository) instructions to do so. Alternatively, you can complete these steps in R using:
 
-```R
+```r
 usethis::use_tidy_issue_template()
 ```
 
@@ -127,4 +127,5 @@ While some contributions can be made directly in the browser (one file at a time
 
 GitHub desktop is a visual interface that allows you to commit your changes (include file parts and multiple related files), push those to GitHub.com, pull changes from contributors, resolve merge conflicts, and switch branches. It works well next to other code editors such as R Studio. See the [GitHub Desktop](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/setting-up-github-desktop) instructions to get started.
 
+<!-- References -->
 [bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
