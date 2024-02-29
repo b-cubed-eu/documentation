@@ -1,6 +1,7 @@
 ---
 title: Code repositories
 parent: Guides
+nav_order: 1
 authors:
 - name: Peter Desmet
   orcid: 0000-0002-8442-8025
@@ -9,6 +10,8 @@ last_modified_date: 2024-02-28
 
 # Code repositories
 {: .no_toc }
+
+Lead author: Peter Desmet
 
 <details closed markdown="block">
   <summary>
@@ -19,7 +22,7 @@ last_modified_date: 2024-02-28
 {:toc}
 </details>
 
-{: .note-title }
+{: .important-title }
 > Requirements
 > 
 > - All software code MUST be maintained on GitHub.
@@ -31,7 +34,10 @@ last_modified_date: 2024-02-28
 
 All software code MUST be maintained on GitHub. Code is maintained in a **repository**, which contains all files, discussions and version history related to a single software package or analysis.
 
-Note: all steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
+{: .note-title }
+> Note
+> 
+> All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
 
 ## Create a repository
 
@@ -46,11 +52,11 @@ The easiest way to create a repository is in your browser:
 3. Follow the [Quickstart for repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories) instructions and create a new repository at <https://github.com/organizations/b-cubed-eu/repositories/new>:
     1. Choose `b-cubed-eu` as owner. If that option is not available, see step 2.
     2. The repository name SHOULD be lowercase, dash-separated and short.
-    3. The description SHOULD be a descriptive, one-sentence title (without period at the end), such as "R package to read and write Frictionless Data Packages".
+    3. The description SHOULD be a descriptive, one-sentence title (without period at the end), such as `R package to read and write Frictionless Data Packages`.
     4. The visibility MUST be set to `public`. This makes it easier to collaborate and reference files and code.
     5. Check `Add a README file`.
     6. You MUST select a `.gitignore` template (e.g. R, Python)
-    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B3 Data Management Plan ([Yovcheva et al. 2023][yovche_2023]).
+    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B3 Data Management Plan ([Yovcheva et al. 2023][yovcheva_2023]).
 
 If you already have your code (locally), follow [About adding existing source code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#initializing-a-git-repository). Using GitHub Desktop is the easiest option.
 
@@ -106,7 +112,7 @@ Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([withou
 ## Add topics
 
 1. Follow the [Classify with topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
-2. Add a number of topics, including the language (`r` and `rstats` or `python`), the type of software (e.g. `r-package`, `analysis`) and related subjects (e.g. `invasive-species`), cf. the [GitHub repo topics section](https://devguide.ropensci.org/grooming.html#github-repo-topics) of [rOpenSci (2021)](ropens_2021).
+2. Add a number of topics, including the language (`r` and `rstats` or `python`), the type of software (e.g. `r-package`, `analysis`) and related subjects (e.g. `invasive-species`), cf. the rOpenSci section on [GitHub repo topics](https://devguide.ropensci.org/grooming.html#github-repo-topics).
 
 ## Hide irrelevant tabs
 
@@ -123,11 +129,10 @@ Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([withou
 
 ## Extend your README.md file
 
-See the [README file](/guides/readme-file/) guide.
+See the [README file](/guides/the-readme-file/) guide.
 
 ## Setup your local environment, contribute code and collaborate
 
 See the [Code collaboration](/guides/code-collaboration/) guide.
 
-[yovche_2023]: https://b-cubed.eu/storage/app/uploads/public/64e/f45/6cd/64ef456cd4da1356663578.pdf "Yovcheva N, Metodiev T, Stoev P, Ruffino FR, Castro FJ (2023). Data Management Plan. B3 project deliverable D1.3."
-[ropens_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
+[yovcheva_2023]: https://b-cubed.eu/storage/app/uploads/public/64e/f45/6cd/64ef456cd4da1356663578.pdf "Yovcheva N, Metodiev T, Stoev P, Ruffino FR, Castro FJ (2023). Data Management Plan. B3 project deliverable D1.3."
