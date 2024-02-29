@@ -72,7 +72,7 @@ When receiving a notification by email, click the `view it on GitHub` link at th
 {: #github-flow }
 ## Follow the GitHub flow
 
-The GitHub flow is an easy-to-adopt practice for code collaboration that MUST be followed for all code contributions to B3 software. It consists of making a **branch**, making changes, creating a **pull request**, addressing review comments, merging the pull request and deleting the branch. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow) for more information, including links to further documentation for all the steps.
+The GitHub flow is an easy-to-adopt practice for code collaboration that MUST be followed for all code contributions to B-Cubed software. It consists of making a **branch**, making changes, creating a **pull request**, addressing review comments, merging the pull request and deleting the branch. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow) for more information, including links to further documentation for all the steps.
 
 ## Protect the main branch
 

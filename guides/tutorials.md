@@ -33,7 +33,7 @@ To make software more welcoming to users, each package and analysis MUST have at
 
 ## Documenting software and code in B-Cubed
 
-Tutorials MUST be written in English and presented as literate programming documents (e.g. Jupyter notebooks, RMarkdown or Quarto) to provide both narrative context and executable code snippets. The documentation website will be versioned and an automated testing mechanism will be set up to guarantee that provided documentation works for a specific release of the B3 toolbox. Ensure that your tutorial passes automated tests.
+Tutorials MUST be written in English and presented as literate programming documents (e.g. Jupyter notebooks, RMarkdown or Quarto) to provide both narrative context and executable code snippets. The documentation website will be versioned and an automated testing mechanism will be set up to guarantee that provided documentation works for a specific release of the B-Cubed toolbox. Ensure that your tutorial passes automated tests.
 
 ## Creating a new tutorial
 

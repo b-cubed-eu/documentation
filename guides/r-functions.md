@@ -75,7 +75,7 @@ A sure way to confuse users is for a function to return a different output with 
 
 Further reading:
 
-- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]), the rest of the chapter also includes an excellent overview of best practices.
+- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]), the rest of the guide also includes an excellent overview of best practices.
 - Nicholas Tierney provides an easy to follow example of how functions can make your life easier and how to get started with writing them in [this blogpost](https://www.njtierney.com/post/2023/11/10/how-to-get-good-with-r/#write-functions).
 - Principles and strategies that come in handy when writing functions (and packages) are summarized in [the tidyverse design principles](http://design.tidyverse.org).
 - Berkeley offers an introduction to functions in its [Introduction to the R Language](https://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/functions.pdf) presentation.

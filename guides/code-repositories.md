@@ -56,7 +56,7 @@ The easiest way to create a repository is in your browser:
     4. The visibility MUST be set to `public`. This makes it easier to collaborate and reference files and code.
     5. Check `Add a README file`.
     6. You MUST select a `.gitignore` template (e.g. R, Python)
-    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B3 Data Management Plan ([Yovcheva et al. 2023][yovcheva_2023]).
+    7. You MUST select a licence and you MUST set it to `MIT License`. This conforms to the B-Cubed Data Management Plan ([Yovcheva et al. 2023][yovcheva_2023]).
 
 If you already have your code (locally), follow [About adding existing source code to GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#initializing-a-git-repository). Using GitHub Desktop is the easiest option.
 
