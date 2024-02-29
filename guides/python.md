@@ -1,6 +1,6 @@
 ---
 title: Python
-parent: Guides
+parent: Software development guide
 nav_order: 9
 authors:
 - name: Maarten Trekels
@@ -36,11 +36,11 @@ Lead author: Maarten Trekels
 > - Documentation MUST be created using [Sphinx](https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html).
 > - Classes and functions MUST be documented using docstrings.
 
-Many of the principles that are outlined in the guides on [R](/guides/r/) and [R packages](/guides/r-packages/), also apply to writing Python code. In this guide, we will outline some additional requirements for Python. A very good reference to Python programming can be found in [The Hitchhicker’s Guide to Python](https://docs.python-guide.org/) ([Reitz & Schlusser 2016][reitz_schlusser_2016]).
+Many of the principles that are outlined in the chapters on [R](/dev-guide/r/) and [R packages](/dev-guide/r-packages/), also apply to writing Python code. In this chapter, we will outline some additional requirements for Python. A very good reference to Python programming can be found in [The Hitchhicker’s Guide to Python](https://docs.python-guide.org/) ([Reitz & Schlusser 2016][reitz_schlusser_2016]).
 
 ## Repository structure
 
-After creating a [new code repository](/guides/code-repositories/), the preferred structure for a repo named `sample` is as follows:
+After creating a [new code repository](/dev-guide/code-repositories/), the preferred structure for a repo named `sample` is as follows:
 
 ```
 .gitignore

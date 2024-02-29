@@ -1,6 +1,6 @@
 ---
 title: R functions
-parent: Guides
+parent: Software development guide
 nav_order: 6
 authors:
 - name: Pieter Huybrechts
@@ -58,7 +58,7 @@ However, using functions is not without its pitfalls. But many issues can be avo
 Functions need to be self-contained, the reasoning behind is explained well in the section "writing functions" in [BES (2017)][bes_2017]. Practically this means:
 
 - A function SHOULD NOT rely on data from outside of the function whenever possible.
-- A function SHOULD NOT manipulate data outside of the function, thus it MUST NOT make changes to objects in the global environment. If you are importing data from the system to R, return an object rather than modifying the global environment (as is also explained [in the tidyverse style guide](https://style.tidyverse.org/functions.html)).
+- A function SHOULD NOT manipulate data outside of the function, thus it MUST NOT make changes to objects in the global environment. If you are importing data from the system to R, return an object rather than modifying the global environment (as is also explained in the [tidyverse style guide](https://style.tidyverse.org/functions.html)).
 - If it is necessary to make changes to data outside of the function, create a new file rather than making changes to an existing one. Functions that create new files MUST make this clear in their name, a good example is starting the function with write, for example `write_csv()` from [readr](https://readr.tidyverse.org/).
 
 Keeping your functions separate from analysis code can improve the readability of the analysis, and ease the maintenance of the functions. It is considered best practice to place every function in its own .R file, and to name this file after the function. As described in the [R packages book](https://r-pkgs.org/code.html#sec-code-organising) ([Wickham & Bryan 2023][wickham_bryan_2023]). You can create such a file using:
@@ -75,7 +75,7 @@ A sure way to confuse users is for a function to return a different output with 
 
 Further reading:
 
-- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]), the rest of the guide also includes an excellent overview of best practices.
+- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]), the rest of the chapter also includes an excellent overview of best practices.
 - Nicholas Tierney provides an easy to follow example of how functions can make your life easier and how to get started with writing them in [this blogpost](https://www.njtierney.com/post/2023/11/10/how-to-get-good-with-r/#write-functions).
 - Principles and strategies that come in handy when writing functions (and packages) are summarized in [the tidyverse design principles](http://design.tidyverse.org).
 - Berkeley offers an introduction to functions in its [Introduction to the R Language](https://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/functions.pdf) presentation.
@@ -145,7 +145,7 @@ fct_rev <- function(f) {
 }
 ```
 
-An additional advantage of this system is that every function will automatically get its own page on your [documentation website](/guides/r-packages/#documentation-website). A screenshot of the webpage that was created for the function above is shown in [Figure 1](#figure-1).
+An additional advantage of this system is that every function will automatically get its own page on your [documentation website](/dev-guide/r-packages/#documentation-website). A screenshot of the webpage that was created for the function above is shown in [Figure 1](#figure-1).
 
 {: #figure-1 }
 ![Screenshot of online function documentation](../../assets/images/r-functions-figure-1.png)

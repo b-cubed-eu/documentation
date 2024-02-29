@@ -1,6 +1,6 @@
 ---
 title: Versioning
-parent: Guides
+parent: Software development guide
 nav_order: 4
 authors:
 - name: Maarten Trekels
@@ -65,7 +65,7 @@ Starting from release 1.0, authors MUST also publish their releases on Zenodo. Z
 
 ## Data products
 
-The purpose of this guide is to outline the requirements for software and scripts that are developed within the B-Cubed project. Data products are out-of-scope. However, many of the principles mentioned in this document can be applied to data products as well. For more details, we refer to the upcoming deliverable "D3.3 Guidelines on the FAIR and open depositing of data products to ensure that B-Cubed data cubes are compatible with the EBV Data Portal and other outlets for data cube dissemination".
+The purpose of this chapter is to outline the requirements for software and scripts that are developed within the B-Cubed project. Data products are out-of-scope. However, many of the principles mentioned in this document can be applied to data products as well. For more details, we refer to the upcoming deliverable "D3.3 Guidelines on the FAIR and open depositing of data products to ensure that B-Cubed data cubes are compatible with the EBV Data Portal and other outlets for data cube dissemination".
 
 ## Changelog
 

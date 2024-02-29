@@ -1,6 +1,6 @@
 ---
 title: R
-parent: Guides
+parent: Software development guide
 nav_order: 5
 authors:
 - name: Pieter Huybrechts

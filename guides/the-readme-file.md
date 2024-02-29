@@ -1,6 +1,6 @@
 ---
 title: The README file
-parent: Guides
+parent: Software development guide
 nav_order: 2
 authors:
 - name: Pieter Huybrechts
@@ -29,9 +29,9 @@ Lead author: Pieter Huybrechts
 > - The README file MUST start with a title.
 > - The README file MUST include a brief introduction to the repository/software.
 
-A README file communicates the most important information about your repository/software. It will serve as a welcome sign for users, meaning that it will be the first and maybe most important piece of metadata that users will encounter. It often also serves as the landing page for a [documentation website](/guides/r-packages/#documentation-website).
+A README file communicates the most important information about your repository/software. It will serve as a welcome sign for users, meaning that it will be the first and maybe most important piece of metadata that users will encounter. It often also serves as the landing page for a [documentation website](/dev-guide/r-packages/#documentation-website).
 
-Maintainers SHOULD extend a README beyond its initial template when it was created as soon as possible, as it helps to define scope and expectations and facilitates [collaboration](/guides/code-collaboration/). General guidance on writing a README can be found in GitHub’s [About READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) or [Make a README](https://www.makeareadme.com/), while software languages (e.g. [Python](https://docs.python-guide.org/writing/documentation/) or [R](https://devguide.ropensci.org/building.html#readme)) often have specific instructions. Some suggestions for its contents are detailed in the sections below. See the [README.md](https://github.com/frictionlessdata/frictionless-r/#readme) of the [frictionless](https://docs.ropensci.org/frictionless/) package ([Desmet et al. 2022][desmet_oldoni_2022]) as an example.
+Maintainers SHOULD extend a README beyond its initial template when it was created as soon as possible, as it helps to define scope and expectations and facilitates [collaboration](/dev-guide/code-collaboration/). General guidance on writing a README can be found in GitHub’s [About READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) or [Make a README](https://www.makeareadme.com/), while software languages (e.g. [Python](https://docs.python-guide.org/writing/documentation/) or [R](https://devguide.ropensci.org/building.html#readme)) often have specific instructions. Some suggestions for its contents are detailed in the sections below. See the [README.md](https://github.com/frictionlessdata/frictionless-r/#readme) of the [frictionless](https://docs.ropensci.org/frictionless/) package ([Desmet et al. 2022][desmet_oldoni_2022]) as an example.
 
 {: .note-title }
 > Note
@@ -44,7 +44,7 @@ The README file MUST be written in Markdown (and therefore be named `README.md`)
 
 ## Title
 
-A README MUST start with an H1 title with the (human-readable) name of the repository/software. The title is generally the same as the name of the package, see [Naming your package](/guides/r-packages/#naming-your-package).
+A README MUST start with an H1 title with the (human-readable) name of the repository/software. The title is generally the same as the name of the package, see [Naming your package](/dev-guide/r-packages/#naming-your-package).
 
 ## Badges
 
@@ -66,7 +66,7 @@ Similar to the installation instructions at least one example of the functionali
 
 ## README files for data
 
-A repository can have additional README files beyond the one in the root. These typically serve as an introduction to a specific directory. These SHOULD NOT be used, as there are better ways to [document code](/guides/r-packages/#documenting-functions), but it can serve as a quick way to describe data files. See [this guide](https://data.research.cornell.edu/data-management/sharing/readme/) by Cornell University Data Services or Dryad’s [best practices document](https://datadryad.org/stash/best_practices#describe-your-dataset-in-a-readme-file) for guidance. Better yet is to deposit your data elsewhere.
+A repository can have additional README files beyond the one in the root. These typically serve as an introduction to a specific directory. These SHOULD NOT be used, as there are better ways to [document code](/dev-guide/r-packages/#documenting-functions), but it can serve as a quick way to describe data files. See [this guide](https://data.research.cornell.edu/data-management/sharing/readme/) by Cornell University Data Services or Dryad’s [best practices document](https://datadryad.org/stash/best_practices#describe-your-dataset-in-a-readme-file) for guidance. Better yet is to deposit your data elsewhere.
 
 <!-- References -->
 [desmet_oldoni_2022]: https://cran.r-project.org/package=frictionless "Desmet P, Oldoni D (2022). Read and Write Frictionless Data Packages. R package version 1.0.2."

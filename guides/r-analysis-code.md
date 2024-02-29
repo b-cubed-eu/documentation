@@ -1,6 +1,6 @@
 ---
 title: R analysis code
-parent: Guides
+parent: Software development guide
 nav_order: 8
 authors:
 - name: Pieter Huybrechts
@@ -41,7 +41,7 @@ An important note is that most R analysis scripts could be wrapped as a package.
 
 Creating an R package might seem like a huge step if you haven’t done it before, and while there is a learning curve, it really isn’t nearly as hard as it seems. All of this to say, please don’t be afraid to start an R package instead of an analysis script as part of your analysis workflow.
 
-For more information on packages, refer to the [R packages](/guides/r-packages/) guide.
+For more information on packages, refer to the [R packages](/dev-guide/r-packages/) chapter.
 
 An R analysis script/project can be started from scratch via [usethis](https://usethis.r-lib.org/):
 
@@ -53,7 +53,7 @@ usethis::create_project("myprojectname")
 This automates a number of steps:
 
 - It creates a new directory for your project to live in.
-- It sets the [RStudio active project](/guides/r/#rstudio-projects) to the new folder.
+- It sets the [RStudio active project](/dev-guide/r/#rstudio-projects) to the new folder.
 - It creates a new subdirectory `R/ `for R code to live in.
 - It creates an `.Rproj` file.
 - It adds `.Rproj.user` to `.gitignore`.

@@ -1,6 +1,6 @@
 ---
 title: Tutorials
-parent: Guides
+parent: Software development guide
 nav_order: 10
 authors:
 - name: Laura Abraham
@@ -37,7 +37,7 @@ Tutorials MUST be written in English and presented as literate programming docum
 
 ## Creating a new tutorial
 
-1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](/guides/code-collaboration/#github-flow). 
+1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](/dev-guide/code-collaboration/#github-flow). 
 2. Go to the `tutorials` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/tutorials).
 3. Click `Add file` and then `Create new file`.
 4. Name your file `name-of-tutorial/index.md`. Use lowercase and dashes (`create-occurrence-cube/index.md`).
@@ -63,7 +63,7 @@ You now have a directory for your tutorial, which can contain any files (images,
 
 ## Writing your tutorial
 
-You can write your tutorial directly in the `index.md`, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](/guides/r-packages/#readme)).
+You can write your tutorial directly in the `index.md`, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](/dev-guide/r-packages/#readme)).
 
 Such files can then be rendered to HTML/Markdown, and will not only include the text and the code snippets, but also the results of running the code ([example](https://docs.ropensci.org/frictionless/articles/frictionless.html)). That rendered HTML/Markdown can be copied to `index.md`, under the frontmatter.
 

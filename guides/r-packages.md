@@ -1,6 +1,6 @@
 ---
 title: R packages
-parent: Guides
+parent: Software development guide
 nav_order: 7
 authors:
 - name: Pieter Huybrechts
@@ -113,7 +113,7 @@ Apart from base R, the package [cli](https://cli.r-lib.org/) comes recommended f
 
 ## README
 
-For general instructions, see [the README file](/guides/the-readme-file/) guide. The README file for R packages largely takes the same form as the one required for all repositories. Additionally, a number of useful tools are available to you as a developer to create a great README.
+For general instructions, see [the README file](/dev-guide/the-readme-file/) chapter. The README file for R packages largely takes the same form as the one required for all repositories. Additionally, a number of useful tools are available to you as a developer to create a great README.
 
 If you don’t have a README yet, you can create one with [usethis](https://usethis.r-lib.org/reference/use_readme_rmd.html):
 
@@ -149,7 +149,7 @@ usethis::use_github_action("test-coverage", badge = TRUE)
 
 ## Documentation website
 
-A documentation website allows (potential) users to learn about your package and its functionality without having to install it first. Luckily, prior knowledge of web development is not needed to create a documentation website for R packages. It can be generated automatically with  [pkgdown](https://github.com/r-lib/pkgdown), which will pull the information you already included in the [README file](/guides/the-readme-file/) and [function documentation](/guides/r-functions/#documenting-functions). [The introduction page](https://pkgdown.r-lib.org/articles/pkgdown.html) of pkgdown describes its basic use (the documentation website of pkgdown was created with pkgdown). Here’s how to get started:
+A documentation website allows (potential) users to learn about your package and its functionality without having to install it first. Luckily, prior knowledge of web development is not needed to create a documentation website for R packages. It can be generated automatically with  [pkgdown](https://github.com/r-lib/pkgdown), which will pull the information you already included in the [README file](/dev-guide/the-readme-file/) and [function documentation](/dev-guide/r-functions/#documenting-functions). [The introduction page](https://pkgdown.r-lib.org/articles/pkgdown.html) of pkgdown describes its basic use (the documentation website of pkgdown was created with pkgdown). Here’s how to get started:
 
 ```r
 # Run once to configure package to use pkgdown
@@ -214,13 +214,13 @@ And users can retrieve its information with:
 citation("package-name")
 ```
 
-All repositories MUST also include a `CITATION.cff` file (see [Add a CITATION.cff file](/guides/code-repositories/#add-a-citationcff-file)). You can keep it in sync with the `CITATION` file using a [GitHub action](https://docs.ropensci.org/cffr/reference/cff_gha_update.html) provided by the [cffr](https://docs.ropensci.org/cffr/) package.
+All repositories MUST also include a `CITATION.cff` file (see [Add a CITATION.cff file](/dev-guide/code-repositories/#add-a-citationcff-file)). You can keep it in sync with the `CITATION` file using a [GitHub action](https://docs.ropensci.org/cffr/reference/cff_gha_update.html) provided by the [cffr](https://docs.ropensci.org/cffr/) package.
 
 rOpenSci offers a useful [blog post](https://ropensci.org/blog/2021/11/16/how-to-cite-r-and-r-packages/) on how to cite R and R packages that is a good read for both software authors and users.
 
 ## LICENSE
 
-As described in the [Create a repository](/guides/code-repositories/) guide, all software produced in the context MUST be licenced under the [MIT licence](https://mit-license.org/). The copyright holder of the software will be the institution that will be maintaining the package, not the authors of the package.
+As described in the [Create a repository](/dev-guide/code-repositories/) chapter, all software produced in the context MUST be licenced under the [MIT licence](https://mit-license.org/). The copyright holder of the software will be the institution that will be maintaining the package, not the authors of the package.
 
 Adding this LICENSE file is easy with [usethis](https://usethis.r-lib.org/) (take care to immediately set the copyright holder, as it will default to the package authors):
 
@@ -269,7 +269,7 @@ my_function <- function(file) {
 }
 ```
 
-For dependency recommendations, see the general R guide on [dependencies](/guides/r/#dependencies).
+For dependency recommendations, see the [dependencies section](/dev-guide/r/#dependencies) in the R chapter.
 
 <!-- References -->
 [ropensci_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
