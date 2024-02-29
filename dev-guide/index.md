@@ -1,7 +1,8 @@
 ---
 title: Software development guide
-has_children: true
 permalink: /dev-guide/
+has_children: true
+nav_order: 3
 ---
 
 # Software development guide
