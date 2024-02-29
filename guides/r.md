@@ -157,7 +157,7 @@ There are several packages to check how well your R code is following best pract
 
 [adler_2010]: https://www.oreilly.com/library/view/r-in-a/9781449358204/ "R in a nutshell: A desktop quick reference. O'Reilly Media, Inc."
 [bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
-[chamberlain_2024]: https://doi.org/10.5281/zenodo.10608847 "Chamberlain S, Salmon M (20243). HTTP testing in R. rOpenSci."
+[chamberlain_2024]: https://doi.org/10.5281/zenodo.10608847 "Chamberlain S, Salmon M (2024). HTTP testing in R. rOpenSci."
 [crawley_2010]: https://doi.org/10.1002/9781118448908 "Crawley MJ (2012). The R book. John Wiley & Sons."
 [hester_2023]: https://cran.r-project.org/package=lintr "Hester J, Angly F, Hyde R, Chirico M, Ren K, Rosenstock A, Patil I (2023). lintr: A 'Linter' for R Code. R package version 3.1.1."
 [hyde_2024]: https://cran.r-project.org/package=dupree "Hyde R (2024). dupree: Identify Duplicated R Code in a Project. R package version 0.3.0."
