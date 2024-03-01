@@ -42,7 +42,7 @@ Lead author: Pieter Huybrechts
 > - Packages MUST NOT use `Depends` but instead MUST use `Imports` or `Suggests` to declare dependencies in the DESCRIPTION file.
 > - When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`.
 
-Hadley Wickham and Jennifer Bryan have written an [excellent guide on R Packages](https://r-pkgs.org/) ([Wickham & Bryan 2023][wickham_bryan_2023]), that comes highly recommended. This document goes through all the required steps to creating a package. More advanced is the R projects [manual on writing R extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html). [Wickam (2019)][wickham_2019] has included sections on functional and object oriented programming in his book [advanced R](https://adv-r.hadley.nz/index.html) that might come in useful.
+Hadley Wickham and Jennifer Bryan have written an [excellent guide on R Packages](https://r-pkgs.org/), that comes highly recommended. This document goes through all the required steps to creating a package. More advanced is the R projects [manual on writing R extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html). Hadley Wickham has included sections on functional and object oriented programming in his book [Advanced R](https://adv-r.hadley.nz) that might come in useful.
 
 A lot of the tooling around R packages is also useful for R analysis code formatted as a script. However, while it might look intimidating at first, authoring an R package isn’t nearly as difficult as it might seem. Below there is an included example of R commands that set up an R package, and the required documentation, create a first function, tests for that function, update the documentation and run the package tests. All of this can be done equally well for a script, but this requires a lot more manual work.
 
@@ -107,7 +107,7 @@ codemetar::write_codemeta()
 
 ## Console messages
 
-Sometimes a package needs to communicate directly with its user, this is usually done through either `message()`, `warning()` or `stop()`. [rOpenSci (2021)][ropensci_2021] advises against using `print()` or `cat() `because these kinds of messages are much more difficult for the user to suppress. Additionally, these kinds of messages are also more difficult to write good tests for.
+Sometimes a package needs to communicate directly with its user, this is usually done through either `message()`, `warning()` or `stop()`. The [rOpenSci Packages guide](https://devguide.ropensci.org/building.html#console-messages) advises against using `print()` or `cat() `because these kinds of messages are much more difficult for the user to suppress. Additionally, these kinds of messages are also more difficult to write good tests for.
 
 Apart from base R, the package [cli](https://cli.r-lib.org/) comes recommended for its many useful tools regarding good looking command line interfaces. Functions from cli also offer some advantages when used in assertions within functions over the popular [assertthat](https://github.com/hadley/assertthat) and `stopifnot()` from base. Please refer to the documentation of `cli_abort()` [here](https://cli.r-lib.org/reference/cli_abort.html). A practical example of how you could use cli instead of assertthat can be observed in [this commit](https://github.com/frictionlessdata/frictionless-r/commit/aad0cd8e894a5a556d2a197348ba9169c267a55b) on the [frictionless](https://docs.ropensci.org/frictionless/) R package.
 
@@ -180,7 +180,7 @@ Since we are using GitHub to host our code, deploying a website is fairly straig
 usethis::use_pkgdown_github_pages()
 ```
 
-Neal Richardson posted a step by step guide on using pkgdown [on his website](https://enpiar.com/2017/11/21/getting-down-with-pkgdown/). [rOpenSci (2021)][ropensci_2021] also offers some guidance in their [chapter on pkgdown](https://devguide.ropensci.org/building.html#website).
+Neal Richardson posted a step by step guide on using pkgdown [on his website](https://enpiar.com/2017/11/21/getting-down-with-pkgdown/). rOpenSci also offers some guidance in their [chapter on pkgdown](https://devguide.ropensci.org/building.html#website).
 
 ## DESCRIPTION and authorship
 
@@ -198,11 +198,11 @@ Authors@R: person(
 )
 ```
 
-Further guidance on editing `DESCRIPTION` files can be found in R packages ([Wickham & Bryan 2023][wickham_bryan_2023]) in the [chapter on package metadata](https://r-pkgs.org/description.html). A more detailed overview can be found in the R project [manual on writing R extensions](https://cran.rstudio.com/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file).
+Further guidance on editing `DESCRIPTION` files can be found in the [chapter on package metadata](https://r-pkgs.org/description.html) in the R Packages book. A more detailed overview can be found in the R project [manual on writing R extensions](https://cran.rstudio.com/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file).
 
 ## CITATION
 
-R packages commonly include a `CITATION` file (no extension) that provides information about how the package should be cited. See the [CITATION file section](https://devguide.ropensci.org/building.html#citation-file) of [rOpenSci (2021)][ropensci_2021] for guidance. This file can be created with:
+R packages commonly include a `CITATION` file (no extension) that provides information about how the package should be cited. See the [CITATION file section](https://devguide.ropensci.org/building.html#citation-file) in the rOpenSci Packages guide for guidance. This file can be created with:
 
 ```r
 usethis::use_citation()
@@ -228,7 +228,7 @@ Adding this LICENSE file is easy with [usethis](https://usethis.r-lib.org/) (tak
 usethis::use_mit_license(copyright_holder = "institution name")
 ```
 
-This function will also set the `License` field in the [DESCRIPTION file](#description-and-authorship). For more information on package licensing, refer to the [section on licensing](https://r-pkgs.org/license.html) in [Wickham & Bryan (2023)][wickham_bryan_2023]).
+This function will also set the `License` field in the [DESCRIPTION file](#description-and-authorship). For more information on package licensing, refer to the [section on licensing](https://r-pkgs.org/license.html) in the R Packages book.
 
 ## Examples
 
@@ -250,9 +250,9 @@ Dependencies are other packages your package relies on. Those need to be defined
 usethis::use_package("package-to-depend-on")
 ```
 
-This will add a package to the `Imports` section of the DESCRIPTION file. The function also allows you to set it to `Suggests` instead, or to declare a minimum package version. Declaring a minimum version of a dependency isn’t usually necessary and should only be done as a continuous choice. For more guidance on the tradeoffs and decisions around dependencies, read [the section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in [rOpenSci (2021)][ropensci_2021].
+This will add a package to the `Imports` section of the DESCRIPTION file. The function also allows you to set it to `Suggests` instead, or to declare a minimum package version. Declaring a minimum version of a dependency isn’t usually necessary and should only be done as a continuous choice. For more guidance on the tradeoffs and decisions around dependencies, read [the section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in the rOpenSci Packages guide.
 
-The difference between `Imports` and `Depends` is that while both are installed together with the package, `Depends` are also attached to the global environment, thus opening the door to all kinds of trouble. For example, if your package `Depends` on [dplyr](https://dplyr.tidyverse.org/) it will overwrite the stats function `filter()` which is loaded by default, because [dplyr](https://dplyr.tidyverse.org/) includes a filter() of its own. This kind of namespace conflict should be handled with caution, and avoided whenever possible. Code written by the user should behave as they expect, regardless of the order in which they load packages. Dependencies declared in `Imports` are not attached, thus avoiding this problem entirely. This principle and several other good practices are described in the [section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in [rOpenSci (2021)][ropensci_2021].
+The difference between `Imports` and `Depends` is that while both are installed together with the package, `Depends` are also attached to the global environment, thus opening the door to all kinds of trouble. For example, if your package `Depends` on [dplyr](https://dplyr.tidyverse.org/) it will overwrite the stats function `filter()` which is loaded by default, because [dplyr](https://dplyr.tidyverse.org/) includes a `filter()` of its own. This kind of namespace conflict should be handled with caution, and avoided whenever possible. Code written by the user should behave as they expect, regardless of the order in which they load packages. Dependencies declared in `Imports` are not attached, thus avoiding this problem entirely. This principle and several other good practices are described in the [section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in the rOpenSci Packages guide.
 
 When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`. This makes it easier for collaborators to understand your code and it helps when searching for functions of a specific dependency:
 
@@ -270,8 +270,3 @@ my_function <- function(file) {
 ```
 
 For dependency recommendations, see the [dependencies section](/dev-guide/r/#dependencies) in the R chapter.
-
-<!-- References -->
-[ropensci_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
-[wickham_2019]: https://adv-r.hadley.nz/ "Wickham H (2019). Advanced r. CRC press."
-[wickham_bryan_2023]: https://r-pkgs.org/ "Wickham H, Bryan J (2023). R packages. O'Reilly Media, Inc."

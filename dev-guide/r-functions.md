@@ -31,7 +31,7 @@ Lead author: Pieter Huybrechts
 > - Functions MUST be named consistently across a package/analyses.
 > - Functions MUST use snake_case for their name.
 > - Functions MUST contain a verb as part of their name.
-> - Exported functions in packages MUST have [roxygen2](https://roxygen2.r-lib.org/ documentation.
+> - Exported functions in packages MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
 > - Functions in analysis scripts MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
 > - Functions in packages MUST have `@return` and `@examples`.
 > - The output of a function MUST only depend on its arguments (inputs).
@@ -46,7 +46,7 @@ There are a number of advantages to wrapping existing code into functions, as pu
 
 > I don’t think I can overstate this, but learning how to write functions changed how I think about code and how I think about solving problems. — Nicholas Tierney
 
-This same blog post also contains a simple example of how to turn existing code into a function. A more in depth description can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]).
+This same blog post also contains a simple example of how to turn existing code into a function. A more in depth description can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science.
 
 To summarize the why, you should use functions to:
 
@@ -55,13 +55,13 @@ To summarize the why, you should use functions to:
 
 However, using functions is not without its pitfalls. But many issues can be avoided by sticking to some ground rules:
 
-Functions need to be self-contained, the reasoning behind is explained well in the section "writing functions" in [BES (2019)][bes_2019]. Practically this means:
+Functions need to be self-contained, the reasoning behind is explained well in the section "writing functions" in the British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf). Practically this means:
 
 - A function SHOULD NOT rely on data from outside of the function whenever possible.
 - A function SHOULD NOT manipulate data outside of the function, thus it MUST NOT make changes to objects in the global environment. If you are importing data from the system to R, return an object rather than modifying the global environment (as is also explained in the [tidyverse style guide](https://style.tidyverse.org/functions.html)).
 - If it is necessary to make changes to data outside of the function, create a new file rather than making changes to an existing one. Functions that create new files MUST make this clear in their name, a good example is starting the function with write, for example `write_csv()` from [readr](https://readr.tidyverse.org/).
 
-Keeping your functions separate from analysis code can improve the readability of the analysis, and ease the maintenance of the functions. It is considered best practice to place every function in its own .R file, and to name this file after the function. As described in the [R packages book](https://r-pkgs.org/code.html#sec-code-organising) ([Wickham & Bryan 2023][wickham_bryan_2023]). You can create such a file using:
+Keeping your functions separate from analysis code can improve the readability of the analysis, and ease the maintenance of the functions. It is considered best practice to place every function in its own .R file, and to name this file after the function. As described in the [R Packages book](https://r-pkgs.org/code.html#sec-code-organising). You can create such a file using:
 
 ```r
 usethis::use_r("function-name")
@@ -75,7 +75,7 @@ A sure way to confuse users is for a function to return a different output with 
 
 Further reading:
 
-- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html#functions) in R for Data Science ([Wickham et al. 2023][wickham_2023]), the rest of the chapter also includes an excellent overview of best practices.
+- An excellent overview of how functions actually work in R can be found in [the section on functions](https://r4ds.had.co.nz/functions.html) in R for Data Science, the rest of the chapter also includes an excellent overview of best practices.
 - Nicholas Tierney provides an easy to follow example of how functions can make your life easier and how to get started with writing them in [this blogpost](https://www.njtierney.com/post/2023/11/10/how-to-get-good-with-r/#write-functions).
 - Principles and strategies that come in handy when writing functions (and packages) are summarized in [the tidyverse design principles](http://design.tidyverse.org).
 - Berkeley offers an introduction to functions in its [Introduction to the R Language](https://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/functions.pdf) presentation.
@@ -151,10 +151,4 @@ An additional advantage of this system is that every function will automatically
 ![Screenshot of online function documentation](/assets/images/r-functions-figure-1.png)
 **Figure 1: Screenshot of the online documentation of the forcats function `fct_rev()`.**
 
-If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in R packages ([Wickham & Bryan 2023][wickham_bryan_2023]). There is also [the getting started](https://devguide.ropensci.org/building.html#roxygen2-use) page of roxygen2, and finally [rOpenSci (2021)][ropensci_2021] offers some advice in [the section about documentation](https://devguide.ropensci.org/building.html#roxygen2-use).
-
-<!-- References -->
-[bes_2019]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
-[ropensci_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
-[wickham_2023]: https://cran.r-project.org/package=forcats "Wickham H (2023). forcats: Tools for Working with Categorical Variables (Factors). R package version 1.0.0."
-[wickham_bryan_2023]: https://r-pkgs.org/ "Wickham H, Bryan J (2023). R packages. O'Reilly Media, Inc."
+If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in the R Packages book. There is also [the getting started](https://devguide.ropensci.org/building.html#roxygen2-use) page of roxygen2, and finally the rOpenSci Packages guide offers some advice in [the section about documentation](https://devguide.ropensci.org/building.html#roxygen2-use).
