@@ -91,7 +91,7 @@ Maintainers SHOULD clarify how participants can contribute to their software, by
 To add a `CONTRIBUTING.md` file:
 
 1. Follow the [Contributor guidelines](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors) instructions.
-2. Copy/paste a template such as Desmet’s [CONTRIBUTING.md](https://gist.github.com/peterdesmet/e90a1b0dc17af6c12daf6e8b2f044e7c) or the [Contributing to tidyverse](https://tidyverse.tidyverse.org/CONTRIBUTING.html).
+2. Copy/paste a template such as Peter Desmet’s [CONTRIBUTING.md](https://gist.github.com/peterdesmet/e90a1b0dc17af6c12daf6e8b2f044e7c) or the [Contributing to tidyverse](https://tidyverse.tidyverse.org/CONTRIBUTING.html).
 3. Adapt where necessary.
 4. Make sure the instructions do not contradict with the [Github flow](#github-flow).
 
@@ -107,7 +107,7 @@ Which will use the [Contributing to tidyverse](https://tidyverse.tidyverse.org/C
 
 While the [GitHub flow](#github-flow) lowers the barrier for making code contributions, it is useful (and saves you from writing unnecessary code) to interact with the maintainer(s) before suggesting changes. The easiest way to do so is by [creating an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue).
 
-Issues can be used to report and discuss a bug, idea or task. Issues are typically not used to ask for support in using the software. Anyone can create an issue or comment on it, and all participants watching the repository will get a [notification](#enable-notifications-15). Once an issue is resolved (by fixing the bug, implementing the feature, or deciding not to act upon it) it can be closed. Closed issues are still accessible and can act as a history of decisions ([BES 2017][bes_2017]).
+Issues can be used to report and discuss a bug, idea or task. Issues are typically not used to ask for support in using the software. Anyone can create an issue or comment on it, and all participants watching the repository will get a [notification](#enable-notifications-15). Once an issue is resolved (by fixing the bug, implementing the feature, or deciding not to act upon it) it can be closed. Closed issues are still accessible and can act as a history of decisions.
 
 Writing a good issue takes skill, see [this blog post](https://dev.to/opensauced/how-to-write-a-good-issue-tips-for-effective-communication-in-open-source-5443) or the [tidyverse code review guide](https://code-review.tidyverse.org/issues/) for guidance, and follow the [contributing guide](#contributing-guide).
 
@@ -126,6 +126,3 @@ But update or remove the references to `https://stackoverflow.com` or `https://c
 While some contributions can be made directly in the browser (one file at a time), most software development will be done locally, in an environment where it can be run and tested. Git (and the [GitHub flow](#github-flow)) allow these changes to be synchronized. Rather than explaining how to use git, we recommend the use of [GitHub Desktop](https://desktop.github.com/) to facilitate this process.
 
 GitHub desktop is a visual interface that allows you to commit your changes (include file parts and multiple related files), push those to GitHub.com, pull changes from contributors, resolve merge conflicts, and switch branches. It works well next to other code editors such as R Studio. See the [GitHub Desktop](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/setting-up-github-desktop) instructions to get started.
-
-<!-- References -->
-[bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
