@@ -32,7 +32,7 @@ Lead author: Pieter Huybrechts
 > - R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
 > - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/building.html#recommended-scaffolding).
 > - Dependencies on other packages MUST be declared in a DESCRIPTION file.
-> - R code written MUST follow [the tidyverse style guide](https://style.tidyverse.org/).
+> - R code written MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
 > - R code MUST NOT make use of the right side assignment operator `-->`.
 > - All R code MUST reach a test coverage of at least 75% calculated using [covr](https://covr.r-lib.org/).
 > - Unit tests MUST be implemented using the [testthat](https://testthat.r-lib.org/) package.
@@ -43,14 +43,14 @@ R is a programming language for statistical computing and data visualization.
 
 - General guidance on how to use and write R can be found in [Adler (2010)][adler_2010] and [Crawley (2012)][crawley_2010].
 - For [R packages](/r-packages/), we refer to the [rOpenSci guide](https://devguide.ropensci.org/) ([rOpenSci 2021][ropensci_2021]).
-- For [analysis code](/r-analysis-code/), we refer to the Software Carpentry’s [fundamentals for reproducible scientific analysis in R](https://swcarpentry.github.io/r-novice-gapminder/) ([Zimmerman et al. 2019][zimmerman_2019]). More resources are listed on [AGU’s Introduction to Open Science](https://data.agu.org/resources/introduction-to-open-science-agu). A number of publications list principles ([Stoudt et al. 2021][stoudt_2021], [BES 2017][bes_2017]) and rules ([Sandve et al. 2013][sandve_2013]) for reproducible data analysis. Specifically for Data Science we recommend [R for Data Science](https://r4ds.hadley.nz/) ([Wickham et al. 2023][wickham_2023]).
+- For [analysis code](/r-analysis-code/), we refer to the Software Carpentry’s [fundamentals for reproducible scientific analysis in R](https://swcarpentry.github.io/r-novice-gapminder/) ([Zimmerman et al. 2019][zimmerman_2019]). More resources are listed on [AGU’s Introduction to Open Science](https://data.agu.org/resources/introduction-to-open-science-agu). A number of publications list principles ([Stoudt et al. 2021][stoudt_2021], [BES 2019][bes_2019]) and rules ([Sandve et al. 2013][sandve_2013]) for reproducible data analysis. Specifically for Data Science we recommend [R for Data Science](https://r4ds.hadley.nz/) ([Wickham et al. 2023][wickham_2023]).
 - For more information on the use of RMarkdown, see [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) ([Xie et al. 2018][xie_2018]) and [Guidance for AGU Authors: R Script(s)/Markdown](https://data.agu.org/resources/r-guidance-agu-authors).
 
 ## RStudio projects
 
 R code is run in a specific context, with an associated working directory, history, etc. If that context is undefined or too broad, it can create conflicts between projects or make it hard for others to run your code.
 
-To solve this, software MUST make the context explicit by including an [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) file (file with `.Rproj` extension) in the root of the repository to make the context explicit. This file will set your and everyone’s working directory at the root of the repository. In addition, software MUST only use relative paths starting at that project root to refer to files and MUST NOT use absolute paths. The implications of using absolute paths are described in the British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2018/12/BES-Reproducible-Code.pdf) ([BES 2017][bes_2017]). R code should strive to be as portable as possible, for example by never referring to a drive letter, network location or storage mounting point.
+To solve this, software MUST make the context explicit by including an [RStudio project](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects) file (file with `.Rproj` extension) in the root of the repository to make the context explicit. This file will set your and everyone’s working directory at the root of the repository. In addition, software MUST only use relative paths starting at that project root to refer to files and MUST NOT use absolute paths. The implications of using absolute paths are described in the British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2018/12/BES-Reproducible-Code.pdf) ([BES 2019][bes_2019]). R code should strive to be as portable as possible, for example by never referring to a drive letter, network location or storage mounting point.
 
 Further benefits of RStudio Projects are described in [this section](https://r-pkgs.org/workflow101.html#benefits-of-rstudio-projects) of the R Packages book. Software carpentry provides [a guide on project management with Rstudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html).
 
@@ -79,7 +79,7 @@ Refer to the [rOpenSci recommendations](https://devguide.ropensci.org/building.h
 
 > Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. — R for Data Science
 
-A number of useful packages exist to help you stick to the tidyverse style. To automatically modify your code to adhere to the recommendations, you can make use of [styler](https://github.com/r-lib/styler) which also exists as a plug-in for RStudio. To check your code for issues, you can use a liter, a popular choice for R is [lintr](https://lintr.r-lib.org/). More information regarding code style can be found in rOpenSci (2021) in the [header on code style](https://devguide.ropensci.org/building.html#code-style), [the tidyverse style guide](https://style.tidyverse.org/). Hadley Wickham ([Wickham et al. 2023][wickham_2023]) also offers some insight in his [workflow](https://r4ds.hadley.nz/workflow-style) when it comes to code style.
+A number of useful packages exist to help you stick to the tidyverse style. To automatically modify your code to adhere to the recommendations, you can make use of [styler](https://github.com/r-lib/styler) which also exists as a plug-in for RStudio. To check your code for issues, you can use a liter, a popular choice for R is [lintr](https://lintr.r-lib.org/). More information regarding code style can be found in rOpenSci (2021) in the [header on code style](https://devguide.ropensci.org/building.html#code-style), the [tidyverse style guide](https://style.tidyverse.org/). Hadley Wickham ([Wickham et al. 2023][wickham_2023]) also offers some insight in his [workflow](https://r4ds.hadley.nz/workflow-style) when it comes to code style.
 
 ## Testing
 
@@ -157,7 +157,7 @@ There are several packages to check how well your R code is following best pract
 
 <!-- References -->
 [adler_2010]: https://www.oreilly.com/library/view/r-in-a/9781449358204/ "R in a nutshell: A desktop quick reference. O'Reilly Media, Inc."
-[bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
+[bes_2019]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
 [chamberlain_2024]: https://doi.org/10.5281/zenodo.10608847 "Chamberlain S, Salmon M (2024). HTTP testing in R. rOpenSci."
 [crawley_2010]: https://doi.org/10.1002/9781118448908 "Crawley MJ (2012). The R book. John Wiley & Sons."
 [hester_2023]: https://cran.r-project.org/package=lintr "Hester J, Angly F, Hyde R, Chirico M, Ren K, Rosenstock A, Patil I (2023). lintr: A 'Linter' for R Code. R package version 3.1.1."

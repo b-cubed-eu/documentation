@@ -55,7 +55,7 @@ To summarize the why, you should use functions to:
 
 However, using functions is not without its pitfalls. But many issues can be avoided by sticking to some ground rules:
 
-Functions need to be self-contained, the reasoning behind is explained well in the section "writing functions" in [BES (2017)][bes_2017]. Practically this means:
+Functions need to be self-contained, the reasoning behind is explained well in the section "writing functions" in [BES (2019)][bes_2019]. Practically this means:
 
 - A function SHOULD NOT rely on data from outside of the function whenever possible.
 - A function SHOULD NOT manipulate data outside of the function, thus it MUST NOT make changes to objects in the global environment. If you are importing data from the system to R, return an object rather than modifying the global environment (as is also explained in the [tidyverse style guide](https://style.tidyverse.org/functions.html)).
@@ -154,7 +154,7 @@ An additional advantage of this system is that every function will automatically
 If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in R packages ([Wickham & Bryan 2023][wickham_bryan_2023]). There is also [the getting started](https://devguide.ropensci.org/building.html#roxygen2-use) page of roxygen2, and finally [rOpenSci (2021)][ropensci_2021] offers some advice in [the section about documentation](https://devguide.ropensci.org/building.html#roxygen2-use).
 
 <!-- References -->
-[bes_2017]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
+[bes_2019]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf "British Ecological Society, Croucher M, Graham L, James T, Krystalli A, Michonneau F (2017). Reproducible code."
 [ropensci_2021]: https://doi.org/10.5281/zenodo.6619350 "rOpenSci, Anderson B, Chamberlain S, DeCicco L, Gustavsen J, Krystalli A, Lepore M, Mullen L, Ram K, Ross N, Salmon M, Vidoni M, Riederer E, Sparks A, Hollister J (2021). rOpenSci Packages: Development, Maintenance, and Peer Review (0.7.0)."
 [wickham_2023]: https://cran.r-project.org/package=forcats "Wickham H (2023). forcats: Tools for Working with Categorical Variables (Factors). R package version 1.0.0."
 [wickham_bryan_2023]: https://r-pkgs.org/ "Wickham H, Bryan J (2023). R packages. O'Reilly Media, Inc."
