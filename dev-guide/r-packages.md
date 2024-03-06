@@ -50,7 +50,7 @@ A lot of the tooling around R packages is also useful for R analysis code format
 # Starting a minimal R package --------
 
 ## Setup everything we need in a single line, isn't usethis amazing?
-usethis::create_package("packagetitle")
+usethis::create_package("packagename")
 
 ## We will be using GIT for our version control
 usethis::use_git()
@@ -58,7 +58,7 @@ usethis::use_git()
 # Further repository setup according to guidelines  --------
 
 ## Add an MIT licence file
-usethis::use_mit_license()
+usethis::use_mit_license(copyright_holder = "institution name")
 
 ## Tell the world how to contribute
 usethis::use_tidy_coc()
