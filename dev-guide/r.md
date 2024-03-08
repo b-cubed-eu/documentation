@@ -33,7 +33,7 @@ Lead author: Pieter Huybrechts
 > - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/building.html#recommended-scaffolding).
 > - Dependencies on other packages MUST be declared in a DESCRIPTION file.
 > - R code written MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
-> - R code MUST NOT make use of the right side assignment operator `-->`.
+> - R code MUST NOT make use of the right side assignment operator `->`.
 > - All R code MUST reach a test coverage of at least 75% calculated using [covr](https://covr.r-lib.org/).
 > - Unit tests MUST be implemented using the [testthat](https://testthat.r-lib.org/) package.
 > - Shiny apps SHOULD make use of [shinytest](https://rstudio.github.io/shinytest/).
