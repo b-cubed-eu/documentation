@@ -41,7 +41,7 @@ Lead author: Pieter Huybrechts
 
 R is a programming language for statistical computing and data visualization.
 
-- General guidance on how to use and write R can be found in [Adler (2010)](https://doi.org/10.1002/9781118448908) and [Crawley (2012)](https://doi.org/10.1002/9781118448908).
+- General guidance on how to use and write R can be found in [Adler (2012)](https://www.oreilly.com/library/view/r-in-a/9781449358204/) and [Crawley (2012)](https://doi.org/10.1002/9781118448908).
 - For [R packages](/dev-guide/r-packages/), we refer to the [rOpenSci Packages guide](https://devguide.ropensci.org/) ([rOpenSci 2021](https://doi.org/10.5281/zenodo.6619350)).
 - For [analysis code](/dev-guide/r-analysis-code/), we refer to the Software Carpentry’s [fundamentals for reproducible scientific analysis in R](https://swcarpentry.github.io/r-novice-gapminder/) ([Zimmerman et al. 2019](http://doi.org/10.5281/zenodo.3265164)). More resources are listed on [AGU’s Introduction to Open Science](https://data.agu.org/resources/introduction-to-open-science-agu). The British Ecological Society [guide on reproducible code](https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf) and [Stoudt et al. (2021)](https://doi.org/10.1371/journal.pcbi.1008770) list principles, while [Sandve et al. 2013](https://doi.org/10.1371/journal.pcbi.1003285) has rules for reproducible data analysis. Specifically for Data Science we recommend [R for Data Science](https://r4ds.hadley.nz/).
 - For more information on the use of RMarkdown, see [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) and [Guidance for AGU Authors: R Script(s)/Markdown](https://data.agu.org/resources/r-guidance-agu-authors).
