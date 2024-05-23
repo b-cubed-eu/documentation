@@ -1,6 +1,5 @@
 ---
 title: Google Earth Engine Tutorial
-permalink: /tut-gee/
 nav_order: 5
 ---
 

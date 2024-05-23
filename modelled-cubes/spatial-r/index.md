@@ -1,6 +1,5 @@
 ---
 title: Spatial Data in R
-permalink: /tut-spatial-r/
 nav_order: 3
 ---
 

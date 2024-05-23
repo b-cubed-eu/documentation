@@ -1,6 +1,5 @@
 ---
 title: Species Distribution Modelling Tutorial
-permalink: /tut-sdm-r/
 nav_order: 4
 ---
 
