@@ -1,6 +1,11 @@
 ---
 title: Google Earth Engine Tutorial
-nav_order: 5
+parent: Modelled cubes
+nav_order: 3
+authors:
+- name: Sandra MacFadyen
+  orcid: 0000-0002-5316-440X
+last_modified_date: 2024-05-23
 ---
 
 # Google Earth Engine

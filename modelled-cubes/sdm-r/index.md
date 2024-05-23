@@ -1,6 +1,11 @@
 ---
 title: Species Distribution Modelling Tutorial
-nav_order: 4
+parent: Modelled cubes
+nav_order: 2
+authors:
+- name: Sandra MacFadyen
+  orcid: 0000-0002-5316-440X
+last_modified_date: 2024-05-23
 ---
 
 # Species Distribution Modelling

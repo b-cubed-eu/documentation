@@ -1,6 +1,11 @@
 ---
 title: Spatial Data in R
-nav_order: 3
+parent: Modelled cubes
+nav_order: 1
+authors:
+- name: Sandra MacFadyen
+  orcid: 0000-0002-5316-440X
+last_modified_date: 2024-05-23
 ---
 
 # Spatial Data in R
