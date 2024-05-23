@@ -1,5 +1,5 @@
 ---
-title: Species Distribution Modelling Tutorial
+title: Species distribution modelling tutorial
 parent: Modelled cubes
 nav_order: 2
 authors:

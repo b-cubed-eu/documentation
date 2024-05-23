@@ -1,5 +1,5 @@
 ---
-title: Spatial Data in R
+title: Spatial data in R tutorial
 parent: Modelled cubes
 nav_order: 1
 authors:
