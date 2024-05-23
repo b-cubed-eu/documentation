@@ -1,5 +1,5 @@
 ---
-title: Species Distribution Modelling Tutorial
+title: Species distribution modelling tutorial
 parent: Modelled cubes
 nav_order: 2
 authors:
@@ -8,7 +8,7 @@ authors:
 last_modified_date: 2024-05-23
 ---
 
-# Species Distribution Modelling
+# Species distribution modelling
 
 ## Getting started
 

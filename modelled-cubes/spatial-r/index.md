@@ -1,5 +1,5 @@
 ---
-title: Spatial Data in R
+title: Spatial data in R tutorial
 parent: Modelled cubes
 nav_order: 1
 authors:
@@ -8,7 +8,7 @@ authors:
 last_modified_date: 2024-05-23
 ---
 
-# Spatial Data in R
+# Spatial data in R
 
 ## An introduction to spatial data in R
 ### Useful online resources
