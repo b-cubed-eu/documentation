@@ -1,6 +1,7 @@
 ---
 title: Getting started
 parent: Google Earth Engine tutorial
+grand_parent: Modelled cubes
 nav_order: 1
 authors:
 - name: Sandra MacFadyen
