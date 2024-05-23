@@ -43,9 +43,3 @@ exclude:
   - README.md
 
 # FRONTMATTER DEFAULTS
-defaults:
-  - scope:
-      path: "dev-guide" # TODO: should be possible to remove this, but breaks styling
-      type: "pages"
-    values:
-      permalink: "/:path/:basename/"
