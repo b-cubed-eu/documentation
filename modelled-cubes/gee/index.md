@@ -2,7 +2,7 @@
 title: Google Earth Engine tutorial
 parent: Modelled cubes
 has_children: true
-nav_order: 3
+nav_order: 4
 ---
 
 # Google Earth Engine for ecological modelling
