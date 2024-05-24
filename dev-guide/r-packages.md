@@ -87,7 +87,7 @@ devtools::test()
 
 ## Naming your package
 
-Naming a package or analysis script can be difficult. rOpenSci offers [a number of recommendations](https://devguide.ropensci.org/building.html#naming-your-package) on this topic. To check if your package name is available, you can use the [available](https://r-lib.github.io/available/) package, which can also inform you about possible other interpretations of the name, including possibly offensive ones.
+Naming a package or analysis script can be difficult. rOpenSci offers [a number of recommendations](https://devguide.ropensci.org/pkg_building.html#naming-your-package) on this topic. To check if your package name is available, you can use the [available](https://r-lib.github.io/available/) package, which can also inform you about possible other interpretations of the name, including possibly offensive ones.
 
 ```r
 available::available("mycoolpkgname")
@@ -107,7 +107,7 @@ codemetar::write_codemeta()
 
 ## Console messages
 
-Sometimes a package needs to communicate directly with its user, this is usually done through either `message()`, `warning()` or `stop()`. The [rOpenSci Packages guide](https://devguide.ropensci.org/building.html#console-messages) advises against using `print()` or `cat() `because these kinds of messages are much more difficult for the user to suppress. Additionally, these kinds of messages are also more difficult to write good tests for.
+Sometimes a package needs to communicate directly with its user, this is usually done through either `message()`, `warning()` or `stop()`. The [rOpenSci Packages guide](https://devguide.ropensci.org/pkg_building.html#console-messages) advises against using `print()` or `cat() `because these kinds of messages are much more difficult for the user to suppress. Additionally, these kinds of messages are also more difficult to write good tests for.
 
 Apart from base R, the package [cli](https://cli.r-lib.org/) comes recommended for its many useful tools regarding good looking command line interfaces. Functions from cli also offer some advantages when used in assertions within functions over the popular [assertthat](https://github.com/hadley/assertthat) and `stopifnot()` from base. Please refer to the documentation of `cli_abort()` [here](https://cli.r-lib.org/reference/cli_abort.html). A practical example of how you could use cli instead of assertthat can be observed in [this commit](https://github.com/frictionlessdata/frictionless-r/commit/aad0cd8e894a5a556d2a197348ba9169c267a55b) on the [frictionless](https://docs.ropensci.org/frictionless/) R package.
 
@@ -180,7 +180,7 @@ Since we are using GitHub to host our code, deploying a website is fairly straig
 usethis::use_pkgdown_github_pages()
 ```
 
-Neal Richardson posted a step by step guide on using pkgdown [on his website](https://enpiar.com/2017/11/21/getting-down-with-pkgdown/). rOpenSci also offers some guidance in their [chapter on pkgdown](https://devguide.ropensci.org/building.html#website).
+Neal Richardson posted a step by step guide on using pkgdown [on his website](https://enpiar.com/2017/11/21/getting-down-with-pkgdown/). rOpenSci also offers some guidance in their [chapter on pkgdown](https://devguide.ropensci.org/pkg_building.html#website).
 
 ## DESCRIPTION and authorship
 
@@ -202,7 +202,7 @@ Further guidance on editing `DESCRIPTION` files can be found in the [chapter on 
 
 ## CITATION
 
-R packages commonly include a `CITATION` file (no extension) that provides information about how the package should be cited. See the [CITATION file section](https://devguide.ropensci.org/building.html#citation-file) in the rOpenSci Packages guide for guidance. This file can be created with:
+R packages commonly include a `CITATION` file (no extension) that provides information about how the package should be cited. See the [CITATION file section](https://devguide.ropensci.org/pkg_building.html#citation-file) in the rOpenSci Packages guide for guidance. This file can be created with:
 
 ```r
 usethis::use_citation()
@@ -250,9 +250,9 @@ Dependencies are other packages your package relies on. Those need to be defined
 usethis::use_package("package-to-depend-on")
 ```
 
-This will add a package to the `Imports` section of the DESCRIPTION file. The function also allows you to set it to `Suggests` instead, or to declare a minimum package version. Declaring a minimum version of a dependency isn’t usually necessary and should only be done as a continuous choice. For more guidance on the tradeoffs and decisions around dependencies, read [the section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in the rOpenSci Packages guide.
+This will add a package to the `Imports` section of the DESCRIPTION file. The function also allows you to set it to `Suggests` instead, or to declare a minimum package version. Declaring a minimum version of a dependency isn’t usually necessary and should only be done as a continuous choice. For more guidance on the tradeoffs and decisions around dependencies, read [the section on package dependencies](https://devguide.ropensci.org/pkg_building.html#pkgdependencies) in the rOpenSci Packages guide.
 
-The difference between `Imports` and `Depends` is that while both are installed together with the package, `Depends` are also attached to the global environment, thus opening the door to all kinds of trouble. For example, if your package `Depends` on [dplyr](https://dplyr.tidyverse.org/) it will overwrite the stats function `filter()` which is loaded by default, because [dplyr](https://dplyr.tidyverse.org/) includes a `filter()` of its own. This kind of namespace conflict should be handled with caution, and avoided whenever possible. Code written by the user should behave as they expect, regardless of the order in which they load packages. Dependencies declared in `Imports` are not attached, thus avoiding this problem entirely. This principle and several other good practices are described in the [section on package dependencies](https://devguide.ropensci.org/building.html#pkgdependencies) in the rOpenSci Packages guide.
+The difference between `Imports` and `Depends` is that while both are installed together with the package, `Depends` are also attached to the global environment, thus opening the door to all kinds of trouble. For example, if your package `Depends` on [dplyr](https://dplyr.tidyverse.org/) it will overwrite the stats function `filter()` which is loaded by default, because [dplyr](https://dplyr.tidyverse.org/) includes a `filter()` of its own. This kind of namespace conflict should be handled with caution, and avoided whenever possible. Code written by the user should behave as they expect, regardless of the order in which they load packages. Dependencies declared in `Imports` are not attached, thus avoiding this problem entirely. This principle and several other good practices are described in the [section on package dependencies](https://devguide.ropensci.org/pkg_building.html#pkgdependencies) in the rOpenSci Packages guide.
 
 When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`. This makes it easier for collaborators to understand your code and it helps when searching for functions of a specific dependency:
 

@@ -30,7 +30,7 @@ Lead author: Pieter Huybrechts
 > - Repositories containing R code MUST include a project file (file with `.Rproj` extension) in the root.
 > - R code MUST refer to files using relative paths and MUST NOT use absolute paths.
 > - R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
-> - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/building.html#recommended-scaffolding).
+> - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding).
 > - Dependencies on other packages MUST be declared in a DESCRIPTION file.
 > - R code written MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
 > - R code MUST NOT make use of the right side assignment operator `->`.
@@ -56,7 +56,7 @@ Further benefits of RStudio Projects are described in [this section](https://r-p
 
 ## Dependencies
 
-Please refer to the [rOpenSci recommendations](https://devguide.ropensci.org/building.html#pkgdependencies) regarding dependencies.
+Please refer to the [rOpenSci recommendations](https://devguide.ropensci.org/pkg_building.html#pkgdependencies) regarding dependencies.
 
 Some recommendations for common use cases:
 
@@ -73,13 +73,13 @@ Adding a dependency to your `DESCRIPTION` file is easy using [usethis](https://u
 usethis::use_package("dplyr")
 ```
 
-Refer to the [rOpenSci recommendations](https://devguide.ropensci.org/building.html#recommended-scaffolding) for common scaffolding for more suggestions.
+Refer to the [rOpenSci recommendations](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding) for common scaffolding for more suggestions.
 
 ## Code style
 
 > Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. — R for Data Science
 
-A number of useful packages exist to help you stick to the tidyverse style. To automatically modify your code to adhere to the recommendations, you can make use of [styler](https://github.com/r-lib/styler) which also exists as a plug-in for RStudio. To check your code for issues, you can use a liter, a popular choice for R is [lintr](https://lintr.r-lib.org/). More information regarding code style can be found in the rOpenSci Packages guide in the [section on code style](https://devguide.ropensci.org/building.html#code-style), the [tidyverse style guide](https://style.tidyverse.org/). Hadley Wickham also offers some insight in his [workflow](https://r4ds.hadley.nz/workflow-style) when it comes to code style.
+A number of useful packages exist to help you stick to the tidyverse style. To automatically modify your code to adhere to the recommendations, you can make use of [styler](https://github.com/r-lib/styler) which also exists as a plug-in for RStudio. To check your code for issues, you can use a liter, a popular choice for R is [lintr](https://lintr.r-lib.org/). More information regarding code style can be found in the rOpenSci Packages guide in the [section on code style](https://devguide.ropensci.org/pkg_building.html#code-style), the [tidyverse style guide](https://style.tidyverse.org/). Hadley Wickham also offers some insight in his [workflow](https://r4ds.hadley.nz/workflow-style) when it comes to code style.
 
 ## Testing
 
@@ -87,7 +87,7 @@ Have you ever written any code that turned out to not really do what you wanted 
 
 By writing tests that check the major functionality of your software, you are ensuring that changes along the line don’t break existing functionality. And that updates to underlying dependencies didn’t have unexpected consequences.
 
-A general overview of the how and why of testing R code is found in R Packages book chapter [testing basics](https://r-pkgs.org/testing-basics.html). The rOpenSci Packages guides offers some helpful advice regarding tests in the [section on testing](https://devguide.ropensci.org/building.html#testing). Other interesting resources include [the blogpost](https://mtlynch.io/good-developers-bad-tests/) by Michael Lynch on why good developers write bad tests, the documentation of [testthat](https://testthat.r-lib.org/) and [covr](https://covr.r-lib.org/). And rOpenSci also offers a [book on HTTP testing](https://books.ropensci.org/http-testing/). For more information on unit testing in general, you might find "Unit Testing Principles, Practices, and Patterns" by [Khorikov (2020)](https://www.manning.com/books/unit-testing) a good resource.
+A general overview of the how and why of testing R code is found in R Packages book chapter [testing basics](https://r-pkgs.org/testing-basics.html). The rOpenSci Packages guides offers some helpful advice regarding tests in the [section on testing](https://devguide.ropensci.org/pkg_building.html#testing). Other interesting resources include [the blogpost](https://mtlynch.io/good-developers-bad-tests/) by Michael Lynch on why good developers write bad tests, the documentation of [testthat](https://testthat.r-lib.org/) and [covr](https://covr.r-lib.org/). And rOpenSci also offers a [book on HTTP testing](https://books.ropensci.org/http-testing/). For more information on unit testing in general, you might find "Unit Testing Principles, Practices, and Patterns" by [Khorikov (2020)](https://www.manning.com/books/unit-testing) a good resource.
 
 ### Using testthat in practise
 
