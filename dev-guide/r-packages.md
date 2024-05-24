@@ -29,7 +29,6 @@ Lead author: Pieter Huybrechts
 > - R packages MUST include a `codemeta.json` in their repository.
 > - R packages MUST pass R CMD CHECK without ERRORs.
 > - Code included in a package MUST NOT use `print()` or `cat()`.
-> - R packages MUST adhere to the [tidyverse style guide](https://style.tidyverse.org/).
 > - Exported functions in R packages MUST be covered by a `testthat` unit test.
 > - The package title MUST be available on CRAN.
 > - The title of an R package MUST be in Title Case and MUST NOT end in a period (`.`).
