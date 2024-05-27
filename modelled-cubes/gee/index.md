@@ -1,5 +1,6 @@
 ---
 title: Google Earth Engine tutorial
+permalink: /modelled-cubes/gee/
 parent: Modelled cubes
 has_children: true
 nav_order: 6
