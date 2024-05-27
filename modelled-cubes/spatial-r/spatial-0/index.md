@@ -22,20 +22,24 @@ last_modified_date: 2024-05-23
 </details>
 
 ## An introduction to spatial data in R
+
 ### Useful online resources
-[Fundamentals of Spatial Analysis in R](https://mhweber.github.io/AWRA_2020_R_Spatial/index.html)  
-[Spatial Data Science with R and ```terra```](https://rspatial.org/index.html)  
-[Handling spatial data in R #3](https://www.ecologi.st/post/big-spatial-data/)  
-[Geocomputation with R](https://r.geocompx.org/)  
-[Using Spatial Data with R](https://cengel.github.io/R-spatial/)  
+
+- [Fundamentals of Spatial Analysis in R](https://mhweber.github.io/AWRA_2020_R_Spatial/index.html)  
+- [Spatial Data Science with R and ```terra```](https://rspatial.org/index.html)  
+- [Handling spatial data in R #3](https://www.ecologi.st/post/big-spatial-data/)  
+- [Geocomputation with R](https://r.geocompx.org/)  
+- [Using Spatial Data with R](https://cengel.github.io/R-spatial/)  
 
 ### Install packages
+
 ```r
 install.packages(c('sf','terra','spData','sp','rgdal','raster','rasterVis'))
 install.packages('spDataLarge', repos = 'https://nowosad.r-universe.dev')
 ```
 
 ### Load packages
+
 ```r
 library(sf)           # classes and functions for vector data
 library(terra)        # classes and functions for raster data
@@ -57,13 +61,15 @@ library(dplyr)
 ```
 
 ### Set your working directory
+
 ```r
-#You will need to set your own working directory
+# You will need to set your own working directory
 setwd('D:/Students/XYZ')
 # setwd('D:\\Students\\XYZ') #Same thing
 ```
 
 ### Objectives of this tutorial
+
 - Read in vector data using the sp and sf packages.
 - Convert between the sp and sf data models.
 - Define and transform datums and projections for vector data.
@@ -72,7 +78,9 @@ setwd('D:/Students/XYZ')
 - Define and transform datums and projections for raster data.
 
 ### Vector data
+
 #### Points - Lines - Polygons
+
 ```r
 class(world)
 world
@@ -86,7 +94,7 @@ plot(world[3:6])
 plot(world["lifeExp"])
 summary(world["lifeExp"])
 
-#Subset
+# Subset
 (world_mini = world[1:2, 1:3])
 plot(world_mini['name_long'])
 
@@ -99,6 +107,7 @@ plot(world_africa["lifeExp"], add = TRUE, alpha=0.5)
 ```
 
 #### Understanding projections
+
 Read more from [epsg.io](https://epsg.io/)
 
 ```r
@@ -110,9 +119,9 @@ world.tm = st_transform(world, 3395)
 st_crs(world.tm)
 plot(world.tm[,1])
 plot(world[,1])
-#................................
+# ................................
 
-#Calculate areas
+# Calculate areas
 RSA = world[world$name_long == "South Africa", ]
 plot(RSA[,1])
 
@@ -126,28 +135,28 @@ st_area(RSA) / 1000000
 
 #### Where to find free GIS data layers
 
-[https://mapcruzin.com/](https://mapcruzin.com/free-south-africa-arcgis-maps-shapefiles.htm)  
-[https://data.humdata.org/dataset/](https://data.humdata.org/dataset/cod-ab-zaf?)  
-[https://africaopendata.org/](https://africaopendata.org/group/south-africa?res_format=SHP)  
-[https://egis.environment.gov.za/data_egis/](https://egis.environment.gov.za/data_egis/data_download/current)  
-[https://bgis.sanbi.org/SpatialDataset](https://bgis.sanbi.org/SpatialDataset)  
-[https://dataportal-mdb-sa.opendata.arcgis.com/](https://dataportal-mdb-sa.opendata.arcgis.com/)  
-[http://geoportal.icpac.net/](http://geoportal.icpac.net/layers/?limit=100&offset=0)  
+- [https://mapcruzin.com/](https://mapcruzin.com/free-south-africa-arcgis-maps-shapefiles.htm)  
+- [https://data.humdata.org/dataset/](https://data.humdata.org/dataset/cod-ab-zaf?)  
+- [https://africaopendata.org/](https://africaopendata.org/group/south-africa?res_format=SHP)  
+- [https://egis.environment.gov.za/data_egis/](https://egis.environment.gov.za/data_egis/data_download/current)  
+- [https://bgis.sanbi.org/SpatialDataset](https://bgis.sanbi.org/SpatialDataset)  
+- [https://dataportal-mdb-sa.opendata.arcgis.com/](https://dataportal-mdb-sa.opendata.arcgis.com/)  
+- [http://geoportal.icpac.net/](http://geoportal.icpac.net/layers/?limit=100&offset=0)  
 
 #### Add your own data layers
 
 ```r
-#Create your own points
+# Create your own points
 (pnts = rbind(c(-79, 36), c(-101, 41), c(-80, 27), c(-91, 52), c(-68, 42)))
 (pnts.sp = SpatialPoints(pnts))
 summary(pnts.sp)
 
-#Plot those on map produced in 116
+# Plot those on map produced in 116
 plot(pnts.sp)
 plot(world_africa["lifeExp"])
 plot(pnts.sp, add=T, col='white')
 
-#Don't forget to add a coordinate system
+# Don't forget to add a coordinate system
 is.projected(pnts.sp)
 proj4string(pnts.sp) = CRS('+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
 proj4string(pnts.sp) = CRS('+init=epsg:4326') #Different way to do same thing
@@ -155,8 +164,8 @@ summary(pnts.sp)
 ```
 
 ```r
-#Read in data (shapefiles) *Data from `getData {raster}`
-#Using rgdal
+# Read in data (shapefiles) *Data from `getData {raster}`
+# Using rgdal
 (rsa_country = readOGR(dsn = 'Data', layer = 'gadm36_ZAF_0'))
 plot(rsa_country)
 (rsa_provinces = readOGR(dsn = 'Data', layer = 'gadm36_ZAF_1'))
@@ -168,7 +177,7 @@ plot(rsa_country)
 plot(rsa_provinces)
 plot(rsa_district)
 
-#Using sf
+# Using sf
 (rsa_country_sf = st_read('Data/gadm36_ZAF_0.shp'))
 (rsa_provinces_sf = st_read('Data/gadm36_ZAF_1.shp'))
 (rsa_district_sf = st_read('Data/gadm36_ZAF_2.shp'))
@@ -176,8 +185,9 @@ plot(rsa_country_sf[,1])
 ```
 
 #### Convert SPDF to SF
+
 ```r
-#You will need to set your own working directory. 
+# You will need to set your own working directory. 
 rsa_country #SpatialPolygonsDataFrame
 rsa_country_sf #Simple feature collection with 1 feature and 2 fields. Geometry type: MULTIPOLYGON
 rsa_country_sp = readOGR(dsn = 'Data', layer = 'gadm36_ZAF_0')
@@ -186,8 +196,9 @@ rsa_country_sf = st_read('Data/gadm36_ZAF_0.shp')
 (rsa_country_sp_from_sf = as(rsa_country_sf, Class='Spatial'))
 (rsa_country_sf_from_sp = st_as_sf(rsa_country_sp))
 ```
+
 ```r
-#Read in table of coordinates and create points
+# Read in table of coordinates and create points
 wdpa.df = read.csv('Data/WDPA_Africa.csv')
 head(wdpa.df)
 str(wdpa.df) #'data.frame':	2411 obs. of  19 variables:
@@ -203,6 +214,7 @@ plot(wdpa.sf['NAME'])
 ```
 
 ##### More about coordinate systems
+
 ```r
 st_crs(rsa_country_sf)
 (proj_info = st_crs(rsa_country_sf))
@@ -219,13 +231,14 @@ st_crs(rsa_country_sf)
 
 st_crs(rsa_country_sf) = 4326
 st_crs(rsa_country_sf)
-#................................
+# ................................
 
 rsa_country_tm = st_transform(rsa_country_sf, crs=3395)
 st_crs(rsa_country_tm)
 ```
 
 #### Save vector data to local drive
+
 ```r
 writeOGR(obj=rsa_district, dsn='Data', 
          layer='rsa_district2', driver='ESRI Shapefile')
@@ -234,6 +247,7 @@ st_write(rsa_district_sf, 'Data/rsa_country_tm.shp')
 ```
 
 ##### Convert center points and then write to local drive
+
 ```r
 (rsa_district_pts = st_centroid(rsa_district_sf, of_largest = TRUE))
 plot(rsa_district_pts)
@@ -242,7 +256,9 @@ st_write(rsa_district_pts, 'rsa_district_pts2.shp', layer_options = 'GEOMETRY=AS
 ```
 
 ### Raster data
+
 #### Raster Data Stucture
+
 ```r
 (dem_ter = rast(system.file("raster/srtm.tif", package = "spDataLarge")))
 class(dem_ter);plot(dem_ter)
@@ -251,7 +267,8 @@ class(dem_ter);plot(dem_ter)
 class(dem_ras);plot(dem_ras)
 ```
 
-#### Setup the coordinate systems 
+#### Setup the coordinate systems
+
 ```r
 (geo = '+proj=longlat +datum=WGS84 +no_defs') # Unprojected world Geodetic System (degrees) CRS("+init=epsg:4326")
 (utm36s = "+proj=utm +zone=36 +south +datum=WGS84 +units=m +no_defs") # Local UTM projection [36s] specific to KNP's longitude (meters)
@@ -262,6 +279,7 @@ rsa_country.tm
 ```
 
 #### Create a new 20km2 raster based on the extent of SPDF
+
 ```r
 (grid20km = raster(extent(rsa_country.tm),res=c(20000,20000), crs=CRS('+init=epsg:3395')))
 (grid20km = raster(rsa_country.tm,res=c(20000,20000), crs=CRS('+init=epsg:3395')))
@@ -284,23 +302,26 @@ plot(rsa_mask)
 # plot(grid20km_mask)
 plot(rsa_country.tm, add=T)
 
-#Plot this Single-Band Raster Data
-#--------------------------------------------------
+# Plot this Single-Band Raster Data
+# --------------------------------------------------
 tm_shape(rsa_mask)+
   tm_raster(style='pretty')+
   tm_layout(legend.outside = TRUE)
-#--------------------------------------------------
+# --------------------------------------------------
 ```
 
 #### Save raster to local drive
+
 ```r
 writeRaster(rsa_mask, filename='grid20km_mask', format = 'GTiff')
 ```
+
 #### Get data and extract to area of interest
 
 WorldClim (https://www.worldclim.org/data/index.html) global climatic and weather data @ 30 arc-second (~1km) grid
 
 ***Bioclim variables***
+
 Variable Description
 - BIO1 	Annual Mean Temperature
 - BIO2 	Mean Diurnal Range (Mean of monthly (max temp - min temp))
@@ -330,8 +351,11 @@ bioclim
 
 plot(bioclim[[1:4]]) # just the first 3, since its slow
 ```
+
 #### Subsetting and spatial cropping
+
 ***Crop using a Spatial polygon***
+
 ```r
 # bio1.rsa = crop(bioclim[[1]], bbox(rsa_country))
 bio1.rsa = crop(bioclim[[1]], rsa_country)
@@ -340,8 +364,11 @@ plot(bio1.rsa) #dimensions : 76, 98, 7448  (nrow, ncol, ncell) | resolution : 0.
 # Note: Masking is different to cropping i.e. you get NA values for outside polygon area
 bio1.rsa.mask = mask(bio1.rsa, rsa_country)
 plot(bio1.rsa.mask)
+
 ```
+
 #### Spatial aggregation
+
 ```r
 # Aggregate using a function
 bio1.rsax3 = aggregate(bio1.rsa, 3, fun=mean)
@@ -350,13 +377,15 @@ plot(bio1.rsax3) #dimensions : 26, 33, 858  (nrow, ncol, ncell) | resolution : 0
 # Raster calculations
 cellStats(bio1.rsa,range);cellStats(bio1.rsa,mean)
 ```
+
 #### Extracting Raster Data
+
 ```r
 (bioclim.rsa = crop(bioclim, rsa_country))
 plot(bioclim.rsa[[1]])
 plot(bioclim.rsa[[1:4]])
 
-# define a new dataset of points to play with
+# Define a new dataset of points to play with
 pts = sampleRandom(bioclim.rsa,100,xy=T,sp=T)
 # plot(pts);axis(1);axis(2)
 plot(bioclim.rsa[[1]])
@@ -372,15 +401,17 @@ head(pts.data)
 # Create histogram of extracted values
 summary(pts.data)
 ```
+
 #### Bin data using custom breaks
+
 ```r
 pts.data@data = pts.data@data %>% mutate(binBio1 = cut(bio1, breaks=c(0, 128, 150, 200, 241)))
 
-#perform binning with specific number of bins
+# Perform binning with specific number of bins
 pts.data@data = pts.data@data %>% mutate(binBio1 = cut(bio1, breaks=3))
 
 # Plot histograms - examples
-# counts
+# Counts
 ggplot(data.frame(pts.data@data), aes(x=binBio1)) +
   geom_bar()
 
@@ -393,5 +424,6 @@ ggplot(data = pts.data@data, mapping = aes(x=binBio1,y=log10(bio1))) +
 ```
 
 ### QGIS Workshop (in progress)
+
 A Free and Open Source Geographic Information System
 [https://qgis.org/en/site/](https://qgis.org/en/site/)
