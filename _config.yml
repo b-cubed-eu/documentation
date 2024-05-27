@@ -43,3 +43,14 @@ exclude:
   - README.md
 
 # FRONTMATTER DEFAULTS
+defaults:
+  - scope:
+      path: "dev-guide"
+      type: "pages"
+    values:
+      permalink: "/:path/:basename/"
+  - scope:
+      path: "modelled-cubes"
+      type: "pages"
+    values:
+      permalink: "/:path/:basename/"

@@ -1,5 +1,6 @@
 ---
 title: Software development guide
+permalink: /dev-guide/
 has_children: true
 nav_order: 3
 ---

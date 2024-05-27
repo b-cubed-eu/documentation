@@ -2,7 +2,10 @@
 title: Google Earth Engine tutorial
 parent: Modelled cubes
 has_children: true
-nav_order: 4
+nav_order: 6
+authors:
+- name: Sandra MacFadyen
+  orcid: 0000-0002-5316-440X
 ---
 
 # Google Earth Engine for ecological modelling
