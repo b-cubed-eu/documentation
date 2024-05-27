@@ -32,7 +32,7 @@ Lead author: Pieter Huybrechts
 > - R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
 > - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/building.html#recommended-scaffolding).
 > - Dependencies on other packages MUST be declared in a DESCRIPTION file.
-> - R code written MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
+> - R code MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
 > - R code MUST NOT make use of the right side assignment operator `->`.
 > - All R code MUST reach a test coverage of at least 75% calculated using [covr](https://covr.r-lib.org/).
 > - Unit tests MUST be implemented using the [testthat](https://testthat.r-lib.org/) package.
