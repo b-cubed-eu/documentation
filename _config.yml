@@ -45,7 +45,12 @@ exclude:
 # FRONTMATTER DEFAULTS
 defaults:
   - scope:
-      path: "dev-guide" # TODO: should be possible to remove this, but breaks styling
+      path: "dev-guide"
+      type: "pages"
+    values:
+      permalink: "/:path/:basename/"
+  - scope:
+      path: "modelled-cubes"
       type: "pages"
     values:
       permalink: "/:path/:basename/"
