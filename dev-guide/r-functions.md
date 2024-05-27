@@ -151,4 +151,4 @@ An additional advantage of this system is that every function will automatically
 ![Screenshot of online function documentation](/assets/dev-guide/r-function.png)
 **Figure 1: Screenshot of the online documentation of the forcats function `fct_rev()`.**
 
-If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in the R Packages book. There is also [the getting started](https://devguide.ropensci.org/building.html#roxygen2-use) page of roxygen2, and finally the rOpenSci Packages guide offers some advice in [the section about documentation](https://devguide.ropensci.org/building.html#roxygen2-use).
+If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in the R Packages book. There is also [the getting started](https://devguide.ropensci.org/pkg_building.html#roxygen-2-use) page of roxygen2, and finally the rOpenSci Packages guide offers some advice in [the section about documentation](https://devguide.ropensci.org/pkg_building.html#roxygen2-use).
