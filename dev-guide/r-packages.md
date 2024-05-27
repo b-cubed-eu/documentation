@@ -37,7 +37,6 @@ Lead author: Pieter Huybrechts
 > - The copyright holder (the institute that will be maintaining the software) MUST be added in the `Authors` field of the DESCRIPTION file.
 > - The DESCRIPTION file MUST contain a URL in the `BugReports` field to the issues page of the repository.
 > - All repositories that include R code MUST have at least one vignette with examples demonstrating its use.
-> - Packages must declare their dependencies in the DESCRIPTION file.
 > - Packages MUST NOT use `Depends` but instead MUST use `Imports` or `Suggests` to declare dependencies in the DESCRIPTION file.
 > - When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`.
 
