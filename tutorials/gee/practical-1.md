@@ -1,15 +1,13 @@
 ---
 title: Getting started
 parent: Google Earth Engine
+grand_parent: Tutorials
 nav_order: 1
 authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X
-last_modified_date: 2024-05-23
+last_modified: 2024-05-23
 ---
-
-# Practical 1: Getting started with Google Earth Engine
-{:.no_toc}
 
 <details closed markdown="block">
   <summary>

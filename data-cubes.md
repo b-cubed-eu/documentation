@@ -1,7 +1,7 @@
 ---
 title: Data cubes guide
 permalink: /data-cubes/
-nav_order: 4
+nav_order: 6
 ---
 
 # What are Data Cubes?

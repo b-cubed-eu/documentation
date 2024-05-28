@@ -5,13 +5,8 @@ nav_order: 9
 authors:
 - name: Maarten Trekels
   orcid: 0000-0001-8282-8765
-last_modified_date: 2024-02-29
+last_modified: 2024-02-29
 ---
-
-# Python
-{:.no_toc}
-
-Lead author: Maarten Trekels
 
 <details closed markdown="block">
   <summary>

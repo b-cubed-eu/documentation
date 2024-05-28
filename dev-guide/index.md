@@ -1,6 +1,7 @@
 ---
 title: Software development guide
 permalink: /dev-guide/
+layout: default
 has_children: true
 nav_order: 3
 ---

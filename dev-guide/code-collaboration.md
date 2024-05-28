@@ -5,13 +5,8 @@ nav_order: 3
 authors:
 - name: Peter Desmet
   orcid: 0000-0002-8442-8025
-last_modified_date: 2024-02-28
+last_modified: 2024-02-28
 ---
-
-# Code collaboration
-{:.no_toc}
-
-Lead author: Peter Desmet
 
 <details closed markdown="block">
   <summary>
