@@ -5,24 +5,19 @@ nav_order: 1
 authors:
 - name: Peter Desmet
   orcid: 0000-0002-8442-8025
-last_modified_date: 2024-02-28
+last_modified: 2024-02-28
 ---
-
-# Code repositories
-{: .no_toc }
-
-Lead author: Peter Desmet
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - All software code MUST be maintained on GitHub.
@@ -34,7 +29,7 @@ Lead author: Peter Desmet
 
 All software code MUST be maintained on GitHub. Code is maintained in a **repository**, which contains all files, discussions and version history related to a single software package or analysis.
 
-{: .note-title }
+{:.note-title}
 > Note
 > 
 > All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
@@ -64,7 +59,7 @@ If your code is already on GitHub under a personal account, it MUST be transferr
 
 Once you have created a repository (see [Figure 1](#figure-1)), you SHOULD complete a number of additional steps.
 
-{: #figure-1 }
+{:#figure-1}
 ![Screenshot of a newly created repository](/assets/dev-guide/code-repository.png)
 **Figure 1: Screenshot of a newly created repository.**
 

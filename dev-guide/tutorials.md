@@ -5,24 +5,19 @@ nav_order: 10
 authors:
 - name: Laura Abraham
   orcid: 0000-0003-4070-2982
-last_modified_date: 2024-02-29
+last_modified: 2024-02-29
 ---
-
-# Tutorials
-{: .no_toc }
-
-Lead author: Laura Abraham
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - Each package and analysis MUST have at least one tutorial.

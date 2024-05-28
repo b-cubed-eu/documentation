@@ -3,17 +3,14 @@ title: Dissimilarity cube
 parent: Modelled cubes
 nav_order: 2
 authors:
-last_modified_date: 
+last_modified: 
 ---
-
-# Dissimilarity cube
-{: .no_toc }
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>

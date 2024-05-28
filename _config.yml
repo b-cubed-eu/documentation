@@ -33,6 +33,7 @@ extra_css:
 sass:
   style: compressed
   sass_dir: _sass
+heading_anchors: false
 
 # BUILD SETTINGS
 markdown: kramdown
@@ -48,9 +49,20 @@ defaults:
       path: "dev-guide"
       type: "pages"
     values:
+      layout: "page"
       permalink: "/:path/:basename/"
+      has_toc: false
   - scope:
       path: "modelled-cubes"
       type: "pages"
     values:
+      layout: "page"
       permalink: "/:path/:basename/"
+      has_toc: false
+  - scope:
+      path: "tutorials"
+      type: "pages"
+    values:
+      layout: "page"
+      permalink: "/:path/:basename/"
+      has_toc: false

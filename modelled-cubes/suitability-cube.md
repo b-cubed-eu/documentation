@@ -3,17 +3,14 @@ title: Suitability cube
 parent: Modelled cubes
 nav_order: 1
 authors:
-last_modified_date: 
+last_modified: 
 ---
-
-# Suitability cube
-{: .no_toc }
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>

@@ -1,15 +1,15 @@
 ---
-title: Google Earth Engine tutorial
+title: Google Earth Engine
 permalink: /modelled-cubes/gee/
-parent: Modelled cubes
+parent: Tutorials
 has_children: true
-nav_order: 6
+nav_order: 3
+layout: page
 authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X
+last_modified:
 ---
-
-# Google Earth Engine for ecological modelling
 
 The application of satellite derived datasets and geospatial analysis techniques in the fields of ecology and conservation has grown substantially over the last decade. With the emergence of cloud-based computing platforms that facilitate big data analysis, researchers, resource managers and remote sensing enthusiasts are now able to interrogate petabyte-scale datasets with ease.  
 

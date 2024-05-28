@@ -5,24 +5,19 @@ nav_order: 4
 authors:
 - name: Maarten Trekels
   orcid: 0000-0001-8282-8765
-last_modified_date: 2024-02-28
+last_modified: 2024-02-28
 ---
-
-# Versioning
-{: .no_toc }
-
-Lead author: Maarten Trekels
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - Software MUST use semantic versioning.

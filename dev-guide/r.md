@@ -5,24 +5,19 @@ nav_order: 5
 authors:
 - name: Pieter Huybrechts
   orcid: 0000-0002-6658-6062
-last_modified_date: 2024-02-28
+last_modified: 2024-02-28
 ---
-
-# R
-{: .no_toc }
-
-Lead author: Pieter Huybrechts
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - R code MUST be placed in the `R/` directory of the repository.

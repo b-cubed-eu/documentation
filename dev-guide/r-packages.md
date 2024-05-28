@@ -5,24 +5,19 @@ nav_order: 7
 authors:
 - name: Pieter Huybrechts
   orcid: 0000-0002-6658-6062
-last_modified_date: 2024-02-29
+last_modified: 2024-02-29
 ---
-
-# R packages
-{: .no_toc }
-
-Lead author: Pieter Huybrechts
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - R Packages MUST work on all major platforms: Windows, Linux and Mac.
