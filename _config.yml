@@ -1,68 +1,36 @@
 # SITE SETTINGS
 title: B-Cubed documentation and tutorials
-description: Documentation, tutorials and workflows for the B-Cubed toolbox.
-url: https://b-cubed-eu.github.io
-baseurl: ""
-favicon: favicon.ico
+author: B-Cubed partners
+
+# SOCIAL PROFILES
+social:
+  twitter: BCubedProject
+  github: b-cubed-eu/documentation
 
 # THEME SETTINGS
-theme: just-the-docs
-
-# Just the docs settings
+theme: minima # Fallback theme
+remote_theme: peterdesmet/petridish@3.0
+tweets_on_home: false
+github_edit: true
 logo: /assets/images/b3-logo.png
-search_enabled: true
-aux_links:
-  GitHub: https://github.com/b-cubed-eu/documentation
-
-# Just the docs footer (TODO: currently missing)
-last_edit_timestamp: true
-gh_edit_link: true
-gh_edit_repository: https://github.com/b-cubed-eu/documentation
-
-# Just the docs colours
-callouts:
-  important:
-    color: blue
-  note:
-    color: yellow
-
-# Just the docs style
-# color_scheme: B-Cubedtheme
-extra_css:
-  - assets/css/style.css # TODO: does this work?
-sass:
-  style: compressed
-  sass_dir: _sass
-heading_anchors: false
+font_serif: false
+colors:
+  links: "#6cddb4"
+  banner: "#005957"
+  footer: "#005957"
 
 # BUILD SETTINGS
 markdown: kramdown
 plugins:
-  - jekyll-default-layout  
-  - jekyll-sass-converter
+  - jekyll-feed
+  - jekyll-sitemap
 exclude:
   - README.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
 
 # FRONTMATTER DEFAULTS
 defaults:
   - scope:
-      path: "dev-guide"
-      type: "pages"
     values:
-      layout: "page"
-      permalink: "/:path/:basename/"
-      has_toc: false
-  - scope:
-      path: "modelled-cubes"
-      type: "pages"
-    values:
-      layout: "page"
-      permalink: "/:path/:basename/"
-      has_toc: false
-  - scope:
-      path: "tutorials"
-      type: "pages"
-    values:
-      layout: "page"
-      permalink: "/:path/:basename/"
-      has_toc: false
