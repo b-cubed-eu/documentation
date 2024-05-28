@@ -1,7 +1,6 @@
 ---
 title: Introduction to spatial data in R
-parent: Modelled cubes
-nav_order: 4
+nav_order: 1
 authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X
