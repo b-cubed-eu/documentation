@@ -9,6 +9,16 @@ last_modified_date: 2024-05-23
 ---
 
 # Species distribution modelling
+{:.no_toc}
+
+<details closed markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {:.text-delta}
+- TOC
+{:toc}
+</details>
 
 ## Getting started
 
