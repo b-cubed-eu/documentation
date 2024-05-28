@@ -7,13 +7,13 @@ last_modified_date:
 ---
 
 # Suitability cube
-{: .no_toc }
+{:.no_toc}
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>

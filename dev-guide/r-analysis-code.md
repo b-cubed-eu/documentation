@@ -9,7 +9,7 @@ last_modified_date: 2024-02-29
 ---
 
 # R analysis code
-{: .no_toc }
+{:.no_toc}
 
 Lead author: Pieter Huybrechts
 
@@ -17,12 +17,12 @@ Lead author: Pieter Huybrechts
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - R analysis code MUST adhere to the proposed directory structure.

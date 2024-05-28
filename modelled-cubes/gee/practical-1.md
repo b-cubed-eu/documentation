@@ -10,13 +10,13 @@ last_modified_date: 2024-05-23
 ---
 
 # Practical 1: Getting started with Google Earth Engine
-{: .no_toc }
+{:.no_toc}
 
 <details closed markdown="block">
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>

@@ -9,7 +9,7 @@ last_modified_date: 2024-02-28
 ---
 
 # Code collaboration
-{: .no_toc }
+{:.no_toc}
 
 Lead author: Peter Desmet
 
@@ -17,12 +17,12 @@ Lead author: Peter Desmet
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
@@ -35,7 +35,7 @@ Open source software relies on **collaboration**. Participants in this process a
 
 For more information on open source software collaboration, see [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github) (also useful for non-developers) and GitHub’s [Open source guides](https://opensource.guide/). See how well your repository is adopting community standards at `https://github.com/b-cubed-eu/<your-repo>/community`.
 
-{: .note-title}
+{:.note-title}
 > Note
 > 
 > All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
@@ -69,7 +69,7 @@ You are [automatically subscribed](https://docs.github.com/en/account-and-profil
 
 When receiving a notification by email, click the `view it on GitHub` link at the bottom to interact. This generally provides better context and formatting options than your email client (see [Report issues](#report-issues)).
 
-{: #github-flow }
+{:#github-flow}
 ## Follow the GitHub flow
 
 The GitHub flow is an easy-to-adopt practice for code collaboration that MUST be followed for all code contributions to B-Cubed software. It consists of making a **branch**, making changes, creating a **pull request**, addressing review comments, merging the pull request and deleting the branch. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow) for more information, including links to further documentation for all the steps.

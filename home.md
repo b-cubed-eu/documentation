@@ -5,13 +5,11 @@ layout: home
 nav_order: 1
 ---
 
-{: .fs-9 }
+{:.fs-9}
 # B-Cubed documentation and tutorials
 
-{: .fs-6 .fw-300 }
 Want to work with biodiversity data cubes? Great! On this site you will find documentation and tutorials for all software developed for the [B-Cubed project](http://b-cubed.eu/).
 
-[Software development guide](/dev-guide/){: .btn .btn-green .me-3 }
 [Data cube guide](/data-cubes/){: .btn .btn-green .mr-3 }
 
 <!--
@@ -21,3 +19,4 @@ This website contains comprehensive explanations of the available APIs (Applicat
 
 Moreover, the documentation covers the integration of species occurrence cubes with existing environmental layers hosted on different cloud providers. Valuable insights from work packages WP4-6 will be incorporated into practical workflows, showcasing how to employ occurrence cubes for specific data outputs.
 -->
+[Software development guide](/dev-guide/){:.btn .btn-green .me-3}

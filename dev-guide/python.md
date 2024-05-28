@@ -9,7 +9,7 @@ last_modified_date: 2024-02-29
 ---
 
 # Python
-{: .no_toc }
+{:.no_toc}
 
 Lead author: Maarten Trekels
 
@@ -17,12 +17,12 @@ Lead author: Maarten Trekels
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - Code development MUST be done in a virtual environment.

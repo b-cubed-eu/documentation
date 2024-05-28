@@ -9,7 +9,7 @@ last_modified_date: 2024-02-29
 ---
 
 # Tutorials
-{: .no_toc }
+{:.no_toc}
 
 Lead author: Laura Abraham
 
@@ -17,12 +17,12 @@ Lead author: Laura Abraham
   <summary>
     Table of contents
   </summary>
-  {: .text-delta }
+  {:.text-delta}
 - TOC
 {:toc}
 </details>
 
-{: .important-title }
+{:.important-title}
 > B-Cubed software requirements
 > 
 > - Each package and analysis MUST have at least one tutorial.
