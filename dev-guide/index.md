@@ -1,12 +1,6 @@
 ---
-title: Software development guide
-permalink: /dev-guide/
-layout: default
-has_children: true
-nav_order: 3
+title: B-Cubed software development guide
 ---
-
-# B-Cubed software development guide
 
 {:.fs-6 .fw-300}
 This guide specifies high-level requirements for software, computational tools and resources developed for B-Cubed (referred to in the chapters as "software") to ensure that the produced software meets the intended quality, openness, portability and reusability.

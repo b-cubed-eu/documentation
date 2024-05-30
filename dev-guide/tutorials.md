@@ -1,21 +1,10 @@
 ---
 title: Tutorials
-parent: Software development guide
-nav_order: 10
 authors:
 - name: Laura Abraham
   orcid: 0000-0003-4070-2982
 last_modified: 2024-02-29
 ---
-
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 {:.important-title}
 > B-Cubed software requirements

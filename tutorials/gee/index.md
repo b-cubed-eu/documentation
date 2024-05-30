@@ -1,10 +1,4 @@
 ---
-title: Google Earth Engine
-permalink: /modelled-cubes/gee/
-parent: Tutorials
-has_children: true
-nav_order: 3
-layout: page
 authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X

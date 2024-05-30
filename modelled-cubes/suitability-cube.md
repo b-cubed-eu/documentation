@@ -1,19 +1,8 @@
 ---
 title: Suitability cube
-parent: Modelled cubes
-nav_order: 1
 authors:
 last_modified: 
 ---
-
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 ## Task 4.1: Suitability cube [Lead: UNIBO]
 

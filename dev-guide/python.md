@@ -1,21 +1,11 @@
 ---
 title: Python
-parent: Software development guide
-nav_order: 9
 authors:
 - name: Maarten Trekels
   orcid: 0000-0001-8282-8765
 last_modified: 2024-02-29
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 {:.important-title}
 > B-Cubed software requirements

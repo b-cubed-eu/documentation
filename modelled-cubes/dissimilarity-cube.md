@@ -1,19 +1,8 @@
 ---
 title: Dissimilarity cube
-parent: Modelled cubes
-nav_order: 2
 authors:
 last_modified: 
 ---
-
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 ## Task 4.2: Dissimilarity cube [Lead: SUN]
 

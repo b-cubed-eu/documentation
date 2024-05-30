@@ -1,21 +1,11 @@
 ---
 title: R packages
-parent: Software development guide
-nav_order: 7
 authors:
 - name: Pieter Huybrechts
   orcid: 0000-0002-6658-6062
 last_modified: 2024-02-29
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 {:.important-title}
 > B-Cubed software requirements

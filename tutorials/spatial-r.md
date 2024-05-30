@@ -1,21 +1,10 @@
 ---
 title: Spatial data in R
-parent: Tutorials
-nav_order: 1
 authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X
 last_modified: 2024-05-23
 ---
-
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 ## An introduction to spatial data in R
 
