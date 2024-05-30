@@ -1,0 +1,46 @@
+- text: Software dev guide
+  menu:
+  - text: Introduction
+    href: /dev-guide/
+  - text: "---"
+  - text: Code repositories
+    href: /dev-guide/code-repositories/
+  - text: The README file
+    href: /dev-guide/the-readme-file/
+  - text: Code collaboration
+    href: /dev-guide/code-collaboration/
+  - text: Versioning
+    href: /dev-guide/versioning/
+  - text: "---"
+  - text: R
+    href: /dev-guide/r/
+  - text: R functions
+    href: /dev-guide/r-functions/
+  - text: R packages
+    href: /dev-guide/r-packages/
+  - text: R analyses code
+    href: /dev-guide/r-analysis-code/
+  - text: "---"
+  - text: Python
+    href: /dev-guide/python/
+  - text: Tutorials
+    href: /dev-guide/tutorials/
+- text: Modelled cubes
+  menu:
+  - text: Suitability cube
+    href: /modelled-cubes/suitability-cube/
+  - text: Dissimilarity cube
+    href: /modelled-cubes/dissimilarity-cube/
+  - text: Invasibility cube
+    href: /modelled-cubes/invasibility-cube/
+- text: Tutorials
+  menu:
+  - text: R
+  - text: Spatial data
+    href: /tutorials/spatial-r/
+  - text: Species distribution modelling
+    href: tutorials/sdm-r/
+  - text: "---"
+  - text: Javascript
+  - text: Google Earth Engine
+    href: /tutorials/gee/
