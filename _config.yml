@@ -15,7 +15,7 @@ github_edit: true
 logo: /assets/images/b3-logo.png
 font_serif: false
 colors:
-  links: "#6cddb4"
+  links: "#48a529"
   banner: "#005957"
   footer: "#005957"
 
@@ -33,4 +33,7 @@ exclude:
 # FRONTMATTER DEFAULTS
 defaults:
   - scope:
+      path: ""
+      type: pages
     values:
+      toc: true
