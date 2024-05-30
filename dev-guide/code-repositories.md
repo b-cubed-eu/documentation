@@ -48,7 +48,7 @@ If your code is already on GitHub under a personal account, it MUST be transferr
 Once you have created a repository (see [Figure 1](#figure-1)), you SHOULD complete a number of additional steps.
 
 {:#figure-1}
-![Screenshot of a newly created repository](/assets/dev-guide/code-repository.png)
+![Screenshot of a newly created repository](/assets/images/dev-guide/code-repositories_1.png)
 **Figure 1: Screenshot of a newly created repository.**
 
 ## Set the copyright holder
