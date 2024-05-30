@@ -1,14 +1,9 @@
 ---
-title: Home
-permalink: /
 layout: home
-nav_order: 1
+title: B-Cubed documentation and tutorials
+permalink: /
 ---
 
-{:.fs-9}
-# B-Cubed documentation and tutorials
+[B-Cubed](http://b-cubed.eu/) is standardising access to biodiversity data, empowering policymakers to proactively address the impacts of biodiversity change. On this site you can find documentation and tutorials for B-Cubed software.
 
-{:.fs-6 .fw-300}
-Want to work with biodiversity data cubes? Great! On this site you will find documentation and tutorials for all software developed for the [B-Cubed project](http://b-cubed.eu/).
-
-[Software development guide](/dev-guide/){:.btn .btn-green .me-3}
+[Software development guide](/dev-guide/){:.btn .btn-primary .text-light}
