@@ -6,9 +6,7 @@ last_modified: 2024-05-23
 title: Getting started with Google Earth Engine
 ---
 
-Basic JavaScript rules, create, import, explore and visualising datasets by Sandra MacFadyen @ [https://www0.sun.ac.za/biomath/](https://www0.sun.ac.za/biomath)
-
-Access the completed practical script [here](https://code.earthengine.google.com/76ed4ea4c97a064555880dcf09f93f5f)
+[Access complete code on Google Earth Engine](https://code.earthengine.google.com/76ed4ea4c97a064555880dcf09f93f5f){:.btn .btn-primary}
 
 ## Learning Objectives
 

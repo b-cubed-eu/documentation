@@ -3,6 +3,7 @@ authors:
 - name: Sandra MacFadyen
   orcid: 0000-0002-5316-440X
 last_modified: 2024-05-23
+title: Species distribution modelling in R
 ---
 
 ## Getting started

@@ -6,23 +6,22 @@ authors:
 last_modified: 2024-02-28
 ---
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
-> - All participants to software MUST abide by its code of conduct.
-> - Maintainers MUST watch the repository they maintain.
-> - Code contributions MUST follow the GitHub flow.
-> - The main branch MUST contain the software code in a state that can be installed without issue.
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
+
+- All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
+- All participants to software MUST abide by its code of conduct.
+- Maintainers MUST watch the repository they maintain.
+- Code contributions MUST follow the GitHub flow.
+- The main branch MUST contain the software code in a state that can be installed without issue.
+</div>
 
 Open source software relies on **collaboration**. Participants in this process are not only developers, but anyone interacting with the software (code), such as maintainers, contributors, testers, users reporting issues, etc. To facilitate the collaboration process, it is good to adopt a number of community standards and best practices (see below).
 
 For more information on open source software collaboration, see [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github) (also useful for non-developers) and GitHub’s [Open source guides](https://opensource.guide/). See how well your repository is adopting community standards at `https://github.com/b-cubed-eu/<your-repo>/community`.
 
-{:.note-title}
-> Note
-> 
-> All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
+{:.alert .alert-info}
+All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
 
 ## Add a Code of conduct
 

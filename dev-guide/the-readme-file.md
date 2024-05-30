@@ -6,21 +6,20 @@ authors:
 last_modified: 2024-02-28
 ---
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - The README file MUST be written in Markdown, unless the software language recommends otherwise.
-> - The README file MUST start with a title.
-> - The README file MUST include a brief introduction to the repository/software.
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
+
+- The README file MUST be written in Markdown, unless the software language recommends otherwise.
+- The README file MUST start with a title.
+- The README file MUST include a brief introduction to the repository/software.
+</div>
 
 A README file communicates the most important information about your repository/software. It will serve as a welcome sign for users, meaning that it will be the first and maybe most important piece of metadata that users will encounter. It often also serves as the landing page for a [documentation website](/dev-guide/r-packages/#documentation-website).
 
 Maintainers SHOULD extend a README beyond its initial template when it was created as soon as possible, as it helps to define scope and expectations and facilitates [collaboration](/dev-guide/code-collaboration/). General guidance on writing a README can be found in GitHub’s [About READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) or [Make a README](https://www.makeareadme.com/), while software languages (e.g. [Python](https://docs.python-guide.org/writing/documentation/) or [R](https://devguide.ropensci.org/building.html#readme)) often have specific instructions. Some suggestions for its contents are detailed in the sections below. See the [README.md](https://github.com/frictionlessdata/frictionless-r/#readme) of the [frictionless](https://docs.ropensci.org/frictionless/) package as an example.
 
-{:.note-title}
-> Note
-> 
-> All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
+{:.alert .alert-warning}
+All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
 
 ## Format
 

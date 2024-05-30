@@ -6,12 +6,13 @@ authors:
 last_modified: 2024-02-29
 ---
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - Each package and analysis MUST have at least one tutorial.
-> - Tutorials MUST be included in the B-Cubed documentation website.
-> - Tutorials MUST be written in English using literate programming documents. 
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
+
+- Each package and analysis MUST have at least one tutorial.
+- Tutorials MUST be included in the B-Cubed documentation website.
+- Tutorials MUST be written in English using literate programming documents. 
+</div>
 
 To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed documentation website](https://docs.b-cubed.eu/).
 

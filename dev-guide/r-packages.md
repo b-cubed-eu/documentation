@@ -6,24 +6,24 @@ authors:
 last_modified: 2024-02-29
 ---
 
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - R Packages MUST work on all major platforms: Windows, Linux and Mac.
-> - R packages MUST include a `codemeta.json` in their repository.
-> - R packages MUST pass R CMD CHECK without ERRORs.
-> - Code included in a package MUST NOT use `print()` or `cat()`.
-> - Exported functions in R packages MUST be covered by a `testthat` unit test.
-> - The package title MUST be available on CRAN.
-> - The title of an R package MUST be in Title Case and MUST NOT end in a period (`.`).
-> - R packages MUST have a documentation website produced by [pkgdown](https://github.com/r-lib/pkgdown).
-> - All authors MUST also include an ORCID identifier in the R authors `comment` field in the DESCRIPTION file.
-> - The copyright holder (the institute that will be maintaining the software) MUST be added in the `Authors` field of the DESCRIPTION file.
-> - The DESCRIPTION file MUST contain a URL in the `BugReports` field to the issues page of the repository.
-> - All repositories that include R code MUST have at least one vignette with examples demonstrating its use.
-> - Packages MUST NOT use `Depends` but instead MUST use `Imports` or `Suggests` to declare dependencies in the DESCRIPTION file.
-> - When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`.
+- R Packages MUST work on all major platforms: Windows, Linux and Mac.
+- R packages MUST include a `codemeta.json` in their repository.
+- R packages MUST pass R CMD CHECK without ERRORs.
+- Code included in a package MUST NOT use `print()` or `cat()`.
+- Exported functions in R packages MUST be covered by a `testthat` unit test.
+- The package title MUST be available on CRAN.
+- The title of an R package MUST be in Title Case and MUST NOT end in a period (`.`).
+- R packages MUST have a documentation website produced by [pkgdown](https://github.com/r-lib/pkgdown).
+- All authors MUST also include an ORCID identifier in the R authors `comment` field in the DESCRIPTION file.
+- The copyright holder (the institute that will be maintaining the software) MUST be added in the `Authors` field of the DESCRIPTION file.
+- The DESCRIPTION file MUST contain a URL in the `BugReports` field to the issues page of the repository.
+- All repositories that include R code MUST have at least one vignette with examples demonstrating its use.
+- Packages MUST NOT use `Depends` but instead MUST use `Imports` or `Suggests` to declare dependencies in the DESCRIPTION file.
+- When calling a function from a dependency, the dependency MUST be explicitly mentioned using `package::function()`.
+</div>
 
 Hadley Wickham and Jennifer Bryan have written an [excellent guide on R Packages](https://r-pkgs.org/), that comes highly recommended. This document goes through all the required steps to creating a package. More advanced is the R projects [manual on writing R extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html). Hadley Wickham has included sections on functional and object oriented programming in his book [Advanced R](https://adv-r.hadley.nz) that might come in useful.
 

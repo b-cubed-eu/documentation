@@ -6,12 +6,13 @@ authors:
 last_modified: 2024-02-28
 ---
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - Software MUST use semantic versioning.
-> - Major and minor versions MUST have an associated GitHub release.
-> - Starting from version 1.0, all releases MUST be published to Zenodo.
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
+
+- Software MUST use semantic versioning.
+- Major and minor versions MUST have an associated GitHub release.
+- Starting from version 1.0, all releases MUST be published to Zenodo.
+</div>
 
 Code versioning (or version control) is an essential aspect of software development. It provides a mechanism to keep a detailed history of the changes that are made to the source code, as well as the decisions leading to those changes. This allows for a deeper understanding of the code and facilitates code audits/reviews. Code versioning also serves as a backup and recovery mechanism of the code. In case of critical errors or functionality loss, it is possible to revert to a previous working release of the software. Finally, versioning is an important communication mechanism for users of the software, especially software using it as a dependency. It indicates what changes can potentially break or alter existing functionality, offering the users the option to adapt their code or use a previous version.
 

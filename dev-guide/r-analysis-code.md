@@ -6,13 +6,14 @@ authors:
 last_modified: 2024-02-29
 ---
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - R analysis code MUST adhere to the proposed directory structure.
-> - Data files MUST be placed in the `data` directory in the applicable subdirectory `raw`, `interim` or `processed`.
-> - Any included files MUST adhere to the tidyverse style guide [section on file names](https://style.tidyverse.org/files.html).
-> - R code meant as an analysis workflow MUST be stored in `.Rmd` or `.R` format.
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
+
+- R analysis code MUST adhere to the proposed directory structure.
+- Data files MUST be placed in the `data` directory in the applicable subdirectory `raw`, `interim` or `processed`.
+- Any included files MUST adhere to the tidyverse style guide [section on file names](https://style.tidyverse.org/files.html).
+- R code meant as an analysis workflow MUST be stored in `.Rmd` or `.R` format.
+</div>
 
 An important note is that most R analysis scripts could be wrapped as a package. This has many advantages:
 
