@@ -1,7 +1,6 @@
 ---
 title: Dissimilarity cube
 authors:
-last_modified: 
 ---
 
 ## Task 4.2: Dissimilarity cube [Lead: SUN]

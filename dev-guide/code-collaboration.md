@@ -1,9 +1,6 @@
 ---
 title: Code collaboration
-authors:
-- name: Peter Desmet
-  orcid: 0000-0002-8442-8025
-last_modified: 2024-02-28
+authors: Peter Desmet
 ---
 
 <div class="alert alert-secondary" markdown="1">

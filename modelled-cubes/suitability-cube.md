@@ -1,7 +1,6 @@
 ---
 title: Suitability cube
 authors:
-last_modified: 
 ---
 
 ## Task 4.1: Suitability cube [Lead: UNIBO]

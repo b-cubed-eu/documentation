@@ -1,7 +1,6 @@
 ---
 title: Invasibility cube
 authors:
-last_modified: 
 ---
 
 ## Task 4.3: Network invasibility cube [Lead: SUN]

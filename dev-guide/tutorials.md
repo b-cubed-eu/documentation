@@ -1,9 +1,6 @@
 ---
 title: Tutorials
-authors:
-- name: Laura Abraham
-  orcid: 0000-0003-4070-2982
-last_modified: 2024-02-29
+authors: Laura Abraham
 ---
 
 <div class="alert alert-secondary" markdown="1">

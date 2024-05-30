@@ -1,9 +1,6 @@
 ---
 title: Python
-authors:
-- name: Maarten Trekels
-  orcid: 0000-0001-8282-8765
-last_modified: 2024-02-29
+authors: Maarten Trekels
 ---
 
 <div class="alert alert-secondary" markdown="1">

@@ -1,9 +1,6 @@
 ---
 title: R functions
-authors:
-- name: Pieter Huybrechts
-  orcid: 0000-0002-6658-6062
-last_modified: 2024-02-29
+authors: Pieter Huybrechts
 ---
 
 <div class="alert alert-secondary" markdown="1">

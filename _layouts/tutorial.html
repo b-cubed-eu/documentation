@@ -1,0 +1,20 @@
+---
+layout: default
+description: Template for tutorial page.
+---
+
+{% if page.authors %}
+  {% assign authors = page.authors %}
+{% elsif page.author %}
+  {% assign authors = page.author %}
+{% endif %}
+{% if authors %}
+  <p class="small text-muted">
+    Author: {{ authors | join: ', ' }}
+    {% if page.source %}
+    &bull; <a href="{{ page.source }}">Source code</a>
+    {% endif %}
+  </p>
+{% endif %}
+
+{{ content }}

@@ -37,3 +37,4 @@ defaults:
       type: pages
     values:
       toc: true
+      layout: tutorial

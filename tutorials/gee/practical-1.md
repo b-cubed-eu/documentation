@@ -1,9 +1,6 @@
 ---
-authors:
-- name: Sandra MacFadyen
-  orcid: 0000-0002-5316-440X
-last_modified: 2024-05-23
 title: Getting started with Google Earth Engine
+authors: Sandra MacFadyen
 ---
 
 [Access complete code on Google Earth Engine](https://code.earthengine.google.com/76ed4ea4c97a064555880dcf09f93f5f){:.btn .btn-primary}
