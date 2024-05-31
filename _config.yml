@@ -29,6 +29,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
+  - vendor
 
 # FRONTMATTER DEFAULTS
 defaults:
