@@ -17,7 +17,7 @@ font_serif: false
 colors:
   links: "#48a529"
   banner: "#005957"
-  footer: "#092020"
+  footer: "#002121"
 
 # BUILD SETTINGS
 markdown: kramdown
