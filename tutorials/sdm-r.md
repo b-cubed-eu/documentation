@@ -1,21 +1,7 @@
 ---
-title: Species distribution modelling
-parent: Tutorials
-nav_order: 2
-authors:
-- name: Sandra MacFadyen
-  orcid: 0000-0002-5316-440X
-last_modified: 2024-05-23
+title: Species distribution modelling in R
+authors: Sandra MacFadyen
 ---
-
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
 
 ## Getting started
 

@@ -1,38 +1,23 @@
 ---
 title: Code repositories
-parent: Software development guide
-nav_order: 1
-authors:
-- name: Peter Desmet
-  orcid: 0000-0002-8442-8025
-last_modified: 2024-02-28
+authors: Peter Desmet
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - All software code MUST be maintained on GitHub.
-> - An installable software tool MUST be maintained in its own repository.
-> - A repository MUST contain a `.gitignore` file.
-> - A repository MUST contain a `LICENSE` file and be licenced under the MIT licence.
-> - A repository MUST contain a `README.md` file.
-> - A repository MUST contain a `CITATION.cff` file.
+- All software code MUST be maintained on GitHub.
+- An installable software tool MUST be maintained in its own repository.
+- A repository MUST contain a `.gitignore` file.
+- A repository MUST contain a `LICENSE` file and be licenced under the MIT licence.
+- A repository MUST contain a `README.md` file.
+- A repository MUST contain a `CITATION.cff` file.
+</div>
 
 All software code MUST be maintained on GitHub. Code is maintained in a **repository**, which contains all files, discussions and version history related to a single software package or analysis.
 
-{:.note-title}
-> Note
-> 
-> All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
+{:.alert .alert-info}
+All steps below can be completed in the browser. For more information on GitHub terms, see the [GitHub glossary](https://docs.github.com/en/get-started/quickstart/github-glossary).
 
 ## Create a repository
 
@@ -60,7 +45,7 @@ If your code is already on GitHub under a personal account, it MUST be transferr
 Once you have created a repository (see [Figure 1](#figure-1)), you SHOULD complete a number of additional steps.
 
 {:#figure-1}
-![Screenshot of a newly created repository](/assets/dev-guide/code-repository.png)
+![Screenshot of a newly created repository](/assets/images/dev-guide/code-repositories_1.png)
 **Figure 1: Screenshot of a newly created repository.**
 
 ## Set the copyright holder

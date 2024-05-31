@@ -1,41 +1,28 @@
 ---
 title: R functions
-parent: Software development guide
-nav_order: 6
-authors:
-- name: Pieter Huybrechts
-  orcid: 0000-0002-6658-6062
-last_modified: 2024-02-29
+authors: Pieter Huybrechts
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - Functions MUST NOT make changes to the global environment.
-> - Functions that create or overwrite files MUST have a name that makes this clear such as `write_*`.
-> - Repeated code MUST be placed in functions.
-> - Functions MUST be named consistently across a package/analyses.
-> - Functions MUST use snake_case for their name.
-> - Functions MUST contain a verb as part of their name.
-> - Exported functions in packages MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
-> - Functions in analysis scripts MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
-> - Functions in packages MUST have `@return` and `@examples`.
-> - The output of a function MUST only depend on its arguments (inputs).
-> - Each function MUST be stored in a separate .R file, except for helper functions.
-> - Helper functions MUST be placed in `R/utils.R`.
-> - Arguments MUST be named consistently across functions that use similar inputs.
-> - Function arguments MUST be ordered from most important (and required) to least important (and optional).
-> - If a function returns an object or data of the same type as its input, this argument MUST be in the first position.
-> - Optional arguments MUST have default values, while required arguments MUST NOT have defaults.
+- Functions MUST NOT make changes to the global environment.
+- Functions that create or overwrite files MUST have a name that makes this clear such as `write_*`.
+- Repeated code MUST be placed in functions.
+- Functions MUST be named consistently across a package/analyses.
+- Functions MUST use snake_case for their name.
+- Functions MUST contain a verb as part of their name.
+- Exported functions in packages MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
+- Functions in analysis scripts MUST have [roxygen2](https://roxygen2.r-lib.org/) documentation.
+- Functions in packages MUST have `@return` and `@examples`.
+- The output of a function MUST only depend on its arguments (inputs).
+- Each function MUST be stored in a separate .R file, except for helper functions.
+- Helper functions MUST be placed in `R/utils.R`.
+- Arguments MUST be named consistently across functions that use similar inputs.
+- Function arguments MUST be ordered from most important (and required) to least important (and optional).
+- If a function returns an object or data of the same type as its input, this argument MUST be in the first position.
+- Optional arguments MUST have default values, while required arguments MUST NOT have defaults.
+</div>
 
 There are a number of advantages to wrapping existing code into functions, as put by Nicholas Tierney in [his excellent blog post on how to get better at R](https://www.njtierney.com/post/2023/11/10/how-to-get-good-with-r):
 
@@ -143,7 +130,7 @@ fct_rev <- function(f) {
 An additional advantage of this system is that every function will automatically get its own page on your [documentation website](/dev-guide/r-packages/#documentation-website). A screenshot of the webpage that was created for the function above is shown in [Figure 1](#figure-1).
 
 {:#figure-1}
-![Screenshot of online function documentation](/assets/dev-guide/r-function.png)
+![Screenshot of online function documentation](/assets/images/dev-guide/r-functions_1.png)
 **Figure 1: Screenshot of the online documentation of the forcats function `fct_rev()`.**
 
 If you are new to documenting functions, have a look at [the chapter on function documentation](https://r-pkgs.org/man.html) in the R Packages book. There is also [the getting started](https://devguide.ropensci.org/pkg_building.html#roxygen-2-use) page of roxygen2, and finally the rOpenSci Packages guide offers some advice in [the section about documentation](https://devguide.ropensci.org/pkg_building.html#roxygen2-use).

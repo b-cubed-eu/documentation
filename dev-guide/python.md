@@ -1,35 +1,22 @@
 ---
 title: Python
-parent: Software development guide
-nav_order: 9
-authors:
-- name: Maarten Trekels
-  orcid: 0000-0001-8282-8765
-last_modified: 2024-02-29
+authors: Maarten Trekels
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - Code development MUST be done in a virtual environment.
-> - The repository MUST contain a `requirements.txt` file.
-> - Python code MUST adhere to the [PEP 8 style guide][https://peps.python.org/pep-0008/].
-> - Package and module names MUST be lowercase and short.
-> - Class names MUST use CamelCase.
-> - Indentation MUST be done using 4 spaces.
-> - All Python code MUST reach a test coverage of at least 75% calculated using [pytest-cov](https://pytest-cov.readthedocs.io/en/).
-> - Unit tests MUST be implemented using the [pytest](https://docs.pytest.org/en/latest) package.
-> - Documentation MUST be created using [Sphinx](https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html).
-> - Classes and functions MUST be documented using docstrings.
+- Code development MUST be done in a virtual environment.
+- The repository MUST contain a `requirements.txt` file.
+- Python code MUST adhere to the [PEP 8 style guide][https://peps.python.org/pep-0008/].
+- Package and module names MUST be lowercase and short.
+- Class names MUST use CamelCase.
+- Indentation MUST be done using 4 spaces.
+- All Python code MUST reach a test coverage of at least 75% calculated using [pytest-cov](https://pytest-cov.readthedocs.io/en/).
+- Unit tests MUST be implemented using the [pytest](https://docs.pytest.org/en/latest) package.
+- Documentation MUST be created using [Sphinx](https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html).
+- Classes and functions MUST be documented using docstrings.
+</div>
 
 Many of the principles that are outlined in the chapters on [R](/dev-guide/r/) and [R packages](/dev-guide/r-packages/), also apply to writing Python code. In this chapter, we will outline some additional requirements for Python. A very good reference to Python programming can be found in [The Hitchhicker’s Guide to Python](https://docs.python-guide.org/) ([Reitz & Schlusser 2016][reitz_schlusser_2016]).
 

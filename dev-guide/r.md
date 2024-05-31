@@ -1,38 +1,25 @@
 ---
 title: R
-parent: Software development guide
-nav_order: 5
-authors:
-- name: Pieter Huybrechts
-  orcid: 0000-0002-6658-6062
-last_modified: 2024-02-28
+authors: Pieter Huybrechts
 ---
 
-<details closed markdown="block">
-  <summary>
-    Table of contents
-  </summary>
-  {:.text-delta}
-- TOC
-{:toc}
-</details>
+<div class="alert alert-secondary" markdown="1">
+## B-Cubed software requirements
 
-{:.important-title}
-> B-Cubed software requirements
-> 
-> - R code MUST be placed in the `R/` directory of the repository.
-> - Data files included in the repository MUST be placed in the `data/` directory.
-> - Repositories containing R code MUST include a project file (file with `.Rproj` extension) in the root.
-> - R code MUST refer to files using relative paths and MUST NOT use absolute paths.
-> - R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
-> - R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding).
-> - Dependencies on other packages MUST be declared in a DESCRIPTION file.
-> - R code MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
-> - R code MUST NOT make use of the right side assignment operator `->`.
-> - All R code MUST reach a test coverage of at least 75% calculated using [covr](https://covr.r-lib.org/).
-> - Unit tests MUST be implemented using the [testthat](https://testthat.r-lib.org/) package.
-> - Shiny apps SHOULD make use of [shinytest](https://rstudio.github.io/shinytest/).
-> - Unit tests MUST include the name of the R file they are testing.
+- R code MUST be placed in the `R/` directory of the repository.
+- Data files included in the repository MUST be placed in the `data/` directory.
+- Repositories containing R code MUST include a project file (file with `.Rproj` extension) in the root.
+- R code MUST refer to files using relative paths and MUST NOT use absolute paths.
+- R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
+- R code MUST follow the [rOpenSci recommendations regarding commonly used dependencies](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding).
+- Dependencies on other packages MUST be declared in a DESCRIPTION file.
+- R code MUST follow the [tidyverse style guide](https://style.tidyverse.org/).
+- R code MUST NOT make use of the right side assignment operator `->`.
+- All R code MUST reach a test coverage of at least 75% calculated using [covr](https://covr.r-lib.org/).
+- Unit tests MUST be implemented using the [testthat](https://testthat.r-lib.org/) package.
+- Shiny apps SHOULD make use of [shinytest](https://rstudio.github.io/shinytest/).
+- Unit tests MUST include the name of the R file they are testing.
+</div>
 
 R is a programming language for statistical computing and data visualization.
 
