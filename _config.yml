@@ -10,8 +10,10 @@ social:
 # THEME SETTINGS
 theme: minima # Fallback theme
 remote_theme: peterdesmet/petridish@3.0
-tweets_on_home: false
 github_edit: true
+repository: b-cubed-eu/documentation
+posts_on_home: false
+tweets_on_home: false
 logo: /assets/images/b3-logo.png
 font_serif: false
 colors:
