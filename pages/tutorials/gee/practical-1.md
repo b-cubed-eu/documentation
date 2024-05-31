@@ -1,6 +1,7 @@
 ---
 title: Getting started with Google Earth Engine
 authors: Sandra MacFadyen
+permalink: /tutorials/gee/practical-1/
 ---
 
 [Access complete code on Google Earth Engine](https://code.earthengine.google.com/76ed4ea4c97a064555880dcf09f93f5f){:.btn .btn-primary}

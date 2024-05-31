@@ -1,6 +1,7 @@
 ---
 title: R analysis code
 authors: Pieter Huybrechts
+permalink: /dev-guide/r-analysis-code/
 ---
 
 <div class="alert alert-secondary" markdown="1">

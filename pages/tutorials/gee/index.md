@@ -1,6 +1,7 @@
 ---
 title: Google Earth Engine for ecological modelling
 authors: Sandra MacFadyen
+permalink: /tutorials/gee/
 ---
 
 The application of satellite derived datasets and geospatial analysis techniques in the fields of ecology and conservation has grown substantially over the last decade. With the emergence of cloud-based computing platforms that facilitate big data analysis, researchers, resource managers and remote sensing enthusiasts are now able to interrogate petabyte-scale datasets with ease.  

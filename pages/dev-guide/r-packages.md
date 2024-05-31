@@ -1,6 +1,7 @@
 ---
 title: R packages
 authors: Pieter Huybrechts
+permalink: /dev-guide/r-packages/
 ---
 
 <div class="alert alert-secondary" markdown="1">

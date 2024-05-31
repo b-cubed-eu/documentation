@@ -1,6 +1,7 @@
 ---
 title: R functions
 authors: Pieter Huybrechts
+permalink: /dev-guide/r-functions/
 ---
 
 <div class="alert alert-secondary" markdown="1">

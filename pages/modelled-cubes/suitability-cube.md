@@ -1,6 +1,7 @@
 ---
 title: Suitability cube
 authors:
+permalink: /modelled-cubes/suitability-cube/
 ---
 
 ## Task 4.1: Suitability cube [Lead: UNIBO]

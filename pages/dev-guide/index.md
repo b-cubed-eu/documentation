@@ -2,6 +2,7 @@
 title: B-Cubed software development guide
 description: >
   This guide specifies high-level requirements for software, computational tools and resources developed for B-Cubed (referred to in the chapters as "software") to ensure that the produced software meets the intended quality, openness, portability and reusability.
+permalink: /dev-guide/
 ---
 
 These requirements were carefully selected from numerous existing best practices and guidelines, and aim to promote a consistent **open source development** cycle that allows collaboration and reuse within and outside of the consortium. Emphasis is placed on standardized metadata (files) that make it easier for both humans and search engines to find the software, and thus to increase its discoverability and reuse. In this same vein, emphasis is placed on the **portability** of the produced software to make sure it is functional on different platforms now and in the future with minimal modifications. Following existing paradigms and design patterns makes the behaviour of the software more predictable and makes results easier to replicate. By following the recommendations in this document, interoperability between software packages can be achieved.

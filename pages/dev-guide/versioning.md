@@ -1,6 +1,7 @@
 ---
 title: Versioning
 authors: Maarten Trekels
+permalink: /dev-guide/versioning/
 ---
 
 <div class="alert alert-secondary" markdown="1">

@@ -1,6 +1,7 @@
 ---
 title: Tutorials
 authors: Laura Abraham
+permalink: /dev-guide/tutorials/
 ---
 
 <div class="alert alert-secondary" markdown="1">

@@ -1,6 +1,7 @@
 ---
 title: The README file
 authors: Pieter Huybrechts
+permalink: /dev-guide/the-readme-file/
 ---
 
 <div class="alert alert-secondary" markdown="1">

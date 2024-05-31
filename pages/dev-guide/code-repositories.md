@@ -1,6 +1,7 @@
 ---
 title: Code repositories
 authors: Peter Desmet
+permalink: /dev-guide/code-repositories/
 ---
 
 <div class="alert alert-secondary" markdown="1">

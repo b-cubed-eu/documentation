@@ -1,6 +1,7 @@
 ---
 title: R
 authors: Pieter Huybrechts
+permalink: /dev-guide/r/
 ---
 
 <div class="alert alert-secondary" markdown="1">

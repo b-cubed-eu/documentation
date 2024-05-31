@@ -1,6 +1,7 @@
 ---
 title: Python
 authors: Maarten Trekels
+permalink: /dev-guide/python/
 ---
 
 <div class="alert alert-secondary" markdown="1">

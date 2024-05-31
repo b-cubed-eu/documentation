@@ -1,6 +1,7 @@
 ---
 title: Code collaboration
 authors: Peter Desmet
+permalink: /dev-guide/code-collaboration/
 ---
 
 <div class="alert alert-secondary" markdown="1">
