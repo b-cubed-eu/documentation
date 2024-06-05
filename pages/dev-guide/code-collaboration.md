@@ -8,7 +8,6 @@ permalink: /dev-guide/code-collaboration/
 ## B-Cubed software requirements
 
 - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
-- All participants to software MUST abide by its code of conduct.
 - Maintainers MUST watch the repository they maintain.
 - Code contributions MUST follow the GitHub flow.
 - The main branch MUST contain the software code in a state that can be installed without issue.
@@ -25,7 +24,7 @@ All steps below can be completed in the browser. For more information on GitHub 
 
 A [code of conduct](https://opensource.guide/code-of-conduct/) is a document that establishes expectations for behaviour from all software participants. Adopting and enforcing it can help to create a safe and positive working space.
 
-All software MUST have a code of conduct, as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant](https://www.contributor-covenant.org/) template. All participants to software MUST abide by its code of conduct.
+All software MUST have a code of conduct, as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant](https://www.contributor-covenant.org/) template. All participants to software SHOULD abide by its code of conduct.
 
 To add a `CODE_OF_CONDUCT.md`:
 
