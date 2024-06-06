@@ -1,7 +1,6 @@
 ---
 title: Occurrence cubes
 description: Specification for species occurrence cubes and their production
-  ...
 permalink: /occurrence-cubes/
 ---
 
@@ -11,13 +10,13 @@ Climate change, environmental degradation and invasive species represent imminen
 
 To address these challenges, the development of tools and infrastructure is crucial for meaningful interpretations and deeper understanding of biodiversity data. Furthermore, a significant delay exists in converting biodiversity data into actionable knowledge. Efforts have been made to reduce this lag through data standardization, rapid mobilization of biodiversity observations, digitization of collections, and streamlined workflows for data publication. However, delays still occur in the analysis, publication, and dissemination of data.
 
-The B-Cubed project proposes solutions to overcome these challenges. One of those is extending and implementing the intermediary data product “occurrence cube” (Oldoni et al. 2020), which aggregates species occurrence data along spatial, temporal and/or taxonomic dimensions. The idea of creating aggregated biodiversity “data cubes” with taxonomic, spatial and temporal dimensions has also been proposed within the Group on Earth Observations Biodiversity Observation Network (GEOBON) (Kissling et al. 2017) to deliver Essential Biodiversity Variables (EBV). This document specifies the properties of such occurrence cubes. It also documents the requirements for software to produce such cubes and a service to deliver those in a way that is Findable, Accessible, Interoperable and Reusable (FAIR). The software and service will be implemented and provided by the Global Biodiversity Information Facility (GBIF).
+The B-Cubed project proposes solutions to overcome these challenges. One of those is extending and implementing the intermediary data product “occurrence cube” ([Oldoni et al. 2020][oldoni_2020]), which aggregates species occurrence data along spatial, temporal and/or taxonomic dimensions. The idea of creating aggregated biodiversity “data cubes” with taxonomic, spatial and temporal dimensions has also been proposed within the Group on Earth Observations Biodiversity Observation Network (GEOBON) ([Kissling et al. 2017][kissling_2017]) to deliver Essential Biodiversity Variables (EBV). This document specifies the properties of such occurrence cubes. It also documents the requirements for software to produce such cubes and a service to deliver those in a way that is Findable, Accessible, Interoperable and Reusable (FAIR). The software and service will be implemented and provided by the Global Biodiversity Information Facility (GBIF).
 
 By leveraging aggregated occurrence cubes as analysis-ready biodiversity datasets, we aim to enhance comprehension and reduce barriers to accessing and interpreting biodiversity data. Automation of workflows will provide regular and reproducible indicators and models that are open and useful to users. Additionally, the use of cloud computing offers scalability, flexibility, and collaborative opportunities for applying advanced data science techniques anywhere. Finally, close collaboration with stakeholders will inform us of the requirements for tools, increase impact, and facilitate the flow of information from primary data to the decision-making processes.
 
 ##  Methodology
 
-The specification in this document are based on the concept of “occurrence cubes” as described in Oldoni et al. (2020). We expanded those to meet the requirements of the B-Cubed project partners and to describe a cube production service to be hosted by GBIF. Feedback was gathered from B-Cubed project partners in the kick-off meeting (13-14 March 2023), two online calls (24 and 27 April 2023) and a document open for comments.
+The specification in this document are based on the concept of “occurrence cubes” as described in [Oldoni et al. (2020)][oldoni_2020]. We expanded those to meet the requirements of the B-Cubed project partners and to describe a cube production service to be hosted by GBIF. Feedback was gathered from B-Cubed project partners in the kick-off meeting (13-14 March 2023), two online calls (24 and 27 April 2023) and a document open for comments.
 
 Where possible, the specification builds on infrastructure and services already provided by GBIF (e.g. occurrence processing, occurrence search, download service, etc.).
 
@@ -35,15 +34,15 @@ Dimensions define how occurrences are grouped into a combination of categories, 
 
 ###  Taxonomic
 
-The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are scientificName, kingdom, and terms derived from species matching with the GBIF Backbone Taxonomy (GBIF Secretariat 2022). Grouping is especially useful to lump synonyms and child taxa.
+The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are scientificName, kingdom, and terms derived from species matching with the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]). Grouping is especially useful to lump synonyms and child taxa.
 
 1. This dimension MUST be optional.
-2. A number of categories MUST be supported (see [Table 1](#taxonomic-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy (GBIF Secretariat 2022).
+2. A number of categories MUST be supported (see [Table 1](#taxonomic-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]).
   - The category speciesKey SHOULD be selected by default.
   - Note that the category taxonKey is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences/searchOccurrence) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (taxonKey [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (taxonKey [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (taxonKey [1311484](https://www.gbif.org/species/1311484)). The category taxonKey should only lump occurrences that share the same taxonKey. This SHOULD be communicated clearly to the user.
 3. Occurrences that are identified at a higher taxon rank than the selected category MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (taxonKey [1311334](https://www.gbif.org/species/1311334)) is excluded when using a speciesKey category.
 4. Occurrences MUST NOT be assigned to multiple categories.
-5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in Oldoni et al. 2022).
+5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
 
 <br>
 
@@ -67,8 +66,8 @@ taxonKey | Does not lump synonyms nor child taxa. | MUST
 {:#taxonomic-categories-examples}
 **Table 2:** Examples of which columns of taxonomic information to include for three different taxonomic dimensions (taxonKey, speciesKey and orderKey).
 
-| Column | Cube at taxonKey | Cube at speciesKey | Cube at orderKey |
-|--------|------------------|--------------------|------------------|
+Column | Cube at taxonKey | Cube at speciesKey | Cube at orderKey
+-------|------------------|--------------------|-----------------
 kingdomKey | TRUE | TRUE | TRUE
 kingdom | TRUE | TRUE | TRUE
 phylumKey | TRUE | TRUE | TRUE
@@ -108,8 +107,8 @@ The temporal dimension groups occurrences into categories using their temporal i
 {:#temporal-categories}
 **Table 3:** Categories for the temporal dimension.
 
-|Category | Remarks | Need|
-|--------|---------|-------|
+Category | Remarks | Need
+---------|---------|------
 year |  | MUST
 yearmonth |  | SHOULD
 yearmonthday (date) |  | MUST
@@ -124,12 +123,12 @@ The spatial dimension groups occurrences into categories using their spatial inf
 2. Only one spatial dimension MUST be used at a time in a cube.
 3. A number of reference grids and cell sizes MUST be supported (see [Table 5](#reference-grids) for details).
   - By default, a reference grid SHOULD NOT be selected, so that all options are considered equal.
-4. Non-gridded reference datasets SHOULD NOT be supported. Examples include Administrative areas (GADM 2022) and the World Database on Protected Areas (WDPA) (Protected Planet 2012).
+4. Non-gridded reference datasets SHOULD NOT be supported. Examples include Administrative areas ([GADM 2022][gadm_2022]) and the World Database on Protected Areas (WDPA) ([Protected Planet 2012][pp_2012]).
   - Such datasets may not be area-covering and can have overlapping features, leading to misleading results.
   - Users are advised to make use of such datasets after cube generation. This also allows them more control and flexibility in choosing features of interest and how to combine these with the chosen reference grid.
 5. Occurrences SHOULD be considered circles or squares (not points).
-  - Circles MUST be based on the point-radius method (Wieczorek et al. 2004), using the coordinates as the centre and the provided coordinateUncertaintyInMeters as the radius. If not provided, a default coordinateUncertaintyInMeters of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
-  - Squares SHOULD be based on the provided footprintWKT or MAY be reverse-engineered when the dataset is likely gridded (Waller 2019).
+  - Circles MUST be based on the point-radius method ([Wieczorek et al. 2004][wieczorek_2004]), using the coordinates as the centre and the provided coordinateUncertaintyInMeters as the radius. If not provided, a default coordinateUncertaintyInMeters of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
+  - Squares SHOULD be based on the provided footprintWKT or MAY be reverse-engineered when the dataset is likely gridded ([Waller 2019][waller_2019]).
 6. A number of grid assignment methods MUST be supported (see [Table 4](#grid-assignment-methods) for detailed needs).
   - Random grid assignment SHOULD be selected by default.
   - The seed used for random grid assignment SHOULD be mentioned in the metadata and users SHOULD be able to reuse it to create reproducible results.
@@ -142,21 +141,21 @@ The spatial dimension groups occurrences into categories using their spatial inf
 {:#grid-assignment-methods}
 **Table 4:** Grid assignment methods.
 
-|Method | Remarks | Need|
-|------|----------|----|
-Random grid assignment | Assigns an occurrence to a random grid cell (of defined size) that overlaps with it. See Oldoni et al. (2020) for details. | MUST
-Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches (Groom et al. 2018). | SHOULD
+Method | Remarks | Need
+-------|---------|-----
+Random grid assignment | Assigns an occurrence to a random grid cell (of defined size) that overlaps with it. See [Oldoni et al. (2020)][oldoni_2020] for details. | MUST
+Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches ([Groom et al. 2018][groom_2018]). | SHOULD
 
 <br>
 
 {:#reference-grids}
 **Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude 46.565825 N (46° 33' 56.97" N) and longitude 15.354675 E (15° 21' 16.83" E).
 
-|Grid | Cell sizes | Remarks | Need|
-|-----|-----------|--------|----|
+Grid | Cell sizes | Remarks | Need
+-----|------------|---------|-----
 EEA reference grid a|* 1x1 km (“1kmE4731N2620”)<br>* 10x10 km (“10kmE473N262”)<br>* 100x100 km (“100kmE47N26”)|European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST|
-Extended Quarter Degree Grid Cells (QDGC) a|* 15x15 minutes (“E015N46AD”)<br>* 30x30 minutes (“E015N46A”)<br>* 1x1 degrees (“E015N46”)<br>|Worldwide coverage, mostly used in African countries. See Larsen et al. (2009) for details. Cells can be downloaded for a selection of countries (Zenodo 2023) or calculated (Larsen 2021). | MUST|
-Military Grid Reference System (MGRS) a|* 1x1 m (“33TWM2718256978”)<br>* 10x10 m (“33TWM27185697”)<br>* 100x100 m (“33TWM271569”)<br>* 1x1 km (“33TWM2756”)<br>* 10x10 km (“33TWM25”)<br>* 100x100 km (“33TWM”)|Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location (Veness 2020). | MUST|
+Extended Quarter Degree Grid Cells (QDGC) a|* 15x15 minutes (“E015N46AD”)<br>* 30x30 minutes (“E015N46A”)<br>* 1x1 degrees (“E015N46”)<br>|Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST|
+Military Grid Reference System (MGRS) a|* 1x1 m (“33TWM2718256978”)<br>* 10x10 m (“33TWM27185697”)<br>* 100x100 m (“33TWM271569”)<br>* 1x1 km (“33TWM2756”)<br>* 10x10 km (“33TWM25”)<br>* 100x100 km (“33TWM”)|Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST|
 
 <br>
 
@@ -177,15 +176,15 @@ Other dimensions could be envisioned to group occurrences.
 {:#other-dimensions}
 **Table 6:** Other dimensions.
 
-|*Dimension* | Remarks  | Need|
-|------------|--------|----|
-|Sex |  | SHOULD
-|Life stage | Especially important for insects (Radchuk et al. 2013) and invasive species (Wallace et al. 2021). | MAY
-|Depth | Especially important for marine data. | MAY
-|Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “introduced” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
-|Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “managed” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
-|IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “vulnerable” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
-|Trait | More investigation is needed to assess how species trait information (e.g. from [Open Traits Network](https://opentraits.org/datasets.html)) can be linked to species occurrences. | MAY
+*Dimension* | Remarks  | Need
+------------|----------|-----
+Sex |  | SHOULD
+Life stage | Especially important for insects ([Radchuk et al. 2013][radchuk_2013]) and invasive species ([Wallace et al. 2021][wallace_2021]). | MAY
+Depth | Especially important for marine data. | MAY
+Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “introduced” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “managed” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “vulnerable” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+Trait | More investigation is needed to assess how species trait information (e.g. from [Open Traits Network](https://opentraits.org/datasets.html)) can be linked to species occurrences. | MAY
 
 <br>
 
@@ -229,18 +228,18 @@ The minimum temporal uncertainty indicates the minimum temporal extent of occurr
 {:#examples-minimum-temporal-uncertainty}
 **Table 7:** Examples of minimum temporal uncertainty for provided eventDates.
 
-|eventDate | minimum temporal uncertainty | Remarks|
-|---------|------------------------------|--------|
-|2021-03-21T15:01:32.456Z | 1 | Milliseconds are rounded to seconds.
-|2021-03-21T15:01:32Z | 1 | 
-|2021-03-21T15:01Z | 60 | 
-|2021-03-21T15Z | 60×60 | 
-|2021-03-21 | 60×60×24 | 
-|2021-03-01 | 60×60×24 | For dates at the first day of the month, the minimum temporal uncertainty MAY also be considered 60×60×24×31.
-|2021-01-01 | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
-|2021-03 | 60×60×24×31 | 
-|2021 | 60×60×24×365 | 
-|2021-03-21/2021-03-23 | 60×60×24×3 |
+eventDate | minimum temporal uncertainty | Remarks
+----------|------------------------------|--------
+2021-03-21T15:01:32.456Z | 1 | Milliseconds are rounded to seconds.
+2021-03-21T15:01:32Z | 1 | 
+2021-03-21T15:01Z | 60 | 
+2021-03-21T15Z | 60×60 | 
+2021-03-21 | 60×60×24 | 
+2021-03-01 | 60×60×24 | For dates at the first day of the month, the minimum temporal uncertainty MAY also be considered 60×60×24×31.
+2021-01-01 | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
+2021-03 | 60×60×24×31 | 
+2021 | 60×60×24×365 | 
+2021-03-21/2021-03-23 | 60×60×24×3 |
 
 <br>
 
@@ -248,7 +247,7 @@ The minimum temporal uncertainty indicates the minimum temporal extent of occurr
 
 A species could be well represented for a certain year and grid cell not because it is particularly established there, but because it was observed more (e.g. as result of a bioblitz or because it is a rare species observers seek out). To compensate for this sampling bias, it is important to know the sampling effort. For most cases, direct measures of sampling effort are not available, so one must rely on proxy measures to indicate sampling bias/effort.
 
-An easy metric is the total number of occurrences for a “target group” (Botella et al. 2020, de Beer et al. 2023), a group at a higher taxonomic rank than the focal taxon. To avoid confusion with the term “group” as defined in [Dimensions](#dimensions), we will refer to this as “higher taxon”. For example, the higher taxon for the focal taxon _Vanessa atalanta_ could be the genus _Vanessa_, the family _Nymphalidae_, the order _Lepidoptera_, the class _Insecta_, the phylum _Arthropoda_ or the kingdom _Animalia_. It allows to calculate a relative occurrence count (i.e. the occurrence count of the focal taxon divided by the occurrence count of the higher taxon). See GBIF Secretariat (2018) for an implementation that makes use of this to show relative observation trends. In addition to the number of occurrences, the number of days the higher taxon was observed and/or the number of observers that observed the higher taxon could also be provided.
+An easy metric is the total number of occurrences for a “target group” ([Botella et al. 2020][Botella_2020], [de Beer et al. 2023][debeer_2023]), a group at a higher taxonomic rank than the focal taxon. To avoid confusion with the term “group” as defined in [Dimensions](#dimensions), we will refer to this as “higher taxon”. For example, the higher taxon for the focal taxon _Vanessa atalanta_ could be the genus _Vanessa_, the family _Nymphalidae_, the order _Lepidoptera_, the class _Insecta_, the phylum _Arthropoda_ or the kingdom _Animalia_. It allows to calculate a relative occurrence count (i.e. the occurrence count of the focal taxon divided by the occurrence count of the higher taxon). See [GBIF Secretariat (2018)][gbif_2018] for an implementation that makes use of this to show relative observation trends. In addition to the number of occurrences, the number of days the higher taxon was observed and/or the number of observers that observed the higher taxon could also be provided.
 
 1. The target occurrence count SHOULD be included per group to facilitate assessing sampling bias.
 2. This measure MUST be an integer value expressing the number of occurrences within a group (see [Table 8](#example-target-occurrence-counts)). Note that by dividing the occurrence count by the target occurrence count, one can calculate a relative count.
@@ -270,20 +269,20 @@ An easy metric is the total number of occurrences for a “target group” (Bote
 {:#example-target-occurrence-counts}
 **Table 8:** Example of target occurrence counts at genus level for a cube with taxonomic and temporal dimensions.
 
-|speciesKey | year | count | genusCount|
-|-----------|-----|------|----------|
-|1311527 (Vespa crabro) | 2020 | 15152 | 20361
-|1311527 (Vespa crabro) | 2021 | 15055 | 20533
-|1311527 (Vespa crabro) | 2022 | 20655 | 38641
-|1311527 (Vespa crabro) | 2023 | 1805 | 7192
-|1311477 (Vespa velutina) | 2020 | 3683 | 20361
-|1311477 (Vespa velutina) | 2021 | 3825 | 20533
-|1311477 (Vespa velutina) | 2022 | 16259 | 38641
-|1311477 (Vespa velutina) | 2023 | 5108 | 7192
-|1898286 (Vanessa atalanta) | 2020 | 102732 | 126961
-|1898286 (Vanessa atalanta) | 2021 | 106411 | 141924
-|1898286 (Vanessa atalanta) | 2022 | 76869 | 125379
-|1898286 (Vanessa atalanta) | 2023 | 8155 | 17546
+speciesKey | year | count | genusCount
+-----------|-----|------|----------
+1311527 (Vespa crabro) | 2020 | 15152 | 20361
+1311527 (Vespa crabro) | 2021 | 15055 | 20533
+1311527 (Vespa crabro) | 2022 | 20655 | 38641
+1311527 (Vespa crabro) | 2023 | 1805 | 7192
+1311477 (Vespa velutina) | 2020 | 3683 | 20361
+1311477 (Vespa velutina) | 2021 | 3825 | 20533
+1311477 (Vespa velutina) | 2022 | 16259 | 38641
+1311477 (Vespa velutina) | 2023 | 5108 | 7192
+1898286 (Vanessa atalanta) | 2020 | 102732 | 126961
+1898286 (Vanessa atalanta) | 2021 | 106411 | 141924
+1898286 (Vanessa atalanta) | 2022 | 76869 | 125379
+1898286 (Vanessa atalanta) | 2023 | 8155 | 17546
 
 <br>
 
@@ -300,19 +299,19 @@ Since cubes are tabular data, they can be expressed in any format that supports 
 {:#output-formats}
 **Table 9:** Output formats.
 
-|Format | Remarks | Need|
-|-------|--------|----|
-|CSV | Widely used format, including (tab-delimited and compressed) by the GBIF occurrence download service (GBIF Secretariat 2023a). Broad software support. | MUST
-|EBV NetCDF | Network Common Data Format (netCDF) format adopted by GeoBON to exchange Essential Biodiversity Variables. Can be read by e.g. R package “ebvcube” (Quoss et al. 2021). | MUST
-|Apache Parquet | Column-oriented data format, optimized for data storage and retrieval. Increasingly used in tools like Google Big Query. Can be read by e.g. R package “arrow” (Richerson et al. 2023). | SHOULD
-|Apache Avro | Row-oriented data format. Often recommended for long term storage over Apache Parquet, at a cost of performance when reading. | MAY
-|GeoJSON | See [https://geojson.org/](https://geojson.org/) | MAY
-|GeoParquet | See [https://geoparquet.org/](https://geoparquet.org/) | MAY
-|GeoTIFF | See [https://www.ogc.org/standard/geotiff/](https://www.ogc.org/standard/geotiff/) | MAY
-|HDF5 | See [https://www.hdfgroup.org/solutions/hdf5/](https://www.hdfgroup.org/solutions/hdf5/) | MAY
-|JSON | See [https://www.json.org/](https://www.json.org/) | MAY
-|PMTiles | See [https://protomaps.com/docs/pmtiles](https://protomaps.com/docs/pmtiles) | MAY
-|ZARR | See [https://zarr.readthedocs.io/en/stable/](https://zarr.readthedocs.io/en/stable/) | MAY
+Format | Remarks | Need
+-------|---------|-----
+CSV | Widely used format, including (tab-delimited and compressed) by the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]). Broad software support. | MUST
+EBV NetCDF | Network Common Data Format (netCDF) format adopted by GeoBON to exchange Essential Biodiversity Variables. Can be read by e.g. R package “ebvcube” ([Quoss et al. 2021][quoss_2021]). | MUST
+Apache Parquet | Column-oriented data format, optimized for data storage and retrieval. Increasingly used in tools like Google Big Query. Can be read by e.g. R package “arrow” ([Richerson et al. 2023][richerson_2023]). | SHOULD
+Apache Avro | Row-oriented data format. Often recommended for long term storage over Apache Parquet, at a cost of performance when reading. | MAY
+eoJSON | See [https://geojson.org/](https://geojson.org/) | MAY
+GeoParquet | See [https://geoparquet.org/](https://geoparquet.org/) | MAY
+GeoTIFF | See [https://www.ogc.org/standard/geotiff/](https://www.ogc.org/standard/geotiff/) | MAY
+HDF5 | See [https://www.hdfgroup.org/solutions/hdf5/](https://www.hdfgroup.org/solutions/hdf5/) | MAY
+JSON | See [https://www.json.org/](https://www.json.org/) | MAY
+PMTiles | See [https://protomaps.com/docs/pmtiles](https://protomaps.com/docs/pmtiles) | MAY
+ZARR | See [https://zarr.readthedocs.io/en/stable/](https://zarr.readthedocs.io/en/stable/) | MAY
 
 <br>
 
@@ -321,7 +320,7 @@ Since cubes are tabular data, they can be expressed in any format that supports 
 Metadata documents how a cube was generated and can be cited.
 
 1. Metadata MUST be provided in a machine-readable format such as JSON or XML.
-2. Metadata SHOULD make use of DataCite Metadata Schema (DateCite Metadata Working Group 2021). This is currently the case for GBIF occurrence downloads ([example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)).
+2. Metadata SHOULD make use of DataCite Metadata Schema ([DateCite Metadata Working Group 2021][datacite_2021]). This is currently the case for GBIF occurrence downloads ([example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)).
 3. Metadata MUST include the properties in [Table 9](#output-formats).
 4. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
   - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
@@ -349,13 +348,13 @@ While a cube generated for testing purposes can be ephemeral, downstream use req
 {:#data-storage-infrastructures}
 **Table 10:** Data storage infrastructures.
 
-|Infrastructure | Remarks | Need|
-|---------------|--------|----|
-|GBIF downloads | Infrastructure maintained by GBIF for the long term-archival of occurrence data. See GBIF Secretariat (2023a) for details. | MUST
-|EBV Data Portal | Infrastructure maintained by GeoBON for the long-term archival of Essential Biodiversity Variables raster datasets, see [https://portal.geobon.org/](https://portal.geobon.org/) | MUST
-|Amazon Web Services S3 | Commercial cloud infrastructure, see [https://aws.amazon.com/s3/](https://aws.amazon.com/s3/) | MAY
-|Google Cloud Storage | Commercial cloud infrastructure, see [https://cloud.google.com/storage](https://cloud.google.com/storage) | MAY
-|Microsoft Azure Cloud Storage | Commercial cloud infrastructure, see [https://azure.microsoft.com/en-us/products/category/storage](https://azure.microsoft.com/en-us/products/category/storage) | MAY
+Infrastructure | Remarks | Need
+---------------|---------|-----
+GBIF downloads | Infrastructure maintained by GBIF for the long term-archival of occurrence data. See [GBIF Secretariat (2023a)][gbif_2023a] for details. | MUST
+EBV Data Portal | Infrastructure maintained by GeoBON for the long-term archival of Essential Biodiversity Variables raster datasets, see [https://portal.geobon.org/](https://portal.geobon.org/) | MUST
+Amazon Web Services S3 | Commercial cloud infrastructure, see [https://aws.amazon.com/s3/](https://aws.amazon.com/s3/) | MAY
+Google Cloud Storage | Commercial cloud infrastructure, see [https://cloud.google.com/storage](https://cloud.google.com/storage) | MAY
+Microsoft Azure Cloud Storage | Commercial cloud infrastructure, see [https://azure.microsoft.com/en-us/products/category/storage](https://azure.microsoft.com/en-us/products/category/storage) | MAY
 
 <br>
 
@@ -433,61 +432,61 @@ This service SHOULD embed the cube production software ([Cube production softwar
 
 9. Interfaces to GBIF occurrence download API SHOULD be updated to incorporate the new functionality:
   - The graphical user interface at https://www.gbif.org MUST be updated.
-  - The R package rgbif (Chamberlain et al. 2023a) SHOULD be updated.
-  - The Python package pygbif (Chamberlain et al. 2022b) MAY be updated.
+  - The R package rgbif ([Chamberlain et al. 2023a][chamberlain_2023a]) SHOULD be updated.
+  - The Python package pygbif ([Chamberlain et al. 2023b][chamberlain_2023b]) MAY be updated.
   
-## References
 
-Botella C, Joly A, Monestiez P, Bonnet P, Munoz F (2020) Bias in presence-only niche models related to sampling effort and species niches: lessons for background point selection. PLoS One 15:e0232078. https://doi.org/10.1371/journal.pone.0232078
 
-Chamberlain S, Barve V, Mcglinn D, Oldoni D, Desmet P, Geffert L, Ram K (2023a) rgbif: Interface to the Global Biodiversity Information Facility API. R package version 3.7.7.2, https://cran.r-project.org/package=rgbif
+[Botella_2020]: https://doi.org/10.1371/journal.pone.0232078 "Botella C, Joly A, Monestiez P, Bonnet P, Munoz F (2020) Bias in presence-only niche models related to sampling effort and species niches: lessons for background point selection. PLoS One 15:e0232078."
 
-Chamberlain S, Forkel R, Legind J, Van Hoey S, Desmet P, Noé N (2023b) pygbif: Python client for the GBIF API. Python package version 0.6.3, https://pygbif.readthedocs.io/en/latest/
+[chamberlain_2023a]: https://cran.r-project.org/package=rgbif "Chamberlain S, Barve V, Mcglinn D, Oldoni D, Desmet P, Geffert L, Ram K (2023a) rgbif: Interface to the Global Biodiversity Information Facility API. R package version 3.7.7.2."
 
-DataCite Metadata Working Group (2021) DataCite Metadata Schema Documentation for the Publication and Citation of Research Data and Other Research Outputs. Version 4.4. https://doi.org/10.14454/3w3z-sa82
+[chamberlain_2023b]: https://pygbif.readthedocs.io/en/latest/ "Chamberlain S, Forkel R, Legind J, Van Hoey S, Desmet P, Noé N (2023b) pygbif: Python client for the GBIF API. Python package version 0.6.3."
 
-de Beer IW, Hui C, Botella C, Richardson DM (2023) Drivers of compositional turnover of narrow-ranged versus widespread naturalised woody plants in South Africa. Frontiers in Ecology and Evolution. 11:1106197. https://doi.org/10.3389/fevo.2023.1106197
+[datacite_2021]:https://doi.org/10.14454/3w3z-sa82 "DataCite Metadata Working Group (2021) DataCite Metadata Schema Documentation for the Publication and Citation of Research Data and Other Research Outputs. Version 4.4"
 
-European Environment Agency (2013) EEA reference grid. Accessed via https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2 on 2023-06-12.
+[debeer_2023]: https://doi.org/10.3389/fevo.2023.1106197 "de Beer IW, Hui C, Botella C, Richardson DM (2023) Drivers of compositional turnover of narrow-ranged versus widespread naturalised woody plants in South Africa. Frontiers in Ecology and Evolution. 11:1106197."
 
-GADM (2022) Administrative areas. Accessed via https://gadm.org/ on 2023-06-16.
+[eea_2013]: https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2 "European Environment Agency (2013) EEA reference grid. Accessed on 2023-06-12."
 
-GBIF Secretariat (2018) Relative observation trends. Accessed via https://www.gbif.org/tools/observation-trends/about on 2023-06-26.
+[gadm_2022]: https://gadm.org/ "GADM (2022) Administrative areas. Accessed on 2023-06-16."
 
-GBIF Secretariat (2022) GBIF Backbone Taxonomy. Checklist dataset https://doi.org/10.15468/39omei accessed via GBIF.org on 2023-06-07.
+[gbif_2018]: https://www.gbif.org/tools/observation-trends/about "GBIF Secretariat (2018) Relative observation trends. Accessed on 2023-06-26."
 
-GBIF Secretariat (2023a) GBIF occurrence download API. Accessed via https://www.gbif.org/developer/occurrence#download on 2023-06-26.
+[gbif_2022]: https://doi.org/10.15468/39omei "GBIF Secretariat (2022) GBIF Backbone Taxonomy. Checklist dataset accessed via GBIF.org on 2023-06-07."
 
-GBIF Secretariat (2023b) GBIF occurrence search. Accessed via https://www.gbif.org/developer/occurrence#search on 2023-06-26.
+[gbif_2023a]: https://www.gbif.org/developer/occurrence#download "GBIF Secretariat (2023a) GBIF occurrence download API. Accessed on 2023-06-26."
 
-Groom QJ, Marsh CJ, Gavish Y, Kunin WE. (2018) How to predict fine resolution occupancy from coarse occupancy data. Methods Ecol Evol. 2018; 9: 2273– 2284. https://doi.org/10.1111/2041-210X.13078
+[gbif_2023b]: https://www.gbif.org/developer/occurrence#search "GBIF Secretariat (2023b) GBIF occurrence search. Accessed on 2023-06-26."
 
-Kissling WD, Ahumada JA, Bowser A, Fernandez M, Fernández N, García EA, Guralnick RP, Isaac NJB, Kelling S, Los W, McRae L, Mihoub J-B, Obst M, Santamaria M, Skidmore AK, Williams KJ, Agosti D, Amariles D, Arvanitidis C, Bastin L, De Leo F, Egloff W, Elith J, Hobern D, Martin D, Pereira HM, Pesole G, Peterseil J, Saarenmaa H, Schigel D, Schmeller DS, Segata N, Turak E, Uhlir PF, Wee B, Hardisty AR (2018) Building essential biodiversity variables (EBVs) of species distribution and abundance at a global scale. Biol Rev, 93: 600-625. https://doi.org/10.1111/brv.12359
+[groom_2018]: https://doi.org/10.1111/2041-210X.13078 "Groom QJ, Marsh CJ, Gavish Y, Kunin WE. (2018) How to predict fine resolution occupancy from coarse occupancy data. Methods Ecol Evol. 2018; 9: 2273– 2284."
 
-Larsen R (2021) Geocoding and generalisations. Accessed via https://towardsdatascience.com/geocoding-and-generalisations-41fa5652d34c on 2023-06-07.
+[kissling_2017]: https://doi.org/10.1111/brv.12359 "Kissling WD, Ahumada JA, Bowser A, Fernandez M, Fernández N, García EA, Guralnick RP, Isaac NJB, Kelling S, Los W, McRae L, Mihoub J-B, Obst M, Santamaria M, Skidmore AK, Williams KJ, Agosti D, Amariles D, Arvanitidis C, Bastin L, De Leo F, Egloff W, Elith J, Hobern D, Martin D, Pereira HM, Pesole G, Peterseil J, Saarenmaa H, Schigel D, Schmeller DS, Segata N, Turak E, Uhlir PF, Wee B, Hardisty AR (2018) Building essential biodiversity variables (EBVs) of species distribution and abundance at a global scale. Biol Rev, 93: 600-625."
 
-Larsen R, Holmern T, Prager SD, Maliti H, Røskaft, E. (2009) Using the extended quarter degree grid cell system to unify mapping and sharing of biodiversity data. African Journal of Ecology, 47: 382-392. https://doi.org/10.1111/j.1365-2028.2008.00997.x
+[larsen_2021]: https://towardsdatascience.com/geocoding-and-generalisations-41fa5652d34c "Larsen R (2021) Geocoding and generalisations. Accessed on 2023-06-07."
 
-Oldoni D, Groom Q, Adriaens T, Davis AJS, Reyserhove L, Strubbe D, Vanderhoeven S, Desmet P (2020) Occurrence cubes: a new paradigm for aggregating species occurrence data. bioRxiv 2020.03.23.983601 https://doi.org/10.1101/2020.03.23.983601
+[larsen_2009]: https://doi.org/10.1111/j.1365-2028.2008.00997.x "Larsen R, Holmern T, Prager SD, Maliti H, Røskaft, E. (2009) Using the extended quarter degree grid cell system to unify mapping and sharing of biodiversity data. African Journal of Ecology, 47: 382-392."
 
-Oldoni D, Groom Q, Adriaens T, Hillaert J, Reyserhove L, Strubbe D, Vanderhoeven S, Desmet P (2022). Occurrence cubes at species level for European countries (Version 20221202) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7389450
+[oldoni_2020]: https://doi.org/10.1101/2020.03.23.983601 "Oldoni D, Groom Q, Adriaens T, Davis AJS, Reyserhove L, Strubbe D, Vanderhoeven S, Desmet P (2020) Occurrence cubes: a new paradigm for aggregating species occurrence data. bioRxiv 2020.03.23.983601."
 
-Protected Planet (2012) World Database on Protected Areas (WDPA). Accessed via https://www.protectedplanet.net/en/thematic-areas/wdpa?tab=WDPA on 2023-06-15.
+[oldoni_2022]: https://doi.org/10.5281/zenodo.7389450 "Oldoni D, Groom Q, Adriaens T, Hillaert J, Reyserhove L, Strubbe D, Vanderhoeven S, Desmet P (2022). Occurrence cubes at species level for European countries (Version 20221202) [Data set]. Zenodo."
 
-Quoss L, Fernandez N, Langer C, Valdez J, Pereira HM (2021) ebvcube: Working with netCDF for Essential Biodiversity Variables. https://cran.r-project.org/package=ebvcube
+[pp_2012]: https://www.protectedplanet.net/en/thematic-areas/wdpa?tab=WDPA "Protected Planet (2012) World Database on Protected Areas (WDPA). Accessed on 2023-06-15."
 
-Radchuk V, Turlure C, Schtickzelle N (2013) Each life stage matters: the importance of assessing the response to climate change over the complete life cycle in butterflies. J Anim Ecol, 82: 275-285. https://doi.org/10.1111/j.1365-2656.2012.02029.x
+[quoss_2021]: https://cran.r-project.org/package=ebvcube "Quoss L, Fernandez N, Langer C, Valdez J, Pereira HM (2021) ebvcube: Working with netCDF for Essential Biodiversity Variables."
 
-Richardson N, Cook I, Crane N, Dunnington D, François R, Keane J, Moldovan-Grünfeld D, Ooms J (2023) arrow: Integration to 'Apache' 'Arrow'. https://cran.r-project.org/package=arrow
+[radchuk_2013]: https://doi.org/10.1111/j.1365-2656.2012.02029.x "Radchuk V, Turlure C, Schtickzelle N (2013) Each life stage matters: the importance of assessing the response to climate change over the complete life cycle in butterflies. J Anim Ecol, 82: 275-285."
 
-Veness C (2020) Convert between Latitude/Longitude & UTM coordinates / MGRS grid references. Accessed via https://www.movable-type.co.uk/scripts/latlong-utm-mgrs.html on 2023-06-15.
+[richardson_2023]: https://cran.r-project.org/package=arrow "Richardson N, Cook I, Crane N, Dunnington D, François R, Keane J, Moldovan-Grünfeld D, Ooms J (2023) arrow: Integration to 'Apache' 'Arrow'."
 
-Walsh P, Pollock R (2012) Table Schema. Version 1. Accessed via https://specs.frictionlessdata.io/table-schema/ on 2023-06-22.
+[veness_2020]: https://www.movable-type.co.uk/scripts/latlong-utm-mgrs.html "Veness C (2020) Convert between Latitude/Longitude & UTM coordinates / MGRS grid references. Accessed on 2023-06-15."
 
-Wallace RD, Bargeron CT, LaForest JH, Carroll RL (2021) The Life Cycle of Invasive Alien Species Occurrence Data. In Invasive Alien Species (eds T. Pullaiah and M.R. Ielmini). https://doi.org/10.1002/9781119607045.ch49
+[walsh_2012]: https://specs.frictionlessdata.io/table-schema "Walsh P, Pollock R (2012) Table Schema. Version 1. Accessed on 2023-06-22."
 
-Waller J (2019) Gridded Datasets Update. Accessed via https://data-blog.gbif.org/post/gridded-datasets-update/ on 2023-06-13.
+[wallace_2021]: https://doi.org/10.1002/9781119607045.ch49 "Wallace RD, Bargeron CT, LaForest JH, Carroll RL (2021) The Life Cycle of Invasive Alien Species Occurrence Data. In Invasive Alien Species (eds T. Pullaiah and M.R. Ielmini)."
 
-Wieczorek W, Guo G, Hijmans R (2004) The point-radius method for georeferencing locality descriptions and calculating associated uncertainty, International Journal of Geographical Information Science, 18:8, 745-767, https://doi.org/10.1080/13658810412331280211
+[waller_2019]: https://data-blog.gbif.org/post/gridded-datasets-update/ "Waller J (2019) Gridded Datasets Update. Accessed on 2023-06-13."
 
-Zenodo (2023) Quarter Degree Grid Cells community. Accessed via https://zenodo.org/communities/qdgc/ on 2023-06-07.
+[Wieczorek_2004]: https://doi.org/10.1080/13658810412331280211 "Wieczorek W, Guo G, Hijmans R (2004) The point-radius method for georeferencing locality descriptions and calculating associated uncertainty, International Journal of Geographical Information Science, 18:8, 745-767."
+
+[zenodo_2023]: https://zenodo.org/communities/qdgc/ "Zenodo (2023) Quarter Degree Grid Cells community. Accessed on 2023-06-07."
