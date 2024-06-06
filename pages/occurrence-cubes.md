@@ -324,13 +324,13 @@ Metadata documents how a cube was generated and can be cited.
 3. Metadata MUST include the properties in [Table 9](#output-formats).
 4. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
   - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
-  - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads (GBIF Secretariat 2023a) (see “description” in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
+  - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see “description” in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
   - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
 5. Metadata MUST include a stable and unique global identifier, so it can be referenced. This SHOULD be a Digital Object Identifier (DOI).
 6. Metadata MUST include the creator, publisher, and creation date of the cube.
 7. Metadata MUST include the GBIF-mediated occurrence datasets that contributed to the cube as related identifiers, so these can be credited.
 8. Metadata MUST include the licence under which it is deposited.
-9. Metadata SHOULD document the columns in the cube. This MAY be expressed using Frictionless Table Schema (Walsh & Pollock 2012) or STAC.
+9. Metadata SHOULD document the columns in the cube. This MAY be expressed using Frictionless Table Schema ([Walsh & Pollock 2012][walsh_2012]) or STAC.
 
 ###  Findability and storage
 
@@ -402,11 +402,11 @@ This software produces cubes following the specification above.
 
 ###  Cube workflow service
 
-This service SHOULD embed the cube production software ([Cube production software](cube-production-software)) into the GBIF occurrence download service (GBIF Secretariat 2023a), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
+This service SHOULD embed the cube production software ([Cube production software](cube-production-software)) into the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
 
-1. The service MUST allow users to *search and filter for occurrences* of interest. Note that the GBIF occurrence search (GBIF Secretariat 2023b) already provides this functionality.
+1. The service MUST allow users to *search and filter for occurrences* of interest. Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality.
 
-2. The service MAY allow users to *exclude unwanted occurrences* (e.g. occurrences that were flagged). Note that the GBIF occurrence search (GBIF Secretariat 2023b) already provides this functionality through its API, but not at www.gbif.org.
+2. The service MAY allow users to *exclude unwanted occurrences* (e.g. occurrences that were flagged). Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality through its API, but not at www.gbif.org.
   - This MAY be implemented as a NOT filter.
 
 3. The service MUST allow users to *define the dimensions* of the cube (see [Dimensions](#dimensions)):
@@ -428,10 +428,10 @@ This service SHOULD embed the cube production software ([Cube production softwar
 
 7. Sufficient technical documentation MUST be provided for users to understand and use the service.
 
-8. The service MUST be provided as a REST API and SHOULD be integrated as part of the GBIF occurrence download service (GBIF Secretariat 2023a).
+8. The service MUST be provided as a REST API and SHOULD be integrated as part of the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]).
 
 9. Interfaces to GBIF occurrence download API SHOULD be updated to incorporate the new functionality:
-  - The graphical user interface at https://www.gbif.org MUST be updated.
+  - The graphical user interface at [https://www.gbif.org](https://www.gbif.org) MUST be updated.
   - The R package rgbif ([Chamberlain et al. 2023a][chamberlain_2023a]) SHOULD be updated.
   - The Python package pygbif ([Chamberlain et al. 2023b][chamberlain_2023b]) MAY be updated.
   
