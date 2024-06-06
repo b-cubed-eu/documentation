@@ -271,18 +271,18 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
 
 speciesKey | year | count | genusCount
 -----------|-----|------|----------
-1311527 (Vespa crabro) | 2020 | 15152 | 20361
-1311527 (Vespa crabro) | 2021 | 15055 | 20533
-1311527 (Vespa crabro) | 2022 | 20655 | 38641
-1311527 (Vespa crabro) | 2023 | 1805 | 7192
-1311477 (Vespa velutina) | 2020 | 3683 | 20361
-1311477 (Vespa velutina) | 2021 | 3825 | 20533
-1311477 (Vespa velutina) | 2022 | 16259 | 38641
-1311477 (Vespa velutina) | 2023 | 5108 | 7192
-1898286 (Vanessa atalanta) | 2020 | 102732 | 126961
-1898286 (Vanessa atalanta) | 2021 | 106411 | 141924
-1898286 (Vanessa atalanta) | 2022 | 76869 | 125379
-1898286 (Vanessa atalanta) | 2023 | 8155 | 17546
+1311527 (_Vespa crabro_) | 2020 | 15152 | 20361
+1311527 (_Vespa crabro_) | 2021 | 15055 | 20533
+1311527 (_Vespa crabro_) | 2022 | 20655 | 38641
+1311527 (_Vespa crabro_) | 2023 | 1805 | 7192
+1311477 (_Vespa velutina_) | 2020 | 3683 | 20361
+1311477 (_Vespa velutina_) | 2021 | 3825 | 20533
+1311477 (_Vespa velutina_) | 2022 | 16259 | 38641
+1311477 (_Vespa velutina_) | 2023 | 5108 | 7192
+1898286 (_Vanessa atalanta_) | 2020 | 102732 | 126961
+1898286 (_Vanessa atalanta_) | 2021 | 106411 | 141924
+1898286 (_Vanessa atalanta_) | 2022 | 76869 | 125379
+1898286 (_Vanessa atalanta_) | 2023 | 8155 | 17546
 
 <br>
 
@@ -303,7 +303,7 @@ Format | Remarks | Need
 -------|---------|-----
 CSV | Widely used format, including (tab-delimited and compressed) by the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]). Broad software support. | MUST
 EBV NetCDF | Network Common Data Format (netCDF) format adopted by GeoBON to exchange Essential Biodiversity Variables. Can be read by e.g. R package “ebvcube” ([Quoss et al. 2021][quoss_2021]). | MUST
-Apache Parquet | Column-oriented data format, optimized for data storage and retrieval. Increasingly used in tools like Google Big Query. Can be read by e.g. R package “arrow” ([Richerson et al. 2023][richerson_2023]). | SHOULD
+Apache Parquet | Column-oriented data format, optimized for data storage and retrieval. Increasingly used in tools like Google Big Query. Can be read by e.g. R package “arrow” ([Richardson et al. 2023][richardson_2023]). | SHOULD
 Apache Avro | Row-oriented data format. Often recommended for long term storage over Apache Parquet, at a cost of performance when reading. | MAY
 eoJSON | See [https://geojson.org/](https://geojson.org/) | MAY
 GeoParquet | See [https://geoparquet.org/](https://geoparquet.org/) | MAY
