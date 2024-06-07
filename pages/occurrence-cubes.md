@@ -14,7 +14,7 @@ The B-Cubed project proposes solutions to overcome these challenges. One of thos
 
 By leveraging aggregated occurrence cubes as analysis-ready biodiversity datasets, we aim to enhance comprehension and reduce barriers to accessing and interpreting biodiversity data. Automation of workflows will provide regular and reproducible indicators and models that are open and useful to users. Additionally, the use of cloud computing offers scalability, flexibility, and collaborative opportunities for applying advanced data science techniques anywhere. Finally, close collaboration with stakeholders will inform us of the requirements for tools, increase impact, and facilitate the flow of information from primary data to the decision-making processes.
 
-##  Methodology
+## Methodology
 
 The specification in this document are based on the concept of “occurrence cubes” as described in [Oldoni et al. (2020)][oldoni_2020]. We expanded those to meet the requirements of the B-Cubed project partners and to describe a cube production service to be hosted by GBIF. Feedback was gathered from B-Cubed project partners in the kick-off meeting (13-14 March 2023), two online calls (24 and 27 April 2023) and a document open for comments.
 
@@ -22,9 +22,9 @@ Where possible, the specification builds on infrastructure and services already 
 
 The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
-##  Cube specification
+## Cube specification
 
-###  Dimensions
+### Dimensions
 
 Dimensions define how occurrences are grouped into a combination of categories, similar to the GROUP BY clause in SQL. A combination of dimension categories is called a “group”, e.g. taxon _X_, year _Y_ and grid cell _Z_ is a group.
 
@@ -32,7 +32,7 @@ Dimensions define how occurrences are grouped into a combination of categories, 
 2. A cube MUST at maximum have a number of groups that is equal to the number of dimensions multiplied by the number of categories per dimension.
 3. Groups without any associated occurrences MUST NOT be included in the cube, to ensure a user won't unwittingly assume this represents a statement of species absence. A cube will therefore typically contain (far) less groups than are theoretically possible.
 
-###  Taxonomic
+#### Taxonomic
 
 The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are scientificName, kingdom, and terms derived from species matching with the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]). Grouping is especially useful to lump synonyms and child taxa.
 
@@ -91,7 +91,7 @@ taxonomicStatus | TRUE | TRUE (“ACCEPTED”) | TRUE (“ACCEPTED”)
 
 <br>
 
-###  Temporal
+#### Temporal
 
 The temporal dimension groups occurrences into categories using their temporal information, i.e. “when was it observed?”. Relevant terms are eventDate, year, day, and month. Grouping is especially useful to reduce the temporal information from a continuum into discrete categories.
 
@@ -115,7 +115,7 @@ yearmonthday (date) |  | MUST
 
 <br>
 
-###  Spatial
+#### Spatial
 
 The spatial dimension groups occurrences into categories using their spatial information, i.e. “where was it observed?”. Relevant terms are decimalLatitude, decimalLongitude, geodeticDatum, and coordinateUncertaintyInMeters, as well as a reference grid. Grouping is especially useful to map data to other spatial datasets using the same reference grid and to take into account the coordinate uncertainty.
 
@@ -159,7 +159,7 @@ Military Grid Reference System (MGRS) a|* 1x1 m (“33TWM2718256978”)<br>* 10x
 
 <br>
 
-###  Other
+#### Other
 
 Other dimensions could be envisioned to group occurrences.
 
@@ -188,20 +188,20 @@ Trait | More investigation is needed to assess how species trait information (e.
 
 <br>
 
-###  Measures
+### Measures
 
 Measures are the calculated properties per group, similar to [aggregate functions](https://en.wikipedia.org/wiki/Aggregate_function) (count, sum, average, minimum, etc.) in SQL. Note that a group is a combination of dimension categories (see [Dimensions](#dimensions)).
 
 1. The following measures SHOULD be selected by default: occurrence count, minimum coordinate uncertainty.
 
-####  Occurrence count
+#### Occurrence count
 
 1. The occurrence count MUST be included per group.
 2. This measure MUST be an integer value expressing the number of occurrences within a group.
 
 The occurrence count provides information on occupancy as well as how many occurrences contributed to the occupancy. Groups with occupancy = FALSE are by definition not present in the cube, see [Dimensions](#dimensions).
 
-####  Minimum coordinate uncertainty
+#### Minimum coordinate uncertainty
 
 1. The minimum coordinate uncertainty SHOULD be included per group.
 2. This measure MUST be a numeric value expressing the minimum coordinateUncertaintyInMeters associated with an occurrence within a group.
@@ -216,7 +216,7 @@ The minimum coordinate uncertainty indicates the minimum spatial extent of occur
 
 The minimum coordinate uncertainty gives an indication that there was at least one occurrence with a high likelihood of falling completely within grid cell _Z_. This property can also be used to filter out groups that only contain occurrences that are smeared out over many grid cells (but were randomly assigned to that one). Such groups could be excluded from some spatial analyses at high resolution, but included in temporal analyses.
 
-####  Minimum temporal uncertainty
+#### Minimum temporal uncertainty
 
 1. The minimum temporal uncertainty MAY be included per group.
 2. This measure SHOULD be an integer value expressing the minimum temporal range in seconds associated with an occurrence within a group. Examples are provided in [Table 7](#examples-minimum-temporal-uncertainty).
@@ -243,7 +243,7 @@ eventDate | minimum temporal uncertainty | Remarks
 
 <br>
 
-####  Sampling bias
+#### Sampling bias
 
 A species could be well represented for a certain year and grid cell not because it is particularly established there, but because it was observed more (e.g. as result of a bioblitz or because it is a rare species observers seek out). To compensate for this sampling bias, it is important to know the sampling effort. For most cases, direct measures of sampling effort are not available, so one must rely on proxy measures to indicate sampling bias/effort.
 
@@ -286,7 +286,7 @@ speciesKey | year | count | genusCount
 
 <br>
 
-###  Format
+### Format
 
 Since cubes are tabular data, they can be expressed in any format that supports this. It is advised however to choose open formats with broad support.
 
@@ -315,7 +315,7 @@ ZARR | See [https://zarr.readthedocs.io/en/stable/](https://zarr.readthedocs.io/
 
 <br>
 
-###  Metadata
+### Metadata
 
 Metadata documents how a cube was generated and can be cited.
 
@@ -332,7 +332,7 @@ Metadata documents how a cube was generated and can be cited.
 8. Metadata MUST include the licence under which it is deposited.
 9. Metadata SHOULD document the columns in the cube. This MAY be expressed using Frictionless Table Schema ([Walsh & Pollock 2012][walsh_2012]) or STAC.
 
-###  Findability and storage
+### Findability and storage
 
 While a cube generated for testing purposes can be ephemeral, downstream use requires cubes to be findable, accessible, persistent and available on (cloud) infrastructure.
 
@@ -357,10 +357,10 @@ Google Cloud Storage | Commercial cloud infrastructure, see [https://cloud.googl
 Microsoft Azure Cloud Storage | Commercial cloud infrastructure, see [https://azure.microsoft.com/en-us/products/category/storage](https://azure.microsoft.com/en-us/products/category/storage) | MAY
 
 <br>
+## Software specification 
 
-##  Software specification 
 
-###  Cube production software
+### Cube production software
 
 This software produces cubes following the specification above.
 
@@ -400,7 +400,7 @@ This software produces cubes following the specification above.
   - The software SHOULD use semantic versioning for releases.
   - Source code SHOULD be hosted on GitHub to facilitate collaboration (including code contributions, feature requests, bug reports, etc.).
 
-###  Cube workflow service
+### Cube workflow service
 
 This service SHOULD embed the cube production software ([Cube production software](cube-production-software)) into the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
 
