@@ -1,6 +1,9 @@
 ---
 title: Occurrence cubes
 description: Specification for species occurrence cubes and their production
+authors: Peter Desmet, Damiano Oldoni, Matthew Blissett, Tim Robertson
+citation: >
+  Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. B-Cubed project deliverable D2.1.
 permalink: /occurrence-cubes/
 ---
 
