@@ -48,7 +48,7 @@ The taxonomic dimension groups occurrences into categories using their taxonomic
 **Table 1**: Categories for the taxonomic dimension.
 
 Category | Remarks | Need
----------|---------|-----
+-------- | ------- | ----
 kingdomKey | Lumps synonyms and child taxa. | SHOULD
 phylumKey | Lumps synonyms and child taxa. | SHOULD
 classKey | Lumps synonyms and child taxa. | SHOULD
@@ -60,9 +60,10 @@ acceptedKey | Lumps synonyms, but not child taxa. | SHOULD
 taxonKey | Does not lump synonyms nor child taxa. | MUST
 
 {:#taxonomic-categories-examples .mt-4 .mb-1}
+**Table 2**: Examples of which columns of taxonomic information to include for three different taxonomic dimensions (taxonKey, speciesKey and orderKey).
 
 Column | Cube at taxonKey | Cube at speciesKey | Cube at orderKey
--------|------------------|--------------------|-----------------
+------ | ---------------- | ------------------ | ----------------
 kingdomKey | TRUE | TRUE | TRUE
 kingdom | TRUE | TRUE | TRUE
 phylumKey | TRUE | TRUE | TRUE
@@ -99,7 +100,7 @@ The temporal dimension groups occurrences into categories using their temporal i
 **Table 3**: Categories for the temporal dimension.
 
 Category | Remarks | Need
----------|---------|------
+-------- | ------- | -----
 year |  | MUST
 yearmonth |  | SHOULD
 yearmonthday (date) |  | MUST
@@ -129,7 +130,7 @@ The spatial dimension groups occurrences into categories using their spatial inf
 **Table 4:** Grid assignment methods.
 
 Method | Remarks | Need
--------|---------|-----
+------ | ------- | ----
 Random grid assignment | Assigns an occurrence to a random grid cell (of defined size) that overlaps with it. See [Oldoni et al. (2020)][oldoni_2020] for details. | MUST
 Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches ([Groom et al. 2018][groom_2018]). | SHOULD
 
@@ -137,12 +138,10 @@ Encompassing grid assignment | Assigns an occurrence to the smallest grid cell s
 **Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude 46.565825 N (46° 33' 56.97" N) and longitude 15.354675 E (15° 21' 16.83" E).
 
 Grid | Cell sizes | Remarks | Need
------|------------|---------|-----
-EEA reference grid a|* 1x1 km (“1kmE4731N2620”)<br>* 10x10 km (“10kmE473N262”)<br>* 100x100 km (“100kmE47N26”)|European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST|
-Extended Quarter Degree Grid Cells (QDGC) a|* 15x15 minutes (“E015N46AD”)<br>* 30x30 minutes (“E015N46A”)<br>* 1x1 degrees (“E015N46”)<br>|Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST|
-Military Grid Reference System (MGRS) a|* 1x1 m (“33TWM2718256978”)<br>* 10x10 m (“33TWM27185697”)<br>* 100x100 m (“33TWM271569”)<br>* 1x1 km (“33TWM2756”)<br>* 10x10 km (“33TWM25”)<br>* 100x100 km (“33TWM”)|Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST|
-
-<br>
+---- | ---------- | ------- | ----
+EEA reference grid | - 1x1 km (“1kmE4731N2620”)<br>- 10x10 km (“10kmE473N262”)<br>- 100x100 km (“100kmE47N26”) | European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST
+Extended Quarter Degree Grid Cells (QDGC) | - 15x15 minutes (“E015N46AD”)<br>- 30x30 minutes (“E015N46A”)<br>- 1x1 degrees (“E015N46”)<br> | Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST
+Military Grid Reference System (MGRS) | - 1x1 m (“33TWM2718256978”)<br>- 10x10 m (“33TWM27185697”)<br>- 100x100 m (“33TWM271569”)<br>- 1x1 km (“33TWM2756”)<br>- 10x10 km (“33TWM25”)<br>- 100x100 km (“33TWM”) | Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST
 
 #### Other
 
@@ -159,8 +158,8 @@ Other dimensions could be envisioned to group occurrences.
 {:#other-dimensions .mt-4 .mb-1}
 **Table 6:** Other dimensions.
 
-*Dimension* | Remarks  | Need
-------------|----------|-----
+Dimension | Remarks  | Need
+--------- | -------- | ----
 Sex |  | SHOULD
 Life stage | Especially important for insects ([Radchuk et al. 2013][radchuk_2013]) and invasive species ([Wallace et al. 2021][wallace_2021]). | MAY
 Depth | Especially important for marine data. | MAY
@@ -208,7 +207,7 @@ The minimum temporal uncertainty indicates the minimum temporal extent of occurr
 **Table 7:** Examples of minimum temporal uncertainty for provided eventDates.
 
 eventDate | minimum temporal uncertainty | Remarks
-----------|------------------------------|--------
+--------- | ---------------------------- | -------
 2021-03-21T15:01:32.456Z | 1 | Milliseconds are rounded to seconds.
 2021-03-21T15:01:32Z | 1 | 
 2021-03-21T15:01Z | 60 | 
@@ -218,6 +217,7 @@ eventDate | minimum temporal uncertainty | Remarks
 2021-01-01 | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
 2021-03 | 60×60×24×31 | 
 2021 | 60×60×24×365 | 
+2021-03-21/2021-03-23 | 60×60×24×3 | 
 
 #### Sampling bias
 
@@ -244,7 +244,7 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
 **Table 8:** Example of target occurrence counts at genus level for a cube with taxonomic and temporal dimensions.
 
 speciesKey | year | count | genusCount
------------|-----|------|----------
+---------- | ---- | ----  | ----------
 1311527 (_Vespa crabro_) | 2020 | 15152 | 20361
 1311527 (_Vespa crabro_) | 2021 | 15055 | 20533
 1311527 (_Vespa crabro_) | 2022 | 20655 | 38641
@@ -270,7 +270,7 @@ Since cubes are tabular data, they can be expressed in any format that supports 
 **Table 9:** Output formats.
 
 Format | Remarks | Need
--------|---------|-----
+------ | ------- | ----
 CSV | Widely used format, including (tab-delimited and compressed) by the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]). Broad software support. | MUST
 EBV NetCDF | Network Common Data Format (netCDF) format adopted by GeoBON to exchange Essential Biodiversity Variables. Can be read by e.g. R package “ebvcube” ([Quoss et al. 2021][quoss_2021]). | MUST
 Apache Parquet | Column-oriented data format, optimized for data storage and retrieval. Increasingly used in tools like Google Big Query. Can be read by e.g. R package “arrow” ([Richardson et al. 2023][richardson_2023]). | SHOULD
@@ -315,7 +315,7 @@ While a cube generated for testing purposes can be ephemeral, downstream use req
 **Table 10:** Data storage infrastructures.
 
 Infrastructure | Remarks | Need
----------------|---------|-----
+-------------- | ------- | ----
 GBIF downloads | Infrastructure maintained by GBIF for the long term-archival of occurrence data. See [GBIF Secretariat (2023a)][gbif_2023a] for details. | MUST
 EBV Data Portal | Infrastructure maintained by GeoBON for the long-term archival of Essential Biodiversity Variables raster datasets, see [https://portal.geobon.org/](https://portal.geobon.org/) | MUST
 Amazon Web Services S3 | Commercial cloud infrastructure, see [https://aws.amazon.com/s3/](https://aws.amazon.com/s3/) | MAY
