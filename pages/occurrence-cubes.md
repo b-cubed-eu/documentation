@@ -26,7 +26,7 @@ The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RE
 
 ### Dimensions
 
-Dimensions define how occurrences are grouped into a combination of categories, similar to the GROUP BY clause in SQL. A combination of dimension categories is called a “group”, e.g. taxon _X_, year _Y_ and grid cell _Z_ is a group.
+Dimensions define how occurrences are grouped into a combination of categories, similar to the GROUP BY clause in SQL. A combination of dimension categories is called a “group”, e.g. taxon `X`, year `Y` and grid cell `Z` is a group.
 
 1. A cube MUST have at least one dimension.
 2. A cube MUST at maximum have a number of groups that is equal to the number of dimensions multiplied by the number of categories per dimension.
@@ -34,13 +34,13 @@ Dimensions define how occurrences are grouped into a combination of categories, 
 
 #### Taxonomic
 
-The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are scientificName, kingdom, and terms derived from species matching with the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]). Grouping is especially useful to lump synonyms and child taxa.
+The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are `scientificName`, `kingdom`, and terms derived from species matching with the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]). Grouping is especially useful to lump synonyms and child taxa.
 
 1. This dimension MUST be optional.
 2. A number of categories MUST be supported (see [Table 1](#taxonomic-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]).
-  - The category speciesKey SHOULD be selected by default.
-  - Note that the category taxonKey is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences/searchOccurrence) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (taxonKey [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (taxonKey [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (taxonKey [1311484](https://www.gbif.org/species/1311484)). The category taxonKey should only lump occurrences that share the same taxonKey. This SHOULD be communicated clearly to the user.
-3. Occurrences that are identified at a higher taxon rank than the selected category MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (taxonKey [1311334](https://www.gbif.org/species/1311334)) is excluded when using a speciesKey category.
+  - The category `speciesKey` SHOULD be selected by default.
+  - Note that the category `taxonKey` is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (`taxonKey` [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (`taxonKey` [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (`taxonKey` [1311484](https://www.gbif.org/species/1311484)). The category `taxonKey` should only lump occurrences that share the same `taxonKey`. This SHOULD be communicated clearly to the user.
+3. Occurrences that are identified at a higher taxon rank than the selected category MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (`taxonKey` [1311334](https://www.gbif.org/species/1311334)) is excluded when using a `speciesKey` category.
 4. Occurrences MUST NOT be assigned to multiple categories.
 5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
 
@@ -49,50 +49,50 @@ The taxonomic dimension groups occurrences into categories using their taxonomic
 
 Category | Remarks | Need
 -------- | ------- | ----
-kingdomKey | Lumps synonyms and child taxa. | SHOULD
-phylumKey | Lumps synonyms and child taxa. | SHOULD
-classKey | Lumps synonyms and child taxa. | SHOULD
-orderKey | Lumps synonyms and child taxa. | SHOULD
-familyKey | Lumps synonyms and child taxa. | MUST
-genusKey | Lumps synonyms and child taxa. | SHOULD
-speciesKey | Lumps synonyms and child taxa. | MUST
-acceptedKey | Lumps synonyms, but not child taxa. | SHOULD
-taxonKey | Does not lump synonyms nor child taxa. | MUST
+`kingdomKey` | Lumps synonyms and child taxa. | SHOULD
+`phylumKey` | Lumps synonyms and child taxa. | SHOULD
+`classKey` | Lumps synonyms and child taxa. | SHOULD
+`orderKey` | Lumps synonyms and child taxa. | SHOULD
+`familyKey` | Lumps synonyms and child taxa. | MUST
+`genusKey` | Lumps synonyms and child taxa. | SHOULD
+`speciesKey` | Lumps synonyms and child taxa. | MUST
+`acceptedKey` | Lumps synonyms, but not child taxa. | SHOULD
+`taxonKey` | Does not lump synonyms nor child taxa. | MUST
 
 {:#taxonomic-categories-examples .mt-4 .mb-1}
-**Table 2**: Examples of which columns of taxonomic information to include for three different taxonomic dimensions (taxonKey, speciesKey and orderKey).
+**Table 2**: Examples of which columns of taxonomic information to include for three different taxonomic dimensions (`taxonKey`, `speciesKey` and `orderKey`).
 
-Column | Cube at taxonKey | Cube at speciesKey | Cube at orderKey
+Column | Cube at `taxonKey` | Cube at `speciesKey` | Cube at `orderKey`
 ------ | ---------------- | ------------------ | ----------------
-kingdomKey | TRUE | TRUE | TRUE
-kingdom | TRUE | TRUE | TRUE
-phylumKey | TRUE | TRUE | TRUE
-phylum | TRUE | TRUE | TRUE
-classKey | TRUE | TRUE | TRUE
-class | TRUE | TRUE | TRUE
-orderKey | TRUE | TRUE | TRUE
-order | TRUE | TRUE | TRUE
-familyKey | TRUE | TRUE | FALSE
-family | TRUE | TRUE | FALSE
-genusKey | TRUE | TRUE | FALSE
-genus | TRUE | TRUE | FALSE
-speciesKey | TRUE | TRUE | FALSE
-species | TRUE | TRUE | FALSE
-acceptedKey | TRUE | FALSE | FALSE
-acceptedScientificName | TRUE | FALSE | FALSE
-taxonKey | TRUE | FALSE | FALSE
-scientificName | TRUE | FALSE | FALSE
-taxonRank | TRUE | TRUE (“SPECIES”) | TRUE
-taxonomicStatus | TRUE | TRUE (“ACCEPTED”) | TRUE (“ACCEPTED”)
+`kingdomKey` | TRUE | TRUE | TRUE
+`kingdom` | TRUE | TRUE | TRUE
+`phylumKey` | TRUE | TRUE | TRUE
+`phylum` | TRUE | TRUE | TRUE
+`classKey` | TRUE | TRUE | TRUE
+`class` | TRUE | TRUE | TRUE
+`orderKey` | TRUE | TRUE | TRUE
+`order` | TRUE | TRUE | TRUE
+`familyKey` | TRUE | TRUE | FALSE
+`family` | TRUE | TRUE | FALSE
+`genusKey` | TRUE | TRUE | FALSE
+`genus` | TRUE | TRUE | FALSE
+`speciesKey` | TRUE | TRUE | FALSE
+`species` | TRUE | TRUE | FALSE
+`acceptedKey` | TRUE | FALSE | FALSE
+`acceptedScientificName` | TRUE | FALSE | FALSE
+`taxonKey` | TRUE | FALSE | FALSE
+`scientificName` | TRUE | FALSE | FALSE
+`taxonRank` | TRUE | TRUE (`SPECIES`) | TRUE
+`taxonomicStatus` | TRUE | TRUE (`ACCEPTED`) | TRUE (`ACCEPTED`)
 
 #### Temporal
 
-The temporal dimension groups occurrences into categories using their temporal information, i.e. “when was it observed?”. Relevant terms are eventDate, year, day, and month. Grouping is especially useful to reduce the temporal information from a continuum into discrete categories.
+The temporal dimension groups occurrences into categories using their temporal information, i.e. “when was it observed?”. Relevant terms are `eventDate`, `year`, `month`, and `day`. Grouping is especially useful to reduce the temporal information from a continuum into discrete categories.
 
 1. This dimension MUST be optional.
-2. A number of categories MUST be supported (see [Table 3](#temporal-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)), albeit as discrete (year, month, day) not combined (year, yearmonth, yearmonthday) properties. They are added automatically by the GBIF occurrence processing pipeline, when processing the eventDate into year, month, and day.
-  - The category year SHOULD be selected by default.
-3. Occurrences that have temporal information that is wider than the selected category SHOULD NOT be included, e.g. an occurrence with date range 2020-12-15/2021-01-15 is excluded when using a year category.
+2. A number of categories MUST be supported (see [Table 3](#temporal-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)), albeit as discrete (`year`, `month`, `day`) not combined (`year`, `yearmonth`, `yearmonthday`) properties. They are added automatically by the GBIF occurrence processing pipeline, when processing the `eventDate` into `year`, `month`, and `day`.
+  - The category `year` SHOULD be selected by default.
+3. Occurrences that have temporal information that is wider than the selected category SHOULD NOT be included, e.g. an occurrence with date range `2020-12-15/2021-01-15` is excluded when using a `year` category.
   - Alternatively, the middle of the date range MAY be used.
 4. Occurrences MUST NOT be assigned to multiple categories.
 
@@ -101,13 +101,13 @@ The temporal dimension groups occurrences into categories using their temporal i
 
 Category | Remarks | Need
 -------- | ------- | -----
-year |  | MUST
-yearmonth |  | SHOULD
-yearmonthday (date) |  | MUST
+`year` |  | MUST
+`yearmonth` |  | SHOULD
+`yearmonthday` (date) |  | MUST
 
 #### Spatial
 
-The spatial dimension groups occurrences into categories using their spatial information, i.e. “where was it observed?”. Relevant terms are decimalLatitude, decimalLongitude, geodeticDatum, and coordinateUncertaintyInMeters, as well as a reference grid. Grouping is especially useful to map data to other spatial datasets using the same reference grid and to take into account the coordinate uncertainty.
+The spatial dimension groups occurrences into categories using their spatial information, i.e. “where was it observed?”. Relevant terms are `decimalLatitude`, `decimalLongitude`, `geodeticDatum`, and `coordinateUncertaintyInMeters`, as well as a reference grid. Grouping is especially useful to map data to other spatial datasets using the same reference grid and to take into account the coordinate uncertainty.
 
 1. This dimension MUST be optional.
 2. Only one spatial dimension MUST be used at a time in a cube.
@@ -117,8 +117,8 @@ The spatial dimension groups occurrences into categories using their spatial inf
   - Such datasets may not be area-covering and can have overlapping features, leading to misleading results.
   - Users are advised to make use of such datasets after cube generation. This also allows them more control and flexibility in choosing features of interest and how to combine these with the chosen reference grid.
 5. Occurrences SHOULD be considered circles or squares (not points).
-  - Circles MUST be based on the point-radius method ([Wieczorek et al. 2004][wieczorek_2004]), using the coordinates as the centre and the provided coordinateUncertaintyInMeters as the radius. If not provided, a default coordinateUncertaintyInMeters of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
-  - Squares SHOULD be based on the provided footprintWKT or MAY be reverse-engineered when the dataset is likely gridded ([Waller 2019][waller_2019]).
+  - Circles MUST be based on the point-radius method ([Wieczorek et al. 2004][wieczorek_2004]), using the coordinates as the centre and the provided `coordinateUncertaintyInMeters` as the radius. If not provided, a default `coordinateUncertaintyInMeters` of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
+  - Squares SHOULD be based on the provided `footprintWKT` or MAY be reverse-engineered when the dataset is likely gridded ([Waller 2019][waller_2019]).
 6. A number of grid assignment methods MUST be supported (see [Table 4](#grid-assignment-methods) for detailed needs).
   - Random grid assignment SHOULD be selected by default.
   - The seed used for random grid assignment SHOULD be mentioned in the metadata and users SHOULD be able to reuse it to create reproducible results.
@@ -135,13 +135,13 @@ Random grid assignment | Assigns an occurrence to a random grid cell (of defined
 Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches ([Groom et al. 2018][groom_2018]). | SHOULD
 
 {:#reference-grids .mt-4 .mb-1}
-**Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude 46.565825 N (46° 33' 56.97" N) and longitude 15.354675 E (15° 21' 16.83" E).
+**Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude `46.565825 N` (`46° 33' 56.97" N`) and longitude `15.354675 E` (`15° 21' 16.83" E`).
 
 Grid | Cell sizes | Remarks | Need
 ---- | ---------- | ------- | ----
-EEA reference grid | - 1x1 km (“1kmE4731N2620”)<br>- 10x10 km (“10kmE473N262”)<br>- 100x100 km (“100kmE47N26”) | European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST
-Extended Quarter Degree Grid Cells (QDGC) | - 15x15 minutes (“E015N46AD”)<br>- 30x30 minutes (“E015N46A”)<br>- 1x1 degrees (“E015N46”)<br> | Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST
-Military Grid Reference System (MGRS) | - 1x1 m (“33TWM2718256978”)<br>- 10x10 m (“33TWM27185697”)<br>- 100x100 m (“33TWM271569”)<br>- 1x1 km (“33TWM2756”)<br>- 10x10 km (“33TWM25”)<br>- 100x100 km (“33TWM”) | Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST
+EEA reference grid | - 1x1 km (`1kmE4731N2620`)<br>- 10x10 km (`10kmE473N262`)<br>- 100x100 km (`100kmE47N26`) | European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST
+Extended Quarter Degree Grid Cells (QDGC) | - 15x15 minutes (`E015N46AD`)<br>- 30x30 minutes (`E015N46A`)<br>- 1x1 degrees (`E015N46`)<br> | Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST
+Military Grid Reference System (MGRS) | - 1x1 m (`33TWM2718256978`)<br>- 10x10 m (`33TWM27185697`)<br>- 100x100 m (`33TWM271569`)<br>- 1x1 km (`33TWM2756`)<br>- 10x10 km (`33TWM25`)<br>- 100x100 km (`33TWM`) | Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST
 
 #### Other
 
@@ -152,7 +152,7 @@ Other dimensions could be envisioned to group occurrences.
 3. Occurrences that are not associated with a category MUST be assigned to NOT-SUPPLIED.
 4. A number of other categories MAY be supported (see [Table 6](#other-dimensions) for details).
   - By default, other categories SHOULD NOT be selected.
-  - Note that for some (e.g. establishmentMeans), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
+  - Note that for some (e.g. `establishmentMeans`), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
 5. Occurrences MUST NOT be assigned to multiple categories.
 
 {:#other-dimensions .mt-4 .mb-1}
@@ -162,9 +162,9 @@ Category | Remarks  | Need
 --------- | -------- | ----
 Sex |  | SHOULD
 Life stage | Especially important for insects ([Radchuk et al. 2013][radchuk_2013]) and invasive species ([Wallace et al. 2021][wallace_2021]). | MAY
-Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “introduced” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
-Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “managed” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
-IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “vulnerable” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `introduced` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `managed` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
+IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `vulnerable` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 Trait | More investigation is needed to assess how species trait information (e.g. from [Open Traits Network](https://opentraits.org/datasets.html)) can be linked to species occurrences. | MAY
 
 ### Measures
@@ -178,22 +178,22 @@ Measures are the calculated properties per group, similar to [aggregate function
 1. The occurrence count MUST be included per group.
 2. This measure MUST be an integer value expressing the number of occurrences within a group.
 
-The occurrence count provides information on occupancy as well as how many occurrences contributed to the occupancy. Groups with occupancy = FALSE are by definition not present in the cube, see [Dimensions](#dimensions).
+The occurrence count provides information on occupancy as well as how many occurrences contributed to the occupancy. Groups with `occupancy = FALSE` are by definition not present in the cube, see [Dimensions](#dimensions).
 
 #### Minimum coordinate uncertainty
 
 1. The minimum coordinate uncertainty SHOULD be included per group.
-2. This measure MUST be a numeric value expressing the minimum coordinateUncertaintyInMeters associated with an occurrence within a group.
+2. This measure MUST be a numeric value expressing the minimum `coordinateUncertaintyInMeters` associated with an occurrence within a group.
 
-The minimum coordinate uncertainty indicates the minimum spatial extent of occurrences within a group. This is especially useful when using random grid assignment (see [Table 4](#grid-assignment-methods)). Consider an example where there are 4 occurrences for taxon _X_ for year _Y_ near grid cell _Z_ (1x1 km). Three of those occurrences are coming from a dataset with 10x10 km gridded data and have an coordinateUncertaintyInMeters of 7071 m. They can be represented as circles that partly or completely include grid cell Z. Due to the random grid assignment method, only one is assigned to grid cell _Z_, the others to neighbouring grid cells that overlap with their circles. A fourth occurrence is derived from iNaturalist, has an uncertainty of 30 m and falls completely within grid cell _Z_. It is assigned to grid cell _Z_. The cubed data for _XYZ_ would be:
+The minimum coordinate uncertainty indicates the minimum spatial extent of occurrences within a group. This is especially useful when using random grid assignment (see [Table 4](#grid-assignment-methods)). Consider an example where there are 4 occurrences for taxon `X` for year `Y` near grid cell `Z` (1x1 km). Three of those occurrences are coming from a dataset with 10x10 km gridded data and have an `coordinateUncertaintyInMeters` of 7071 m. They can be represented as circles that partly or completely include grid cell Z. Due to the random grid assignment method, only one is assigned to grid cell `Z`, the others to neighbouring grid cells that overlap with their circles. A fourth occurrence is derived from iNaturalist, has an uncertainty of 30 m and falls completely within grid cell `Z`. It is assigned to grid cell `Z`. The cubed data for `XYZ` would be:
 
-* year: _X_
-* taxon: _Y_
-* grid: _Z_
-* count: 2
-* minimumCoordinateUncertainty: 30
+- year: `X`
+- taxon: `Y`
+- grid: `Z`
+- count: `2`
+- minimumCoordinateUncertainty: `30`
 
-The minimum coordinate uncertainty gives an indication that there was at least one occurrence with a high likelihood of falling completely within grid cell _Z_. This property can also be used to filter out groups that only contain occurrences that are smeared out over many grid cells (but were randomly assigned to that one). Such groups could be excluded from some spatial analyses at high resolution, but included in temporal analyses.
+The minimum coordinate uncertainty gives an indication that there was at least one occurrence with a high likelihood of falling completely within grid cell `Z`. This property can also be used to filter out groups that only contain occurrences that are smeared out over many grid cells (but were randomly assigned to that one). Such groups could be excluded from some spatial analyses at high resolution, but included in temporal analyses.
 
 #### Minimum temporal uncertainty
 
@@ -203,20 +203,20 @@ The minimum coordinate uncertainty gives an indication that there was at least o
 The minimum temporal uncertainty indicates the minimum temporal extent of occurrences within a group. This is especially useful to filter out groups that only contain occurrences with broad temporal information.
 
 {:#examples-minimum-temporal-uncertainty .mt-4 .mb-1}
-**Table 7:** Examples of minimum temporal uncertainty for provided eventDates.
+**Table 7:** Examples of minimum temporal uncertainty for a provided `eventDate`.
 
 eventDate | minimum temporal uncertainty | Remarks
 --------- | ---------------------------- | -------
-2021-03-21T15:01:32.456Z | 1 | Milliseconds are rounded to seconds.
-2021-03-21T15:01:32Z | 1 | 
-2021-03-21T15:01Z | 60 | 
-2021-03-21T15Z | 60×60 | 
-2021-03-21 | 60×60×24 | 
-2021-03-01 | 60×60×24 | For dates at the first day of the month, the minimum temporal uncertainty MAY also be considered 60×60×24×31.
-2021-01-01 | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
-2021-03 | 60×60×24×31 | 
-2021 | 60×60×24×365 | 
-2021-03-21/2021-03-23 | 60×60×24×3 | 
+`2021-03-21T15:01:32.456Z` | 1 | Milliseconds are rounded to seconds.
+`2021-03-21T15:01:32Z` | 1 | 
+`2021-03-21T15:01Z` | 60 | 
+`2021-03-21T15Z` | 60×60 | 
+`2021-03-21` | 60×60×24 | 
+`2021-03-01` | 60×60×24 | For dates at the first day of the month, the minimum temporal uncertainty MAY also be considered 60×60×24×31.
+`2021-01-01` | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
+`2021-03` | 60×60×24×31 | 
+`2021` | 60×60×24×365 | 
+`2021-03-21/2021-03-23` | 60×60×24×3 | 
 
 #### Sampling bias
 
@@ -226,36 +226,36 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
 
 1. The target occurrence count SHOULD be included per group to facilitate assessing sampling bias.
 2. This measure MUST be an integer value expressing the number of occurrences within a group (see [Table 8](#example-target-occurrence-counts)). Note that by dividing the occurrence count by the target occurrence count, one can calculate a relative count.
-3. This measure SHOULD take into account any filters applied to the occurrence data, except for taxonomic filters. For example, for occurrence data filtered on _Vanessa atalanta_ (scientificName), human observation (basisOfRecord) and INBO (publisher), a higher taxon at family SHOULD retain the filters basisOfRecord and publisher.
+3. This measure SHOULD take into account any filters applied to the occurrence data, except for taxonomic filters. For example, for occurrence data filtered on _Vanessa atalanta_ (`scientificName`), human observation (`basisOfRecord`) and INBO (`publisher`), a higher taxon at family SHOULD retain the filters `basisOfRecord` and `publisher`.
 4. This measure SHOULD use the same grid assignment method (see [Table 4](#grid-assignment-methods)) as selected for the spatial dimension.
 5. This measure SHOULD NOT increase the number of records in the cube. For example, grid cells that are occupied by the higher taxon, but not by the focal taxon, SHOULD NOT be included.
 6. The higher taxon rank SHOULD be defined by the user:
-  - It SHOULD either be genus, family, order, class, phylum, kingdom or life (all kingdoms).
-  - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-categories)), e.g. only phylum, kingdom or life are valid for a cube at class level (classKey).
-  - family SHOULD be selected by default for cubes with a taxonomic dimension at taxon level (acceptedKey, taxonKey), species level (speciesKey) or genus level (genusKey). The direct higher rank SHOULD be selected by default for other cubes with a higher taxonomic dimension.
+  - It SHOULD either be `genus`, `family`, `order`, `class`, `phylum`, `kingdom` or life (all kingdoms).
+  - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-categories)), e.g. only `phylum`, `kingdom` or life are valid for a cube at class level (`classKey`).
+  - family SHOULD be selected by default for cubes with a taxonomic dimension at taxon level (`acceptedKey`, `taxonKey`), species level (`speciesKey`) or genus level (`genusKey`). The direct higher rank SHOULD be selected by default for other cubes with a higher taxonomic dimension.
   - It SHOULD NOT be possible to select more than one rank. Note that it is theoretically possible to provide this measure for all (higher) ranks.
   - If a taxon does not have a parent at the selected rank, its target occurrence count SHOULD be NULL.
 7. Other measures than target occurrence count MAY be considered, including:
   - Number of days observed.
-  - Number of observers (recordedBy). Note that this value is not controlled and can lead to higher numbers than expected.
+  - Number of observers (`recordedBy`). Note that this value is not controlled and can lead to higher numbers than expected.
 
 {:#example-target-occurrence-counts .mt-4 .mb-1}
-**Table 8:** Example of target occurrence counts at genus level for a cube with taxonomic and temporal dimensions.
+**Table 8:** Example of target occurrence counts at `genus` level for a cube with taxonomic and temporal dimensions.
 
 speciesKey | year | count | genusCount
 ---------- | ---- | ----  | ----------
-1311527 (_Vespa crabro_) | 2020 | 15152 | 20361
-1311527 (_Vespa crabro_) | 2021 | 15055 | 20533
-1311527 (_Vespa crabro_) | 2022 | 20655 | 38641
-1311527 (_Vespa crabro_) | 2023 | 1805 | 7192
-1311477 (_Vespa velutina_) | 2020 | 3683 | 20361
-1311477 (_Vespa velutina_) | 2021 | 3825 | 20533
-1311477 (_Vespa velutina_) | 2022 | 16259 | 38641
-1311477 (_Vespa velutina_) | 2023 | 5108 | 7192
-1898286 (_Vanessa atalanta_) | 2020 | 102732 | 126961
-1898286 (_Vanessa atalanta_) | 2021 | 106411 | 141924
-1898286 (_Vanessa atalanta_) | 2022 | 76869 | 125379
-1898286 (_Vanessa atalanta_) | 2023 | 8155 | 17546
+`1311527` (_Vespa crabro_) | 2020 | 15152 | 20361
+`1311527` (_Vespa crabro_) | 2021 | 15055 | 20533
+`1311527` (_Vespa crabro_) | 2022 | 20655 | 38641
+`1311527` (_Vespa crabro_) | 2023 | 1805 | 7192
+`1311477` (_Vespa velutina_) | 2020 | 3683 | 20361
+`1311477` (_Vespa velutina_) | 2021 | 3825 | 20533
+`1311477` (_Vespa velutina_) | 2022 | 16259 | 38641
+`1311477` (_Vespa velutina_) | 2023 | 5108 | 7192
+`1898286` (_Vanessa atalanta_) | 2020 | 102732 | 126961
+`1898286` (_Vanessa atalanta_) | 2021 | 106411 | 141924
+`1898286` (_Vanessa atalanta_) | 2022 | 76869 | 125379
+`1898286` (_Vanessa atalanta_) | 2023 | 8155 | 17546
 
 ### Format
 
@@ -291,7 +291,7 @@ Metadata documents how a cube was generated and can be cited.
 3. Metadata MUST include the properties in [Table 9](#output-formats).
 4. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
   - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
-  - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see “description” in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
+  - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see `descriptions` in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
   - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
 5. Metadata MUST include a stable and unique global identifier, so it can be referenced. This SHOULD be a Digital Object Identifier (DOI).
 6. Metadata MUST include the creator, publisher, and creation date of the cube.
@@ -378,7 +378,7 @@ This service SHOULD embed the cube production software ([Cube production softwar
   - The user MUST be able to select what reference grid (controlled list, see [Table 5](#reference-grids)) and grid assignment method (controlled list, see [Table 4](#grid-assignment-methods)) to use for the spatial dimension.
   - The user MAY be able to select a default coordinate uncertainty for occurrences that do not have this information.
   - The user MAY be able to select the seed for random grid assignment.
-  - The service MAY provide information on the cardinality of the selected options, so users have an idea of the number of rows that will be returned in the cube (e.g. year to day “likely to increase the number of rows 360 times”).
+  - The service MAY provide information on the cardinality of the selected options, so users have an idea of the number of rows that will be returned in the cube (e.g. year to day `likely to increase the number of rows 360 times`).
 
 4. The service MAY allow users to **define the measures** included in the cube (see [Measures](#measures)).
   - Alternatively, the service MAY return the same measures for all cubes.
