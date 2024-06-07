@@ -44,10 +44,8 @@ The taxonomic dimension groups occurrences into categories using their taxonomic
 4. Occurrences MUST NOT be assigned to multiple categories.
 5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
 
-<br>
-
-{:#taxonomic-categories}
-**Table 1:** Categories for the taxonomic dimension.
+{:#taxonomic-categories .mt-4 .mb-1}
+**Table 1**: Categories for the taxonomic dimension.
 
 Category | Remarks | Need
 ---------|---------|-----
@@ -61,10 +59,7 @@ speciesKey | Lumps synonyms and child taxa. | MUST
 acceptedKey | Lumps synonyms, but not child taxa. | SHOULD
 taxonKey | Does not lump synonyms nor child taxa. | MUST
 
-<br>
-
-{:#taxonomic-categories-examples}
-**Table 2:** Examples of which columns of taxonomic information to include for three different taxonomic dimensions (taxonKey, speciesKey and orderKey).
+{:#taxonomic-categories-examples .mt-4 .mb-1}
 
 Column | Cube at taxonKey | Cube at speciesKey | Cube at orderKey
 -------|------------------|--------------------|-----------------
@@ -102,10 +97,8 @@ The temporal dimension groups occurrences into categories using their temporal i
   - Alternatively, the middle of the date range MAY be used.
 4. Occurrences MUST NOT be assigned to multiple categories.
 
-<br>
-
-{:#temporal-categories}
-**Table 3:** Categories for the temporal dimension.
+{:#temporal-categories .mt-4 .mb-1}
+**Table 3**: Categories for the temporal dimension.
 
 Category | Remarks | Need
 ---------|---------|------
@@ -136,9 +129,7 @@ The spatial dimension groups occurrences into categories using their spatial inf
 7. Occurrences that are located beyond the extent of the chosen reference grid MUST NOT be included.
 8. Occurrences MUST NOT be assigned to multiple grid cells (i.e. no fuzzy assignment).
 
-<br>
-
-{:#grid-assignment-methods}
+{:#grid-assignment-methods .mt-4 .mb-1}
 **Table 4:** Grid assignment methods.
 
 Method | Remarks | Need
@@ -146,9 +137,7 @@ Method | Remarks | Need
 Random grid assignment | Assigns an occurrence to a random grid cell (of defined size) that overlaps with it. See [Oldoni et al. (2020)][oldoni_2020] for details. | MUST
 Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches ([Groom et al. 2018][groom_2018]). | SHOULD
 
-<br>
-
-{:#reference-grids}
+{:#reference-grids .mt-4 .mb-1}
 **Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude 46.565825 N (46° 33' 56.97" N) and longitude 15.354675 E (15° 21' 16.83" E).
 
 Grid | Cell sizes | Remarks | Need
@@ -171,9 +160,7 @@ Other dimensions could be envisioned to group occurrences.
   - Note that for some (e.g. establishmentMeans), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
   - Occurrences MUST NOT be assigned to multiple categories.
 
-<br>
-
-{:#other-dimensions}
+{:#other-dimensions .mt-4 .mb-1}
 **Table 6:** Other dimensions.
 
 *Dimension* | Remarks  | Need
@@ -223,9 +210,7 @@ The minimum coordinate uncertainty gives an indication that there was at least o
 
 The minimum temporal uncertainty indicates the minimum temporal extent of occurrences within a group. This is especially useful to filter out groups that only contain occurrences with broad temporal information.
 
-<br>
-
-{:#examples-minimum-temporal-uncertainty}
+{:#examples-minimum-temporal-uncertainty .mt-4 .mb-1}
 **Table 7:** Examples of minimum temporal uncertainty for provided eventDates.
 
 eventDate | minimum temporal uncertainty | Remarks
@@ -264,9 +249,7 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
   - Number of days observed.
   - Number of observers (recordedBy). Note that this value is not controlled and can lead to higher numbers than expected.
 
-<br>
-
-{:#example-target-occurrence-counts}
+{:#example-target-occurrence-counts .mt-4 .mb-1}
 **Table 8:** Example of target occurrence counts at genus level for a cube with taxonomic and temporal dimensions.
 
 speciesKey | year | count | genusCount
@@ -294,9 +277,7 @@ Since cubes are tabular data, they can be expressed in any format that supports 
   - CSV SHOULD be selected by default.
 2. A geospatial format MUST only be supported if the cube includes the spatial dimension.
 
-<br>
-
-{:#output-formats}
+{:#output-formats .mt-4 .mb-1}
 **Table 9:** Output formats.
 
 Format | Remarks | Need
@@ -343,9 +324,7 @@ While a cube generated for testing purposes can be ephemeral, downstream use req
 4. The option SHOULD be offered to make a cube available on the cloud infrastructure where it will be processed. See [Table 10](#data-storage-infrastructures) for details.
   - By default, a cloud infrastructure SHOULD NOT be selected.
 
-<br>
-
-{:#data-storage-infrastructures}
+{:#data-storage-infrastructures .mt-4 .mb-1}
 **Table 10:** Data storage infrastructures.
 
 Infrastructure | Remarks | Need
