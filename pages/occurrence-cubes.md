@@ -153,16 +153,15 @@ Other dimensions could be envisioned to group occurrences.
 4. A number of other categories MAY be supported (see [Table 6](#other-dimensions) for details).
   - By default, other categories SHOULD NOT be selected.
   - Note that for some (e.g. establishmentMeans), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
-  - Occurrences MUST NOT be assigned to multiple categories.
+5. Occurrences MUST NOT be assigned to multiple categories.
 
 {:#other-dimensions .mt-4 .mb-1}
 **Table 6:** Other dimensions.
 
-Dimension | Remarks  | Need
+Category | Remarks  | Need
 --------- | -------- | ----
 Sex |  | SHOULD
 Life stage | Especially important for insects ([Radchuk et al. 2013][radchuk_2013]) and invasive species ([Wallace et al. 2021][wallace_2021]). | MAY
-Depth | Especially important for marine data. | MAY
 Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “introduced” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “managed” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “vulnerable” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
@@ -368,12 +367,12 @@ This software produces cubes following the specification above.
 
 This service SHOULD embed the cube production software ([Cube production software](cube-production-software)) into the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
 
-1. The service MUST allow users to *search and filter for occurrences* of interest. Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality.
+1. The service MUST allow users to **search and filter for occurrences** of interest. Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality.
 
-2. The service MAY allow users to *exclude unwanted occurrences* (e.g. occurrences that were flagged). Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality through its API, but not at www.gbif.org.
+2. The service MAY allow users to **exclude unwanted occurrences** (e.g. occurrences that were flagged). Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality through its API, but not at www.gbif.org.
   - This MAY be implemented as a NOT filter.
 
-3. The service MUST allow users to *define the dimensions* of the cube (see [Dimensions](#dimensions)):
+3. The service MUST allow users to **define the dimensions** of the cube (see [Dimensions](#dimensions)):
   - The user MUST be able to select what dimensions (controlled list) to include.
   - The user MUST be able to select what category/categories (controlled list) to use for each dimension.
   - The user MUST be able to select what reference grid (controlled list, see [Table 5](#reference-grids)) and grid assignment method (controlled list, see [Table 4](#grid-assignment-methods)) to use for the spatial dimension.
@@ -381,13 +380,13 @@ This service SHOULD embed the cube production software ([Cube production softwar
   - The user MAY be able to select the seed for random grid assignment.
   - The service MAY provide information on the cardinality of the selected options, so users have an idea of the number of rows that will be returned in the cube (e.g. year to day “likely to increase the number of rows 360 times”).
 
-4. The service MAY allow users to *define the measures* included in the cube (see [Measures](#measures)).
+4. The service MAY allow users to **define the measures** included in the cube (see [Measures](#measures)).
   - Alternatively, the service MAY return the same measures for all cubes.
 
-5. The service SHOULD allow users to *define the output format* of the cube (see [Format](#format) and [Table 9](#output-formats)).
+5. The service SHOULD allow users to **define the output format** of the cube (see [Format](#format) and [Table 9](#output-formats)).
   - Alternatively, the service MAY use the same output format for all cubes, but MUST offer the possibility to create different distributions of a deposited cube in other formats.
 
-6. The service SHOULD allow users to *define a destination* where the cube is deposited (see [Findability and storage](#findabiliity-and-storage) and [Table 10](#data-storage-infrastructure)).
+6. The service SHOULD allow users to **define a destination** where the cube is deposited (see [Findability and storage](#findabiliity-and-storage) and [Table 10](#data-storage-infrastructure)).
   - Alternatively, the service MAY use the same destination to deposit all cubes, but MUST offer the possibility to copy a deposited cube to other destinations.
 
 7. Sufficient technical documentation MUST be provided for users to understand and use the service.
@@ -399,7 +398,7 @@ This service SHOULD embed the cube production software ([Cube production softwar
   - The R package rgbif ([Chamberlain et al. 2023a][chamberlain_2023a]) SHOULD be updated.
   - The Python package pygbif ([Chamberlain et al. 2023b][chamberlain_2023b]) MAY be updated.
   
-
+<!-- references -->
 
 [Botella_2020]: https://doi.org/10.1371/journal.pone.0232078 "Botella C, Joly A, Monestiez P, Bonnet P, Munoz F (2020) Bias in presence-only niche models related to sampling effort and species niches: lessons for background point selection. PLoS One 15:e0232078."
 
