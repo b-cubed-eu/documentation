@@ -84,8 +84,6 @@ scientificName | TRUE | FALSE | FALSE
 taxonRank | TRUE | TRUE (“SPECIES”) | TRUE
 taxonomicStatus | TRUE | TRUE (“ACCEPTED”) | TRUE (“ACCEPTED”)
 
-<br>
-
 #### Temporal
 
 The temporal dimension groups occurrences into categories using their temporal information, i.e. “when was it observed?”. Relevant terms are eventDate, year, day, and month. Grouping is especially useful to reduce the temporal information from a continuum into discrete categories.
@@ -105,8 +103,6 @@ Category | Remarks | Need
 year |  | MUST
 yearmonth |  | SHOULD
 yearmonthday (date) |  | MUST
-
-<br>
 
 #### Spatial
 
@@ -173,8 +169,6 @@ Degree of establishment (derived) | Derived from comparing the occurrence with c
 IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered “vulnerable” by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 Trait | More investigation is needed to assess how species trait information (e.g. from [Open Traits Network](https://opentraits.org/datasets.html)) can be linked to species occurrences. | MAY
 
-<br>
-
 ### Measures
 
 Measures are the calculated properties per group, similar to [aggregate functions](https://en.wikipedia.org/wiki/Aggregate_function) (count, sum, average, minimum, etc.) in SQL. Note that a group is a combination of dimension categories (see [Dimensions](#dimensions)).
@@ -224,9 +218,6 @@ eventDate | minimum temporal uncertainty | Remarks
 2021-01-01 | 60×60×24 | For dates on the first day of the year, the minimum temporal uncertainty MAY also be considered 60×60×24×365.
 2021-03 | 60×60×24×31 | 
 2021 | 60×60×24×365 | 
-2021-03-21/2021-03-23 | 60×60×24×3 |
-
-<br>
 
 #### Sampling bias
 
@@ -267,8 +258,6 @@ speciesKey | year | count | genusCount
 1898286 (_Vanessa atalanta_) | 2022 | 76869 | 125379
 1898286 (_Vanessa atalanta_) | 2023 | 8155 | 17546
 
-<br>
-
 ### Format
 
 Since cubes are tabular data, they can be expressed in any format that supports this. It is advised however to choose open formats with broad support.
@@ -293,8 +282,6 @@ HDF5 | See [https://www.hdfgroup.org/solutions/hdf5/](https://www.hdfgroup.org/s
 JSON | See [https://www.json.org/](https://www.json.org/) | MAY
 PMTiles | See [https://protomaps.com/docs/pmtiles](https://protomaps.com/docs/pmtiles) | MAY
 ZARR | See [https://zarr.readthedocs.io/en/stable/](https://zarr.readthedocs.io/en/stable/) | MAY
-
-<br>
 
 ### Metadata
 
@@ -335,9 +322,7 @@ Amazon Web Services S3 | Commercial cloud infrastructure, see [https://aws.amazo
 Google Cloud Storage | Commercial cloud infrastructure, see [https://cloud.google.com/storage](https://cloud.google.com/storage) | MAY
 Microsoft Azure Cloud Storage | Commercial cloud infrastructure, see [https://azure.microsoft.com/en-us/products/category/storage](https://azure.microsoft.com/en-us/products/category/storage) | MAY
 
-<br>
 ## Software specification 
-
 
 ### Cube production software
 
