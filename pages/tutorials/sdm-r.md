@@ -1,6 +1,6 @@
 ---
 title: Species distribution modelling in R
-authors: Sandra MacFadyen
+author: Sandra MacFadyen
 permalink: /tutorials/sdm-r/
 ---
 

@@ -3,17 +3,20 @@ layout: default
 description: Template for tutorial page.
 ---
 
-{% if page.authors %}
-  {% assign authors = page.authors %}
+{% if page.citation %}
+  {% assign citation = 'Citation: ' | append: page.citation | markdownify %}
 {% elsif page.author %}
-  {% assign authors = page.author %}
+  {% assign author = 'Author: ' | append: page.author %}
+{% elsif page.authors %}
+  {% assign author = 'Authors: ' | append: page.authors %}
 {% endif %}
-{% if authors %}
+{% if citation %}
+  <div class="small text-muted">
+    {{ citation }}
+  </div>
+{% elsif author %}
   <p class="small text-muted">
-    Author: {{ authors | join: ', ' }}
-    {% if page.source %}
-    &bull; <a href="{{ page.source }}">Source code</a>
-    {% endif %}
+    {{ author }}
   </p>
 {% endif %}
 

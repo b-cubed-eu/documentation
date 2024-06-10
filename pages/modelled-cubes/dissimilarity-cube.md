@@ -1,6 +1,5 @@
 ---
 title: Dissimilarity cube
-authors:
 permalink: /modelled-cubes/dissimilarity-cube/
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Google Earth Engine for ecological modelling
-authors: Sandra MacFadyen
+author: Sandra MacFadyen
 permalink: /tutorials/gee/
 ---
 
