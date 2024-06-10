@@ -3,6 +3,9 @@ title: Invasibility cube
 permalink: /invasibility-cube/
 ---
 
+{:.alert .alert-warning}
+This page is not yet complete.
+
 ## Task 4.3: Network invasibility cube [Lead: SUN]
 
 Develop a workflow to visualise invasion fitness, using species occurrence data, IAS lists, and species traits to calculate trait centrality, visualize trait dispersion, estimate interaction strength, and assess invasibility. Outputs include interaction strength matrices and community dynamics details under biological invasions.
