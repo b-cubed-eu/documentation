@@ -1,5 +1,7 @@
 - text: Software dev guide
   href: /dev-guide/
+- text: Occurrence cubes
+  href: /occurrence-cube/specification/
 - text: Modelled cubes
   menu:
   - text: Suitability cube
