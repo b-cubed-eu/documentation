@@ -1,6 +1,6 @@
 ---
 title: Getting started with Google Earth Engine
-authors: Sandra MacFadyen
+author: Sandra MacFadyen
 permalink: /tutorials/gee/practical-1/
 ---
 
