@@ -19,7 +19,7 @@ This guide was first created as B-Cubed project deliverable D3.1 [Quality requir
 {:#repo}
 ## Code repositories
 
-Author: Peter Desmet
+<!-- Author: Peter Desmet -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#repo-requirements}
@@ -146,7 +146,7 @@ See the [Code collaboration](#collaboration) chapter.
 {:#readme}
 ## The README file
 
-Author: Pieter Huybrechts
+<!-- Author: Pieter Huybrechts -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#readme-requirements}
@@ -204,7 +204,7 @@ A repository can have additional README files beyond the one in the root. These 
 {:#collaboration}
 ## Code collaboration
 
-Author: Peter Desmet
+<!-- Author: Peter Desmet -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#collaboration-requirements}
@@ -320,7 +320,7 @@ GitHub desktop is a visual interface that allows you to commit your changes (inc
 {:#versioning}
 ## Versioning
 
-Author: Maarten Trekels
+<!-- Author: Maarten Trekels -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#versioning-requirements}
@@ -386,7 +386,7 @@ usethis::use_news_md()
 {:#r}
 ## R
 
-Author: Pieter Huybrechts
+<!-- Author: Pieter Huybrechts -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#r-requirements}
@@ -533,7 +533,7 @@ There are several packages to check how well your R code is following best pract
 {:#r-function}
 ## R functions
 
-Author: Pieter Huybrechts
+<!-- Author: Pieter Huybrechts -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#r-function-requirements}
@@ -940,7 +940,7 @@ For dependency recommendations, see the [dependencies section](#r-dependencies) 
 {:#r-analysis}
 ## R analysis code
 
-Author: Pieter Huybrechts
+<!-- Author: Pieter Huybrechts -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#r-analysis-requirements}
@@ -990,7 +990,7 @@ usethis::use_git()
 {:#python}
 ## Python
 
-Author: Maarten Trekels
+<!-- Author: Maarten Trekels -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#python-requirements}
@@ -1161,7 +1161,7 @@ GitHub Actions SHOULD be used to test, build and release your Python packages. A
 {:#tutorial}
 ## Tutorials
 
-Author: Laura Abraham
+<!-- Author: Laura Abraham -->
 
 <div class="alert alert-secondary" markdown="1">
 {:#tutorial-requirements}
