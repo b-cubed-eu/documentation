@@ -1,6 +1,6 @@
 ---
 layout: home
-title: B-Cubed documentation and tutorials
+title: B-Cubed documentation
 permalink: /
 ---
 
