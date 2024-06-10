@@ -1,7 +1,7 @@
 ---
 title: Invasibility cube
 authors:
-permalink: /modelled-cubes/invasibility-cube/
+permalink: /invasibility-cube/
 ---
 
 ## Task 4.3: Network invasibility cube [Lead: SUN]

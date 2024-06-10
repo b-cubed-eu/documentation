@@ -1,7 +1,7 @@
 ---
 title: Dissimilarity cube
 authors:
-permalink: /modelled-cubes/dissimilarity-cube/
+permalink: /dissimilarity-cube/
 ---
 
 ## Task 4.2: Dissimilarity cube [Lead: SUN]
