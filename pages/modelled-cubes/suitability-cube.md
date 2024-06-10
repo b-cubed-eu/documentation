@@ -1,6 +1,5 @@
 ---
 title: Suitability cube
-authors:
 permalink: /modelled-cubes/suitability-cube/
 ---
 

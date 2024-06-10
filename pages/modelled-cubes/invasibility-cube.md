@@ -1,6 +1,5 @@
 ---
 title: Invasibility cube
-authors:
 permalink: /modelled-cubes/invasibility-cube/
 ---
 
