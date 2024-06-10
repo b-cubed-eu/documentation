@@ -1000,7 +1000,7 @@ usethis::use_git()
 
 - Code development MUST be done in a virtual environment.
 - The repository MUST contain a `requirements.txt` file.
-- Python code MUST adhere to the [PEP 8 style guide][https://peps.python.org/pep-0008/].
+- Python code MUST adhere to the [PEP 8 style guide](https://peps.python.org/pep-0008/).
 - Package and module names MUST be lowercase and short.
 - Class names MUST use CamelCase.
 - Indentation MUST be done using 4 spaces.
@@ -1010,7 +1010,7 @@ usethis::use_git()
 - Classes and functions MUST be documented using docstrings.
 </div>
 
-Many of the principles that are outlined in the chapters on [R](#r) and [R packages](#r-pkg), also apply to writing Python code. In this chapter, we will outline some additional requirements for Python. A very good reference to Python programming can be found in [The Hitchhicker’s Guide to Python](https://docs.python-guide.org/) ([Reitz & Schlusser 2016][reitz_schlusser_2016]).
+Many of the principles that are outlined in the chapters on [R](#r) and [R packages](#r-pkg), also apply to writing Python code. In this chapter, we will outline some additional requirements for Python. A very good reference to Python programming can be found in [The Hitchhicker’s Guide to Python](https://docs.python-guide.org/).
 
 {:#python-repo-structure}
 ### Repository structure
@@ -1156,9 +1156,6 @@ The way Classes and functions are documented is using docstrings. A Sphinx docst
 ### Continuous integration with GitHub actions
 
 GitHub Actions SHOULD be used to test, build and release your Python packages. A step-by-step guide to publish your releases can be found [here](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/).
-
-<!-- References -->
-[reitz_schlusser_2016]: https://docs.python-guide.org/ "Reitz K, Schlusser T (2016). The Hitchhiker's guide to Python: best practices for development. O'Reilly Media, Inc."
 
 {:#tutorial}
 ## Tutorials
