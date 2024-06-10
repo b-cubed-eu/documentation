@@ -1,10 +1,10 @@
 ---
-title: Occurrence cubes
-description: Specification for species occurrence cubes and their production
-authors: Peter Desmet, Damiano Oldoni, Matthew Blissett, Tim Robertson
+title: Specification for species occurrence cubes and their production
+description: >
+  This document presents the specification for “species occurrence cubes”, a format to summarize species occurrence data. It also outlines the requirements for software to produce such cubes and how it can be integrated in services provided by the Global Biodiversity Information Facility (GBIF).
 citation: >
-  Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. B-Cubed project deliverable D2.1.
-permalink: /occurrence-cubes/
+  Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. <https://docs.b-cubed.eu/occurrence-cube/specification/>
+permalink: /occurrence-cube/specification/
 ---
 
 ## Introduction
