@@ -1,6 +1,6 @@
 ---
 title: Suitability cube
-permalink: /modelled-cubes/suitability-cube/
+permalink: /suitability-cube/
 ---
 
 ## Task 4.1: Suitability cube [Lead: UNIBO]

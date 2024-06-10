@@ -1,13 +1,15 @@
 - text: Software dev guide
   href: /dev-guide/
+- text: Occurrence cubes
+  href: /occurrence-cube/specification/
 - text: Modelled cubes
   menu:
   - text: Suitability cube
-    href: /modelled-cubes/suitability-cube/
+    href: /suitability-cube/
   - text: Dissimilarity cube
-    href: /modelled-cubes/dissimilarity-cube/
+    href: /dissimilarity-cube/
   - text: Invasibility cube
-    href: /modelled-cubes/invasibility-cube/
+    href: /invasibility-cube/
 - text: Tutorials
   menu:
   - text: R
