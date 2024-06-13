@@ -1,0 +1,56 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: B-Cubed documentation
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Laura
+    family-names: Abraham
+    email: laura.abraham@plantentuinmeise.be
+    affiliation: Meise Botanic Garden
+    orcid: 'https://orcid.org/0000-0003-4070-2982'
+  - given-names: Matthew
+    family-names: Blissett
+    email: mblissett@gbif.org
+    affiliation: Global Biodiversity Information Facility (GBIF)
+    orcid: 'https://orcid.org/0000-0003-0623-6682'
+  - given-names: Peter
+    family-names: Desmet
+    email: peter.desmet@inbo.be
+    affiliation: Research Institute for Nature and Forest (INBO)
+    orcid: 'https://orcid.org/0000-0002-8442-8025'
+  - given-names: Pieter
+    family-names: Huybrechts
+    email: pieter.huybrechts@inbo.be
+    affiliation: Research Institute for Nature and Forest (INBO)
+    orcid: 'https://orcid.org/0000-0002-6658-6062'
+  - given-names: Sandra
+    family-names: MacFadyen
+    email: sandra@biogis.co.za
+    orcid: 'https://orcid.org/0000-0002-5316-440X'
+    affiliation: BioGIS & Stellenbosch University
+  - given-names: Damiano
+    family-names: Oldoni
+    email: damiano.oldoni@inbo.be
+    affiliation: Research Institute for Nature and Forest (INBO)
+    orcid: 'https://orcid.org/0000-0003-3445-7562'
+  - given-names: Tim
+    family-names: Robertson
+    email: trobertson@gbif.org
+    affiliation: Global Biodiversity Information Facility (GBIF)
+    orcid: 'https://orcid.org/0000-0001-6215-3617'
+  - given-names: Maarten
+    family-names: Trekels
+    orcid: 'https://orcid.org/0000-0001-8282-8765'
+    affiliation: Meise Botanic Garden
+    email: maarten.trekels@plantentuinmeise.be
+repository-code: 'https://github.com/b-cubed-eu/documentation'
+url: 'https://docs.b-cubed.eu/'
+keywords:
+  - documentation
+  - B-Cubed
+license: CC-BY-4.0
