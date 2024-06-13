@@ -1,7 +1,6 @@
 # SITE SETTINGS
 title: B-Cubed documentation
 author: B-Cubed partners
-url: "https://docs.b-cubed.eu"
 
 # SOCIAL PROFILES
 social:
@@ -33,6 +32,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
+  - vendor
 
 # FRONTMATTER DEFAULTS
 defaults:
