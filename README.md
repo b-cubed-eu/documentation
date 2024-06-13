@@ -1,6 +1,6 @@
-# B-Cubed documentation website
+# B-Cubed guides & tutorials website
 
-This repository contains the source files for the [B-Cubed documentation website](https://docs.b-cubed.eu).
+This repository contains the source files for the [B-Cubed guides & tutorials website](https://docs.b-cubed.eu).
 
 ## Usage
 

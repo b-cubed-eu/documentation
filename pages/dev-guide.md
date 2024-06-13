@@ -1167,11 +1167,11 @@ GitHub Actions SHOULD be used to test, build and release your Python packages. A
 #### B-Cubed software requirements
 
 - Each package and analysis MUST have at least one tutorial.
-- Tutorials MUST be included in the B-Cubed documentation website.
+- Tutorials MUST be included in the B-Cubed guides and tutorials website.
 - Tutorials MUST be written in English using literate programming documents. 
 </div>
 
-To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed documentation website](https://docs.b-cubed.eu/).
+To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed guides and tutorials website](https://docs.b-cubed.eu/).
 
 {:#tutorial-documentating}
 ### Documenting software and code in B-Cubed
