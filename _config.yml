@@ -33,6 +33,7 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - vendor
+  - CITATION.cff
 
 # FRONTMATTER DEFAULTS
 defaults:
