@@ -4,7 +4,7 @@ author: Sandra MacFadyen
 permalink: /tutorials/gee/practical-1/
 ---
 
-[Access complete code on Google Earth Engine](https://code.earthengine.google.com/76ed4ea4c97a064555880dcf09f93f5f){:.btn .btn-primary}
+[Access complete code on Google Earth Engine](https://code.earthengine.google.com/b5ab6e067c0639c93f9a3a7835afbd84){:.btn .btn-primary}
 
 ## Learning Objectives
 
