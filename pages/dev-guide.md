@@ -1182,26 +1182,23 @@ Tutorials MUST be written in English and presented as literate programming docum
 ### Creating a new tutorial
 
 1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](#collaboration-github-flow). 
-2. Go to the `tutorials` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/tutorials).
-3. Click `Add file` and then `Create new file`.
-4. Name your file `name-of-tutorial/index.md`. Use lowercase and dashes (`create-occurrence-cube/index.md`).
-5. Start your Markdown file with front matter:
+2. Go to the `pages` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages).
+3. Go to the `tutorials` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages/tutorials).
+4. Click `Add file` and then `Create new file`.
+5. Name your file `name-of-tutorial.md`. Use lowercase and dashes (`create-occurrence-cube.md`).
+6. Start your Markdown file with front matter:
 
     ```
     ---
     title: [Your tutorial title]
     description: [Short description of your tutorial]
-    authors:
-      - name: [Author name]
-        orcid: [Author ORCID]
-    last_modified_date: [YYYY-MM-DD]
-    categories: [category]
-    source: [url]
+    citation: > [names, (date). Title. <link>]
+    permalink: [/your permalink/]
     ---
     ```
 
-6. Replace `[Your tutorial title]` with the actual title of your tutorial, provide a description and fill in the author’s information. You can include multiple authors by adding additional items under the `authors` field. The `last_modified_date` field should be filled with the publication or last modification date and the `categories` field can be customised based on the content of your tutorial. The `source` is the URL of your tutorial if it is maintained elsewhere. 
-7. Commit the changes.
+7. Replace `[Your tutorial title]` with the actual title of your tutorial, provide a description and fill in the citation.
+8. Commit the changes.
 
 You now have a directory for your tutorial, which can contain any files (images, small datasets, reproducible notebook) related to your tutorial. The `index.md` will serve as the public page for your tutorial.
 
