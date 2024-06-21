@@ -1182,32 +1182,34 @@ Tutorials MUST be written in English and presented as literate programming docum
 ### Creating a new tutorial
 
 1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](#collaboration-github-flow). 
-2. Go to the `pages` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages).
-3. Go to the `tutorials` folder in the documentation repository or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages/tutorials).
-4. Click `Add file` and then `Create new file`.
-5. Name your file `name-of-tutorial.md`. Use lowercase and dashes (`create-occurrence-cube.md`).
-6. Start your Markdown file with front matter:
+2. Browse to the `pages/tutorials` directory or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages/tutorials).
+3. Click `Add file` and then `Create new file`.
+4. Name your file. Use lowercase and dashes (e.g. `create-occurrence-cube.md`).
+5. Start your Markdown file with the following metadata, expressed in front matter, between two `---` lines:
 
     ```
     ---
-    title: [Your tutorial title]
-    description: [Short description of your tutorial]
-    citation: > [names, (date). Title. <link>]
-    permalink: [/your permalink/]
+    title: Your tutorial title
+    description: Short description of your tutorial (will appear below title)
+    author: Your name (if there are co-authors, use "authors:" and comma-separate them)
+    citation: >
+      A full citation for your tutorial if useful (this will be used instead of author or authors)
+    permalink: /tutorials/name-of-tutorial/
     ---
+
+    Start of tutorial text ...
     ```
 
-7. Replace `[Your tutorial title]` with the actual title of your tutorial, provide a description and fill in the citation.
-8. Commit the changes.
+6. Commit the changes.
 
-You now have a directory for your tutorial, which can contain any files (images, small datasets, reproducible notebook) related to your tutorial. The `index.md` will serve as the public page for your tutorial.
+You now have a template for writing your tutorial. It might be easier to continue locally, using [GitHub Desktop](#collaboration-local).
 
 {:#tutorial-write}
 ### Writing your tutorial
 
-You can write your tutorial directly in the `index.md`, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](#r-pkg-readme)).
+You can write your tutorial directly in the Markdown file, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](#r-pkg-readme)). Such files can then be rendered to HTML/Markdown, and will not only include the text and the code snippets, but also the results of running the code ([example](https://docs.ropensci.org/frictionless/articles/frictionless.html)). That rendered HTML/Markdown can be copied to the Markdown file, under the front matter. The original R Markdown, Quarto or Jupyter Notebook should be maintained in a separate repository, not in the documentation repository.
 
-Such files can then be rendered to HTML/Markdown, and will not only include the text and the code snippets, but also the results of running the code ([example](https://docs.ropensci.org/frictionless/articles/frictionless.html)). That rendered HTML/Markdown can be copied to `index.md`, under the frontmatter.
+Placed any images in the [assets/images](https://github.com/b-cubed-eu/documentation/tree/main/assets/images) directory. Start their file name with the name of your tutorial or place them in a subdirectory. Link to the images from your tutorial as `![image description](/assets/images/name-of-tutorial-file-name.png)`.
 
 As for the content of your tutorial:
 
