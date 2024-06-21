@@ -1194,7 +1194,7 @@ Tutorials MUST be written in English and presented as literate programming docum
     author: Your name (if there are co-authors, use "authors:" and comma-separate them)
     citation: >
       A full citation for your tutorial if useful (this will be used instead of author or authors)
-    permalink: /tutorials/name-of-tutorial/
+    permalink: /tutorials/name-of-your-tutorial/
     ---
 
     Start of tutorial text ...
@@ -1209,7 +1209,7 @@ You now have a template for writing your tutorial. It might be easier to continu
 
 You can write your tutorial directly in the Markdown file, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](#r-pkg-readme)). Such files can then be rendered to HTML/Markdown, and will not only include the text and the code snippets, but also the results of running the code ([example](https://docs.ropensci.org/frictionless/articles/frictionless.html)). That rendered HTML/Markdown can be copied to the Markdown file, under the front matter. The original R Markdown, Quarto or Jupyter Notebook should be maintained in a separate repository, not in the documentation repository.
 
-Placed any images in the [assets/images](https://github.com/b-cubed-eu/documentation/tree/main/assets/images) directory. Start their file name with the name of your tutorial or place them in a subdirectory. Link to the images from your tutorial as `![image description](/assets/images/name-of-tutorial-file-name.png)`.
+Place any images in the [assets/images](https://github.com/b-cubed-eu/documentation/tree/main/assets/images) directory. Start their file name with the name of your tutorial or place them in a subdirectory. Link to the images from your tutorial as `![image description](/assets/images/name-of-your-tutorial-image-name.png)`.
 
 As for the content of your tutorial:
 
