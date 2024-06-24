@@ -29,6 +29,7 @@ This guide was first created as B-Cubed project deliverable D3.1 [Quality requir
 
 - All software code MUST be maintained on GitHub.
 - An installable software tool MUST be maintained in its own repository.
+- A repository MUST be transferred to the `b-cubed-eu` organization or your institution
 - A repository MUST contain a `.gitignore` file.
 - A repository MUST contain a `LICENSE` file and be licenced under the MIT licence.
 - A repository MUST contain a `README.md` file.
