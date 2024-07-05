@@ -396,7 +396,7 @@ usethis::use_news_md()
 #### B-Cubed software requirements
 
 - R code MUST be placed in the `R/` directory of the repository.
-- Data files included in the repository MUST be placed in the `data/` directory.
+- Data files included in the repository MUST be placed in the `data/` directory (and `inst/extdata/` for R packages).
 - Repositories containing R code MUST include a project file (file with `.Rproj` extension) in the root.
 - R code MUST refer to files using relative paths and MUST NOT use absolute paths.
 - R code MUST NOT make use of the packages [sp](https://cran.r-project.org/package=sp), [rgdal](https://cran.r-project.org/package=rgdal), [maptools](https://cran.r-project.org/package=maptools), [raster](https://rspatial.org/raster/pkg/1-introduction.html) or [rgeos](https://cran.r-project.org/package=rgeos) but SHOULD use [sf](https://r-spatial.github.io/sf/) and/or [terra](https://rspatial.github.io/terra/reference/terra-package.html).
