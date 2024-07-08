@@ -368,7 +368,7 @@ Major and minor versions MUST have an associated GitHub release:
 1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
 2. Use the semantic version number for the tag (e.g. `0.1`, `1.1.1`)
 
-Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated. See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.  [following tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/).
+Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated. See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
 
 {:#versioning-data-products}
 ### Data products
