@@ -11,12 +11,12 @@
   #   href: /occurrence-cube/data-cubes/
   # - text: Creating a cube from a checklist
   #   href: /occurrence-cube/create-cube-from-checklist/
-  # - text: "---"
-  # - text: GBIF API SQL Downloads
-  # - text: API documentation
-  #   href: /occurrence-cube/api-sql-downloads/
-  # - text: Function documentation
-  #   href: /occurrence-cube/api-sql-download-functions/
+  - text: "---"
+  - text: GBIF API SQL Downloads
+  - text: API documentation
+    href: /occurrence-cube/api-sql-downloads/
+  - text: Function documentation
+    href: /occurrence-cube/api-sql-download-functions/
   # - text: Blog post
   #   href: /occurrence-cube/2024-06-24-gbif-sql-downloads/
 - text: Modelled cubes
