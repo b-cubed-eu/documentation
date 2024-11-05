@@ -1,23 +1,55 @@
 - text: Software dev guide
   href: /dev-guide/
 - text: Occurrence cubes
-  href: /occurrence-cube/specification/
+  menu:
+  - text: Specification
+  - text: Occurrence cube
+    href: /occurrence-cube/specification/
+  # - text: "---"
+  # - text: Tutorials
+  # - text: Creating a cube
+  #   href: /occurrence-cube/data-cubes/
+  # - text: Creating a cube from a checklist
+  #   href: /occurrence-cube/create-cube-from-checklist/
+  # - text: "---"
+  # - text: GBIF API SQL Downloads
+  # - text: API documentation
+  #   href: /occurrence-cube/api-sql-downloads/
+  # - text: Function documentation
+  #   href: /occurrence-cube/api-sql-download-functions/
+  # - text: Blog post
+  #   href: /occurrence-cube/2024-06-24-gbif-sql-downloads/
 - text: Modelled cubes
   menu:
+  - text: Specifications
   - text: Suitability cube
     href: /suitability-cube/
   - text: Dissimilarity cube
     href: /dissimilarity-cube/
   - text: Invasibility cube
     href: /invasibility-cube/
-- text: Tutorials
+- text: Software
   menu:
-  - text: R
-  - text: Spatial data
-    href: /tutorials/spatial-r/
-  - text: Species distribution modelling
-    href: tutorials/sdm-r/
+  # - text: gcube
+  # - text: Get started
+  #   href: /gcube/get-started
+  # - text: Simulating the occurrence process
+  #   href: /gcube/occurrence-process/
+  # - text: Simulating the detection process
+  #   href: /gcube/detection-process/
+  # - text: Specifying the grid designation process
+  #   href: /gcube/grid-designation-process/
+  # - text: Creating cubes for multiple species
+  #   href: /gcube/multi-species-approach/
+  # - text: "---"
+  - text: "Google Earth Engine"
+  - text: "GEE for ecological modelling"
+    href: /gee/
+  - text: "Getting started"
+    href: /gee/practical-1/
   - text: "---"
-  - text: Javascript
-  - text: Google Earth Engine
-    href: /tutorials/gee/
+  - text: "Other"
+  - text: Spatial data in R
+    href: /spatial-r/
+  - text: Species distribution modelling in R
+    href: /sdm-r/

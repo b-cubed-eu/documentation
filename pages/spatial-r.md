@@ -1,7 +1,7 @@
 ---
 title: Spatial data in R
 author: Sandra MacFadyen
-permalink: /tutorials/spatial-r/
+permalink: /spatial-r/
 ---
 
 ## An introduction to spatial data in R
