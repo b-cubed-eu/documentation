@@ -446,7 +446,7 @@ Adding a dependency to your `DESCRIPTION` file is easy using [usethis](https://u
 usethis::use_package("dplyr")
 ```
 
-Refer to the [rOpenSci recommendations](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding) for common scaffolding for more suggestions.
+Refer to the [rOpenSci recommendations](https://devguide.ropensci.org/pkg_building.html#recommended-scaffolding) for more suggestions.
 
 {:#r-style}
 ### Code style
