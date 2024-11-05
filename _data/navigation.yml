@@ -5,20 +5,20 @@
   - text: Specification
   - text: Occurrence cube
     href: /occurrence-cube/specification/
-  # - text: "---"
-  # - text: Tutorials
-  # - text: Creating a cube
-  #   href: /occurrence-cube/data-cubes/
-  # - text: Creating a cube from a checklist
-  #   href: /occurrence-cube/create-cube-from-checklist/
+  - text: "---"
+  - text: Tutorials
+  - text: Creating a cube
+    href: /occurrence-cube/data-cubes/
+  - text: Creating a cube from a checklist
+    href: /occurrence-cube/create-cube-from-checklist/
   - text: "---"
   - text: GBIF API SQL Downloads
   - text: API documentation
     href: /occurrence-cube/api-sql-downloads/
   - text: Function documentation
     href: /occurrence-cube/api-sql-download-functions/
-  # - text: Blog post
-  #   href: /occurrence-cube/2024-06-24-gbif-sql-downloads/
+  - text: Blog post
+    href: /occurrence-cube/2024-06-24-gbif-sql-downloads/
 - text: Modelled cubes
   menu:
   - text: Specifications
@@ -30,18 +30,18 @@
     href: /invasibility-cube/
 - text: Software
   menu:
-  # - text: gcube
-  # - text: Get started
-  #   href: /gcube/get-started
-  # - text: Simulating the occurrence process
-  #   href: /gcube/occurrence-process/
-  # - text: Simulating the detection process
-  #   href: /gcube/detection-process/
-  # - text: Specifying the grid designation process
-  #   href: /gcube/grid-designation-process/
-  # - text: Creating cubes for multiple species
-  #   href: /gcube/multi-species-approach/
-  # - text: "---"
+  - text: gcube
+  - text: Get started
+    href: /gcube/get-started
+  - text: Simulating the occurrence process
+    href: /gcube/occurrence-process/
+  - text: Simulating the detection process
+    href: /gcube/detection-process/
+  - text: Specifying the grid designation process
+    href: /gcube/grid-designation-process/
+  - text: Creating cubes for multiple species
+    href: /gcube/multi-species-approach/
+  - text: "---"
   - text: "Google Earth Engine"
   - text: "GEE for ecological modelling"
     href: /gee/
