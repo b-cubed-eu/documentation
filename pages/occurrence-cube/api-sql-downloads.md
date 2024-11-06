@@ -1,8 +1,8 @@
 ---
 title: API SQL Downloads
-description: You will be redirected.
+author: Matt Blissett
 permalink: /occurrence-cube/api-sql-downloads/
 toc: false
 ---
 
-<meta http-equiv="refresh" content="2;URL=https://techdocs.gbif.org/en/data-use/api-sql-downloads">
+See <https://techdocs.gbif.org/en/data-use/api-sql-downloads>.

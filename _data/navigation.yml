@@ -3,14 +3,14 @@
 - text: Occurrence cubes
   menu:
   - text: Specification
-  - text: Occurrence cube
+  - text: Occurrence cube specification
     href: /occurrence-cube/specification/
   - text: "---"
   - text: Tutorials
   - text: Creating a cube
     href: /occurrence-cube/data-cubes/
-  - text: Creating a cube from a checklist
-    href: /occurrence-cube/create-cube-from-checklist/
+  # - text: Creating a cube from a checklist
+  #   href: /occurrence-cube/create-cube-from-checklist/
   - text: "---"
   - text: GBIF API SQL Downloads
   - text: API documentation
@@ -31,8 +31,8 @@
 - text: Software
   menu:
   - text: gcube
-  - text: Get started
-    href: /gcube/get-started
+  - text: Basic example
+    href: /gcube/basic-example
   - text: Simulating the occurrence process
     href: /gcube/occurrence-process/
   - text: Simulating the detection process

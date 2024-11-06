@@ -1,8 +1,8 @@
 ---
 title: API SQL Downloads – Functions
-description: You will be redirected.
+author: Matt Blissett
 permalink: /occurrence-cube/api-sql-download-functions/
 toc: false
 ---
 
-<meta http-equiv="refresh" content="2;URL=https://techdocs.gbif.org/en/data-use/api-sql-download-functions">
+See <https://techdocs.gbif.org/en/data-use/api-sql-download-functions>.

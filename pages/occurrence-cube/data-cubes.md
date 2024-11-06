@@ -1,8 +1,8 @@
 ---
 title: Species occurrence cubes
-description: You will be redirected.
+author: Matt Blissett
 permalink: /occurrence-cube/data-cubes/
 toc: false
 ---
 
-<meta http-equiv="refresh" content="2;URL=https://techdocs.gbif.org/en/data-use/data-cubes">
+See <https://techdocs.gbif.org/en/data-use/data-cubes>.
