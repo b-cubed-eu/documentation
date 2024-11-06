@@ -14,10 +14,10 @@
   menu:
   - text: R
   - text: Spatial data
-    href: /tutorials/spatial-r/
+    href: /spatial-r/
   - text: Species distribution modelling
-    href: tutorials/sdm-r/
+    href: /sdm-r/
   - text: "---"
   - text: Javascript
   - text: Google Earth Engine
-    href: /tutorials/gee-py/
+    href: /google-earth-engine/

@@ -4,8 +4,8 @@ author: Sandra MacFadyen
 description: >
   This tutorial introduces essential spatial data handling and analysis techniques in R, covering vector and raster data operations for conservation ecology using key packages such as sf, terra, and ggplot2.
 citation: >
-  MacFadyen S (2024). And Introduction to Spatial Data Analysis in R for Conservation Ecology. <https://docs.b-cubed.eu/tutorials/spatial-r/>
-permalink: /tutorials/spatial-r/
+  MacFadyen S (2024). And Introduction to Spatial Data Analysis in R for Conservation Ecology. <https://docs.b-cubed.eu/spatial-r/>
+permalink: /spatial-r/
 ---
 
 ## An Introduction to Spatial Data Analysis in R

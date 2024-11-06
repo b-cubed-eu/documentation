@@ -4,8 +4,8 @@ author: Sandra MacFadyen
 description: >
   This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
 citation: >
-  MacFadyen S (2024). Getting started with Google Earth Engine for Conservation Ecology. <https://docs.b-cubed.eu/tutorials/gee/>
-permalink: /tutorials/gee-py/
+  MacFadyen S (2024). Getting started with Google Earth Engine for Conservation Ecology. <https://docs.b-cubed.eu/google-earth-engine/>
+permalink: /google-earth-engine/
 ---
 
 ## Getting started with Google Earth Engine
