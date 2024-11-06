@@ -42,13 +42,9 @@
   - text: Creating cubes for multiple species
     href: /gcube/multi-species-approach/
   - text: "---"
-  - text: "Google Earth Engine"
-  - text: "GEE for ecological modelling"
-    href: /gee/
-  - text: "Getting started"
-    href: /gee/practical-1/
-  - text: "---"
-  - text: "Other"
+  - text: "Other software"
+  - text: "Google Earth Engine for ecological modelling"
+    href: /google-earth-engine/
   - text: Spatial data in R
     href: /spatial-r/
   - text: Species distribution modelling in R
