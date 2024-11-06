@@ -1,16 +1,5 @@
-- text: Specifications
-  menu:
-  - text: Occurrence cubes
-  - text: Species occurrence cube
-    href: /occurrence-cube/specification/
-  - text: "---"
-  - text: "Modelled cubes"
-  - text: Suitability cube
-    href: /suitability-cube/
-  - text: Dissimilarity cube
-    href: /dissimilarity-cube/
-  - text: Invasibility cube
-    href: /invasibility-cube/
+- text: Software development guide
+  href: /dev-guide/
 - text: Tutorials
   menu:
   - text: "B-Cubed software"
@@ -26,5 +15,16 @@
     href: /sdm-r/
   - text: "Google Earth Engine for ecological modelling"
     href: /google-earth-engine/
-- text: Software development guide
-  href: /dev-guide/
+- text: Specifications
+  menu:
+  - text: Occurrence cubes
+  - text: Species occurrence cube
+    href: /occurrence-cube/specification/
+  - text: "---"
+  - text: "Modelled cubes"
+  - text: Suitability cube
+    href: /suitability-cube/
+  - text: Dissimilarity cube
+    href: /dissimilarity-cube/
+  - text: Invasibility cube
+    href: /invasibility-cube/

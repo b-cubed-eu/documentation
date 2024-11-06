@@ -1,7 +1,7 @@
 ---
 title: gcube R package
 author: Ward Langeraert
-description: Tutorials for the gcube R package, a tool to simulate biodiversity data cubes.
+description: Tutorials for the "gcube” R package, a tool to simulate biodiversity data cubes.
 permalink: /gcube/
 toc: false
 ---
