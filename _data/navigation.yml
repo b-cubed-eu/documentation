@@ -1,23 +1,30 @@
-- text: Software dev guide
+- text: Software development guide
   href: /dev-guide/
-- text: Occurrence cubes
-  href: /occurrence-cube/specification/
-- text: Modelled cubes
+- text: Tutorials
   menu:
+  - text: "B-Cubed software"
+  - text: GBIF SQL download API
+    href: /gbif-sql-download-api/
+  - text: gcube R package
+    href: /gcube/
+  - text: "---"
+  - text: Other tutorials
+  - text: Spatial data in R
+    href: /spatial-r/
+  - text: Species distribution modelling in R
+    href: /sdm-r/
+  - text: "Google Earth Engine for ecological modelling"
+    href: /google-earth-engine/
+- text: Specifications
+  menu:
+  - text: Occurrence cubes
+  - text: Species occurrence cube
+    href: /occurrence-cube/specification/
+  - text: "---"
+  - text: "Modelled cubes"
   - text: Suitability cube
     href: /suitability-cube/
   - text: Dissimilarity cube
     href: /dissimilarity-cube/
   - text: Invasibility cube
     href: /invasibility-cube/
-- text: Tutorials
-  menu:
-  - text: R
-  - text: Spatial data
-    href: /spatial-r/
-  - text: Species distribution modelling
-    href: /sdm-r/
-  - text: "---"
-  - text: Javascript
-  - text: Google Earth Engine
-    href: /google-earth-engine/

@@ -1,12 +1,22 @@
 ---
-title: Suitability cube
+title: Specification for suitability cubes and their production
+description: >
+  This document presents the specification for "suitability cubes”, a format used for predictive habitat suitability modelling.
+citation: >
+  Cortès Lobos RB, Di Musciano M, Martini M, Rocchini D (2024). Code development for predictive habitat suitability modelling. <https://docs.b-cubed.eu/suitability-cube/>
 permalink: /suitability-cube/
 ---
 
 {:.alert .alert-warning}
 This page is not yet complete.
 
-## Task 4.1: Suitability cube [Lead: UNIBO]
+## Introduction
+
+Here we employ the data cube format to organise biodiversity data across spatial, temporal, and taxonomic dimensions while also associating a suitability score. This makes the data easier to use and enhances the efficiency of modeling biodiversity change and status. We further integrate virtual species and simulations, which were used both for building the **Virtual Suitability Cube (VSC)** and for assessing how sampling bias affects **Species Distribution Models (SDMs)**. By simulating species occurrences with known ecological characteristics, this approach allows for better control over variables and improves our understanding of the ecological niches and conservation needs of real species.
+
+## Task description
+
+_Task 4.1, lead: UNIBO_
 
 Develop workflows for predictive habitat suitability modeling using 'Dismo' R package, incorporating species occurrence data, environmental data (e.g., Copernicus, WorldClim, Cordex), & socio-ecological scenarios to create maps for species distributions under current & future global change scenarios.
 

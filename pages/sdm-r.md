@@ -1,6 +1,5 @@
 ---
 title: Species distribution modelling in R
-author: Sandra MacFadyen
 description: >
   This tutorial provides an introduction to Generalized Dissimilarity Modeling (GDM) in R, focusing on data preparation, environmental gradient analysis, and community dissimilarity assessment using core geospatial and ecological modeling libraries.
 citation: >

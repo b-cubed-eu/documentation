@@ -1,6 +1,5 @@
 ---
 title: Google Earth Engine for ecological modelling
-author: Sandra MacFadyen
 description: >
   This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
 citation: >
