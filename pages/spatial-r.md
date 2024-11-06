@@ -1,6 +1,5 @@
 ---
 title: Spatial data in R
-author: Sandra MacFadyen
 description: >
   This tutorial introduces essential spatial data handling and analysis techniques in R, covering vector and raster data operations for conservation ecology using key packages such as sf, terra, and ggplot2.
 citation: >
