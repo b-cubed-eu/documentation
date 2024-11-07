@@ -1,13 +1,13 @@
 ---
-title: Google Earth Engine for ecological modelling
+title: An introduction to ecological modelling with Google Earth Engine
 description: >
   This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
 citation: >
-  MacFadyen S (2024). Getting started with Google Earth Engine for Conservation Ecology. <https://docs.b-cubed.eu/google-earth-engine/>
+  MacFadyen S (2024). An introduction to ecological modelling with Google Earth Engine. <https://docs.b-cubed.eu/google-earth-engine/>
 permalink: /google-earth-engine/
 ---
 
-## Getting started with Google Earth Engine
+## Introduction
 
 The application of satellite derived datasets and geospatial analysis techniques in the fields of ecology and conservation has grown substantially over the last decade. With the emergence of cloud-based computing platforms that facilitate big data analysis, researchers, resource managers and remote sensing enthusiasts are now able to interrogate petabyte-scale datasets with ease.  
 
