@@ -17,7 +17,7 @@ This course aims to train students, researchers and practitioners in the applica
 
 The course will begin with a brief review of the fundamental theory behind remote sensing and geospatial analyses, followed by a series of tutorials.
 
-## Learning Objectives
+## Learning objectives
 
 By the end of this practical you should be able to:
 

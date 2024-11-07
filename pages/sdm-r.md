@@ -9,7 +9,7 @@ permalink: /sdm-r/
 
 ## Introduction
 
-Species Distribution Modeling (SDM) is a powerful method for predicting the potential distribution of species across different landscapes by analysing relationships between known species occurrences and environmental variables. SDMs are essential in conservation planning, allowing researchers and practitioners to identify critical habitats, model species response to environmental changes, and predict impacts of climate change. This tutorial makes extensive use of data from the [Global Biodiversity Information Facility](https://www.gbif.org/) (GBIF), an international network and data platform providing open access to biodiversity occurrence records contributed by museums, scientific institutions, and citizen scientists worldwide. GBIF serves as a vital resource for biodiversity research, enabling users to access large datasets on species occurrences and environmental attributes.
+Species Distribution Modelling (SDM) is a powerful method for predicting the potential distribution of species across different landscapes by analysing relationships between known species occurrences and environmental variables. SDMs are essential in conservation planning, allowing researchers and practitioners to identify critical habitats, model species response to environmental changes, and predict impacts of climate change. This tutorial makes extensive use of data from the [Global Biodiversity Information Facility](https://www.gbif.org/) (GBIF), an international network and data platform providing open access to biodiversity occurrence records contributed by museums, scientific institutions, and citizen scientists worldwide. GBIF serves as a vital resource for biodiversity research, enabling users to access large datasets on species occurrences and environmental attributes.
 
 [Generalized Dissimilarity Modelling](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1472-4642.2007.00341.x?msockid=110b07b8df4767290225134fde4766f6) (GDM) is an advanced method for examining patterns of ecological turnover across environmental gradients. GDM is especially useful for mapping and visualising dissimilarity in species composition and diversity across spatial scales. It helps identify the role of environmental variables and geographic distance in driving species distribution patterns. [Multi-Site Generalized Dissimilarity Modelling](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12756) (MS-GDM) is an extension of GDM designed for analysing multiple sites simultaneously, providing deeper insights into how communities differ across locations and allowing comparisons across varied environmental conditions.
 
@@ -23,7 +23,7 @@ In this tutorial, participants will learn to use these techniques in R, combinin
 # See https://rsh249.github.io/bioinformatics/spatial.html
 
 # install.packages("ENMeval", INSTALL_opts="--no-multiarch")
-library(dismo) # Species Distribution Modeling tools
+library(dismo) # Species Distribution Modelling tools
 library(raster) # R tools for GIS raster files >>> USE terra{} instead
 library(spocc) # Access species occurrence data from GBIF/iNaturalist
 library(ENMeval) # Tuning SDMs
@@ -226,7 +226,7 @@ head(lepidop_enviro.pa)
 
 ## Multi-site generalised dissimilarity modelling for a set of environmental variables and distances
 
-### How to Compute Compositional Turnover Using Zeta Diversity
+### How to compute compositional turnover using zeta diversity
 
 Using zetadiv: [https://rdrr.io/cran/zetadiv](https://rdrr.io/cran/zetadiv/man/Zeta.msgdm.html)
 
@@ -283,7 +283,7 @@ gdmTab.sf = formatsitepair(long, bioFormat=2, XColumn="X", YColumn="Y",
                             predData=envTab, sppFilter=10)
 ```
 
-### `gdm`: Generalized Dissimilarity Modeling
+### gdm: generalized dissimilarity modelling
 
 [Read more about `gdm` analysis here](https://github.com/fitzLab-AL/GDM)
 
