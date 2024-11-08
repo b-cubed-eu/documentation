@@ -9,11 +9,11 @@
     href: /gcube/
   - text: "---"
   - text: Other tutorials
-  - text: Spatial data in R
+  - text: Spatial data analysis in R
     href: /spatial-r/
   - text: Species distribution modelling in R
     href: /sdm-r/
-  - text: "Google Earth Engine for ecological modelling"
+  - text: "Ecological modelling with Google Earth Engine"
     href: /google-earth-engine/
 - text: Specifications
   menu:

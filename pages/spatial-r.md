@@ -1,17 +1,17 @@
 ---
-title: Spatial data in R
+title: An introduction to spatial data analysis for conservation ecology in R
 description: >
   This tutorial introduces essential spatial data handling and analysis techniques in R, covering vector and raster data operations for conservation ecology using key packages such as sf, terra, and ggplot2.
 citation: >
-  MacFadyen S (2024). And Introduction to Spatial Data Analysis in R for Conservation Ecology. <https://docs.b-cubed.eu/spatial-r/>
+  MacFadyen S (2024). An introduction to spatial data analysis for conservation ecology in R. <https://docs.b-cubed.eu/spatial-r/>
 permalink: /spatial-r/
 ---
 
-## An Introduction to Spatial Data Analysis in R
+## Introduction
 
 Spatial analysis is a cornerstone of conservation ecology, providing insights into biodiversity patterns, habitat suitability, and landscape connectivity, all crucial for effective conservation planning. By using spatial data, ecologists can visualise, quantify, and model species distributions and environmental changes across landscapes, aiding in habitat protection and management strategies.
 
-R offers a comprehensive suite of tools for spatial data manipulation, analysis, and visualisation, allowing researchers to seamlessly integrate, process, and analyse large datasets. In this tutorial, participants will learn to handle vector and raster data, project datasets, and perform essential geospatial transformations and analyses. Through practical exercises, users will gain the skills to harness R’s capabilities for ecological and conservation applications, laying the groundwork for more complex spatial analyses and modeling in conservation ecology.
+R offers a comprehensive suite of tools for spatial data manipulation, analysis, and visualisation, allowing researchers to seamlessly integrate, process, and analyse large datasets. In this tutorial, participants will learn to handle vector and raster data, project datasets, and perform essential geospatial transformations and analyses. Through practical exercises, users will gain the skills to harness R’s capabilities for ecological and conservation applications, laying the groundwork for more complex spatial analyses and modelling in conservation ecology.
 
 ### Useful online resources
 
