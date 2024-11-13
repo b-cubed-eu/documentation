@@ -1,0 +1,61 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    \"year\",
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    classKey,
+    class,
+    familyKey,
+    family,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty,
+    IF(ISNULL(classKey), NULL, SUM(COUNT(*)) OVER (PARTITION BY classKey)) AS classCount
+  FROM
+    occurrence
+  WHERE 
+    occurrenceStatus = 'PRESENT'
+    AND familyKey = 5666
+    AND continent = 'EUROPE'
+    AND \"year\" >= 1900
+    AND hasCoordinate = TRUE    
+    AND familyKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND LOWER(identificationVerificationStatus) NOT IN (
+      'unverified',
+      'unvalidated',
+      'not validated',
+      'under validation',
+      'not able to validate',
+      'control could not be conclusive due to insufficient knowledge',
+      'uncertain',
+      'unconfirmed',
+      'unconfirmed - not reviewed',
+      'validation requested'
+      )
+  GROUP BY
+    \"year\",
+    eeaCellCode,
+    classKey,
+    class,
+    familyKey,
+    family
+  ORDER BY
+    \"year\" DESC,
+    eeaCellCode ASC,
+    familyKey ASC;
+  "
+}

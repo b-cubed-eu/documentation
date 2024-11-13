@@ -1,0 +1,71 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    \"year\",
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    classKey,
+    class,
+    speciesKey,
+    species,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty,
+    IF(ISNULL(classKey), NULL, SUM(COUNT(*)) OVER (PARTITION BY classKey)) AS classCount
+  FROM
+    occurrence
+  WHERE 
+    occurrenceStatus = 'PRESENT'
+    AND speciesKey IN (
+      1425203, 1425240, 1425264, 4513948, 1425221, 1425177, 1425166, 5051775,
+      5051752, 1425146, 5791733, 1427067, 1427037, 1423259, 1422001, 1422025, 
+      1422012, 1421964, 1421980, 1422010, 5051273, 1423027, 1423018, 1423011,
+      1423395, 1423317, 1423114, 1423540, 7936251, 1429717, 1430083, 7951391,
+      1429997, 1429969, 1430023, 5051901, 5051947, 5051951, 1426293, 5865098,
+      1424076, 1424045, 1424038, 1424067, 1424207, 1427721, 1429178, 1429207,
+      1429194, 1429173, 1427883, 1427936, 1427915, 1428715, 1428686, 1428583,
+      1428334, 1428235, 1428248, 5791800, 1428308, 1428280, 1428217, 1428345,
+      1428311, 1423859
+    )
+    AND continent = 'EUROPE'
+    AND \"year\" >= 1900
+    AND hasCoordinate = TRUE    
+    AND speciesKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND LOWER(identificationVerificationStatus) NOT IN (
+      'unverified',
+      'unvalidated',
+      'not validated',
+      'under validation',
+      'not able to validate',
+      'control could not be conclusive due to insufficient knowledge',
+      'uncertain',
+      'unconfirmed',
+      'unconfirmed - not reviewed',
+      'validation requested'
+      )
+  GROUP BY
+    \"year\",
+    eeaCellCode,
+    classKey,
+    class,
+    speciesKey,
+    species
+  ORDER BY
+    \"year\" DESC,
+    eeaCellCode ASC,
+    speciesKey ASC;
+  "
+}

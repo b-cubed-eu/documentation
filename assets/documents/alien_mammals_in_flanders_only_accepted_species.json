@@ -1,0 +1,70 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    \"year\",
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    classKey,
+    class,
+    speciesKey,
+    species,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty,
+    IF(ISNULL(classKey), NULL, SUM(COUNT(*)) OVER (PARTITION BY classKey)) AS classCount
+  FROM
+    occurrence
+  WHERE 
+    occurrenceStatus = 'PRESENT'
+    AND speciesKey IN
+      (
+        2435451, 2440196, 2436940, 2432352, 4264680,
+        2439838, 5219858, 2439261, 5219721, 2437282,
+        2437232, 5219681, 5219683, 2437394, 2437397,
+        2437450, 5219702, 5786666, 2437619, 5220136,
+        2440954, 2440946, 5220170, 2435035, 2435172,
+        2434552, 2434126, 2433536, 5218786, 9518324,
+        5219380, 5218823, 5218899, 2439270
+      )
+    AND continent = 'EUROPE'
+    AND \"year\" >= 1900
+    AND hasCoordinate = TRUE    
+    AND speciesKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND LOWER(identificationVerificationStatus) NOT IN (
+      'unverified',
+      'unvalidated',
+      'not validated',
+      'under validation',
+      'not able to validate',
+      'control could not be conclusive due to insufficient knowledge',
+      'uncertain',
+      'unconfirmed',
+      'unconfirmed - not reviewed',
+      'validation requested'
+      )
+  GROUP BY
+    \"year\",
+    eeaCellCode,
+    classKey,
+    class,
+    speciesKey,
+    species
+  ORDER BY
+    \"year\" DESC,
+    eeaCellCode ASC,
+    speciesKey ASC;
+  "
+}

@@ -1,0 +1,56 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    \"year\",
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    speciesKey,
+    species,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty
+  FROM
+    occurrence
+  WHERE occurrenceStatus = 'PRESENT'
+    AND \"year\" = 2024
+    AND genusKey = 5219857
+    AND datasetKey = '9a0b66df-7535-4f28-9f4e-5bc11b8b096c'
+    AND hasCoordinate = TRUE
+    AND (coordinateUncertaintyInMeters <= 1000 OR coordinateUncertaintyInMeters IS NULL)
+    AND speciesKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND LOWER(identificationVerificationStatus) NOT IN (
+      'unverified',
+      'unvalidated',
+      'not validated',
+      'under validation',
+      'not able to validate',
+      'control could not be conclusive due to insufficient knowledge',
+      'uncertain',
+      'unconfirmed',
+      'unconfirmed - not reviewed',
+      'validation requested'
+      )
+  GROUP BY
+    \"year\",
+    eeaCellCode,
+    speciesKey,
+    species
+  ORDER BY
+    \"year\" DESC,
+    eeaCellCode ASC,
+    speciesKey ASC;
+  "
+}

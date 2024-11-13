@@ -1,0 +1,91 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    \"year\",
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    classKey,
+    class,
+    genusKey,
+    genus,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty,
+    IF(ISNULL(classKey), NULL, SUM(COUNT(*)) OVER (PARTITION BY classKey)) AS classCount
+  FROM
+    occurrence
+  WHERE 
+    occurrenceStatus = 'PRESENT'
+    AND genusKey IN (
+      2284443,
+      2202786,
+      2162003,
+      2161911,
+      2161467,
+      7652364,
+      2176168,
+      2149911,
+      3092125,
+      2771094,
+      8782549,
+      2457378,
+      2453882,
+      2457825,
+      2454645,
+      2465626,
+      2466496,
+      2459675,
+      2444141,
+      2444221,
+      2447418,
+      2441658,
+      2442664,
+      3266899,
+      2473221,
+      2445496,
+      5221394,
+      2443339,
+      4553469
+    )
+    AND continent = 'EUROPE'
+    AND \"year\" >= 1900
+    AND hasCoordinate = TRUE    
+    AND genusKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND LOWER(identificationVerificationStatus) NOT IN (
+      'unverified',
+      'unvalidated',
+      'not validated',
+      'under validation',
+      'not able to validate',
+      'control could not be conclusive due to insufficient knowledge',
+      'uncertain',
+      'unconfirmed',
+      'unconfirmed - not reviewed',
+      'validation requested'
+      )
+  GROUP BY
+    \"year\",
+    eeaCellCode,
+    classKey,
+    class,
+    genusKey,
+    genus
+  ORDER BY
+    \"year\" DESC,
+    eeaCellCode ASC,
+    genusKey ASC;
+  "
+}
