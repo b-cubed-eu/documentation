@@ -1183,7 +1183,7 @@ Tutorials MUST be written in English and presented as literate programming docum
 ### Creating a new tutorial
 
 1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](#collaboration-github-flow). 
-2. Browse to the `pages/tutorials` directory or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages/tutorials).
+2. Browse to the `pages` directory or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages).
 3. Click `Add file` and then `Create new file`.
 4. Name your file. Use lowercase and dashes (e.g. `create-occurrence-cube.md`).
 5. Start your Markdown file with the following metadata, expressed in front matter, between two `---` lines:
@@ -1195,7 +1195,7 @@ Tutorials MUST be written in English and presented as literate programming docum
     author: Your name (if there are co-authors, use "authors:" and comma-separate them)
     citation: >
       A full citation for your tutorial if useful (this will be used instead of author or authors)
-    permalink: /tutorials/name-of-your-tutorial/
+    permalink: /name-of-your-tutorial/
     ---
 
     Start of tutorial text ...
