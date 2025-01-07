@@ -24,15 +24,28 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Guides',
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', slug: 'guides/example' },
-          ],
+          autogenerate: { directory: 'guides' },
         },
         {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
+          label: 'Software',
+          autogenerate: { directory: 'software' },
+          collapsed: true,
         },
+        {
+          label: 'Tutorials',
+          autogenerate: { directory: 'tutorials' },
+          collapsed: true,
+        },
+        // {
+        //   label: 'Training',
+        //   autogenerate: { directory: 'training' },
+        //   collapsed: true,
+        // },
+        // {
+        //   label: 'FAQ',
+        //   autogenerate: { directory: 'faq' },
+        //   collapsed: true,
+        // },
       ],
     }),
   ],
