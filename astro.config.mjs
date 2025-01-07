@@ -28,7 +28,11 @@ export default defineConfig({
         },
         {
           label: 'Software',
-          autogenerate: { directory: 'software' },
+          // autogenerate: { directory: 'software' },
+          items: [
+            'software/gbif-api',
+            'software/gcube'
+          ],
           collapsed: true,
         },
         {
