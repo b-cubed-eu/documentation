@@ -12,6 +12,9 @@ export default defineConfig({
       social: {
         github: 'https://github.com/b-cubed-eu/documentation/',
       },
+      editLink: {
+        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
       sidebar: [
         {
           label: 'Guides',
