@@ -12,6 +12,9 @@ export default defineConfig({
       logo: {
         src: './src/assets/b3-logo.svg',
       },
+      customCss: [
+        './src/styles/custom.css',
+      ],
       social: {
         github: 'https://github.com/b-cubed-eu/documentation/',
       },
