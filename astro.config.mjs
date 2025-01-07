@@ -4,11 +4,12 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://docs.b-cubed-eu',
   integrations: [
     starlight({
-      title: 'My Docs',
+      title: 'B-Cubed documentation',
       social: {
-        github: 'https://github.com/withastro/starlight',
+        github: 'https://github.com/b-cubed-eu/documentation/',
       },
       sidebar: [
         {
