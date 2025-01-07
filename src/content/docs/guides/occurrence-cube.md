@@ -1,10 +1,17 @@
 ---
 title: Specification for species occurrence cubes and their production
-description: >
-  This document presents the specification for “species occurrence cubes”, a format to summarize species occurrence data. It also outlines the requirements for software to produce such cubes and how it can be integrated in services provided by the Global Biodiversity Information Facility (GBIF).
-citation: >
-  Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. <https://docs.b-cubed.eu/occurrence-cube/specification/>
-permalink: /occurrence-cube/specification/
+sidebar:
+  label: Occurrence cube
+  order: 2
+tableOfContents:
+  maxHeadingLevel: 4
+---
+
+This document presents the specification for “species occurrence cubes”, a format to summarize species occurrence data. It also outlines the requirements for software to produce such cubes and how it can be integrated in services provided by the [Global Biodiversity Information Facility (GBIF)](https://gbif.org).
+
+Suggested citation:
+
+> Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. <https://docs.b-cubed.eu/guides/occurrence-cube/>
 ---
 
 ## Introduction
@@ -41,13 +48,13 @@ The taxonomic dimension groups occurrences into categories using their taxonomic
 
 1. This dimension MUST be optional.
 2. A number of categories MUST be supported (see [Table 1](#taxonomic-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]).
-  - The category `speciesKey` SHOULD be selected by default.
-  - Note that the category `taxonKey` is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (`taxonKey` [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (`taxonKey` [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (`taxonKey` [1311484](https://www.gbif.org/species/1311484)). The category `taxonKey` should only lump occurrences that share the same `taxonKey`. This SHOULD be communicated clearly to the user.
+    - The category `speciesKey` SHOULD be selected by default.
+    - Note that the category `taxonKey` is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (`taxonKey` [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (`taxonKey` [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (`taxonKey` [1311484](https://www.gbif.org/species/1311484)). The category `taxonKey` should only lump occurrences that share the same `taxonKey`. This SHOULD be communicated clearly to the user.
 3. Occurrences that are identified at a higher taxon rank than the selected category MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (`taxonKey` [1311334](https://www.gbif.org/species/1311334)) is excluded when using a `speciesKey` category.
 4. Occurrences MUST NOT be assigned to multiple categories.
 5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
 
-{:#taxonomic-categories .mt-4 .mb-1}
+<span id="taxonomic-categories"></span>
 **Table 1**: Categories for the taxonomic dimension.
 
 Category | Remarks | Need
@@ -62,7 +69,7 @@ Category | Remarks | Need
 `acceptedKey` | Lumps synonyms, but not child taxa. | SHOULD
 `taxonKey` | Does not lump synonyms nor child taxa. | MUST
 
-{:#taxonomic-categories-examples .mt-4 .mb-1}
+<span id="taxonomic-categories-examples"></span>
 **Table 2**: Examples of which columns of taxonomic information to include for three different taxonomic dimensions (`taxonKey`, `speciesKey` and `orderKey`).
 
 Column | Cube at `taxonKey` | Cube at `speciesKey` | Cube at `orderKey`
@@ -94,12 +101,12 @@ The temporal dimension groups occurrences into categories using their temporal i
 
 1. This dimension MUST be optional.
 2. A number of categories MUST be supported (see [Table 3](#temporal-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)), albeit as discrete (`year`, `month`, `day`) not combined (`year`, `yearmonth`, `yearmonthday`) properties. They are added automatically by the GBIF occurrence processing pipeline, when processing the `eventDate` into `year`, `month`, and `day`.
-  - The category `year` SHOULD be selected by default.
+    - The category `year` SHOULD be selected by default.
 3. Occurrences that have temporal information that is wider than the selected category SHOULD NOT be included, e.g. an occurrence with date range `2020-12-15/2021-01-15` is excluded when using a `year` category.
-  - Alternatively, the middle of the date range MAY be used.
+    - Alternatively, the middle of the date range MAY be used.
 4. Occurrences MUST NOT be assigned to multiple categories.
 
-{:#temporal-categories .mt-4 .mb-1}
+<span id="temporal-categories"></span>
 **Table 3**: Categories for the temporal dimension.
 
 Category | Remarks | Need
@@ -115,21 +122,21 @@ The spatial dimension groups occurrences into categories using their spatial inf
 1. This dimension MUST be optional.
 2. Only one spatial dimension MUST be used at a time in a cube.
 3. A number of reference grids and cell sizes MUST be supported (see [Table 5](#reference-grids) for details).
-  - By default, a reference grid SHOULD NOT be selected, so that all options are considered equal.
+    - By default, a reference grid SHOULD NOT be selected, so that all options are considered equal.
 4. Non-gridded reference datasets SHOULD NOT be supported. Examples include Administrative areas ([GADM 2022][gadm_2022]) and the World Database on Protected Areas (WDPA) ([Protected Planet 2012][pp_2012]).
-  - Such datasets may not be area-covering and can have overlapping features, leading to misleading results.
-  - Users are advised to make use of such datasets after cube generation. This also allows them more control and flexibility in choosing features of interest and how to combine these with the chosen reference grid.
+    - Such datasets may not be area-covering and can have overlapping features, leading to misleading results.
+    - Users are advised to make use of such datasets after cube generation. This also allows them more control and flexibility in choosing features of interest and how to combine these with the chosen reference grid.
 5. Occurrences SHOULD be considered circles or squares (not points).
-  - Circles MUST be based on the point-radius method ([Wieczorek et al. 2004][wieczorek_2004]), using the coordinates as the centre and the provided `coordinateUncertaintyInMeters` as the radius. If not provided, a default `coordinateUncertaintyInMeters` of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
-  - Squares SHOULD be based on the provided `footprintWKT` or MAY be reverse-engineered when the dataset is likely gridded ([Waller 2019][waller_2019]).
+    - Circles MUST be based on the point-radius method ([Wieczorek et al. 2004][wieczorek_2004]), using the coordinates as the centre and the provided `coordinateUncertaintyInMeters` as the radius. If not provided, a default `coordinateUncertaintyInMeters` of 1000m SHOULD be assumed. Users SHOULD be able to specify this value.
+    - Squares SHOULD be based on the provided `footprintWKT` or MAY be reverse-engineered when the dataset is likely gridded ([Waller 2019][waller_2019]).
 6. A number of grid assignment methods MUST be supported (see [Table 4](#grid-assignment-methods) for detailed needs).
-  - Random grid assignment SHOULD be selected by default.
-  - The seed used for random grid assignment SHOULD be mentioned in the metadata and users SHOULD be able to reuse it to create reproducible results.
-  - Occurrences that have a spatial extent that is wider than the largest grid cell MUST NOT be included when using encompassing grid assignment (they can in random grid assignment).
+    - Random grid assignment SHOULD be selected by default.
+    - The seed used for random grid assignment SHOULD be mentioned in the metadata and users SHOULD be able to reuse it to create reproducible results.
+    - Occurrences that have a spatial extent that is wider than the largest grid cell MUST NOT be included when using encompassing grid assignment (they can in random grid assignment).
 7. Occurrences that are located beyond the extent of the chosen reference grid MUST NOT be included.
 8. Occurrences MUST NOT be assigned to multiple grid cells (i.e. no fuzzy assignment).
 
-{:#grid-assignment-methods .mt-4 .mb-1}
+<span id="grid-assignment-methods"></span>
 **Table 4:** Grid assignment methods.
 
 Method | Remarks | Need
@@ -137,7 +144,7 @@ Method | Remarks | Need
 Random grid assignment | Assigns an occurrence to a random grid cell (of defined size) that overlaps with it. See [Oldoni et al. (2020)][oldoni_2020] for details. | MUST
 Encompassing grid assignment | Assigns an occurrence to the smallest grid cell size that fully encompasses it. Useful for downscaling approaches ([Groom et al. 2018][groom_2018]). | SHOULD
 
-{:#reference-grids .mt-4 .mb-1}
+<span id="reference-grids"></span>
 **Table 5:** Reference grids and their cell sizes. Quoted example values are codes for cells encompassing [this occurrence](https://www.gbif.org/occurrence/4011960332) in Slovenia at latitude `46.565825 N` (`46° 33' 56.97" N`) and longitude `15.354675 E` (`15° 21' 16.83" E`).
 
 Grid | Cell sizes | Remarks | Need
@@ -154,11 +161,11 @@ Other dimensions could be envisioned to group occurrences.
 2. These dimensions MUST be categorical (i.e. controlled vocabularies) or converted to a specified number of quantiles.
 3. Occurrences that are not associated with a category MUST be assigned to NOT-SUPPLIED.
 4. A number of other categories MAY be supported (see [Table 6](#other-dimensions) for details).
-  - By default, other categories SHOULD NOT be selected.
-  - Note that for some (e.g. `establishmentMeans`), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
+    - By default, other categories SHOULD NOT be selected.
+    - Note that for some (e.g. `establishmentMeans`), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
 5. Occurrences MUST NOT be assigned to multiple categories.
 
-{:#other-dimensions .mt-4 .mb-1}
+<span id="other-dimensions"></span>
 **Table 6:** Other dimensions.
 
 Category | Remarks  | Need
@@ -205,7 +212,7 @@ The minimum coordinate uncertainty gives an indication that there was at least o
 
 The minimum temporal uncertainty indicates the minimum temporal extent of occurrences within a group. This is especially useful to filter out groups that only contain occurrences with broad temporal information.
 
-{:#examples-minimum-temporal-uncertainty .mt-4 .mb-1}
+<span id="examples-minimum-temporal-uncertainty"></span>
 **Table 7:** Examples of minimum temporal uncertainty for a provided `eventDate`.
 
 eventDate | minimum temporal uncertainty | Remarks
@@ -233,16 +240,16 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
 4. This measure SHOULD use the same grid assignment method (see [Table 4](#grid-assignment-methods)) as selected for the spatial dimension.
 5. This measure SHOULD NOT increase the number of records in the cube. For example, grid cells that are occupied by the higher taxon, but not by the focal taxon, SHOULD NOT be included.
 6. The higher taxon rank SHOULD be defined by the user:
-  - It SHOULD either be `genus`, `family`, `order`, `class`, `phylum`, `kingdom` or life (all kingdoms).
-  - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-categories)), e.g. only `phylum`, `kingdom` or life are valid for a cube at class level (`classKey`).
-  - family SHOULD be selected by default for cubes with a taxonomic dimension at taxon level (`acceptedKey`, `taxonKey`), species level (`speciesKey`) or genus level (`genusKey`). The direct higher rank SHOULD be selected by default for other cubes with a higher taxonomic dimension.
-  - It SHOULD NOT be possible to select more than one rank. Note that it is theoretically possible to provide this measure for all (higher) ranks.
-  - If a taxon does not have a parent at the selected rank, its target occurrence count SHOULD be NULL.
+    - It SHOULD either be `genus`, `family`, `order`, `class`, `phylum`, `kingdom` or life (all kingdoms).
+    - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-categories)), e.g. only `phylum`, `kingdom` or life are valid for a cube at class level (`classKey`).
+    - family SHOULD be selected by default for cubes with a taxonomic dimension at taxon level (`acceptedKey`, `taxonKey`), species level (`speciesKey`) or genus level (`genusKey`). The direct higher rank SHOULD be selected by default for other cubes with a higher taxonomic dimension.
+    - It SHOULD NOT be possible to select more than one rank. Note that it is theoretically possible to provide this measure for all (higher) ranks.
+    - If a taxon does not have a parent at the selected rank, its target occurrence count SHOULD be NULL.
 7. Other measures than target occurrence count MAY be considered, including:
-  - Number of days observed.
-  - Number of observers (`recordedBy`). Note that this value is not controlled and can lead to higher numbers than expected.
+    - Number of days observed.
+    - Number of observers (`recordedBy`). Note that this value is not controlled and can lead to higher numbers than expected.
 
-{:#example-target-occurrence-counts .mt-4 .mb-1}
+<span id="example-target-occurrence-counts"></span>
 **Table 8:** Example of target occurrence counts at `genus` level for a cube with taxonomic and temporal dimensions.
 
 speciesKey | year | count | genusCount
@@ -265,10 +272,10 @@ speciesKey | year | count | genusCount
 Since cubes are tabular data, they can be expressed in any format that supports this. It is advised however to choose open formats with broad support.
 
 1. A number of output formats MUST be supported (see [Table 9](#output-formats) for details).
-  - CSV SHOULD be selected by default.
+    - CSV SHOULD be selected by default.
 2. A geospatial format MUST only be supported if the cube includes the spatial dimension.
 
-{:#output-formats .mt-4 .mb-1}
+<span id="output-formats"></span>
 **Table 9:** Output formats.
 
 Format | Remarks | Need
@@ -293,9 +300,9 @@ Metadata documents how a cube was generated and can be cited.
 2. Metadata SHOULD make use of DataCite Metadata Schema ([DateCite Metadata Working Group 2021][datacite_2021]). This is currently the case for GBIF occurrence downloads ([example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)).
 3. Metadata MUST include the properties in [Table 9](#output-formats).
 4. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
-  - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
-  - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see `descriptions` in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
-  - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
+    - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
+    - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see `descriptions` in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
+    - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
 5. Metadata MUST include a stable and unique global identifier, so it can be referenced. This SHOULD be a Digital Object Identifier (DOI).
 6. Metadata MUST include the creator, publisher, and creation date of the cube.
 7. Metadata MUST include the GBIF-mediated occurrence datasets that contributed to the cube as related identifiers, so these can be credited.
@@ -309,11 +316,11 @@ While a cube generated for testing purposes can be ephemeral, downstream use req
 1. A cube intended for downstream use MUST be identifiable and findable using a Digital Object Identifier (DOI).
 2. A cube intended for downstream use SHOULD be publicly accessible.
 3. A cube intended for downstream use SHOULD be deposited on infrastructure that can guarantee its long-term archival (e.g. GBIF, EBV Data Portal, Zenodo). See [Table 10](#data-storage-infrastructures) for details.
-  - GBIF downloads SHOULD be selected by default.
+    - GBIF downloads SHOULD be selected by default.
 4. The option SHOULD be offered to make a cube available on the cloud infrastructure where it will be processed. See [Table 10](#data-storage-infrastructures) for details.
-  - By default, a cloud infrastructure SHOULD NOT be selected.
+    - By default, a cloud infrastructure SHOULD NOT be selected.
 
-{:#data-storage-infrastructures .mt-4 .mb-1}
+<span id="data-storage-infrastructures"></span>
 **Table 10:** Data storage infrastructures.
 
 Infrastructure | Remarks | Need
@@ -331,40 +338,40 @@ Microsoft Azure Cloud Storage | Commercial cloud infrastructure, see [https://az
 This software produces cubes following the specification above.
 
 1. The software MUST use species occurrence data as its source.
-  - The software MUST accept tabular representations of occurrence data expressed using Darwin Core, including CSV file formats.
-  - The software SHOULD assume occurrence data to be formatted (i.e. have the same fields) as data returned by GBIF in occurrence downloads.
-  - The software MUST NOT assume the GBIF occurrence index to be the source of this data. Users SHOULD be able to provide their own occurrence data (e.g. for testing purposes).
+    - The software MUST accept tabular representations of occurrence data expressed using Darwin Core, including CSV file formats.
+    - The software SHOULD assume occurrence data to be formatted (i.e. have the same fields) as data returned by GBIF in occurrence downloads.
+    - The software MUST NOT assume the GBIF occurrence index to be the source of this data. Users SHOULD be able to provide their own occurrence data (e.g. for testing purposes).
 
 1. The software MUST use parameters by which users can define how a cube is produced.
-  - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
-  - The parameter values MUST be controlled.
-  - The parameters SHOULD use reasonable defaults where relevant (see [Cube specification](#cube-specification)).
-  - SQL MAY be considered as the notation format for the parameters.
+    - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
+    - The parameter values MUST be controlled.
+    - The parameters SHOULD use reasonable defaults where relevant (see [Cube specification](#cube-specification)).
+    - SQL MAY be considered as the notation format for the parameters.
 
 3. The software MUST be able to use reference grids (see [Table 5](#reference-grids)).
-  - Reference grids MAY be reformatted to optimize processing. This process SHOULD be documented and repeatable to allow updates if necessary.
-  - Representing a reference grid as a formula SHOULD be preferred over storing a reference grid as data.
+    - Reference grids MAY be reformatted to optimize processing. This process SHOULD be documented and repeatable to allow updates if necessary.
+    - Representing a reference grid as a formula SHOULD be preferred over storing a reference grid as data.
 
 4. Using the input data and parameters, the software MUST produce the intended cube.
-  - The software MUST support the output formats defined in [Format](#format) or allow downstream services to convert to these formats.
-  - The software MUST return the metadata defined in [Metadata](#metadata) or allow downstream service to create this metadata. Note that default parameter values SHOULD also be included in the metadata.
-  - The software SHOULD NOT deposit the cube. This is better reserved for downstream services.
+    - The software MUST support the output formats defined in [Format](#format) or allow downstream services to convert to these formats.
+    - The software MUST return the metadata defined in [Metadata](#metadata) or allow downstream service to create this metadata. Note that default parameter values SHOULD also be included in the metadata.
+    - The software SHOULD NOT deposit the cube. This is better reserved for downstream services.
 
 5. Users SHOULD be able to install and use the software, including on cloud processing platforms.
-  - Sufficient technical documentation MUST be provided that documents how the software can be installed.
-  - Sufficient technical documentation MUST be provided that documents how the software may be used on a cloud processing platform.
-  - This MUST be demonstrated on at least one public cloud provider such as Microsoft Azure through a tutorial or recorded demonstration or similar.
+    - Sufficient technical documentation MUST be provided that documents how the software can be installed.
+    - Sufficient technical documentation MUST be provided that documents how the software may be used on a cloud processing platform.
+    - This MUST be demonstrated on at least one public cloud provider such as Microsoft Azure through a tutorial or recorded demonstration or similar.
 
 6. The software SHOULD be developed using best practices, including:
-  - Source code MUST be version controlled.
-  - The software SHOULD be organized in modular components (functions) to facilitate understanding and code contributions.
-  - The software functions MUST be documented to facilitate understanding and code contributions.
-  - The software MUST include tests to guarantee the intended functionality and prevent breaking changes.
+    - Source code MUST be version controlled.
+    - The software SHOULD be organized in modular components (functions) to facilitate understanding and code contributions.
+    - The software functions MUST be documented to facilitate understanding and code contributions.
+    - The software MUST include tests to guarantee the intended functionality and prevent breaking changes.
 
 7. The software MUST be released as open source software.
-  - The software MUST be licensed under an open software licence such as Apache License 2.0.
-  - The software SHOULD use semantic versioning for releases.
-  - Source code SHOULD be hosted on GitHub to facilitate collaboration (including code contributions, feature requests, bug reports, etc.).
+    - The software MUST be licensed under an open software licence such as Apache License 2.0.
+    - The software SHOULD use semantic versioning for releases.
+    - Source code SHOULD be hosted on GitHub to facilitate collaboration (including code contributions, feature requests, bug reports, etc.).
 
 ### Cube workflow service
 
@@ -373,33 +380,33 @@ This service SHOULD embed the cube production software ([Cube production softwar
 1. The service MUST allow users to **search and filter for occurrences** of interest. Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality.
 
 2. The service MAY allow users to **exclude unwanted occurrences** (e.g. occurrences that were flagged). Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality through its API, but not at www.gbif.org.
-  - This MAY be implemented as a NOT filter.
+    - This MAY be implemented as a NOT filter.
 
 3. The service MUST allow users to **define the dimensions** of the cube (see [Dimensions](#dimensions)):
-  - The user MUST be able to select what dimensions (controlled list) to include.
-  - The user MUST be able to select what category/categories (controlled list) to use for each dimension.
-  - The user MUST be able to select what reference grid (controlled list, see [Table 5](#reference-grids)) and grid assignment method (controlled list, see [Table 4](#grid-assignment-methods)) to use for the spatial dimension.
-  - The user MAY be able to select a default coordinate uncertainty for occurrences that do not have this information.
-  - The user MAY be able to select the seed for random grid assignment.
-  - The service MAY provide information on the cardinality of the selected options, so users have an idea of the number of rows that will be returned in the cube (e.g. year to day `likely to increase the number of rows 360 times`).
+    - The user MUST be able to select what dimensions (controlled list) to include.
+    - The user MUST be able to select what category/categories (controlled list) to use for each dimension.
+    - The user MUST be able to select what reference grid (controlled list, see [Table 5](#reference-grids)) and grid assignment method (controlled list, see [Table 4](#grid-assignment-methods)) to use for the spatial dimension.
+    - The user MAY be able to select a default coordinate uncertainty for occurrences that do not have this information.
+    - The user MAY be able to select the seed for random grid assignment.
+    - The service MAY provide information on the cardinality of the selected options, so users have an idea of the number of rows that will be returned in the cube (e.g. year to day `likely to increase the number of rows 360 times`).
 
 4. The service MAY allow users to **define the measures** included in the cube (see [Measures](#measures)).
-  - Alternatively, the service MAY return the same measures for all cubes.
+    - Alternatively, the service MAY return the same measures for all cubes.
 
 5. The service SHOULD allow users to **define the output format** of the cube (see [Format](#format) and [Table 9](#output-formats)).
-  - Alternatively, the service MAY use the same output format for all cubes, but MUST offer the possibility to create different distributions of a deposited cube in other formats.
+    - Alternatively, the service MAY use the same output format for all cubes, but MUST offer the possibility to create different distributions of a deposited cube in other formats.
 
 6. The service SHOULD allow users to **define a destination** where the cube is deposited (see [Findability and storage](#findabiliity-and-storage) and [Table 10](#data-storage-infrastructure)).
-  - Alternatively, the service MAY use the same destination to deposit all cubes, but MUST offer the possibility to copy a deposited cube to other destinations.
+    - Alternatively, the service MAY use the same destination to deposit all cubes, but MUST offer the possibility to copy a deposited cube to other destinations.
 
 7. Sufficient technical documentation MUST be provided for users to understand and use the service.
 
 8. The service MUST be provided as a REST API and SHOULD be integrated as part of the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]).
 
 9. Interfaces to GBIF occurrence download API SHOULD be updated to incorporate the new functionality:
-  - The graphical user interface at [https://www.gbif.org](https://www.gbif.org) MUST be updated.
-  - The R package rgbif ([Chamberlain et al. 2023a][chamberlain_2023a]) SHOULD be updated.
-  - The Python package pygbif ([Chamberlain et al. 2023b][chamberlain_2023b]) MAY be updated.
+    - The graphical user interface at [https://www.gbif.org](https://www.gbif.org) MUST be updated.
+    - The R package rgbif ([Chamberlain et al. 2023a][chamberlain_2023a]) SHOULD be updated.
+    - The Python package pygbif ([Chamberlain et al. 2023b][chamberlain_2023b]) MAY be updated.
   
 <!-- references -->
 

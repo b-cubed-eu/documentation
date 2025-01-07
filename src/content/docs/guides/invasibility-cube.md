@@ -1,18 +1,21 @@
 ---
 title: Specification for invasibility cubes and their production
-description: >
-  This document presents the specification for "invasibility cubes”, a format used to visualise invasion fitness and invasibility. It provides a workflow to visualise invasion fitness, using species occurrence data, Invasive Alien Species (IAS) lists, and species traits to calculate trait centrality, visualise trait dispersion, estimate interaction strength, and assess invasibility.
-citation: >
-  MacFadyen S, Trekels M, Yahaya M, Landi P, Hui C (2024). Specification for invasibility cubes and their production. <https://docs.b-cubed.eu/invasibility-cube/>
-permalink: /invasibility-cube/
+sidebar:
+  label: Invasibility cube
+  order: 5
 ---
 
-{:.alert .alert-warning}
+:::caution
 This page is not yet complete.
+:::
 
-## Introduction
+This document presents the specification for "invasibility cubes”, a format used to visualise invasion fitness and invasibility. It provides a workflow to visualise invasion fitness, using species occurrence data, Invasive Alien Species (IAS) lists, and species traits to calculate trait centrality, visualise trait dispersion, estimate interaction strength, and assess invasibility.
 
-...
+Suggestion citation:
+
+> MacFadyen S, Trekels M, Yahaya M, Landi P, Hui C (2024). Specification for invasibility cubes and their production. <https://docs.b-cubed.eu/guides/invasibility-cube/>
+
+<!-- ## Introduction -->
 
 ## Task description
 

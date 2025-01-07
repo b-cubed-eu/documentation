@@ -1,14 +1,19 @@
 ---
 title: Specification for suitability cubes and their production
-description: >
-  This document presents the specification for "suitability cubes”, a format used for predictive habitat suitability modelling.
-citation: >
-  Cortès Lobos RB, Di Musciano M, Martini M, Rocchini D (2024). Specification for suitability cubes and their production. <https://docs.b-cubed.eu/suitability-cube/>
-permalink: /suitability-cube/
+sidebar:
+  label: Suitability cube
+  order: 3
 ---
 
-{:.alert .alert-warning}
+:::caution
 This page is not yet complete.
+:::
+
+This document presents the specification for "suitability cubes”, a format used for predictive habitat suitability modelling.
+
+Suggestion citation:
+
+> Cortès Lobos RB, Di Musciano M, Martini M, Rocchini D (2024). Specification for suitability cubes and their production. <https://docs.b-cubed.eu/guides/suitability-cube/>
 
 ## Introduction
 
