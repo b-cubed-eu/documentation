@@ -9,7 +9,7 @@ This tutorial introduces essential spatial data handling and analysis techniques
 
 Suggested citation:
 
-> MacFadyen S (2024). An introduction to spatial data analysis for conservation ecology in R. <https://docs.b-cubed.eu/tutorials/spatial-r/>
+> MacFadyen S (2024). An introduction to spatial data analysis for conservation ecology in R. <https://docs.b-cubed.eu/tutorials/spatial-data-analysis-r/>
 
 ## Introduction
 

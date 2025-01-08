@@ -9,7 +9,7 @@ This tutorial provides an introduction to Generalized Dissimilarity Modelling (G
 
 Suggested citation:
 
-> MacFadyen S (2024). An introduction to species distribution modelling in R. <https://docs.b-cubed.eu/tutorials/sdm-r/>
+> MacFadyen S (2024). An introduction to species distribution modelling in R. <https://docs.b-cubed.eu/tutorials/species-distribution-modelling-r/>
 
 ## Introduction
 
