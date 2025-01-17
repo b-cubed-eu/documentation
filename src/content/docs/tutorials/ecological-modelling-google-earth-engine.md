@@ -1,11 +1,15 @@
 ---
 title: An introduction to ecological modelling with Google Earth Engine
-description: >
-  This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
-citation: >
-  MacFadyen S (2024). An introduction to ecological modelling with Google Earth Engine. <https://docs.b-cubed.eu/google-earth-engine/>
-permalink: /google-earth-engine/
+sidebar:
+  label: Ecological modelling with Google Earth Engine
+  order: 3
 ---
+
+This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
+
+Suggested citation:
+
+> MacFadyen S (2024). An introduction to ecological modelling with Google Earth Engine. <https://docs.b-cubed.eu/tutorials/ecological-modelling-google-earth-engine/>
 
 ## Introduction
 
@@ -33,15 +37,15 @@ By the end of this practical you should be able to:
 
 The first step is to access the GEE code editor.  This can be done from the earth engine [home page](https://earthengine.google.com/) by going to platform –> Code Editor. Alternatively, you can access it directly from [https://code.earthengine.google.com/](https://code.earthengine.google.com)
 
-![gee_screenshot1](/assets/images/gee/practical-1_1.png)
+![gee_screenshot1](/tutorials/ecological-modelling-google-earth-engine/practical-1_1.png)
 
 Take a look at the <a href=" https://developers.google.com/earth-engine/guides/playground">Google Earth Engine >> Guides >> Earth Engine Code Editor</a> section for a nice description of different panels and tabs.
 
-![gee_screenshot2](/assets/images/gee/practical-1_2.png)
+![gee_screenshot2](/tutorials/ecological-modelling-google-earth-engine/practical-1_2.png)
 
 ## Create your own repository, folders and files
 
-From the Scripts panel click NEW >> Repository or >> Folder or >> File. Or if you already have a script open, click Save >> Save as..![gee_screenshot3](/assets/images/gee/practical-1_3.png)
+From the Scripts panel click NEW >> Repository or >> Folder or >> File. Or if you already have a script open, click Save >> Save as..![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_3.png)
 
 ## Basic JavaScript syntax
 
@@ -59,7 +63,7 @@ print(myMessage);
 
 Create your first import variables using the geometry tools.  For example, "Add a marker" or "Draw a rectangle". See the new 'geometry' variable added to the 'Imports' section? You can 'Edit layer properties' e.g. the name or colour from "Geometry Import" or assets. It is important to 'Exit' the 'Point drawing' and '+ new layer' to avoid creating a 'GeometryCollection' instead of a 'Point' geometry.
 
-![gee_screenshot3](/assets/images/gee/practical-1_4.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_4.png)
 
 ## Create variables from known coordinates
 
@@ -94,7 +98,7 @@ To find GEE datasets, use the “Search places and datasets” panel visible in 
 
 To import images from GEE you will use ```ee.Image()```. There are two ways you can do this. The easiest is to use the search function and then click Import to add the dataset to your Imports section.
 
-![gee_screenshot3](/assets/images/gee/practical-1_5.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_5.png)
 
 The second is to copy the Collection Snippet code and paste it into your script. Don't forget to make a new variable to hold the dataset.
 
@@ -106,13 +110,13 @@ print('Elevation data type', elevation.name()); // Prints data type
 
 Once you've done that, if you hold your mouse over your new variable/code, you'll see a yellow message pop-up asking if you want to convert it to an import record. If you click Convert, the variable will be moved to the Imports section automatically.
 
-![gee_screenshot3](/assets/images/gee/practical-1_6.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_6.png)
 
 ## Visualise images
 
 To display images in your map you zoom to a location of interest and add then add the image as a layer but with more detailed display/legend properties. You can do this using the "Visualization Parameters" GUI or code it directly(see code box below).
 
-![gee_screenshot3](/assets/images/gee/practical-1_7.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_7.png)
 
 ```js
 // Center your map to specific area and zoom level
@@ -141,17 +145,17 @@ Map.setCenter(31.54, -23.96, 7);
 Map.addLayer(elevation, eleVis, 'Elevation with eleVis'); // See how different your two layers look?
 ```
 
-![gee_screenshot3](/assets/images/gee/practical-1_8.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_8.png)
 
 Use the 'Inspector' to get "Point", "Pixel" and "Object" information.
 
-![gee_screenshot3](/assets/images/gee/practical-1_9.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_9.png)
 
 ## Images with multiple bands
 
 WorldClim BIO Variables V1. Most of you will probably be familiar with WoldClim's [Bioclimatic Variables](https://www.worldclim.org/data/bioclim.html). There are 19 different variables coded bio01 to bio19 e.g. bio01 = Annual mean | bio02 = Mean diurnal | bio03 = Isothermality (bio02/bio07) | bio04 = Temperature seasonality etc.
 
-![gee_screenshot3](/assets/images/gee/practical-1_10.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_10.png)
 
 To use one of these variables you need to select the appropriate band. For example "Annual Mean Temperature".
 
@@ -182,7 +186,7 @@ Map.addLayer(krugerAOI, {color: 'green'}, 'Kruger Park');
 
 Feature collections work in a similar way to image collections, although the display parameters and filtering conditions are slightly different. For example, let's display International Boundaries as polygons (i.e. vectors).
 
-![gee_screenshot3](/assets/images/gee/practical-1_11.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_11.png)
 
 ```js
 // Import the simplified International Boundary Polygons (LSIB 2017) 
@@ -223,7 +227,7 @@ Map.addLayer(costaColo,{}, 'Costa Rica and Colombia');
 
 Here is another example using polygons depicting the World Database on Protected Areas (WDPA).
 
-![gee_screenshot3](/assets/images/gee/practical-1_12.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_12.png)
 
 ```js
 // Import the WDPA polygons
@@ -241,7 +245,7 @@ Map.addLayer(kruger,{fillColor:'ceea89',color:'789630',width:0.5}, 'Kruger Natio
 
 In many cases you will be dealing with image collections with a series of bands over a period of time. To filter for the date range you're interested in you will use the ee.Filter.date command. Let's test this using the 500m monthly burned area product from MODIS.
 
-![gee_screenshot3](/assets/images/gee/practical-1_13.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_13.png)
 
 ```js
 // Import the MODIS Burned Area Monthly Global 500m
@@ -299,13 +303,13 @@ var slopeVis = {
 // Add new results to map
 Map.addLayer(slope, slopeVis, 'Slope with palette');
 ```
-![gee_screenshot3](/assets/images/gee/practical-1_14.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_14.png)
 
 ## Simple functions and image collections
 
 Applying functions to image collections starts to get a little trickier. For example, let's try summarise some Sentinel-2 imagery (Sentinel-2 MSI: MultiSpectral Instrument, Level-1C)and change our display properties at the same time.
 
-![gee_screenshot3](/assets/images/gee/practical-1_15.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_15.png)
 
 ```js
 // Import Sentinel-2 imagery
@@ -332,7 +336,7 @@ Map.addLayer(cop2Med, {bands:['B4','B3','B2']}, 'No defined vis parameters');
 // Results are rubbish
 ```
 
-![gee_screenshot3](/assets/images/gee/practical-1_16.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_16.png)
 
 ```js
 // Add the S2 value range from 0 to 3000, and try again
@@ -343,13 +347,13 @@ Map.addLayer(cop2Med, {bands:['B8','B4','B3'], min:0, max: 3000}, 'False-colour'
 // active vegetation in bright red
 ```
 
-![gee_screenshot3](/assets/images/gee/practical-1_17.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_17.png)
 
 ## Sharing your code to complete the practical assignments
 
 To complete the practical exercise below you need to know how to share your scripts with us. Simply click on "Get Link" - the actual button NOT the dropdown arrow - Then click the "Click to copy link" button and paste that in an email. !NB! Please remember to add the prac number in the header.
 
-![gee_screenshot3](/assets/images/gee/practical-1_18.png)
+![gee_screenshot3](/tutorials/ecological-modelling-google-earth-engine/practical-1_18.png)
 
 ## Complete code example
 
