@@ -90,7 +90,7 @@ Mac operating systems create [.DS_Store](https://en.wikipedia.org/wiki/.DS_Store
 2. Click the pencil icon.
 3. Scroll to the bottom and add the following code (before the empty line):
 
-    ```gitignore
+    ```sh
     # Mac OS
     .DS_Store
     ```
