@@ -12,7 +12,6 @@ This document presents the specification for “species occurrence cubes”, a f
 Suggested citation:
 
 > Desmet P, Oldoni D, Blissett M, Robertson T (2023). Specification for species occurrence cubes and their production. <https://docs.b-cubed.eu/guides/occurrence-cube/>
----
 
 ## Introduction
 
