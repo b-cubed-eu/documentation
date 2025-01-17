@@ -53,6 +53,10 @@ export default defineConfig({
       ],
     }),
   ],
+  redirects: {
+    '/dev-guide/': '/guides/software-development/',
+    '/occurrence-cube/specification/': '/guides/occurrence-cube/'
+  },
   markdown: {
     remarkPlugins: [remarkHeadingId]
   }
