@@ -15,11 +15,19 @@ export default defineConfig({
       customCss: [
         './src/styles/custom.css',
       ],
-      social: {
-        github: 'https://github.com/b-cubed-eu/documentation/',
-      },
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/js/matomo.js',
+          }
+        }
+      ],
       editLink: {
         baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
+      social: {
+        github: 'https://github.com/b-cubed-eu/documentation/',
       },
       sidebar: [
         {
