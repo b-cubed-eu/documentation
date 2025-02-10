@@ -219,7 +219,7 @@ WHERE
   ...
 ```
 
-See [`digital_cat_biodiversity_poland_strepsiptera.json`](assets/documents/digital_cat_biodiversity_poland_strepsiptera.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.aqsx5y.
+See [`digital_cat_biodiversity_poland_strepsiptera.json`](assets/documents/digital_cat_biodiversity_poland_strepsiptera.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.hsj57z.
 
 ### Example 2: Digital Catalogue of Biodiversity of Poland — Animalia: Bryozoa
 
@@ -251,7 +251,7 @@ WHERE
   ...
 ```
 
-See [`digital_cat_biodiversity_poland_bryozoa.json`](assets/documents/digital_cat_biodiversity_poland_bryozoa.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.jsakuz.
+See [`digital_cat_biodiversity_poland_bryozoa.json`](assets/documents/digital_cat_biodiversity_poland_bryozoa.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.ad7r3u.
 
 
 ### Example 3: Red list of dragonflies in Flanders, Belgium
@@ -276,11 +276,11 @@ WHERE
   ...
 ```
 
-See [`red_list_dragonflies_in_flanders.json`](assets/documents/red_list_dragonflies_in_flanders.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.n5ysma.
+See [`red_list_dragonflies_in_flanders.json`](assets/documents/red_list_dragonflies_in_flanders.json) for the full SQL query. See also the returned species occurrence cube: https://doi.org/10.15468/dl.txa67z.
 
 What if you don't trust the link synonyms - accepted taxa? Then you have to run two separate SQL queries resulting in two occurrence cubes: 
-- SQL query for the accepted species at species key level: [`red_list_dragonflies_in_flanders_only_accepted_species.json`](assets/documents/red_list_dragonflies_in_flanders_only_accepted_species.json). Occurrence cube: https://doi.org/10.15468/dl.8dqz5m.
-- SQL query for the synonyms only at taxon key level: [`red_list_dragonflies_in_flanders_only_synonyms_species.json`](assets/documents/red_list_dragonflies_in_flanders_only_synonyms_species.json). Occurrence cube: https://doi.org/10.15468/dl.cb74tm.
+- SQL query for the accepted species at species key level: [`red_list_dragonflies_in_flanders_only_accepted_species.json`](assets/documents/red_list_dragonflies_in_flanders_only_accepted_species.json). Occurrence cube: https://doi.org/10.15468/dl.f98tza.
+- SQL query for the synonyms only at taxon key level: [`red_list_dragonflies_in_flanders_only_synonyms_species.json`](assets/documents/red_list_dragonflies_in_flanders_only_synonyms_species.json). Occurrence cube: https://doi.org/10.15468/dl.ppa8zm.
 
 It's up to the user to merge the two occurrence cubes at a second stage. Still, notice that the taxonomy related column names are different: `species` and `specieskey` versus `taxonkey` and `scientificname`. Maybe worth a renaming. You can use for example `taxonkey` and `scientificname` for both the cubes.
 
@@ -298,20 +298,19 @@ WHERE
 
 ### Example 4: Checklist of alien mammals of Belgium
 
-The [Checklist of alien mammals of Belgium](https://www.gbif.org/dataset/9a52d8bf-864a-4abb-95ba-319c4edfca8d) matches 100% the GBIF Backbone. It contains 34 accepted species, one accepted subspecies and one synonym of a subspecies. As we did for synonyms of species, we have first to decide whether we trust the link between the [synonym](https://www.gbif.org/species/9457305) and [accepted taxon](https://www.gbif.org/species/6165157). But in this case, even if we trust the link we need to run a SQL query at taxon key level (`taxonKey`) as the accepted taxa are also subspecies. We removed also `speciesKey IS NOT NULL` from the `WHERE` statement (filter) as it is redundant: subspecies have a `speciesKey` and even if they would not have it, it's not an issue as we are not grouping occurrences at species level for those 2 subspecies. See [`alien_mammals_in_flanders_only_accepted_subspecies.json`](assets/documents/alien_mammals_in_flanders_only_accepted_subspecies.json) for the full SQL query of the two (accepted) subspecies: `taxonKey IN (6165157, 5218913)`. See also the returned occurrence cube: https://doi.org/10.15468/dl.2sf3xu. The SQL query for the accepted species is similar to the ones done before. See [`alien_mammals_in_flanders_only_accepted_species.json`](assets/documents/alien_mammals_in_flanders_only_accepted_species.json) for the full SQL query. See also the resulting species occurrence cube: https://doi.org/10.15468/dl.j88f33.
+The [Checklist of alien mammals of Belgium](https://www.gbif.org/dataset/9a52d8bf-864a-4abb-95ba-319c4edfca8d) matches 100% the GBIF Backbone. It contains 34 accepted species, one accepted subspecies and one synonym of a subspecies. As we did for synonyms of species, we have first to decide whether we trust the link between the [synonym](https://www.gbif.org/species/9457305) and [accepted taxon](https://www.gbif.org/species/6165157). But in this case, even if we trust the link we need to run a SQL query at taxon key level (`taxonKey`) as the accepted taxa are also subspecies. We removed also `speciesKey IS NOT NULL` from the `WHERE` statement (filter) as it is redundant: subspecies have a `speciesKey` and even if they would not have it, it's not an issue as we are not grouping occurrences at species level for those 2 subspecies. See [`alien_mammals_in_flanders_only_accepted_subspecies.json`](assets/documents/alien_mammals_in_flanders_only_accepted_subspecies.json) for the full SQL query of the two (accepted) subspecies: `taxonKey IN (6165157, 5218913)`. See also the returned occurrence cube: https://doi.org/10.15468/dl.wr6ts4. The SQL query for the accepted species is similar to the ones done before. See [`alien_mammals_in_flanders_only_accepted_species.json`](assets/documents/alien_mammals_in_flanders_only_accepted_species.json) for the full SQL query. See also the resulting species occurrence cube: https://doi.org/10.15468/dl.d6awvf.
 
 
 ### Example 5: Global Register of Introduced and Invasive Species - Belgium
 
 The [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e) matches 100% the GBIF Backbone and it is quite complex taxonomically speaking. Still, the previous examples already cover most of the situations we find in this checklist. We know how to deal with subspecies and synonyms of both species and subspecies. Notice that what we wrote about subspecies holds true also for other ranks lower than species, e.g. form and variety. We trust the links synonyms-accepted taxa too. We can therefore retrieve the final list of accepted taxa using `name_backbone_gbif_checklist(datasetKey = "6d9e952f-948c-4483-9807-575348147c7e", allow_synonyms = FALSE)` as shown before. In this checklist we found a new taxonomicStatus value: `DOUBTFUL`. Taxa with `taxonomicStatus` = `DOUBTFUL` can be treated as accepted taxa in our workflow. It is also clear we need to generate several occurrence cubes to cover the taxonomy of the entire checklist:
 
-- Generate a species occurrence cube for all 3670 species. The resulting SQL query is quite long as there is a list with 3670 numbers in `WHERE` statement: `speciesKey IN (...)`. See [`griis_belgium_species.json`](assets/documents/griis_belgium_species.json) for the full SQL query. See also the resulting species occurrence cube: https://doi.org/10.15468/dl.sehu4g.
-- Generate an occurrence cube for the 192 taxa with rank lower than species: subspecies, form, variety. See [`griis_belgium_subspecies_form_variety.json`](assets/documents/griis_belgium_subspecies_form_variety.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.6wx46d.
-- Generate an occurrence cube for the 29 genera (rank: genus). The SQL query is similar to the one for species: just replace `species` with `genus` and `speciesKey` with `genusKey`. See [`griis_belgium_genus.json`](assets/documents/griis_belgium_genus.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.24xxp8.
-- Generate an occurrence cube for the  families (rank: family). The SQL query is similar to the one for species: just replace `species` with `family` and `speciesKey` with `familyKey`. See [`griis_belgium_family.json`](assets/documents/griis_belgium_family.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.5h5r9u.
+- Generate a species occurrence cube for all 3670 species. The resulting SQL query is quite long as there is a list with 3670 numbers in `WHERE` statement: `speciesKey IN (...)`. See [`griis_belgium_species.json`](assets/documents/griis_belgium_species.json) for the full SQL query. See also the resulting species occurrence cube: https://doi.org/10.15468/dl.vyyrs3.
+- Generate an occurrence cube for the 192 taxa with rank lower than species: subspecies, form, variety. See [`griis_belgium_subspecies_form_variety.json`](assets/documents/griis_belgium_subspecies_form_variety.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.8na5s2.
+- Generate an occurrence cube for the 29 genera (rank: genus). The SQL query is similar to the one for species: just replace `species` with `genus` and `speciesKey` with `genusKey`. See [`griis_belgium_genus.json`](assets/documents/griis_belgium_genus.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.4btuga.
+- Generate an occurrence cube for the  families (rank: family). The SQL query is similar to the one for species: just replace `species` with `family` and `speciesKey` with `familyKey`. See [`griis_belgium_family.json`](assets/documents/griis_belgium_family.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.2fjd4x.
 
 
-
-Do not forget to rename the taxonomic related column names before merging the cubes. Again, we suggest to use `taxonkey` and `scientificname` as column names for the key column (`specieskey`, `genuskey`, `familykey`, `taxonkey`) and the name column (`species`, `genus`, `family`, `scientificname`) respectively.
+Do not forget to rename the taxonomic related columns before merging the cubes. Again, we suggest to use `taxonkey` and `scientificname` as column names for the key column (`specieskey`, `genuskey`, `familykey`, `taxonkey`) and the name column (`species`, `genus`, `family`, `scientificname`) respectively.
 
 I will be happy to hear users feedback. Was this tutorial helpful? Something you would like to improve? Create an [issue](https://github.com/b-cubed-eu/documentation/issues) on GitHub or [contact](mailto:damiano.oldoni@inbo.be) me. Happy cubing! 📦
