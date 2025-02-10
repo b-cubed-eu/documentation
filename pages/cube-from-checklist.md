@@ -97,25 +97,28 @@ WHERE
   ...
 ```
 
-Sometimes, it's worth to add other quality filters related to other aspects, for example taxonomic identification (`identificationVerificationStatus`) to filter unverified occurrences like this one, https://www.gbif.org/occurrence/4519610580, which is `unverified`.
+Sometimes, it's worth to add other quality filters related to other aspects, for example taxonomic identification (`identificationVerificationStatus`) to filter out unverified occurrences like this one, https://www.gbif.org/occurrence/4519610580, which is `unverified`.
 
 ```sql
 SELECT ...
 FROM ...
 WHERE
   ...
-    AND LOWER(identificationVerificationStatus) NOT IN (
-      'unverified',
-      'unvalidated',
-      'not validated',
-      'under validation',
-      'not able to validate',
-      'control could not be conclusive due to insufficient knowledge',
-      'uncertain',
-      'unconfirmed',
-      'unconfirmed - not reviewed',
-      'validation requested'
-      )
+    AND (
+      LOWER(identificationVerificationStatus) NOT IN (
+        'unverified',
+        'unvalidated',
+        'not validated',
+        'under validation',
+        'not able to validate',
+        'control could not be conclusive due to insufficient knowledge',
+        'uncertain',
+        'unconfirmed',
+        'unconfirmed - not reviewed',
+        'validation requested'
+        )
+      OR identificationVerificationStatus IS NULL
+    )
 ...
 ```
 
