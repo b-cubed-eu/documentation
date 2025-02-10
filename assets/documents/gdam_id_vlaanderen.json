@@ -1,0 +1,45 @@
+{
+  "sendNotification": true,
+  "notificationAddresses": [
+    "userEmail@example.org" 
+  ],
+  "format": "SQL_TSV_ZIP",
+  "sql": "
+  SELECT
+    PRINTF('%04d-%02d', \"year\", \"month\") AS yearMonth,
+    GBIF_EEARGCode(
+      1000,
+      decimalLatitude,
+      decimalLongitude,
+      COALESCE(coordinateUncertaintyInMeters, 1000)
+    ) AS eeaCellCode,
+    speciesKey,
+    species,
+    COUNT(*) AS occurrences,
+    MIN(COALESCE(coordinateUncertaintyInMeters, 1000)) AS minCoordinateUncertaintyInMeters,
+    MIN(GBIF_TemporalUncertainty(eventDate)) AS minTemporalUncertainty
+  FROM
+    occurrence
+  WHERE occurrenceStatus = 'PRESENT'
+    AND level1gid = 'BEL.2_1'
+    AND \"year\" >= 2020
+    AND genusKey = 5219857
+    AND hasCoordinate = TRUE
+    AND (coordinateUncertaintyInMeters <= 1000 OR coordinateUncertaintyInMeters IS NULL)
+    AND speciesKey IS NOT NULL
+    AND NOT ARRAY_CONTAINS(issue, 'ZERO_COORDINATE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_OUT_OF_RANGE')
+    AND NOT ARRAY_CONTAINS(issue, 'COORDINATE_INVALID')
+    AND NOT ARRAY_CONTAINS(issue, 'COUNTRY_COORDINATE_MISMATCH')
+    AND \"month\" IS NOT NULL
+  GROUP BY
+    yearMonth,
+    eeaCellCode,
+    speciesKey,
+    species
+  ORDER BY
+    yearMonth DESC,
+    eeaCellCode ASC,
+    speciesKey ASC;
+  "
+}
