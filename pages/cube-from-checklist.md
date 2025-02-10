@@ -309,7 +309,7 @@ The [Global Register of Introduced and Invasive Species - Belgium](https://www.g
 - Generate an occurrence cube for the  families (rank: family). The SQL query is similar to the one for species: just replace `species` with `family` and `speciesKey` with `familyKey`. See [`griis_belgium_family.json`](assets/documents/griis_belgium_family.json) for the full SQL query. See also the resulting occurrence cube: https://doi.org/10.15468/dl.5h5r9u.
 
 
-Do not forget to rename the taxonomic related column names before merging the cubes. Again, we suggest to use `taxonkey` and `scientificname` as column names for the key columns (`specieskey`, `genuskey`, `familykey`, `taxonkey`) and name columns (`species`, `genus`, `family`, `scientificname`) respectively.
 
+Do not forget to rename the taxonomic related column names before merging the cubes. Again, we suggest to use `taxonkey` and `scientificname` as column names for the key column (`specieskey`, `genuskey`, `familykey`, `taxonkey`) and the name column (`species`, `genus`, `family`, `scientificname`) respectively.
 
-That's all about creating occurrence cubes. Happy cubing!
+I will be happy to hear users feedback. Was this tutorial helpful? Something you would like to improve? Create an [issue](https://github.com/b-cubed-eu/documentation/issues) on GitHub or [contact](mailto:damiano.oldoni@inbo.be) me. Happy cubing! 📦
