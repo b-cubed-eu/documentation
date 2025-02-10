@@ -136,7 +136,7 @@ Error in occ_count(genusKey = 5219857, country = "BE", year = "2024",  :
 The only way is triggering an occurrence download and going through all the possible values of the `identificationVerificationStatus` field. If your goal is creating a cube based on a huge amount of occurrences, screening them is not trivial. Discarding the values listed in the SQL chunk above can be in many cases a good-enough filter.
 
 
-## Trigger occurrence cube download(s)
+## Step 3: Trigger occurrence cube download(s)
 
 This step can be very easy or quite complex, depending on the taxa in the checklists. There are three factors to be considered: taxon match, taxonomic status (accepted, synonym) and taxonomic rank.
 
