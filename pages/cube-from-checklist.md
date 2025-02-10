@@ -122,7 +122,8 @@ WHERE
 ...
 ```
 
-Check the differences by comparing these two json query examples triggering two species occurrence cube for observations of muskrat (genus _Ondatra_, `genusKey` = `5219857`) taken in 2024 and published in dataset [waarnemingen.be](https://www.gbif.org/dataset/9a0b66df-7535-4f28-9f4e-5bc11b8b096c) (`datasetKey` = `9a0b66df-7535-4f28-9f4e-5bc11b8b096c`). The first, [`muskrat_waarnemingen_be_2024.json`](assets/documents/muskrat_waarnemingen_be_2024.json), contains no filtering at identification/verifiation level (see resulting occurrence cube: https://doi.org/10.15468/dl.8fydcb), while [`muskrat_waarnemingen_be_2024_verified.json`](assets/documents/muskrat_waarnemingen_be_2024_verified.json) applies the filtering shown in chunk above (see resulting occurrence cube: https://doi.org/10.15468/dl.d96fcv).
+
+Check the differences by comparing these two json query examples triggering two species occurrence cubes for observations of muskrat (genus _Ondatra_, `genusKey` = `5219857`) taken in 2024 and published in dataset [waarnemingen.be](https://www.gbif.org/dataset/9a0b66df-7535-4f28-9f4e-5bc11b8b096c) (`datasetKey` = `9a0b66df-7535-4f28-9f4e-5bc11b8b096c`). The first, [`muskrat_waarnemingen_be_2024.json`](assets/documents/muskrat_waarnemingen_be_2024.json), contains no filtering at identification/verification level (see resulting occurrence cube: https://doi.org/10.15468/dl.8fydcb), while [`muskrat_waarnemingen_be_2024_verified.json`](assets/documents/muskrat_waarnemingen_be_2024_verified.json) applies the filtering shown in chunk above (see resulting occurrence cube: https://doi.org/10.15468/dl.2terux).
 
 The problem of such screening is that `identificationVerificationStatus` is a free field and there is no way to know which values are present in advance. In other words, you cannot screen via neither GBIF website, neither via rgbif facetting. The next rgbif commando in R will not work, as `identificationVerificationStatus` is not a valid facet:
 
@@ -141,6 +142,7 @@ This step can be very easy or quite complex, depending on the taxa in the checkl
 
 1. A taxon in the checklist has **no match** with the GBIF Backbone: it is very unlikely to have occurrences linked to them, see Section "Get taxa from checklists and match to GBIF Backbone" above. Most of the time a match can be found by adding/improving the authorship of the scientific names.
 2. The matched taxon is a **synonym** (`taxonomicStatus`: `HETEROTYPIC_SYNONYM`, `HOMOTYPIC_SYNONYM`, `PROPARTE_SYNONYM`, `SYNONYM`): searching occurrences of a synonym will result in less occurrences than the accepted. Only use the taxon key of the synonym if you have strong doubts about the match proposed by the GBIF Backbone. In this case, the SQL query for that specific taxon will look like this:
+
 ```sql
 WHERE
   taxonKey = your_taxon_key
@@ -198,7 +200,7 @@ Nothing better than showing some examples using checklists with increasing level
 
 In the next examples we will always:
 - Group by year
-- Randomize the point using the coordinateUncertaintyInMeters, default to 1000m, as shown in [GBIF cube SQL full query](https://techdocs.gbif.org/en/data-use/data-cubes#write-full-query)
+- Randomize the point using the `coordinateUncertaintyInMeters`, default to 1000m, as shown in [GBIF cube SQL full query](https://techdocs.gbif.org/en/data-use/data-cubes#write-full-query)
 - Apply a sampling bias expression at class level (`class` and `classKey` as partitions)
 - Do a cube for continent Europe
 - Apply a basic filter to exclude unverified occurrences and occurrences with coordinates issues
@@ -291,7 +293,7 @@ WHERE
   ...
  ```
 
- will exclude occurrences of synonyms! This is an important difference with the occurrence API, where occurrences of synonyms are still returned. Example: https://www.gbif.org/occurrence/search?taxon_key=5051901 returns also occurrences of synonym _Gomphus flavipes (Charpentier, 1825)_ (`taxonKey`: [5051950](https://www.gbif.org/species/5051950)). See correspondent occurrence download: https://doi.org/10.15468/dl.j76qvd. So, use `speciesKey` whenever possible.
+ will exclude occurrences of synonyms! This is an important difference with the standard occurrence API, where occurrences of synonyms are still returned. Example: https://www.gbif.org/occurrence/search?taxon_key=5051901 returns also occurrences of synonym _Gomphus flavipes (Charpentier, 1825)_ (`taxonKey`: [5051950](https://www.gbif.org/species/5051950)). See correspondent occurrence download: https://doi.org/10.15468/dl.j76qvd. So, **use `speciesKey` whenever possible**.
 
 
 ### Example 4: Checklist of alien mammals of Belgium
