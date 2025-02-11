@@ -31,7 +31,65 @@ Examples of GBIF checklists with perfect match af the moment of writing:
 
 We submitted a feature request ([#746](https://github.com/ropensci/rgbif/issues/746)) to add a function to [rgbif](https://docs.ropensci.org/rgbif/index.html) R package to retrieve the taxa from the GBIF backbone matching the taxa of a checklist. At the moment, such functionality is on hold. We will probably add this functionality to a stand alone R package.
 
-Meanwhile, you can find the code in a [gist](https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd2298d432f7c3b): <script src="https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd2298d432f7c3b.js"></script>
+Meanwhile, you can find the code in below:
+
+```r
+library(rgbif)
+library(dplyr)
+library(purrr)
+
+# --- Define a function ---
+#' Get GBIF backbone taxon keys for species in a checklist dataset
+#' 
+#' @param datasetKey Unique identifier of a checklist dataset.
+#' @param allow_synonyms` If `FALSE`, the accepted taxa are returned instead of the
+#'   synonyms, if any. Default: `TRUE`.
+#' @return A vector with GBIF backbone taxon keys.
+name_backbone_gbif_checklist <- function(datasetKey, allow_synonyms = TRUE) {
+  checklist_taxa <- rgbif::name_usage(datasetKey = datasetKey, limit = 9999)$data %>%
+    dplyr::filter(origin == "SOURCE")
+  nub_keys <- checklist_taxa %>%
+    dplyr::pull(nubKey)
+  # Remove NAs (no taxon match) and return informative message
+  if (any(is.na(nub_keys))) {
+    n_no_match <- length(nub_keys[is.na(nub_keys)])
+    message(paste0(n_no_match, " taxa have no taxon match with the GBIF Backbone."))
+    nub_keys <- nub_keys[!is.na(nub_keys)]
+  }
+  nub_keys <- nub_keys %>%
+    unique()
+  if (allow_synonyms == TRUE) {
+    return(nub_keys)
+  } else {
+    nub_keys %>%
+      purrr::map_df(function(x) rgbif::name_usage(x)$data) %>%
+      # Choose the accepted taxa instead of synonyms
+      mutate(accepted_taxa = dplyr::coalesce(acceptedKey, key)) %>%
+      dplyr::pull(accepted_taxa) %>%
+      unique()
+  }
+}
+
+# --- Try the function ---
+
+# Define the datasetKey
+dataset_key <- "fd004d9a-2ea4-4244-bb60-0df508d20a15"
+
+# Get the (unique) taxon keys from the GBIF Backbone
+ias_taxon_keys <- name_backbone_gbif_checklist(dataset_key)
+ias_default <- purrr::map_df(ias_taxon_keys, ~ rgbif::name_usage(.x)$data)
+
+ias_default %>% count(taxonomicStatus)
+
+# Get the (unique) ACCEPTED taxon keys from the GBIF Backbone
+ias_taxon_keys <- name_backbone_gbif_checklist(
+  datasetKey = dataset_key,
+  allow_synonyms = FALSE
+)
+
+ias_accepted <- purrr::map_df(ias_taxon_keys, ~ rgbif::name_usage(.x)$data)
+ias_accepted %>% count(taxonomicStatus)
+```
 
 It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are published by the same researchers.
 
