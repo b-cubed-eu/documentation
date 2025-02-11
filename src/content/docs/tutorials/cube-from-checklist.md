@@ -1,12 +1,13 @@
 ---
-title: How to build a species occurrence cube based on a GBIF checklist
-description: >
-  This document shows how to generate occurrence cubes for taxa listed in GBIF checklists.
-citation: >
-  Oldoni D (2024). How to build a species occurrence cube based on a GBIF checklist. <https://docs.b-cubed.eu/cube-from-checklist/>
-permalink: /cube-from-checklist/
+title: How to build a species occurrence cube from a GBIF checklist
+sidebar:
+  label: Build a cube from a checklist
+  order: 4
 ---
 
+Suggestion citation:
+
+> Oldoni D (2025). How to build a species occurrence cube from a GBIF checklist. <https://docs.b-cubed.eu/tutorials/cube-from-checklist/>
 
 ## Introduction
 
