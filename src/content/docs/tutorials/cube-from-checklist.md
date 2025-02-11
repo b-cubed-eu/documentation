@@ -13,6 +13,7 @@ permalink: /cube-from-checklist/
 At the moment there is no automatic way of automatically downloading occurrences or creating an occurrence cube for the taxa listed in a GBIF checklist. In this page we will show how to build an occurrence cube starting from a GBIF checklist. We will do it by explaining the main steps, first, followed by some instructive examples. 
 
 The main steps are:
+
 1. Get taxa from checklists and match to GBIF Backbone
 2. Adapt the SQL query, e.g. by specifying the spatial extension or adapting filters
 3. Trigger occurrence cube download(s)
@@ -23,6 +24,7 @@ The main steps are:
 A GBIF checklist is a list of "names". GBIF tries to link those names to the GBIF Backbone. That's the way we can link "names" to occurrences worldwide. A 100% taxon match is possible, although not likely.
 
 Examples of GBIF checklists with perfect match af the moment of writing:
+
 - The [Red list of dragonflies in Flanders, Belgium](https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79)
 - The [List of Invasive Alien Species of Union concern](https://www.gbif.org/dataset/79d65658-526c-4c78-9d24-1870d67f8439)
 
@@ -34,7 +36,6 @@ It's extremely unlikely to have occurrences linked to a taxon not matched to GBI
 
 The code in the [gist](https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd2298d432f7c3b) allows you to get automatically all **accepted taxa** by using `name_backbone_gbif_checklist(datasetKey = your_dataset_key, allow_synonyms = FALSE)`.
 
-
 ## Step 2: Adapt the SQL query
 
 ### Spatial dimension
@@ -42,42 +43,42 @@ The code in the [gist](https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd
 Typically the spatial constraints are defined by:
 
 - continent (`continent`):
-```sql
-SELECT ...
-FROM ...
-WHERE
-  continent = 'EUROPE'
-```
+
+    ```sql
+    SELECT ...
+    FROM ...
+    WHERE
+      continent = 'EUROPE'
+    ```
 
 - country (`countryCode`):
 
-```sql
-SELECT ...
-FROM ...
-WHERE
-  countryCode = 'BE'
-```
+    ```sql
+    SELECT ...
+    FROM ...
+    WHERE
+      countryCode = 'BE'
+    ```
 
 - administrative region (see [GADM](https://gadm.org/) database):
 
-```sql
-SELECT ...
-FROM ...
-WHERE
-  level1gid = 'BEL.2_1' -- Flanders region (Vlaanderen)
-```
+    ```sql
+    SELECT ...
+    FROM ...
+    WHERE
+      level1gid = 'BEL.2_1' -- Flanders region (Vlaanderen)
+    ```
 
 See json query [gdam_id_vlaanderen.json](/tutorials/cube-from-checklist/gdam_id_vlaanderen.json) and the resulting cube to [download](https://doi.org/10.15468/dl.8ckvqu). Notice that for provinces, the right GBIF term will be `level2gid`, for example `level2gid = 'BEL.2.5_1'` for West-Flanders. Maybe useful to know that you can download data for each country at each administrative level via <https://gadm.org/download_country.html>.
 
 - by polygon:
 
-```sql
-SELECT ...
-FROM ...
-WHERE
-   GBIF_Within('POLYGON ((3.959198 51.056934, 3.886414 51.016347, 3.944092 50.976588, 4.000397 50.91429, 4.159698 50.929007, 4.128113 51.031895, 4.096527 51.074194, 3.959198 51.056934))')
-```
-
+    ```sql
+    SELECT ...
+    FROM ...
+    WHERE
+      GBIF_Within('POLYGON ((3.959198 51.056934, 3.886414 51.016347, 3.944092 50.976588, 4.000397 50.91429, 4.159698 50.929007, 4.128113 51.031895, 4.096527 51.074194, 3.959198 51.056934))')
+    ```
 
 The polygon must be written using the [WKT standard](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) and so it needs to be written in an anticlockwise order. See [polygon.json](/tutorials/cube-from-checklist/polygon.json) for the full SQL query. See also the resulting occurrence cube: <https://doi.org/10.15468/dl.7vh5y7>. The polygon has been created using geopick: <https://geopick.gbif.org/?locationid=geopick-v2.1.0-2024-09-04T13-00-23.219Z-132>.
 
@@ -97,31 +98,30 @@ WHERE
   ...
 ```
 
-Sometimes, it's worth to add other quality filters related to other aspects, for example taxonomic identification (`identificationVerificationStatus`) to filter out unverified occurrences like this one, https://www.gbif.org/occurrence/4519610580, which is `unverified`.
+Sometimes, it's worth to add other quality filters related to other aspects, for example taxonomic identification (`identificationVerificationStatus`) to filter out unverified occurrences like this one, <https://www.gbif.org/occurrence/4519610580>, which is `unverified`.
 
 ```sql
 SELECT ...
 FROM ...
 WHERE
   ...
-    AND (
-      LOWER(identificationVerificationStatus) NOT IN (
-        'unverified',
-        'unvalidated',
-        'not validated',
-        'under validation',
-        'not able to validate',
-        'control could not be conclusive due to insufficient knowledge',
-        'uncertain',
-        'unconfirmed',
-        'unconfirmed - not reviewed',
-        'validation requested'
-        )
-      OR identificationVerificationStatus IS NULL
-    )
+  AND (
+    LOWER(identificationVerificationStatus) NOT IN (
+    'unverified',
+    'unvalidated',
+    'not validated',
+    'under validation',
+    'not able to validate',
+    'control could not be conclusive due to insufficient knowledge',
+    'uncertain',
+    'unconfirmed',
+    'unconfirmed - not reviewed',
+    'validation requested'
+  )
+  OR identificationVerificationStatus IS NULL
+)
 ...
 ```
-
 
 Check the differences by comparing these two json query examples triggering two species occurrence cubes for observations of muskrat (genus _Ondatra_, `genusKey` = `5219857`) taken in 2024 and published in dataset [waarnemingen.be](https://www.gbif.org/dataset/9a0b66df-7535-4f28-9f4e-5bc11b8b096c) (`datasetKey` = `9a0b66df-7535-4f28-9f4e-5bc11b8b096c`). The first, [muskrat_waarnemingen_be_2024.json](/tutorials/cube-from-checklist/muskrat_waarnemingen_be_2024.json), contains no filtering at identification/verification level (see resulting occurrence cube: <https://doi.org/10.15468/dl.8fydcb>), while [muskrat_waarnemingen_be_2024_verified.json](/tutorials/cube-from-checklist/muskrat_waarnemingen_be_2024_verified.json) applies the filtering shown in chunk above (see resulting occurrence cube: <https://doi.org/10.15468/dl.2terux>).
 
@@ -135,7 +135,6 @@ Error in occ_count(genusKey = 5219857, country = "BE", year = "2024",  :
 
 The only way is triggering an occurrence download and going through all the possible values of the `identificationVerificationStatus` field. If your goal is creating a cube based on a huge amount of occurrences, screening them is not trivial. Discarding the values listed in the SQL chunk above can be in many cases a good-enough filter.
 
-
 ## Step 3: Trigger occurrence cube download(s)
 
 This step can be very easy or quite complex, depending on the taxa in the checklists. There are three factors to be considered: taxon match, taxonomic status (accepted, synonym) and taxonomic rank.
@@ -143,49 +142,51 @@ This step can be very easy or quite complex, depending on the taxa in the checkl
 1. A taxon in the checklist has **no match** with the GBIF Backbone: it is very unlikely to have occurrences linked to them, see Section "Get taxa from checklists and match to GBIF Backbone" above. Most of the time a match can be found by adding/improving the authorship of the scientific names.
 2. The matched taxon is a **synonym** (`taxonomicStatus`: `HETEROTYPIC_SYNONYM`, `HOMOTYPIC_SYNONYM`, `PROPARTE_SYNONYM`, `SYNONYM`): searching occurrences of a synonym will result in less occurrences than the accepted. Only use the taxon key of the synonym if you have strong doubts about the match proposed by the GBIF Backbone. In this case, the SQL query for that specific taxon will look like this:
 
-```sql
-WHERE
-  taxonKey = your_taxon_key
-  ...
-GROUP BY
-  ...
-  taxonKey,
-  scientificName -- eventually `canonicalName`
-```
+    ```sql
+    WHERE
+      taxonKey = your_taxon_key
+      ...
+    GROUP BY
+      ...
+      taxonKey,
+      scientificName -- eventually `canonicalName`
+    ```
+
 3. The matched taxon has an **higher taxonomic rank** than species, e.g. genus. You have two options depending on your needs. Either you group occurrences by species as typically done or you filter and group occurrences by the given rank. The two queries will look like this:
 
-```sql
-...
-WHERE
-  speciesKey IN (your_species_keys) OR genusKey = your_genus_key
-  ...
-GROUP BY
-  ...
-  speciesKey,
-  species
-```
+    ```sql
+    ...
+    WHERE
+      speciesKey IN (your_species_keys) OR genusKey = your_genus_key
+      ...
+    GROUP BY
+      ...
+      speciesKey,
+      species
+    ```
 
-```sql
-...
-WHERE
-  genusKey = your_genus_key
-  ...
-GROUP BY
-  ...
-  genusKey,
-  genus
-```
+    ```sql
+    ...
+    WHERE
+      genusKey = your_genus_key
+      ...
+    GROUP BY
+      ... 
+      genusKey,
+      genus
+    ```
 
 4. The matched taxon has a **lower taxonomic rank** than species (subspecies, variety, form). We need to work at `taxonKey` level. The SQL query will look like this:
-```sql
-WHERE
-  taxonKey = your_taxon_key
-  ...
-GROUP BY
-  ...
-  taxonKey,
-  scientificName
-```
+
+    ```sql
+    WHERE
+      taxonKey = your_taxon_key
+      ...
+    GROUP BY
+      ...
+      taxonKey,
+      scientificName
+    ```
 
 ## Examples
 
@@ -197,8 +198,8 @@ Nothing better than showing some examples using checklists with increasing level
 - The checklist matches 100% to a mix of accepted species, accepted subspecies and synonym subspecies. Example: [Checklist of alien mammals of Belgium](https://www.gbif.org/dataset/9a52d8bf-864a-4abb-95ba-319c4edfca8d).
 - The checklist matches 100% to a mix of accepted and synonym species, accepted genera and families, accepted and synonym subspecies, forms, varieties. I don't think you will encounter something more complex than this. Example: [Global Register of Introduced and Invasive Species - Belgium](https://www.gbif.org/dataset/6d9e952f-948c-4483-9807-575348147c7e).
 
-
 In the next examples we will always:
+
 - Group by year
 - Randomize the point using the `coordinateUncertaintyInMeters`, default to 1000m, as shown in [GBIF cube SQL full query](https://techdocs.gbif.org/en/data-use/data-cubes#write-full-query)
 - Apply a sampling bias expression at class level (`class` and `classKey` as partitions)
@@ -211,13 +212,13 @@ In the next examples we will always:
 
 In SQL term, it means:
 
-```sql
-...
-WHERE
-  ...
-  AND speciesKey IN (4480653, 4480642, 4480637, 4480628, 4480626, 4480624, 9719065)
-  ...
-```
+    ```sql
+    ...
+    WHERE
+      ...
+      AND speciesKey IN (4480653, 4480642, 4480637, 4480628, 4480626, 4480624, 9719065)
+      ...
+    ```
 
 See [digital_cat_biodiversity_poland_strepsiptera.json](/tutorials/cube-from-checklist/digital_cat_biodiversity_poland_strepsiptera.json) for the full SQL query. See also the returned species occurrence cube: <https://doi.org/10.15468/dl.hsj57z>.
 
@@ -247,7 +248,8 @@ WHERE
     1007770,
     4984866,
     1006399,
-    4984953)
+    4984953
+  )
   ...
 ```
 
@@ -286,12 +288,12 @@ It's up to the user to merge the two occurrence cubes at a second stage. Still, 
 
 **IMPORTANT**: even if `taxonKey` is equal to `speciesKey` for accepted species, using taxonKey in `WHERE` filter, e.g.
 
- ```sql
+```sql
 WHERE
   ...
   taxonKey IN ( 5051901 )
   ...
- ```
+```
 
 will exclude occurrences of synonyms! This is an important difference with the standard occurrence API, where occurrences of synonyms are still returned. Example: <https://www.gbif.org/occurrence/search?taxon_key=5051901> returns also occurrences of synonym _Gomphus flavipes (Charpentier, 1825)_ (`taxonKey`: [5051950](https://www.gbif.org/species/5051950)). See correspondent occurrence download: <https://doi.org/10.15468/dl.j76qvd>. So, **use `speciesKey` whenever possible**.
 
