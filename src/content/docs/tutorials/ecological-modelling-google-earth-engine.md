@@ -39,7 +39,7 @@ The first step is to access the GEE code editor.  This can be done from the eart
 
 ![gee_screenshot1](/tutorials/ecological-modelling-google-earth-engine/practical-1_1.png)
 
-Take a look at the <a href=" https://developers.google.com/earth-engine/guides/playground">Google Earth Engine >> Guides >> Earth Engine Code Editor</a> section for a nice description of different panels and tabs.
+Take a look at the <a href="https://developers.google.com/earth-engine/guides/playground">Google Earth Engine >> Guides >> Earth Engine Code Editor</a> section for a nice description of different panels and tabs.
 
 ![gee_screenshot2](/tutorials/ecological-modelling-google-earth-engine/practical-1_2.png)
 
