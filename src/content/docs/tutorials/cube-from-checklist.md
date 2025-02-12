@@ -34,17 +34,42 @@ We submitted a feature request ([#746](https://github.com/ropensci/rgbif/issues/
 Meanwhile, you can find the code in below:
 
 ```r
-library(rgbif)
-library(dplyr)
-library(purrr)
-
-# --- Define a function ---
-#' Get GBIF backbone taxon keys for species in a checklist dataset
+#' Get GBIF backbone taxon keys for taxa in a checklist dataset
 #' 
-#' @param datasetKey Unique identifier of a checklist dataset.
-#' @param allow_synonyms` If `FALSE`, the accepted taxa are returned instead of the
+#' This function retrieves the GBIF backbone taxon keys for all taxa in a
+#' checklist dataset. In case of synonyms, the users can choose to retrieve the
+#' accepted taxa instead of the synonyms.
+#' 
+#' @param datasetKey (character) Unique identifier of a checklist dataset.
+#' @param allow_synonyms` (logical) If `FALSE`, the accepted taxa are returned instead of the
 #'   synonyms, if any. Default: `TRUE`.
-#' @return A vector with GBIF backbone taxon keys.
+#' @return (numeric) A vector with GBIF backbone taxon keys.
+#' @importFrom dplyr %>%
+#' @examples
+#' library(rgbif)
+#' library(purrr)
+#' 
+#' # [Red list of dragonflies in Flanders, Belgium](https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79)
+#' datasetKey <- "72aa797d-42a4-4176-9e19-5b3ddd551b79"
+#' 
+#' # Allow synonyms
+#' dragon_flies <- name_backbone_gbif_checklist(datasetKey)
+#' 
+#' # Check synonyms are included
+#' purrr::map(dragon_flies, ~ rgbif::name_usage(.x)$data) %>%
+#'   purrr::list_rbind() %>%
+#'   count(taxonomicStatus)
+#' 
+#' # Get accepted taxa instead of synonyms
+#' dragon_flies_accepted <- name_backbone_gbif_checklist(
+#'   datasetKey,
+#'   allow_synonyms = FALSE
+#' )
+#' 
+#' # Check synonyms are not included
+#' purrr::map(dragon_flies_accepted, ~ rgbif::name_usage(.x)$data) %>%
+#'   purrr::list_rbind() %>%
+#'   count(taxonomicStatus)
 name_backbone_gbif_checklist <- function(datasetKey, allow_synonyms = TRUE) {
   checklist_taxa <- rgbif::name_usage(datasetKey = datasetKey, limit = 9999)$data %>%
     dplyr::filter(origin == "SOURCE")
@@ -62,33 +87,14 @@ name_backbone_gbif_checklist <- function(datasetKey, allow_synonyms = TRUE) {
     return(nub_keys)
   } else {
     nub_keys %>%
-      purrr::map_df(function(x) rgbif::name_usage(x)$data) %>%
+      purrr::map(function(x) rgbif::name_usage(x)$data) %>%
+      purrr::list_rbind() %>%
       # Choose the accepted taxa instead of synonyms
       mutate(accepted_taxa = dplyr::coalesce(acceptedKey, key)) %>%
       dplyr::pull(accepted_taxa) %>%
       unique()
   }
 }
-
-# --- Try the function ---
-
-# Define the datasetKey
-dataset_key <- "fd004d9a-2ea4-4244-bb60-0df508d20a15"
-
-# Get the (unique) taxon keys from the GBIF Backbone
-ias_taxon_keys <- name_backbone_gbif_checklist(dataset_key)
-ias_default <- purrr::map_df(ias_taxon_keys, ~ rgbif::name_usage(.x)$data)
-
-ias_default %>% count(taxonomicStatus)
-
-# Get the (unique) ACCEPTED taxon keys from the GBIF Backbone
-ias_taxon_keys <- name_backbone_gbif_checklist(
-  datasetKey = dataset_key,
-  allow_synonyms = FALSE
-)
-
-ias_accepted <- purrr::map_df(ias_taxon_keys, ~ rgbif::name_usage(.x)$data)
-ias_accepted %>% count(taxonomicStatus)
 ```
 
 It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are published by the same researchers.
