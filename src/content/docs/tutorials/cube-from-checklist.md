@@ -31,7 +31,7 @@ Examples of GBIF checklists with perfect match af the moment of writing:
 
 We submitted a feature request ([#746](https://github.com/ropensci/rgbif/issues/746)) to add a function to [rgbif](https://docs.ropensci.org/rgbif/index.html) R package to retrieve the taxa from the GBIF backbone matching the taxa of a checklist. At the moment, such functionality is on hold. We will probably add this functionality to a stand alone R package.
 
-Meanwhile, you can find the code in below:
+Meanwhile, you can find the code below:
 
 ```r
 #' Get GBIF backbone taxon keys for taxa in a checklist dataset
@@ -99,8 +99,6 @@ name_backbone_gbif_checklist <- function(datasetKey, allow_synonyms = TRUE) {
 ```
 
 It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are published by the same researchers.
-
-The code in the [gist](https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd2298d432f7c3b) allows you to get automatically all **accepted taxa** by using `name_backbone_gbif_checklist(datasetKey = your_dataset_key, allow_synonyms = FALSE)`.
 
 ## Step 2: Adapt the SQL query
 
