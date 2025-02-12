@@ -49,7 +49,8 @@ Meanwhile, you can find the code in below:
 #' library(rgbif)
 #' library(purrr)
 #' 
-#' # [Red list of dragonflies in Flanders, Belgium](https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79)
+#' # Red list of dragonflies in Flanders, Belgium
+#' # https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79
 #' datasetKey <- "72aa797d-42a4-4176-9e19-5b3ddd551b79"
 #' 
 #' # Allow synonyms
