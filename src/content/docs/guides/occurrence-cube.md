@@ -148,7 +148,7 @@ Encompassing grid assignment | Assigns an occurrence to the smallest grid cell s
 
 Grid | Cell sizes | Remarks | Need
 ---- | ---------- | ------- | ----
-EEA reference grid | - 1x1 km (`1kmE4731N2620`)<br>- 10x10 km (`10kmE473N262`)<br>- 100x100 km (`100kmE47N26`) | European coverage, used for many reporting purposes. See European Environment Agency (2013) for details. | MUST
+EEA reference grid | - 1x1 km (`1kmE4731N2620`)<br>- 10x10 km (`10kmE473N262`)<br>- 100x100 km (`100kmE47N26`) | European coverage, used for many reporting purposes. See [European Environment Agency (2013)][eea_2013] for details. | MUST
 Extended Quarter Degree Grid Cells (QDGC) | - 15x15 minutes (`E015N46AD`)<br>- 30x30 minutes (`E015N46A`)<br>- 1x1 degrees (`E015N46`)<br> | Worldwide coverage, mostly used in African countries. See [Larsen et al. (2009)][larsen_2009] for details. Cells can be downloaded for a selection of countries ([Zenodo 2023][zenodo_2023]) or calculated ([Larsen 2021][larsen_2021]). | MUST
 Military Grid Reference System (MGRS) | - 1x1 m (`33TWM2718256978`)<br>- 10x10 m (`33TWM27185697`)<br>- 100x100 m (`33TWM271569`)<br>- 1x1 km (`33TWM2756`)<br>- 10x10 km (`33TWM25`)<br>- 100x100 km (`33TWM`) | Worldwide coverage, excluding polar regions north of 84°N and south of 80°S. Derived from Universal Transverse Mercator (UTM), but grid codes consist of Grid Zone Designator (33T), 100 km Grid Square ID (WM) and numerical location ([Veness 2020][veness_2020]). | MUST
 
@@ -231,7 +231,7 @@ eventDate | minimum temporal uncertainty | Remarks
 
 A species could be well represented for a certain year and grid cell not because it is particularly established there, but because it was observed more (e.g. as result of a bioblitz or because it is a rare species observers seek out). To compensate for this sampling bias, it is important to know the sampling effort. For most cases, direct measures of sampling effort are not available, so one must rely on proxy measures to indicate sampling bias/effort.
 
-An easy metric is the total number of occurrences for a “target group” ([Botella et al. 2020][Botella_2020], [de Beer et al. 2023][debeer_2023]), a group at a higher taxonomic rank than the focal taxon. To avoid confusion with the term “group” as defined in [Dimensions](#dimensions), we will refer to this as “higher taxon”. For example, the higher taxon for the focal taxon _Vanessa atalanta_ could be the genus _Vanessa_, the family _Nymphalidae_, the order _Lepidoptera_, the class _Insecta_, the phylum _Arthropoda_ or the kingdom _Animalia_. It allows to calculate a relative occurrence count (i.e. the occurrence count of the focal taxon divided by the occurrence count of the higher taxon). See [GBIF Secretariat (2018)][gbif_2018] for an implementation that makes use of this to show relative observation trends. In addition to the number of occurrences, the number of days the higher taxon was observed and/or the number of observers that observed the higher taxon could also be provided.
+An easy metric is the total number of occurrences for a “target group” ([Botella et al. 2020][botella_2020], [de Beer et al. 2023][debeer_2023]), a group at a higher taxonomic rank than the focal taxon. To avoid confusion with the term “group” as defined in [Dimensions](#dimensions), we will refer to this as “higher taxon”. For example, the higher taxon for the focal taxon _Vanessa atalanta_ could be the genus _Vanessa_, the family _Nymphalidae_, the order _Lepidoptera_, the class _Insecta_, the phylum _Arthropoda_ or the kingdom _Animalia_. It allows to calculate a relative occurrence count (i.e. the occurrence count of the focal taxon divided by the occurrence count of the higher taxon). See [GBIF Secretariat (2018)][gbif_2018] for an implementation that makes use of this to show relative observation trends. In addition to the number of occurrences, the number of days the higher taxon was observed and/or the number of observers that observed the higher taxon could also be provided.
 
 1. The target occurrence count SHOULD be included per group to facilitate assessing sampling bias.
 2. This measure MUST be an integer value expressing the number of occurrences within a group (see [Table 8](#example-target-occurrence-counts)). Note that by dividing the occurrence count by the target occurrence count, one can calculate a relative count.
@@ -409,7 +409,7 @@ This service SHOULD embed the cube production software ([Cube production softwar
   
 <!-- references -->
 
-[Botella_2020]: https://doi.org/10.1371/journal.pone.0232078 "Botella C, Joly A, Monestiez P, Bonnet P, Munoz F (2020) Bias in presence-only niche models related to sampling effort and species niches: lessons for background point selection. PLoS One 15:e0232078."
+[botella_2020]: https://doi.org/10.1371/journal.pone.0232078 "Botella C, Joly A, Monestiez P, Bonnet P, Munoz F (2020) Bias in presence-only niche models related to sampling effort and species niches: lessons for background point selection. PLoS One 15:e0232078."
 
 [chamberlain_2023a]: https://cran.r-project.org/package=rgbif "Chamberlain S, Barve V, Mcglinn D, Oldoni D, Desmet P, Geffert L, Ram K (2023a) rgbif: Interface to the Global Biodiversity Information Facility API. R package version 3.7.7.2."
 
@@ -427,15 +427,15 @@ This service SHOULD embed the cube production software ([Cube production softwar
 
 [gbif_2022]: https://doi.org/10.15468/39omei "GBIF Secretariat (2022) GBIF Backbone Taxonomy. Checklist dataset accessed via GBIF.org on 2023-06-07."
 
-[gbif_2023a]: https://www.gbif.org/developer/occurrence#download "GBIF Secretariat (2023a) GBIF occurrence download API. Accessed on 2023-06-26."
+[gbif_2023a]: https://techdocs.gbif.org/en/openapi/v1/occurrence#/download "GBIF Secretariat (2023a) GBIF occurrence download API. Accessed on 2023-06-26."
 
-[gbif_2023b]: https://www.gbif.org/developer/occurrence#search "GBIF Secretariat (2023b) GBIF occurrence search. Accessed on 2023-06-26."
+[gbif_2023b]: https://techdocs.gbif.org/en/openapi/v1/occurrence#/search "GBIF Secretariat (2023b) GBIF occurrence search. Accessed on 2023-06-26."
 
 [groom_2018]: https://doi.org/10.1111/2041-210X.13078 "Groom QJ, Marsh CJ, Gavish Y, Kunin WE. (2018) How to predict fine resolution occupancy from coarse occupancy data. Methods Ecol Evol. 2018; 9: 2273– 2284."
 
 [kissling_2017]: https://doi.org/10.1111/brv.12359 "Kissling WD, Ahumada JA, Bowser A, Fernandez M, Fernández N, García EA, Guralnick RP, Isaac NJB, Kelling S, Los W, McRae L, Mihoub J-B, Obst M, Santamaria M, Skidmore AK, Williams KJ, Agosti D, Amariles D, Arvanitidis C, Bastin L, De Leo F, Egloff W, Elith J, Hobern D, Martin D, Pereira HM, Pesole G, Peterseil J, Saarenmaa H, Schigel D, Schmeller DS, Segata N, Turak E, Uhlir PF, Wee B, Hardisty AR (2018) Building essential biodiversity variables (EBVs) of species distribution and abundance at a global scale. Biol Rev, 93: 600-625."
 
-[larsen_2021]: https://towardsdatascience.com/geocoding-and-generalisations-41fa5652d34c "Larsen R (2021) Geocoding and generalisations. Accessed on 2023-06-07."
+[larsen_2021]: https://medium.com/towards-data-science/geocoding-and-generalisations-41fa5652d34c "Larsen R (2021) Geocoding and generalisations. Accessed on 2023-06-07."
 
 [larsen_2009]: https://doi.org/10.1111/j.1365-2028.2008.00997.x "Larsen R, Holmern T, Prager SD, Maliti H, Røskaft, E. (2009) Using the extended quarter degree grid cell system to unify mapping and sharing of biodiversity data. African Journal of Ecology, 47: 382-392."
 
@@ -459,6 +459,6 @@ This service SHOULD embed the cube production software ([Cube production softwar
 
 [waller_2019]: https://data-blog.gbif.org/post/gridded-datasets-update/ "Waller J (2019) Gridded Datasets Update. Accessed on 2023-06-13."
 
-[Wieczorek_2004]: https://doi.org/10.1080/13658810412331280211 "Wieczorek W, Guo G, Hijmans R (2004) The point-radius method for georeferencing locality descriptions and calculating associated uncertainty, International Journal of Geographical Information Science, 18:8, 745-767."
+[wieczorek_2004]: https://doi.org/10.1080/13658810412331280211 "Wieczorek W, Guo G, Hijmans R (2004) The point-radius method for georeferencing locality descriptions and calculating associated uncertainty, International Journal of Geographical Information Science, 18:8, 745-767."
 
 [zenodo_2023]: https://zenodo.org/communities/qdgc/ "Zenodo (2023) Quarter Degree Grid Cells community. Accessed on 2023-06-07."
