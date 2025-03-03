@@ -33,7 +33,10 @@ install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
 
 ## Getting started
 
-- Description of the indicator calculation workflow within the **b3verse**
+Occurrence cubes can be derived from GBIF data using the **rgbif** package or simulated using the **gcube** package.
+They are then processed using the `process_cube()` function from the **b3gbi** package.
+This ensures standardised input data across all indicator packages and verifies that the data format is correct.
+After cube processing, indicators can be calculated with **b3gbi**, **pdindicatoR** or **impIndicator**.
+The **dubicube** package can be used for uncertainty calculation via bootstrapping.
 
 <img src="/guides/b3verse/indicator_workflow.png" align="middle" alt="indicator workflow" width="800"/>
-
