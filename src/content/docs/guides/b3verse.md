@@ -59,5 +59,5 @@ It can also be applied to custom indicator functions.
 ### Example
 
 :::caution
-Comming soon
+Workflow example coming soon
 :::
