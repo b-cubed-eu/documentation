@@ -12,7 +12,15 @@ knit: (function(inputFile, ...) {
 
 <!-- b3verse.md is generated from b3verse.Rmd Please edit that file -->
 
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = file.path("../../../..", "public", "guides", "b3verse", "/"),
+  out.width = "80%",
+  dpi = 300
+)
+```
 
 This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
 
