@@ -29,14 +29,26 @@ pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Packa
 install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
 ```
 
-- overview of packages in **b3verse**
+The following packages are currently included:
+
+| Package | Description | GitHub repository |
+| :-----: | :---------- | :---------------- |
+| **rgbif** | Download occurrence cubes | <https://github.com/ropensci/rgbif> |
+| **gcube** | Simulation of occurrence cubes | <https://github.com/b-cubed-eu/gcube> |
+| **b3gbi** | Calculate general biodiversity indicators from occurrence cubes | <https://github.com/b-cubed-eu/b3gbi> |
+| **pdindicatoR** | Calculate phylogenetic indicators from occurrence cubes | <https://github.com/b-cubed-eu/pdindicatoR> |
+| **impIndicatoR** | Calculate alien impact indicators from occurrence cubes | <https://github.com/b-cubed-eu/impIndicatoR> |
+| **dubicube** | Data exploration for occurrence cubes and uncertainty calculation for indicators | <https://github.com/b-cubed-eu/dubicube> |
 
 ## Getting started
 
 Occurrence cubes can be derived from GBIF data using the **rgbif** package or simulated using the **gcube** package.
 They are then processed using the `process_cube()` function from the **b3gbi** package.
 This ensures standardised input data across all indicator packages and verifies that the data format is correct.
+Data exploration steps and can be performed with **dubicube**.
 After cube processing, indicators can be calculated with **b3gbi**, **pdindicatoR** or **impIndicator**.
-The **dubicube** package can be used for uncertainty calculation via bootstrapping.
+The **dubicube** package provides functionality for uncertainty estimation through bootstrapping.
+It is not strictly a dependency of the indicator calculation packages.
+It can also be applied to custom indicator functions.
 
 <img src="/guides/b3verse/indicator_workflow.png" align="middle" alt="indicator workflow" width="800"/>
