@@ -1,8 +1,14 @@
 ---
-title: Welcome to the b3verse! A collection of R packages for indicator calculation from occurrence cubes
+title: Welcome to the b3verse! A collection of R packages for indicator calculation
+  from occurrence cubes
 sidebar:
   label: The b3verse
   order: 6
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
 ---
 
 This guide outlines the integration and maintenance of R package software for calculating biodiversity indicators from occurrence cubes.
@@ -11,11 +17,12 @@ Suggestion citation:
 
 > Langeraert W, Desmet P, Toon Van Daele (2024). Welcome to the b3verse! A collection of R packages for indicator calculation from occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
 
-## What is the b3verse?
+## What is the b3verse? <img src="/guides/b3verse/b3verse_logo.png" align="right" height="139" alt="b3verse logo">
 
-- logo
-- The **b3verse** is a collection of related R packages that streamline indicator calculation, organize code, and simplify package management via its dedicated R-universe platform: <https://b-cubed-eu.r-universe.dev/>. ...
-- logo wall
+The **b3verse** is a collection of related R packages that streamline indicator calculation from occurrence cubes. These packages are accessible and maintained via a dedicated R-universe platform, ensuring continuous updates, easy distribution, and efficient installation (see further): <https://b-cubed-eu.r-universe.dev/>.
+
+<span id="figure-1"></span>
+![Logo wall of the b3verse](/guides/b3verse/logo_wall.png)
 
 ## Installation
 
