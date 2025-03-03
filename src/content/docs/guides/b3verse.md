@@ -56,6 +56,6 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 ### Example
 
-:::caution
+:::note
 Workflow example coming soon
 :::
