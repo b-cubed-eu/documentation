@@ -10,19 +10,23 @@ knit: (function(inputFile, ...) {
     output = gsub("Rmd", "md", inputFile)) })
 ---
 
+<!-- b3verse.md is generated from b3verse.Rmd Please edit that file -->
+
+
+
 This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
 
 Suggestion citation:
 
 > Langeraert W, Desmet P, Van Daele T (2025). Welcome to the b3verse! A collection of R packages for indicator calculation from occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
 
-<a href="https://b-cubed-eu.r-universe.dev/"><img src="/guides/b3verse/b3verse_logo.png" align="right" width="139" alt="b3verse logo" /></a>
+<a href="https://b-cubed-eu.r-universe.dev/"><img src="/guides/b3verse/b3verse-logo.png" align="right" width="139" alt="b3verse logo" /></a>
 
 ## What is the b3verse?
 
 The **b3verse** is a collection of related R packages that streamline indicator calculation from occurrence cubes. These packages are accessible and maintained via a [dedicated R-universe platform](https://b-cubed-eu.r-universe.dev/), ensuring continuous updates, easy distribution, and efficient [installation](#installation).
 
-<img src="/guides/b3verse/logo_wall.png" align="center" alt="b3verse logo wall" width="600"/>
+<img src="/guides/b3verse/logo-wall.png" align="center" alt="b3verse logo wall" width="600"/>
 
 ## Installation
 
@@ -56,7 +60,7 @@ Data exploration steps can be performed using **dubicube**.
 Once the data cubes are processed, indicators can be calculated with **b3gbi**, **pdindicatoR** or **impIndicator**.
 The **dubicube** package enables uncertainty estimation via bootstrapping. It is not a strict dependency of the indicator calculation packages, as it can also be used with custom indicator functions.
 
-<img src="/guides/b3verse/indicator_workflow.png" align="middle" alt="indicator workflow" width="800"/>
+<img src="/guides/b3verse/indicator-workflow.png" align="middle" alt="indicator workflow" width="800"/>
 
 ### Example
 
