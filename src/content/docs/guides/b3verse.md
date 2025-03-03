@@ -4,6 +4,10 @@ title: Welcome to the b3verse! A collection of R packages for indicator calculat
 sidebar:
   label: The b3verse
   order: 6
+knit: (function(inputFile, ...) {
+  knitr::knit(
+    input = inputFile,
+    output = gsub("Rmd", "md", inputFile)) })
 ---
 
 This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
