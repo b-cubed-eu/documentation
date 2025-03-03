@@ -6,7 +6,7 @@ sidebar:
   order: 6
 ---
 
-This guide outlines the integration and maintenance of R package software for calculating biodiversity indicators from occurrence cubes.
+This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
 
 Suggestion citation:
 
@@ -48,11 +48,9 @@ Note that any dependencies not available in mainstream repositories are also add
 Occurrence cubes can be derived from GBIF data using the **rgbif** package or simulated using the **gcube** package.
 They are then processed using the `process_cube()` function from the **b3gbi** package.
 This ensures standardised input data across all indicator packages and verifies that the data format is correct.
-Data exploration steps and can be performed with **dubicube**.
-After cube processing, indicators can be calculated with **b3gbi**, **pdindicatoR** or **impIndicator**.
-The **dubicube** package provides functionality for uncertainty estimation through bootstrapping.
-It is not strictly a dependency of the indicator calculation packages.
-It can also be applied to custom indicator functions.
+Data exploration steps can be performed using **dubicube**.
+Once the data cubes are processed, indicators can be calculated with **b3gbi**, **pdindicatoR** or **impIndicator**.
+The **dubicube** package enables uncertainty estimation via bootstrapping. It is not a strict dependency of the indicator calculation packages, as it can also be used with custom indicator functions.
 
 <img src="/guides/b3verse/indicator_workflow.png" align="middle" alt="indicator workflow" width="800"/>
 
