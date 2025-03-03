@@ -40,7 +40,10 @@ The following packages are currently included:
 | **impIndicatoR** | Calculate alien impact indicators from occurrence cubes | <https://github.com/b-cubed-eu/impIndicatoR> |
 | **dubicube** | Data exploration for occurrence cubes and uncertainty calculation for indicators | <https://github.com/b-cubed-eu/dubicube> |
 
+Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.  
+
 ## Getting started
+### The b3verse workflow
 
 Occurrence cubes can be derived from GBIF data using the **rgbif** package or simulated using the **gcube** package.
 They are then processed using the `process_cube()` function from the **b3gbi** package.
@@ -52,3 +55,9 @@ It is not strictly a dependency of the indicator calculation packages.
 It can also be applied to custom indicator functions.
 
 <img src="/guides/b3verse/indicator_workflow.png" align="middle" alt="indicator workflow" width="800"/>
+
+### Example
+
+:::caution
+Comming soon
+:::
