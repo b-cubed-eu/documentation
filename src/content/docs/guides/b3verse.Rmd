@@ -7,7 +7,7 @@ sidebar:
 knit: (function(inputFile, ...) {
   knitr::knit(
     input = inputFile,
-    output = gsub("Rmd", "md", inputFile)) })
+    output = gsub("Rmd$", "md", inputFile)) })
 ---
 
 <!-- b3verse.md is generated from b3verse.Rmd Please edit that file -->
