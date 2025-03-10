@@ -75,3 +75,15 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 :::note
 Workflow example coming soon
 :::
+
+## Contributing and reporting issues
+
+We welcome contributions to the **b3verse**! Each package in the collection has its own GitHub repository, where you can find contributing guidelines and report issues.  
+
+**How to contribute?**
+- Before contributing, check the "Contributing Guidelines" in the relevant repository (see the [table above](#installation) for links).  
+- Contributions can include bug fixes, feature requests, documentation improvements, or new functionality.  
+
+**Reporting bugs or suggesting improvements**
+- If you encounter an issue or have an idea for improvement, open an "issue" in the corresponding package repository.  
+- Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
