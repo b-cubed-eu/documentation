@@ -48,7 +48,19 @@ The following packages are currently included:
 | **impIndicatoR** | Calculate alien impact indicators from occurrence cubes | <https://github.com/b-cubed-eu/impIndicator> |
 | **dubicube** | Data exploration for occurrence cubes and uncertainty calculation for indicators | <https://github.com/b-cubed-eu/dubicube> |
 
-Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.  
+Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.
+
+## Contributing and reporting issues
+
+We welcome contributions to the **b3verse**! Each package in the collection has its own GitHub repository, where you can find contributing guidelines and report issues.  
+
+**How to contribute?**
+- Before contributing, check the "Contributing Guidelines" in the relevant repository (see the [table above](#installation) for links).  
+- Contributions can include bug fixes, feature requests, documentation improvements, or new functionality.  
+
+**Reporting bugs or suggesting improvements**
+- If you encounter an issue or have an idea for improvement, open an "issue" in the corresponding package repository.  
+- Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
 
 ## Getting started
 ### The b3verse workflow
@@ -271,16 +283,4 @@ bootstrap_occupancy <- dubicube::bootstrap_cube(
 )
 ```
 
-
-
-## Contributing and reporting issues
-
-We welcome contributions to the **b3verse**! Each package in the collection has its own GitHub repository, where you can find contributing guidelines and report issues.  
-
-**How to contribute?**
-- Before contributing, check the "Contributing Guidelines" in the relevant repository (see the [table above](#installation) for links).  
-- Contributions can include bug fixes, feature requests, documentation improvements, or new functionality.  
-
-**Reporting bugs or suggesting improvements**
-- If you encounter an issue or have an idea for improvement, open an "issue" in the corresponding package repository.  
-- Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
+...
