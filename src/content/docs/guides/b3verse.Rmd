@@ -82,9 +82,9 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 <img src="/guides/b3verse/indicator-workflow.png" align="middle" alt="indicator workflow" width="800"/>
 
-### Example
+### Example workflow
 
-We provide a short example of how an analysis workflow could look like using the **b3verse** packages.
+We provide a basic example of how an analysis workflow could look like using the **b3verse** packages.
 We use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around a simple indicator.
 
 ```{r, message=FALSE}
@@ -191,7 +191,6 @@ processed_cube <- b3gbi::process_cube(
   cols_minCoordinateUncertaintyInMeters = "min_coord_uncertainty"
 )
 
-# Content of cube
 processed_cube
 ```
 
@@ -210,7 +209,7 @@ where:
 ```{r}
 species_occupancy <- function(cube) {
   # Calculate total number of occupied cells
-  total_cells <- length(unique(cube[cube$obs > 1, ]$cellCode))
+  total_cells <- length(unique(cube[cube$obs > 0, ]$cellCode))
   
   # Calculate proportion of occupied cells per species per year
   cube %>%
@@ -220,10 +219,16 @@ species_occupancy <- function(cube) {
 }
 ```
 
-This gives the proportion of surveyed grid cells in which the species occurs.
-We use bootstrapping to calculate uncertainty around the estimates.
+This gives the proportion of grid cells in which the species occurs (column `diversity_val`).
 
 ```{r}
+species_occupancy(processed_cube$data)
+```
+
+We use bootstrapping to calculate uncertainty around the estimates. We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
+
+```{r}
+# Perform bootstrapping
 bootstrap_occupancy <- dubicube::bootstrap_cube(
   data_cube = processed_cube$data,
   fun = species_occupancy,
@@ -231,6 +236,18 @@ bootstrap_occupancy <- dubicube::bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+
+# Calculate BCa intervals
+ci_occupancy <- dubicube::calculate_bootstrap_ci(
+  bootstrap_samples_df = bootstrap_occupancy,
+  grouping_var = c("scientificName", "year"),
+  type = "bca",
+  conf = 0.95,
+  data_cube = processed_cube$data,
+  fun = species_occupancy
+)
+
+ci_occupancy
 ```
 
 ...

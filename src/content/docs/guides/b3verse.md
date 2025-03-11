@@ -74,9 +74,9 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 <img src="/guides/b3verse/indicator-workflow.png" align="middle" alt="indicator workflow" width="800"/>
 
-### Example
+### Example workflow
 
-We provide a short example of how an analysis workflow could look like using the **b3verse** packages.
+We provide a basic example of how an analysis workflow could look like using the **b3verse** packages.
 We use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around a simple indicator.
 
 
@@ -208,7 +208,6 @@ processed_cube <- b3gbi::process_cube(
   cols_minCoordinateUncertaintyInMeters = "min_coord_uncertainty"
 )
 
-# Content of cube
 processed_cube
 #> 
 #> Simulated data cube for calculating biodiversity indicators
@@ -259,7 +258,7 @@ where:
 ``` r
 species_occupancy <- function(cube) {
   # Calculate total number of occupied cells
-  total_cells <- length(unique(cube[cube$obs > 1, ]$cellCode))
+  total_cells <- length(unique(cube[cube$obs > 0, ]$cellCode))
   
   # Calculate proportion of occupied cells per species per year
   cube %>%
@@ -269,11 +268,36 @@ species_occupancy <- function(cube) {
 }
 ```
 
-This gives the proportion of surveyed grid cells in which the species occurs.
-We use bootstrapping to calculate uncertainty around the estimates.
+This gives the proportion of grid cells in which the species occurs (column `diversity_val`).
 
 
 ``` r
+species_occupancy(processed_cube$data)
+#> # A tibble: 15 × 3
+#>    scientificName  year diversity_val
+#>    <chr>          <dbl>         <dbl>
+#>  1 species_1          1         0.319
+#>  2 species_2          1         0.393
+#>  3 species_3          1         0.467
+#>  4 species_1          2         0.352
+#>  5 species_2          2         0.415
+#>  6 species_3          2         0.485
+#>  7 species_1          3         0.278
+#>  8 species_2          3         0.419
+#>  9 species_3          3         0.452
+#> 10 species_1          4         0.322
+#> 11 species_2          4         0.363
+#> 12 species_3          4         0.496
+#> 13 species_1          5         0.352
+#> 14 species_2          5         0.374
+#> 15 species_3          5         0.504
+```
+
+We use bootstrapping to calculate uncertainty around the estimates. We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
+
+
+``` r
+# Perform bootstrapping
 bootstrap_occupancy <- dubicube::bootstrap_cube(
   data_cube = processed_cube$data,
   fun = species_occupancy,
@@ -281,6 +305,65 @@ bootstrap_occupancy <- dubicube::bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+
+# Calculate BCa intervals
+ci_occupancy <- dubicube::calculate_bootstrap_ci(
+  bootstrap_samples_df = bootstrap_occupancy,
+  grouping_var = c("scientificName", "year"),
+  type = "bca",
+  conf = 0.95,
+  data_cube = processed_cube$data,
+  fun = species_occupancy
+)
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
+
+ci_occupancy
+#>    scientificName year est_original  est_boot    se_boot   bias_boot int_type
+#> 1       species_1    1    0.3185185 0.2049888 0.01661341 -0.11352969      bca
+#> 2       species_1    2    0.3518519 0.2266638 0.01726680 -0.12518807      bca
+#> 3       species_1    3    0.2777778 0.1789401 0.01560733 -0.09883765      bca
+#> 4       species_1    4    0.3222222 0.2074735 0.01675354 -0.11474873      bca
+#> 5       species_1    5    0.3518519 0.2262592 0.01747016 -0.12559263      bca
+#> 6       species_2    1    0.3925926 0.2516493 0.01906814 -0.14094327      bca
+#> 7       species_2    2    0.4148148 0.2673636 0.01918003 -0.14745120      bca
+#> 8       species_2    3    0.4185185 0.2693835 0.01878948 -0.14913497      bca
+#> 9       species_2    4    0.3629630 0.2330578 0.01787723 -0.12990519      bca
+#> 10      species_2    5    0.3740741 0.2403890 0.01849072 -0.13368508      bca
+#> 11      species_3    1    0.4666667 0.3010178 0.02022130 -0.16564886      bca
+#> 12      species_3    2    0.4851852 0.3115613 0.02122881 -0.17362386      bca
+#> 13      species_3    3    0.4518519 0.2909457 0.02027434 -0.16090611      bca
+#> 14      species_3    4    0.4962963 0.3195821 0.02102830 -0.17671417      bca
+#> 15      species_3    5    0.5037037 0.3235444 0.02237582 -0.18015926      bca
+#>    conf ll ul
+#> 1  0.95 NA NA
+#> 2  0.95 NA NA
+#> 3  0.95 NA NA
+#> 4  0.95 NA NA
+#> 5  0.95 NA NA
+#> 6  0.95 NA NA
+#> 7  0.95 NA NA
+#> 8  0.95 NA NA
+#> 9  0.95 NA NA
+#> 10 0.95 NA NA
+#> 11 0.95 NA NA
+#> 12 0.95 NA NA
+#> 13 0.95 NA NA
+#> 14 0.95 NA NA
+#> 15 0.95 NA NA
 ```
 
 ...
