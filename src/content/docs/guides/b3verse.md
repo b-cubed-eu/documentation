@@ -64,9 +64,214 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 ### Example
 
-:::note
-Workflow example coming soon
-:::
+We provide a short example of how an analysis workflow could look like using the **b3verse** packages.
+We use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around a simple indicator.
+
+
+``` r
+# Load packages
+library(gcube)     # simulate occurrence cubes
+library(b3gbi)     # process occurrence cubes
+library(dubicube)  # uncertainty calculation for occurrence cubes
+
+library(sf)        # work with spatial objects
+library(dplyr)     # data wrangling
+library(ggplot2)   # data visualisation
+```
+
+**Simulate occurrence cube**
+
+As input, we create a polygon in which we simulate occurrences.
+It represents the spatial extend of the species.
+We also need a grid.
+Each observation will be designated to a grid cell.
+
+
+``` r
+# Create polygon
+polygon <- st_polygon(list(cbind(c(500, 1000, 1000, 600, 200, 100, 500),
+                                 c(200, 100, 700, 1000, 900, 500, 200))))
+
+# Create grid
+cube_grid <- st_make_grid(
+  st_buffer(polygon, 50),
+  n = c(20, 20),
+  square = TRUE) %>%
+  st_sf()
+
+# Visualise
+ggplot() +
+  geom_sf(data = polygon) +
+  geom_sf(data = cube_grid, alpha = 0) +
+  theme_minimal()
+```
+
+![plot of chunk unnamed-chunk-3](../../../../public/guides/b3verse/unnamed-chunk-3-1.png)
+
+We simulate three species for 5 time points where each species has a different average total number of occurrences at time point one and a different spatial clustering (see also [this tutoria](https://b-cubed-eu.github.io/gcube/articles/multi-species-approach.html)).
+
+
+``` r
+# Create dataframe with simulation function arguments
+multi_species_args <- tibble(
+  species = paste("species", 1:3, sep = "_"),
+  species_key = 1:3,
+  species_range = rep(list(polygon), 3),
+  initial_average_occurrences = c(300, 400, 500),
+  n_time_points = rep(5, 3),
+  temporal_function = c(NA, simulate_random_walk, NA),
+  sd_step = c(NA, 10, NA),
+  spatial_pattern = c("random", "clustered", "clustered"),
+  coords_uncertainty_meters = 25,
+  grid = rep(list(cube_grid), 3),
+  seed = 123
+)
+
+# How does this dataframe look like?
+glimpse(multi_species_args)
+#> Rows: 3
+#> Columns: 11
+#> $ species                     <chr> "species_1", "species_2", "species_3"
+#> $ species_key                 <int> 1, 2, 3
+#> $ species_range               <list> [POLYGON ((500 200, 1000 100...], [POLYGON…
+#> $ initial_average_occurrences <dbl> 300, 400, 500
+#> $ n_time_points               <dbl> 5, 5, 5
+#> $ temporal_function           <list> NA, function (initial_average_occurrences …
+#> $ sd_step                     <dbl> NA, 10, NA
+#> $ spatial_pattern             <chr> "random", "clustered", "clustered"
+#> $ coords_uncertainty_meters   <dbl> 25, 25, 25
+#> $ grid                        <list> [<sf[400 x 1]>], [<sf[400 x 1]>], [<sf[40…
+#> $ seed                        <dbl> 123, 123, 123
+```
+
+We simulate the datacube with these arguments.
+
+
+``` r
+# Simulate occurrence cube
+occurrence_cube_full <- multi_species_args %>%
+  gcube::map_simulate_occurrences() %>%
+  gcube::map_sample_observations() %>%
+  gcube::map_filter_observations() %>%
+  gcube::map_add_coordinate_uncertainty() %>%
+  gcube::map_grid_designation(nested = FALSE)
+#> [1] [using unconditional Gaussian simulation]
+#> [2] [using unconditional Gaussian simulation]
+#> [3] [using unconditional Gaussian simulation]
+
+# Select relevant columns
+occurrence_cube_df <- occurrence_cube_full %>%
+  select("cell_code", "time_point", "species", "species_key", "n",
+         "min_coord_uncertainty")
+
+# Visualise
+occurrence_cube_df %>%
+  summarise(n_obs = sum(n),
+            .by = c(species, time_point)) %>%
+  ggplot(aes(x = time_point, y = n_obs, colour = species)) +
+  geom_point(size = 3) +
+  geom_line() +
+  labs(x = "time point", y = "total number of observations") +
+  theme_minimal()
+```
+
+![plot of chunk unnamed-chunk-5](../../../../public/guides/b3verse/unnamed-chunk-5-1.png)
+
+**Process occurrence cube**
+
+We process our simulated cube using the `process_cube()` function from the **b3gbi** package.
+This ensures standarisation and verifies a correct data format.
+
+
+``` r
+# Process cube
+processed_cube <- b3gbi::process_cube(
+  cube_name = occurrence_cube_df,
+  grid_type = "custom",
+  cols_cellCode = "cell_code",
+  cols_year = "time_point",
+  cols_species = "species",
+  cols_speciesKey = "species_key",
+  cols_occurrences = "n",
+  cols_minCoordinateUncertaintyInMeters = "min_coord_uncertainty"
+)
+
+# Content of cube
+processed_cube
+#> 
+#> Simulated data cube for calculating biodiversity indicators
+#> 
+#> Date Range: 1 - 5 
+#> Number of cells: 400 
+#> Grid reference system: custom 
+#> Coordinate range:
+#> [1] "Coordinates not provided"
+#> 
+#> Total number of observations: 6012 
+#> Number of species represented: 3 
+#> Number of families represented: Data not present 
+#> 
+#> Kingdoms represented: Data not present 
+#> 
+#> First 10 rows of data (use n = to show more):
+#> 
+#> # A tibble: 6,000 × 6
+#>    cellCode  year scientificName taxonKey   obs minCoordinateUncertaintyInMeters
+#>    <chr>    <dbl> <chr>             <dbl> <dbl>                            <dbl>
+#>  1 105          1 species_1             1     1                               25
+#>  2 108          1 species_1             1     1                               25
+#>  3 109          1 species_1             1     1                               25
+#>  4 110          1 species_1             1     1                               25
+#>  5 111          1 species_1             1     2                               25
+#>  6 112          1 species_1             1     3                               25
+#>  7 113          1 species_1             1     2                               25
+#>  8 117          1 species_1             1     2                               25
+#>  9 118          1 species_1             1     1                               25
+#> 10 119          1 species_1             1     1                               25
+#> # ℹ 5,990 more rows
+```
+
+**Indicator calculation**
+
+Finally, we calculate a simple indicator: occupancy ($O_{s,y}$) of species $s$ in year $y$.
+
+$$
+O_{s,y} = \frac{N_{s,y}}{N_{\text{total}}}
+$$
+
+where:  
+- $N_{s,y}$ is the number of grid cells where species $s$ is present in year $y$
+- $N_{\text{total}}$ is the total number of grid cells where any species was present in any year
+
+
+``` r
+species_occupancy <- function(cube) {
+  # Calculate total number of occupied cells
+  total_cells <- length(unique(cube[cube$obs > 1, ]$cellCode))
+  
+  # Calculate proportion of occupied cells per species per year
+  cube %>%
+    filter(obs > 1) %>%
+    summarise(diversity_val = n_distinct(cellCode) / total_cells,
+              .by = c(scientificName, year))
+}
+```
+
+This gives the proportion of surveyed grid cells in which the species occurs.
+We use bootstrapping to calculate uncertainty around the estimates.
+
+
+``` r
+bootstrap_occupancy <- dubicube::bootstrap_cube(
+  data_cube = processed_cube$data,
+  fun = species_occupancy,
+  grouping_var = c("scientificName", "year"),
+  samples = 1000,
+  seed = 123
+)
+```
+
+
 
 ## Contributing and reporting issues
 
