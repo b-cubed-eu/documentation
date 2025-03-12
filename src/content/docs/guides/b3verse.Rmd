@@ -84,8 +84,11 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 ### Example workflow
 
-We provide a basic example of how an analysis workflow could look like using the **b3verse** packages.
-We use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around a simple indicator.
+We provide a basic example of an analysis workflow using the **b3verse** packages.
+This example demonstrates the process but is not intended as a best-practice analysis.
+For more detailed guidance, refer to the package tutorials.  
+
+In this workflow, we use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around indicator estimates.
 
 ```{r, message=FALSE}
 # Load packages
@@ -163,14 +166,7 @@ occurrence_cube_df <- occurrence_cube_full %>%
          "min_coord_uncertainty")
 
 # Visualise
-occurrence_cube_df %>%
-  summarise(n_obs = sum(n),
-            .by = c(species, time_point)) %>%
-  ggplot(aes(x = time_point, y = n_obs, colour = species)) +
-  geom_point(size = 3) +
-  geom_line() +
-  labs(x = "time point", y = "total number of observations") +
-  theme_minimal()
+glimpse(occurrence_cube_df)
 ```
 
 **Process occurrence cube**
@@ -196,25 +192,13 @@ processed_cube
 
 **Indicator calculation**
 
-Finally, we calculate a simple indicator: occupancy ($O_{s,y}$) of species $s$ in year $y$.
-
-$$
-O_{s,y} = \frac{N_{s,y}}{N_{\text{total}}}
-$$
-
-where:  
-- $N_{s,y}$ is the number of grid cells where species $s$ is present in year $y$
-- $N_{\text{total}}$ is the total number of grid cells where any species was present in any year
+Finally, we calculate a simple indicator: the total number of observations per species per year.
 
 ```{r}
-species_occupancy <- function(cube) {
-  # Calculate total number of occupied cells
-  total_cells <- length(unique(cube[cube$obs > 0, ]$cellCode))
-  
-  # Calculate proportion of occupied cells per species per year
+species_observations <- function(cube) {
+  # Calculate the number of observations per species per year
   cube %>%
-    filter(obs > 1) %>%
-    summarise(diversity_val = n_distinct(cellCode) / total_cells,
+    summarise(diversity_val = sum(obs),
               .by = c(scientificName, year))
 }
 ```
@@ -222,32 +206,43 @@ species_occupancy <- function(cube) {
 This gives the proportion of grid cells in which the species occurs (column `diversity_val`).
 
 ```{r}
-species_occupancy(processed_cube$data)
+species_observations(processed_cube$data)
 ```
 
-We use bootstrapping to calculate uncertainty around the estimates. We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
+We use bootstrapping to calculate uncertainty around the estimates.
+We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
 
 ```{r}
 # Perform bootstrapping
-bootstrap_occupancy <- dubicube::bootstrap_cube(
+bootstrap_observations <- dubicube::bootstrap_cube(
   data_cube = processed_cube$data,
-  fun = species_occupancy,
+  fun = species_observations,
   grouping_var = c("scientificName", "year"),
   samples = 1000,
   seed = 123
 )
 
 # Calculate BCa intervals
-ci_occupancy <- dubicube::calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_occupancy,
+ci_observations <- dubicube::calculate_bootstrap_ci(
+  bootstrap_samples_df = bootstrap_observations,
   grouping_var = c("scientificName", "year"),
   type = "bca",
   conf = 0.95,
   data_cube = processed_cube$data,
-  fun = species_occupancy
+  fun = species_observations
 )
 
-ci_occupancy
+ci_observations
 ```
 
-...
+We visualise the results.
+
+```{r}
+ci_observations %>%
+  ggplot(aes(x = year, y = est_original, colour = scientificName)) +
+      geom_errorbar(aes(ymin = ll, ymax = ul),
+                    linewidth = 0.8, position = position_dodge(1)) +
+      geom_point(size = 3, position = position_dodge(1)) +
+      labs(y = "number of observations", x = "time point", colour = "species") +
+      theme_minimal()
+```

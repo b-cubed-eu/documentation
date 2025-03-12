@@ -76,8 +76,11 @@ The **dubicube** package enables uncertainty estimation via bootstrapping. It is
 
 ### Example workflow
 
-We provide a basic example of how an analysis workflow could look like using the **b3verse** packages.
-We use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around a simple indicator.
+We provide a basic example of an analysis workflow using the **b3verse** packages.
+This example demonstrates the process but is not intended as a best-practice analysis.
+For more detailed guidance, refer to the package tutorials.  
+
+In this workflow, we use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around indicator estimates.
 
 
 ``` r
@@ -177,17 +180,16 @@ occurrence_cube_df <- occurrence_cube_full %>%
          "min_coord_uncertainty")
 
 # Visualise
-occurrence_cube_df %>%
-  summarise(n_obs = sum(n),
-            .by = c(species, time_point)) %>%
-  ggplot(aes(x = time_point, y = n_obs, colour = species)) +
-  geom_point(size = 3) +
-  geom_line() +
-  labs(x = "time point", y = "total number of observations") +
-  theme_minimal()
+glimpse(occurrence_cube_df)
+#> Rows: 6,000
+#> Columns: 6
+#> $ cell_code             <chr> "105", "108", "109", "110", "111", "112", "113",…
+#> $ time_point            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+#> $ species               <chr> "species_1", "species_1", "species_1", "species_…
+#> $ species_key           <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+#> $ n                     <int> 1, 1, 1, 1, 2, 3, 2, 2, 1, 1, 2, 2, 3, 2, 2, 2, …
+#> $ min_coord_uncertainty <dbl> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, …
 ```
-
-![plot of chunk unnamed-chunk-5](../../../../public/guides/b3verse/unnamed-chunk-5-1.png)
 
 **Process occurrence cube**
 
@@ -244,26 +246,14 @@ processed_cube
 
 **Indicator calculation**
 
-Finally, we calculate a simple indicator: occupancy ($O_{s,y}$) of species $s$ in year $y$.
-
-$$
-O_{s,y} = \frac{N_{s,y}}{N_{\text{total}}}
-$$
-
-where:  
-- $N_{s,y}$ is the number of grid cells where species $s$ is present in year $y$
-- $N_{\text{total}}$ is the total number of grid cells where any species was present in any year
+Finally, we calculate a simple indicator: the total number of observations per species per year.
 
 
 ``` r
-species_occupancy <- function(cube) {
-  # Calculate total number of occupied cells
-  total_cells <- length(unique(cube[cube$obs > 0, ]$cellCode))
-  
-  # Calculate proportion of occupied cells per species per year
+species_observations <- function(cube) {
+  # Calculate the number of observations per species per year
   cube %>%
-    filter(obs > 1) %>%
-    summarise(diversity_val = n_distinct(cellCode) / total_cells,
+    summarise(diversity_val = sum(obs),
               .by = c(scientificName, year))
 }
 ```
@@ -272,98 +262,97 @@ This gives the proportion of grid cells in which the species occurs (column `div
 
 
 ``` r
-species_occupancy(processed_cube$data)
+species_observations(processed_cube$data)
 #> # A tibble: 15 × 3
 #>    scientificName  year diversity_val
 #>    <chr>          <dbl>         <dbl>
-#>  1 species_1          1         0.319
-#>  2 species_2          1         0.393
-#>  3 species_3          1         0.467
-#>  4 species_1          2         0.352
-#>  5 species_2          2         0.415
-#>  6 species_3          2         0.485
-#>  7 species_1          3         0.278
-#>  8 species_2          3         0.419
-#>  9 species_3          3         0.452
-#> 10 species_1          4         0.322
-#> 11 species_2          4         0.363
-#> 12 species_3          4         0.496
-#> 13 species_1          5         0.352
-#> 14 species_2          5         0.374
-#> 15 species_3          5         0.504
+#>  1 species_1          1           290
+#>  2 species_2          1           402
+#>  3 species_3          1           487
+#>  4 species_1          2           320
+#>  5 species_2          2           428
+#>  6 species_3          2           526
+#>  7 species_1          3           270
+#>  8 species_2          3           401
+#>  9 species_3          3           462
+#> 10 species_1          4           302
+#> 11 species_2          4           382
+#> 12 species_3          4           502
+#> 13 species_1          5           329
+#> 14 species_2          5           373
+#> 15 species_3          5           538
 ```
 
-We use bootstrapping to calculate uncertainty around the estimates. We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
+We use bootstrapping to calculate uncertainty around the estimates.
+We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
 
 
 ``` r
 # Perform bootstrapping
-bootstrap_occupancy <- dubicube::bootstrap_cube(
+bootstrap_observations <- dubicube::bootstrap_cube(
   data_cube = processed_cube$data,
-  fun = species_occupancy,
+  fun = species_observations,
   grouping_var = c("scientificName", "year"),
   samples = 1000,
   seed = 123
 )
 
 # Calculate BCa intervals
-ci_occupancy <- dubicube::calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_occupancy,
+ci_observations <- dubicube::calculate_bootstrap_ci(
+  bootstrap_samples_df = bootstrap_observations,
   grouping_var = c("scientificName", "year"),
   type = "bca",
   conf = 0.95,
   data_cube = processed_cube$data,
-  fun = species_occupancy
+  fun = species_observations
 )
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
-#> Warning in FUN(X[[i]], ...): Estimated adjustment 'z0' is infinite.
 
-ci_occupancy
-#>    scientificName year est_original  est_boot    se_boot   bias_boot int_type
-#> 1       species_1    1    0.3185185 0.2049888 0.01661341 -0.11352969      bca
-#> 2       species_1    2    0.3518519 0.2266638 0.01726680 -0.12518807      bca
-#> 3       species_1    3    0.2777778 0.1789401 0.01560733 -0.09883765      bca
-#> 4       species_1    4    0.3222222 0.2074735 0.01675354 -0.11474873      bca
-#> 5       species_1    5    0.3518519 0.2262592 0.01747016 -0.12559263      bca
-#> 6       species_2    1    0.3925926 0.2516493 0.01906814 -0.14094327      bca
-#> 7       species_2    2    0.4148148 0.2673636 0.01918003 -0.14745120      bca
-#> 8       species_2    3    0.4185185 0.2693835 0.01878948 -0.14913497      bca
-#> 9       species_2    4    0.3629630 0.2330578 0.01787723 -0.12990519      bca
-#> 10      species_2    5    0.3740741 0.2403890 0.01849072 -0.13368508      bca
-#> 11      species_3    1    0.4666667 0.3010178 0.02022130 -0.16564886      bca
-#> 12      species_3    2    0.4851852 0.3115613 0.02122881 -0.17362386      bca
-#> 13      species_3    3    0.4518519 0.2909457 0.02027434 -0.16090611      bca
-#> 14      species_3    4    0.4962963 0.3195821 0.02102830 -0.17671417      bca
-#> 15      species_3    5    0.5037037 0.3235444 0.02237582 -0.18015926      bca
-#>    conf ll ul
-#> 1  0.95 NA NA
-#> 2  0.95 NA NA
-#> 3  0.95 NA NA
-#> 4  0.95 NA NA
-#> 5  0.95 NA NA
-#> 6  0.95 NA NA
-#> 7  0.95 NA NA
-#> 8  0.95 NA NA
-#> 9  0.95 NA NA
-#> 10 0.95 NA NA
-#> 11 0.95 NA NA
-#> 12 0.95 NA NA
-#> 13 0.95 NA NA
-#> 14 0.95 NA NA
-#> 15 0.95 NA NA
+ci_observations
+#>    scientificName year est_original est_boot  se_boot bias_boot int_type conf
+#> 1       species_1    1          290  290.105 24.46022     0.105      bca 0.95
+#> 2       species_1    2          320  321.075 26.30561     1.075      bca 0.95
+#> 3       species_1    3          270  270.229 22.48569     0.229      bca 0.95
+#> 4       species_1    4          302  302.541 25.74146     0.541      bca 0.95
+#> 5       species_1    5          329  329.187 26.90535     0.187      bca 0.95
+#> 6       species_2    1          402  401.399 35.75847    -0.601      bca 0.95
+#> 7       species_2    2          428  428.076 37.34537     0.076      bca 0.95
+#> 8       species_2    3          401  401.521 33.43716     0.521      bca 0.95
+#> 9       species_2    4          382  379.198 33.83018    -2.802      bca 0.95
+#> 10      species_2    5          373  374.539 35.58917     1.539      bca 0.95
+#> 11      species_3    1          487  488.132 41.80905     1.132      bca 0.95
+#> 12      species_3    2          526  526.244 45.72784     0.244      bca 0.95
+#> 13      species_3    3          462  461.012 40.02179    -0.988      bca 0.95
+#> 14      species_3    4          502  503.143 40.87546     1.143      bca 0.95
+#> 15      species_3    5          538  536.906 45.84350    -1.094      bca 0.95
+#>          ll       ul
+#> 1  246.7550 343.0000
+#> 2  271.0000 373.0000
+#> 3  228.6241 316.2085
+#> 4  252.6628 352.6329
+#> 5  279.1095 387.0513
+#> 6  338.4143 485.4423
+#> 7  361.6378 512.0000
+#> 8  340.7850 473.1140
+#> 9  319.9624 456.0000
+#> 10 308.3428 446.0000
+#> 11 401.9035 563.2030
+#> 12 440.0000 626.4637
+#> 13 384.7805 544.3632
+#> 14 426.0000 582.5442
+#> 15 453.3883 635.0000
 ```
 
-...
+We visualise the results.
+
+
+``` r
+ci_observations %>%
+  ggplot(aes(x = year, y = est_original, colour = scientificName)) +
+      geom_errorbar(aes(ymin = ll, ymax = ul),
+                    linewidth = 0.8, position = position_dodge(1)) +
+      geom_point(size = 3, position = position_dodge(1)) +
+      labs(y = "number of observations", x = "time point", colour = "species") +
+      theme_minimal()
+```
+
+![plot of chunk unnamed-chunk-10](../../../../public/guides/b3verse/unnamed-chunk-10-1.png)
