@@ -107,7 +107,7 @@ It represents the spatial extend of the species.
 We also need a grid.
 Each observation will be designated to a grid cell.
 
-```{r, fig.height=4}
+```{r species-range-grid, fig.height=4}
 # Create polygon
 polygon <- st_polygon(list(cbind(c(500, 1000, 1000, 600, 200, 100, 500),
                                  c(200, 100, 700, 1000, 900, 500, 200))))
@@ -236,7 +236,7 @@ ci_observations
 
 We visualise the results.
 
-```{r}
+```{r indicator-trends}
 ci_observations %>%
   ggplot(aes(x = year, y = est_original, colour = scientificName)) +
       geom_errorbar(aes(ymin = ll, ymax = ul),

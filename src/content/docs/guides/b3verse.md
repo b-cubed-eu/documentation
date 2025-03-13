@@ -120,7 +120,7 @@ ggplot() +
   theme_minimal()
 ```
 
-![plot of chunk unnamed-chunk-3](../../../../public/guides/b3verse/unnamed-chunk-3-1.png)
+![plot of chunk species-range-grid](../../../../public/guides/b3verse/species-range-grid-1.png)
 
 We simulate three species for 5 time points where each species has a different average total number of occurrences at time point one and a different spatial clustering (see also [this tutorial](https://b-cubed-eu.github.io/gcube/articles/multi-species-approach.html)).
 
@@ -354,4 +354,4 @@ ci_observations %>%
       theme_minimal()
 ```
 
-![plot of chunk unnamed-chunk-10](../../../../public/guides/b3verse/unnamed-chunk-10-1.png)
+![plot of chunk indicator-trends](../../../../public/guides/b3verse/indicator-trends-1.png)
