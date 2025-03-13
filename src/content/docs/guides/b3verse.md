@@ -39,7 +39,7 @@ install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
 The following packages are currently included:
 
 | Package | Description | GitHub repository |
-| :----- | :---------- | :---------------- |
+| :-----  | :---------- | :---------------- |
 | **rgbif** | Download occurrence cubes | <https://github.com/ropensci/rgbif> |
 | **gcube** | Simulation of occurrence cubes | <https://github.com/b-cubed-eu/gcube> |
 | **b3gbi** | Calculate general biodiversity indicators from occurrence cubes | <https://github.com/b-cubed-eu/b3gbi> |
@@ -79,7 +79,7 @@ We provide a basic example of an analysis workflow using the **b3verse** package
 This example demonstrates the process but is not intended as a best-practice analysis.
 For more detailed guidance, refer to the package tutorials.  
 
-In this workflow, we use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.3.2 to calculate uncertainty around indicator estimates.
+In this workflow, we use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.4.0 to calculate uncertainty around indicator estimates.
 
 
 ``` r
