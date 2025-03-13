@@ -1,8 +1,7 @@
 ---
-title: Welcome to the b3verse! A collection of R packages for indicator calculation
-  from occurrence cubes
+title: "b3verse: A collection of R packages to calculate indicators from occurrence cubes"
 sidebar:
-  label: The b3verse
+  label: b3verse
   order: 6
 knit: (function(inputFile, ...) {
   knitr::knit(
@@ -18,7 +17,7 @@ This guide provides an overview of the integration and maintenance of R packages
 
 Suggestion citation:
 
-> Langeraert W, Desmet P, Van Daele T (2025). Welcome to the b3verse! A collection of R packages for indicator calculation from occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
+> Langeraert W, Desmet P, Van Daele T (2025). b3verse: A collection of R packages to calculate indicators from occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
 
 <a href="https://b-cubed-eu.r-universe.dev/"><img src="/guides/b3verse/b3verse-logo.png" align="right" width="139" alt="b3verse logo" /></a>
 
@@ -40,7 +39,7 @@ install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
 The following packages are currently included:
 
 | Package | Description | GitHub repository |
-| :-----: | :---------- | :---------------- |
+| :----- | :---------- | :---------------- |
 | **rgbif** | Download occurrence cubes | <https://github.com/ropensci/rgbif> |
 | **gcube** | Simulation of occurrence cubes | <https://github.com/b-cubed-eu/gcube> |
 | **b3gbi** | Calculate general biodiversity indicators from occurrence cubes | <https://github.com/b-cubed-eu/b3gbi> |
@@ -94,7 +93,7 @@ library(dplyr)     # data wrangling
 library(ggplot2)   # data visualisation
 ```
 
-**Simulate occurrence cube**
+#### Simulate occurrence cube
 
 As input, we create a polygon in which we simulate occurrences.
 It represents the spatial extend of the species.
@@ -123,7 +122,7 @@ ggplot() +
 
 ![plot of chunk unnamed-chunk-3](../../../../public/guides/b3verse/unnamed-chunk-3-1.png)
 
-We simulate three species for 5 time points where each species has a different average total number of occurrences at time point one and a different spatial clustering (see also [this tutoria](https://b-cubed-eu.github.io/gcube/articles/multi-species-approach.html)).
+We simulate three species for 5 time points where each species has a different average total number of occurrences at time point one and a different spatial clustering (see also [this tutorial](https://b-cubed-eu.github.io/gcube/articles/multi-species-approach.html)).
 
 
 ``` r
@@ -191,7 +190,7 @@ glimpse(occurrence_cube_df)
 #> $ min_coord_uncertainty <dbl> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, …
 ```
 
-**Process occurrence cube**
+#### Process occurrence cube
 
 We process our simulated cube using the `process_cube()` function from the **b3gbi** package.
 This ensures standarisation and verifies a correct data format.
@@ -244,7 +243,7 @@ processed_cube
 #> # ℹ 5,990 more rows
 ```
 
-**Indicator calculation**
+#### Indicator calculation
 
 Finally, we calculate a simple indicator: the total number of observations per species per year.
 
