@@ -13,6 +13,14 @@ knit: (function(inputFile, ...) {
 
 
 
+<p align="left">
+  <a href="https://b-cubed-eu.r-universe.dev/"><img src="https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4" alt="name status badge" style="display:inline-block;"></a>
+  <a href="https://b-cubed-eu.r-universe.dev/"><img src="https://b-cubed-eu.r-universe.dev/badges/:registry" alt="registry status badge" style="display:inline-block;"></a>
+  <a href="https://b-cubed-eu.r-universe.dev/packages"><img src="https://b-cubed-eu.r-universe.dev/badges/:packages" alt="packages status badge" style="display:inline-block;"></a>
+  <a href="https://b-cubed-eu.r-universe.dev/articles"><img src="https://b-cubed-eu.r-universe.dev/badges/:articles" alt="articles status badge" style="display:inline-block;"></a>
+  <a href="https://b-cubed-eu.r-universe.dev/datasets"><img src="https://b-cubed-eu.r-universe.dev/badges/:datasets" alt="datasets status badge" style="display:inline-block;"></a>
+</p>
+
 This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
 
 Suggestion citation:
