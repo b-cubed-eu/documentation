@@ -257,7 +257,7 @@ species_observations <- function(cube) {
 }
 ```
 
-This gives the proportion of grid cells in which the species occurs (column `diversity_val`).
+The values are calculated and added to a new column `diversity_val`.
 
 
 ``` r
