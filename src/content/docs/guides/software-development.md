@@ -339,9 +339,10 @@ Starting from release 1.0, authors MUST also publish their releases on Zenodo. Z
 1. Log in on [Zenodo](https://zenodo.org/).
 2. Go to 'GitHub' in your account settings.
 3. Find your repository, and flip the toggle to 'on'.
-4. Tune your repository metadata for Zenodo using a `.zenodo.json` file.
-5. Create a release on your GitHub repository. This triggers a Zenodo publication.
+4. Create a release on your GitHub repository. This triggers a Zenodo publication.
 
+Repository metadata is picked up from the `CITATION.cff` file (follow the [Add a CITATION.cff file](#repo-citation-cff) instructions).
+You can also tune your repository metadata for Zenodo using a `.zenodo.json` file (optional).
 See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
 
 ### Data products {#versioning-data-products}
