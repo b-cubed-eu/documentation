@@ -2,7 +2,7 @@
 title: B-Cubed software development guide
 sidebar:
   label: Software development guide
-  order: 1
+  order: 2
 ---
 
 This guide specifies high-level requirements for software, computational tools and resources developed for B-Cubed (referred to in the sections as "software") to ensure that the produced software meets the intended quality, openness, portability and reusability.
