@@ -1,3 +1,14 @@
+---
+title: How to build a species occurrence cube from a GBIF checklist
+sidebar:
+  label: Build a cloud native data cube
+  order: 5
+---
+
+Suggestion citation:
+
+> Trekels M 2025). Converting GBIF data cubes in cloud native data formats. <https://docs.b-cubed.eu/tutorials/conversion-cube-to-zarr/>
+
 # Using B3 data cubes on AWS S3 storage
 This tutorial is going step by step over the creation of two additional data formats to store the B3 data cubes. We are focusing on GeoParquet and Zarr as potential candidates that contain the geometry within the files. 0
 
