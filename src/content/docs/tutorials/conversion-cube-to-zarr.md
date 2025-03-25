@@ -1,5 +1,5 @@
 ---
-title: How to build a species occurrence cube from a GBIF checklist
+title: Converting GBIF data cubes in cloud-native data formats
 sidebar:
   label: Build a cloud native data cube
   order: 5
