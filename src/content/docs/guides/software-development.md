@@ -334,7 +334,16 @@ Major and minor versions MUST have an associated GitHub release:
 1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
 2. Use the semantic version number for the tag (e.g. `0.1`, `1.1.1`)
 
-Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated. See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
+Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
+
+1. Log in on [Zenodo](https://zenodo.org/).
+2. Go to 'GitHub' in your account settings.
+3. Find your repository, and flip the toggle to 'on'.
+4. Create a release on your GitHub repository. This triggers a Zenodo publication.
+
+Repository metadata is picked up from the `CITATION.cff` file (follow the [Add a CITATION.cff file](#repo-citation-cff) instructions).
+You can also tune your repository metadata for Zenodo using a `.zenodo.json` file (optional).
+See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
 
 ### Data products {#versioning-data-products}
 
@@ -869,6 +878,60 @@ my_function <- function(file) {
 ```
 
 For dependency recommendations, see the [dependencies section](#r-dependencies) in the R section.
+
+### Setting up code coverage with Codecov 
+
+[Codecov](https://about.codecov.io/) is a code coverage reporting tool that helps developers measure and visualise how much of their code is covered by tests.
+It integrates with GitHub Actions and provides insights into untested code.
+To integrate Codecov into your R package and track code coverage, follow these steps:  
+
+1. Log in to Codecov and retrieve your token
+   - Visit [Codecov](https://about.codecov.io/) and log in using your GitHub account.
+   - Navigate to the **B-Cubed** organization and locate your package repository.  
+   - Copy the **Codecov token** for your repository.  
+
+2. Configure code coverage results with Codecov
+   - Run the following command in R, replacing `"YOUR_TOKEN_GOES_HERE"` with the token you copied in the previous step:  
+
+```r
+covr::codecov(token = "YOUR_TOKEN_GOES_HERE")
+```  
+
+3. Store the token in GitHub Secrets  
+   - Go to your package repository on GitHub.  
+   - Navigate to **Settings** > **Secrets and variables** > **Actions**.  
+   - Click **New repository secret** and name it `CODECOV_TOKEN`.  
+   - Paste the copied token as the value and save it.  
+
+4. Add a GitHub Action for Code Coverage  
+   - In R, run the following command to set up a GitHub Action for test coverage reporting:  
+
+```r
+usethis::use_github_action("test-coverage", badge = TRUE)
+```  
+
+5. Configure Codecov Settings
+   - Create a **codecov.yml** file in the root of your repository with the following content:  
+
+```yaml
+comment: true
+
+coverage:
+  precision: 1
+  round: down
+  range: "70...100"
+  status:
+    patch:
+      default:
+        target: auto
+        threshold: 10%
+        informational: true
+    project:
+      default:
+        target: auto
+        threshold: 1%
+        informational: false
+```
 
 ## R analysis code {#r-analysis}
 
