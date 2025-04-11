@@ -10,7 +10,8 @@ Suggestion citation:
 > Trekels M (2025). Converting GBIF data cubes in cloud native data formats. <https://docs.b-cubed.eu/tutorials/conversion-cube-to-zarr/>
 
 # Building cloud-native GBIF occurrence cubes
-This tutorial is going step by step over the creation of two additional data formats to store the B3 data cubes. We are focusing on GeoParquet and Zarr as potential candidates that contain the geometry within the files. 0
+
+This tutorial is going step by step over the creation of two additional data formats to store the B3 data cubes. We are focusing on GeoParquet and Zarr as potential candidates that contain the geometry within the files.
 
 In this example, we are using the GPKG files for Extended Quarter Degree Grid Cells that were created by GBIF: https://download.gbif.org/grids/EQDGC/
 
