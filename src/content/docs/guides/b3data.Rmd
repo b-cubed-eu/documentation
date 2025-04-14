@@ -31,7 +31,7 @@ Suggestion citation:
 
 **Citing the data package:**
 
-> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181098>
+> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181097>
 
 **Citing the data scripts:**
 
@@ -44,7 +44,7 @@ It is published in accordance with the [frictionless](https://docs.ropensci.org/
 
 To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
 
-The data package is published on [Zenodo](https://zenodo.org/records/15181098) and compiled using R code:
+The data package is published on [Zenodo](https://doi.org/10.5281/zenodo.15181097) and compiled using R code:
 
 - **Published at**: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15181097.svg)](https://doi.org/10.5281/zenodo.15181097)
 - **Compiled by**: [b3data-scripts](https://github.com/b-cubed-eu/b3data-scripts)
@@ -54,7 +54,7 @@ The data package is published on [Zenodo](https://zenodo.org/records/15181098) a
 
 ## Getting the data
 
-The data resources can be downloaded from the [Zenodo](https://zenodo.org/records/15181098) repository, but they can also be accessed directly in R using the [frictionless](https://docs.ropensci.org/frictionless/) R package:
+The data resources can be downloaded from the [Zenodo](https://doi.org/10.5281/zenodo.15181097) repository, but they can also be accessed directly in R using the [frictionless](https://docs.ropensci.org/frictionless/) R package:
 
 ### Step 1 — Load the frictionless R package
 
@@ -68,7 +68,7 @@ library(frictionless)
 The content of the data package can be consulted using `read_package()`.
 
 ```{r}
-b3data_package <- read_package("https://zenodo.org/records/15181098/files/datapackage.json")
+b3data_package <- read_package("https://zenodo.org/records/15211029/files/datapackage.json")
 b3data_package
 ```
 
@@ -91,7 +91,7 @@ library(sf)
 
 # Read data from repository
 mgrs10_belgium <- st_read(
-  "https://zenodo.org/records/15181098/files/mgrs10_refgrid_belgium.geojson",
+  "https://zenodo.org/records/15211029/files/mgrs10_refgrid_belgium.gpkg",
   quiet = TRUE
 )
 head(mgrs10_belgium)
@@ -119,15 +119,15 @@ We join the loaded resources together and visualise the number of species per gr
 bird_cube_belgium %>%
   # Count number of species
   summarise(
-    n_spec = n_distinct(species),
+    n_species = n_distinct(species),
     .by = mgrscode
   ) %>%
   # Add MGRS grid
   left_join(mgrs10_belgium, by = join_by(mgrscode)) %>%
-  st_sf(sf_column_name = "geometry", crs = st_crs(mgrs10_belgium)) %>%
+  st_sf(sf_column_name = "geom", crs = st_crs(mgrs10_belgium)) %>%
   # Visualise result
   ggplot() +
-    geom_sf(aes(fill = n_spec)) +
+    geom_sf(aes(fill = n_species)) +
     theme_minimal()
 ```
 

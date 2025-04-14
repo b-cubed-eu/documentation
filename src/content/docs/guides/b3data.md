@@ -23,7 +23,7 @@ Suggestion citation:
 
 **Citing the data package:**
 
-> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181098>
+> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181097>
 
 **Citing the data scripts:**
 
@@ -36,7 +36,7 @@ It is published in accordance with the [frictionless](https://docs.ropensci.org/
 
 To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
 
-The data package is published on [Zenodo](https://zenodo.org/records/15181098) and compiled using R code:
+The data package is published on [Zenodo](https://doi.org/10.5281/zenodo.15181097) and compiled using R code:
 
 - **Published at**: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15181097.svg)](https://doi.org/10.5281/zenodo.15181097)
 - **Compiled by**: [b3data-scripts](https://github.com/b-cubed-eu/b3data-scripts)
@@ -46,7 +46,7 @@ The data package is published on [Zenodo](https://zenodo.org/records/15181098) a
 
 ## Getting the data
 
-The data resources can be downloaded from the [Zenodo](https://zenodo.org/records/15181098) repository, but they can also be accessed directly in R using the [frictionless](https://docs.ropensci.org/frictionless/) R package:
+The data resources can be downloaded from the [Zenodo](https://doi.org/10.5281/zenodo.15181097) repository, but they can also be accessed directly in R using the [frictionless](https://docs.ropensci.org/frictionless/) R package:
 
 ### Step 1 — Load the frictionless R package
 
@@ -62,12 +62,12 @@ The content of the data package can be consulted using `read_package()`.
 
 
 ``` r
-b3data_package <- read_package("https://zenodo.org/records/15181098/files/datapackage.json")
+b3data_package <- read_package("https://zenodo.org/records/15211029/files/datapackage.json")
 b3data_package
 #> A Data Package with 2 resources:
 #> • bird_cube_belgium_mgrs10
 #> • mgrs10_refgrid_belgium
-#> For more information, see <https://doi.org/10.5281/zenodo.15181098>.
+#> For more information, see <https://doi.org/10.5281/zenodo.15211029>.
 #> Use `unclass()` to print the Data Package as a list.
 ```
 
@@ -103,22 +103,22 @@ library(sf)
 
 # Read data from repository
 mgrs10_belgium <- st_read(
-  "https://zenodo.org/records/15181098/files/mgrs10_refgrid_belgium.geojson",
+  "https://zenodo.org/records/15211029/files/mgrs10_refgrid_belgium.gpkg",
   quiet = TRUE
 )
 head(mgrs10_belgium)
 #> Simple feature collection with 6 features and 1 field
 #> Geometry type: POLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: 13919.31 ymin: 159175.7 xmax: 34107.28 ymax: 209553.2
-#> Geodetic CRS:  WGS 84
-#>   mgrscode                       geometry
-#> 1  31UDS65 POLYGON ((23939.64 190365.5...
-#> 2  31UDS66 POLYGON ((24123.5 200367.5,...
-#> 3  31UDS72 POLYGON ((33389.37 160175.9...
-#> 4  31UDS73 POLYGON ((33573.52 170177.6...
-#> 5  31UDS74 POLYGON ((33757.62 180179.5...
-#> 6  31UDS75 POLYGON ((33941.67 190181.5...
+#> Bounding box:  xmin: 460000.1 ymin: 5620000 xmax: 480000.1 ymax: 5670000
+#> Projected CRS: WGS 84 / UTM zone 31N
+#>   mgrscode                           geom
+#> 1  31UDS65 POLYGON ((470000.1 5651000,...
+#> 2  31UDS66 POLYGON ((470000.1 5661000,...
+#> 3  31UDS72 POLYGON ((480000 5621000, 4...
+#> 4  31UDS73 POLYGON ((480000.1 5631000,...
+#> 5  31UDS74 POLYGON ((480000.1 5641000,...
+#> 6  31UDS75 POLYGON ((480000.1 5651000,...
 ```
 
 ### Step 4 — Post-processing
@@ -145,18 +145,16 @@ We join the loaded resources together and visualise the number of species per gr
 bird_cube_belgium %>%
   # Count number of species
   summarise(
-    n_spec = n_distinct(species),
+    n_species = n_distinct(species),
     .by = mgrscode
   ) %>%
   # Add MGRS grid
   left_join(mgrs10_belgium, by = join_by(mgrscode)) %>%
-  st_sf(sf_column_name = "geometry", crs = st_crs(mgrs10_belgium)) %>%
+  st_sf(sf_column_name = "geom", crs = st_crs(mgrs10_belgium)) %>%
   # Visualise result
   ggplot() +
-    geom_sf(aes(fill = n_spec)) +
+    geom_sf(aes(fill = n_species)) +
     theme_minimal()
-#> Warning in st_is_longlat(x): bounding box has potentially an invalid value
-#> range for longlat data
 ```
 
 ![plot of chunk unnamed-chunk-7](../../../../public/guides/b3data/unnamed-chunk-7-1.png)
