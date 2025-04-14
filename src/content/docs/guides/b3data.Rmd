@@ -54,8 +54,103 @@ The data package is published on [Zenodo](https://zenodo.org/records/15181098) a
 
 ## Getting the data
 
+The data resources can be downloaded from the [Zenodo](https://zenodo.org/records/15181098) repository, but they can also be accessed directly in R using the [frictionless](https://docs.ropensci.org/frictionless/) R package:
+
+### Step 1 — Load the frictionless R package
+
+```{r}
+# install.packages("frictionless")
+library(frictionless)
+```
+
+### Step 2 — Read the package descriptor from Zenodo
+
+The content of the data package can be consulted using `read_package()`.
+
+```{r}
+b3data_package <- read_package("https://zenodo.org/records/15181098/files/datapackage.json")
+b3data_package
+```
+
+This object contains metadata and references to all resources included in the data package.
+
+### Step 3 — Import a resource (dataset)
+
+Tabular datasets (such as occurrence cubes) can be loaded using `read_resource()`.
+
+```{r}
+bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
+head(bird_cube_belgium)
+```
+
+For non-tabular resources like spatial or raster files, use specialized packages such as `sf` or `terra` directly.
+
+```{r, warning=FALSE, message=FALSE}
+# Load package sf
+library(sf)
+
+# Read data from repository
+mgrs10_belgium <- st_read(
+  "https://zenodo.org/records/15181098/files/mgrs10_refgrid_belgium.geojson",
+  quiet = TRUE
+)
+head(mgrs10_belgium)
+```
+
+### Step 4 — Post-processing
+
+Once loaded, resources can be filtered, joined, or passed into **b3verse** indicator functions.
+
+```{r, warning=FALSE, message=FALSE}
+# Install b3verse packages
+# pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
+# install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
+
+# Load packages
+library(b3gbi)   # General biodiversity indicators for occurrence cubes
+
+library(dplyr)   # Data wrangling
+library(ggplot2) # Data visualisation
+```
+
+We join the loaded resources together and visualise the number of species per grid cell.
+
+```{r}
+bird_cube_belgium %>%
+  # Count number of species
+  summarise(
+    n_spec = n_distinct(species),
+    .by = mgrscode
+  ) %>%
+  # Add MGRS grid
+  left_join(mgrs10_belgium, by = join_by(mgrscode)) %>%
+  st_sf(sf_column_name = "geometry", crs = st_crs(mgrs10_belgium)) %>%
+  # Visualise result
+  ggplot() +
+    geom_sf(aes(fill = n_spec)) +
+    theme_minimal()
+```
+
+We process the data cube using the **b3gbi** package v0.5.4.
+
+```{r}
+bird_cube_processed <- process_cube(
+  bird_cube_belgium,
+  cols_occurrences = "n"
+)
+bird_cube_processed
+```
+
 ...
 
 ## Contributing and reporting issues
 
-...
+**How to contribute?**
+- Before contributing, check the “Contributing Guidelines” of the [b3data-scripts repository](https://github.com/b-cubed-eu/b3data-scripts/blob/main/.github/CONTRIBUTING.md).
+- Fork the b3data-scripts repository.
+- Follow the instructions in the README to set up the workflow.
+- Submit a pull request for your changes.
+
+**Reporting bugs or suggesting improvements**
+- If you encounter an issue or have an idea for improvement, open an “issue” in the [code repository](https://github.com/b-cubed-eu/b3data-scripts/issues).
+- Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
