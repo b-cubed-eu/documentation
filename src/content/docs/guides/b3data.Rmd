@@ -150,7 +150,8 @@ bird_cube_processed
 - Fork the b3data-scripts repository.
 - Follow the instructions in the README to set up the workflow.
 - Submit a pull request for your changes.
+- Submission of (a) resource(s) to the data package can also be requested in an issue in the repository and added by the maintainers of the data package itself.
 
 **Reporting bugs or suggesting improvements**
-- If you encounter an issue or have an idea for improvement, open an “issue” in the [code repository](https://github.com/b-cubed-eu/b3data-scripts/issues).
+- If you encounter a problem or like to suggest an improvement, open an issue in the [b3data-scripts repository](https://github.com/b-cubed-eu/b3data-scripts/issues).
 - Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
