@@ -21,9 +21,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-This guide provides an overview of the **b3data** [frictionless](https://docs.ropensci.org/frictionless/) data package and supporting scripts, which serve as foundational resources for calculating biodiversity indicators from occurrence cubes within the [**b3verse**](https://docs.b-cubed.eu/guides/b3verse/).
+This guide provides an overview of the **b3data** frictionless data package and supporting scripts, which serve as foundational resources for calculating biodiversity indicators from occurrence cubes within the **b3verse**.
 
-If you use the **b3data** resources in your work, please cite the following:
+Suggestion citation:
 
 **Citing this guide:**
 
@@ -39,16 +39,18 @@ If you use the **b3data** resources in your work, please cite the following:
 
 ## What is b3data?
 
-The **b3data** data package is a curated and versioned collection of datasets, designed for use in the **b3verse** indicator calculation workflow. It is published in accordance with the [frictionless](https://docs.ropensci.org/frictionless/) data specifications, that allow publishing datasets in a [FAIR](https://www.go-fair.org/fair-principles/) and open manner.
+The **b3data** data package is a curated and versioned collection of datasets, designed for use in the **b3verse** indicator calculation workflow.
+It is published in accordance with the [frictionless](https://docs.ropensci.org/frictionless/) data specifications, that allow publishing datasets in a [FAIR](https://www.go-fair.org/fair-principles/) and open manner.
 
-The dataset is published on Zenodo and compiled using R code:
+To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
 
-- **Published at**:
-  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15181097.svg)](https://doi.org/10.5281/zenodo.15181097)
-- **Compiled by**: [`b3data-scripts`](https://github.com/b-cubed-eu/b3data-scripts)
-- **Used in**: [**b3verse**](https://docs.b-cubed.eu/guides/b3verse/)
+The data package is published on [Zenodo](https://zenodo.org/records/15181098) and compiled using R code:
+
+- **Published at**: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15181097.svg)](https://doi.org/10.5281/zenodo.15181097)
+- **Compiled by**: [b3data-scripts](https://github.com/b-cubed-eu/b3data-scripts)
+- **Used in**: [b3verse](https://docs.b-cubed.eu/guides/b3verse/)
 - **Importable in R via**:
-  [frictionless](https://docs.ropensci.org/frictionless/) R package
+  [frictionless](https://docs.ropensci.org/frictionless/) R package (see further)
 
 ## Getting the data
 
@@ -57,7 +59,3 @@ The dataset is published on Zenodo and compiled using R code:
 ## Contributing and reporting issues
 
 ...
-
-## More information
-
-To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
