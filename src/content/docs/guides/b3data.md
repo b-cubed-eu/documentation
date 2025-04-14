@@ -17,21 +17,30 @@ This guide provides an overview of the **b3data** [frictionless](https://docs.ro
 
 If you use the **b3data** resources in your work, please cite the following:
 
-Citing this guide:
+**Citing this guide:**
 
 > Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
 
-Citing the data package:
+**Citing the data package:**
 
 > Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181098>
 
-Citing the data scripts:
+**Citing the data scripts:**
 
 > Langeraert W, Van Daele T (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
 
 ## What is b3data?
 
-...
+The **b3data** data package is a curated and versioned collection of datasets, designed for use in the **b3verse** indicator calculation workflow. It is published in accordance with the [frictionless](https://docs.ropensci.org/frictionless/) data specifications, that allow publishing datasets in a [FAIR](https://www.go-fair.org/fair-principles/) and open manner.
+
+The dataset is published on Zenodo and compiled using R code:
+
+- **Published at**:
+  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15181097.svg)](https://doi.org/10.5281/zenodo.15181097)
+- **Compiled by**: [`b3data-scripts`](https://github.com/b-cubed-eu/b3data-scripts)
+- **Used in**: [**b3verse**](https://docs.b-cubed.eu/guides/b3verse/)
+- **Importable in R via**:
+  [frictionless](https://docs.ropensci.org/frictionless/) R package
 
 ## Getting the data
 
