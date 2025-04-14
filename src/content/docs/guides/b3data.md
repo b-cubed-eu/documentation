@@ -157,7 +157,7 @@ bird_cube_belgium %>%
     theme_minimal()
 ```
 
-![plot of chunk unnamed-chunk-7](../../../../public/guides/b3data/unnamed-chunk-7-1.png)
+![plot of chunk joined-map](../../../../public/guides/b3data/joined-map-1.png)
 
 We process the data cube using the **b3gbi** package v0.5.4.
 

@@ -115,7 +115,7 @@ library(ggplot2) # Data visualisation
 
 We join the loaded resources together and visualise the number of species per grid cell.
 
-```{r}
+```{r joined-map}
 bird_cube_belgium %>%
   # Count number of species
   summarise(
