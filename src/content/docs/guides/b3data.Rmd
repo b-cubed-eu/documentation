@@ -1,0 +1,54 @@
+---
+title: "b3data: Data resources for the b3verse"
+sidebar:
+  label: b3data
+  order: 7
+knit: (function(inputFile, ...) {
+  knitr::knit(
+    input = inputFile,
+    output = gsub("Rmd$", "md", inputFile)) })
+---
+
+<!-- b3data.md is generated from b3data.Rmd Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = file.path("../../../..", "public", "guides", "b3data", "/"),
+  fig.height = 4,
+  dpi = 300
+)
+```
+
+This guide provides an overview of the **b3data** [frictionless](https://docs.ropensci.org/frictionless/) data package and supporting scripts, which serve as foundational resources for calculating biodiversity indicators from occurrence cubes within the [**b3verse**](https://docs.b-cubed.eu/guides/b3verse/).
+
+If you use the **b3data** resources in your work, please cite the following:
+
+Citing this guide:
+
+> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
+
+Citing the data package:
+
+> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181098>
+
+Citing the data scripts:
+
+> Langeraert W, Van Daele T (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
+
+## What is b3data?
+
+...
+
+## Getting the data
+
+...
+
+## Contributing and reporting issues
+
+...
+
+## More information
+
+To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
