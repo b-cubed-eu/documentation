@@ -41,6 +41,8 @@ Suggestion citation:
 
 The **b3verse** is a collection of related R packages that streamline indicator calculation from occurrence cubes. These packages are accessible and maintained via a [dedicated R-universe platform](https://b-cubed-eu.r-universe.dev/), ensuring continuous updates, easy distribution, and efficient [installation](#installation).
 
+In addition to the R packages, the **b3verse** also includes a dedicated [data package](https://doi.org/10.5281/zenodo.15181097), **b3data**, published in the [Frictionless Data](https://frictionlessdata.io/) format. This package provides datasets that can be used directly with the **b3verse software**, including example occurrence cubes and spatial reference layers. For more information, visit the [b3data documentation](https://docs.b-cubed.eu/guides/b3data/).
+
 <img src="/guides/b3verse/logo-wall.png" align="center" alt="b3verse logo wall" width="600"/>
 
 ## Installation
@@ -70,12 +72,17 @@ Note that any dependencies not available in mainstream repositories are also add
 We welcome contributions to the **b3verse**! Each package in the collection has its own GitHub repository, where you can find contributing guidelines and report issues.  
 
 **How to contribute?**
-- Before contributing, check the "Contributing Guidelines" in the relevant repository (see the [table above](#installation) for links).  
+- Before contributing, check the *Contributing Guidelines* in the relevant repository (see the [table above](#installation) for links).  
 - Contributions can include bug fixes, feature requests, documentation improvements, or new functionality.  
 
 **Reporting bugs or suggesting improvements**
-- If you encounter an issue or have an idea for improvement, open an "issue" in the corresponding package repository.  
+- If you encounter a problem or like to suggest an improvement, open an issue in the corresponding package repository.  
 - Be as detailed as possible when describing the issue, including R session info, error messages, and reproducible examples if applicable.
+
+**Adding or removing packages**
+- Open an issue and/or pull request in the [b3verse development repository](https://github.com/b-cubed-eu/b-cubed-eu.r-universe.dev/).
+- Clearly describe the purpose of the package and how it integrates with the existing **b3verse** workflow.
+- Newly proposed packages will undergo a review in line with the [B-Cubed software development guidelines](https://docs.b-cubed.eu/guides/software-development/).
 
 ## Getting started
 ### The b3verse workflow
