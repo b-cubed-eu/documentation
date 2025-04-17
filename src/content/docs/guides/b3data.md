@@ -138,11 +138,19 @@ library(dplyr)   # Data wrangling
 library(ggplot2) # Data visualisation
 ```
 
+We filter out any data with minimal coordinate uncertainty larger than 10 km.
+
+
+``` r
+bird_cube_belgium_clean <- bird_cube_belgium %>%
+  dplyr::filter(mincoordinateuncertaintyinmeters <= 100000)
+```
+
 We join the loaded resources together and visualise the number of species per grid cell.
 
 
 ``` r
-bird_cube_belgium %>%
+bird_cube_belgium_clean %>%
   # Count number of species
   summarise(
     n_species = n_distinct(species),
@@ -159,12 +167,12 @@ bird_cube_belgium %>%
 
 ![plot of chunk joined-map](../../../../public/guides/b3data/joined-map-1.png)
 
-We process the data cube using the **b3gbi** package v0.5.4.
+We now process the cleaned data cube using the **b3gbi** package (v0.4.0), which prepares the data for indicator calculations.
 
 
 ``` r
 bird_cube_processed <- process_cube(
-  bird_cube_belgium,
+  bird_cube_belgium_clean,
   cols_occurrences = "n"
 )
 bird_cube_processed
@@ -172,14 +180,14 @@ bird_cube_processed
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2000 - 2024 
-#> Single-resolution cube with cell size 10km ^2 
+#> Single-resolution cube with cell size 10km ^2
 #> Number of cells: 379 
 #> Grid reference system: mgrs 
 #> Coordinate range:
 #>      xmin      xmax      ymin      ymax 
 #>  2.428844  6.334746 49.445981 51.444030 
 #> 
-#> Total number of observations: 17609484 
+#> Total number of observations: 17609482 
 #> Number of species represented: 734 
 #> Number of families represented: 95 
 #> 
@@ -187,7 +195,7 @@ bird_cube_processed
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 557,967 × 11
+#> # A tibble: 557,965 × 11
 #>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹
 #>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>
 #>  1  2000 31UDS65   2473958 Perdix perdix     Phasi…     1                   3536
@@ -200,13 +208,33 @@ bird_cube_processed
 #>  8  2000 31UDS65   2481174 Larus fuscus      Larid…     1                   3536
 #>  9  2000 31UDS65   2481890 Phalacrocorax ca… Phala…     2                   1000
 #> 10  2000 31UDS65   2482054 Podiceps cristat… Podic…     5                   1000
-#> # ℹ 557,957 more rows
+#> # ℹ 557,955 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
 #> # ℹ 4 more variables: familyCount <dbl>, xcoord <dbl>, ycoord <dbl>,
 #> #   resolution <chr>
 ```
 
-...
+With the processed cube, we can reproduce a species richness map similar to the one created earlier.
+
+
+``` r
+bird_cube_richness_map <- obs_richness_map(bird_cube_processed) 
+plot(bird_cube_richness_map)
+```
+
+![plot of chunk unnamed-chunk-9](../../../../public/guides/b3data/unnamed-chunk-9-1.png)
+
+We can also calculate other biodiversity indicators. In the example below, we generate a time series of observed species richness. Confidence intervals are omitted here to reduce computation time.
+
+
+``` r
+bird_cube_richness_ts <- obs_richness_ts(bird_cube_processed, ci_type = "none") 
+plot(bird_cube_richness_ts)
+```
+
+![plot of chunk unnamed-chunk-10](../../../../public/guides/b3data/unnamed-chunk-10-1.png)
+
+> **Note:** The spatial and temporal patterns shown in these outputs primarily reflect the data coverage in GBIF, not actual biodiversity patterns. This tutorial is meant to demonstrate the use of the **b3data** resources and indicator workflow, and is not intended as an example of rigorous ecological analysis.
 
 ## Contributing and reporting issues
 
