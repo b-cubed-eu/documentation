@@ -19,3 +19,4 @@ Tutorials for the "gcube” R package, a tool to simulate biodiversity data cube
 ## Other tutorials
 
 - [Create occurrence cubes for virtual species](https://b-cubed-eu.github.io/gcube/articles/cube-for-virtual-species.html)
+- [Grid designation for custom datasets](https://b-cubed-eu.github.io/gcube/articles/custom-grid-designation.html)
