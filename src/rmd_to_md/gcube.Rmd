@@ -17,16 +17,20 @@ The following code sets up the required environment to work with the `gcube` pac
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Required packages
+
+Make sure the required packages are installed.
+
 ```{r}
-# Install the gcube package
-# Uncomment the line below to install the gcube package from its repository
+# Uncomment the lines below to install the required packages
+
 # install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
 
-# Load required libraries
-library(gcube)
-library(sf)      # working with spatial objects
-library(dplyr)   # data wrangling
-library(ggplot2) # visualisation with ggplot
+# install.packages("sf")
+# install.packages("dplyr")
+# install.packages("ggplot2")
+# install.packages("tidyterra")
+# install.packages("ggExtra")
 ```
 
 ## R Markdown Files
