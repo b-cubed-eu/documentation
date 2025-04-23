@@ -140,12 +140,9 @@ ggplot() +
   geom_sf(data = detections_df_raw,
           aes(colour = observed)) +
   theme_minimal()
-#> Error in `geom_sf()`:
-#> ! Problem while computing aesthetics.
-#> ℹ Error occurred in the 2nd layer.
-#> Caused by error:
-#> ! object 'observed' not found
 ```
+
+<img src="/software/gcube/man/figures/readme-detect-occurrences-1.png" alt="Spatial distribution of occurrences with indication of sampling status." width="80%" />
 
 We select the detected occurrences and add an uncertainty to these observations.
 This can be done using the `filter_observations()` and `add_coordinate_uncertainty()` functions, respectively.

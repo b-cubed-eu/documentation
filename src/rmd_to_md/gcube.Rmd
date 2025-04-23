@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Required packages
 
-Make sure the required packages are installed.
+Make sure the required packages are installed and up to date.
 
 ```{r}
 # Uncomment the lines below to install the required packages

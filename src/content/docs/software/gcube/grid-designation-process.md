@@ -146,12 +146,9 @@ ggplot() +
   facet_wrap(~time_point, nrow = 2) +
   labs(title = "Distribution of occurrences for each time point") +
   theme_minimal()
-#> Error in `geom_sf()`:
-#> ! Problem while computing aesthetics.
-#> ℹ Error occurred in the 3rd layer.
-#> Caused by error:
-#> ! object 'observed' not found
 ```
+
+<img src="/software/gcube/grid-designation-process-unnamed-chunk-9-1.png" alt="Spatial distribution of occurrences with indication of sampling status for each time point."  />
 
 We only keep the detected occurrences and add 25 meters of uncertainty to each observation (see tutorial 2 about simulating the detection process).
 

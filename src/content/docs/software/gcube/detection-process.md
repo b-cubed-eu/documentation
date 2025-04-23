@@ -266,12 +266,9 @@ ggplot() +
   facet_wrap(~time_point, nrow = 2) +
   labs(title = "Distribution of occurrences for each time point") +
   theme_minimal()
-#> Error in `geom_sf()`:
-#> ! Problem while computing aesthetics.
-#> ℹ Error occurred in the 3rd layer.
-#> Caused by error:
-#> ! object 'observed' not found
 ```
+
+<img src="/software/gcube/detection-process-unnamed-chunk-20-1.png" alt="Spatial distribution of occurrences with indication of sampling status for each time point."  />
 
 ## Adding coordinate uncertainty
 
@@ -283,10 +280,6 @@ We can filter with `dplyr::filter()`.
 ``` r
 detections_df1 <- detections_df_raw %>%
   dplyr::filter(observed == TRUE)
-#> Error in `stopifnot()`:
-#> ℹ In argument: `observed == TRUE`.
-#> Caused by error:
-#> ! object 'observed' not found
 ```
 
 Or we can use the function `filter_observations()`.
@@ -304,7 +297,7 @@ detections_df2 <- filter_observations(
 
 # Do we get the same result?
 identical(detections_df1, detections_df2)
-#> Error: object 'detections_df1' not found
+#> [1] TRUE
 ```
 
 We add coordinate uncertainty to the observations using the `add_coordinate_uncertainty()` function.
