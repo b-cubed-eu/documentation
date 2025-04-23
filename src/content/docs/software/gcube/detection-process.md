@@ -7,7 +7,6 @@ sidebar:
   label: Detection process
   order: 3
 source: https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/detection-process.Rmd
-
 ---
 
 

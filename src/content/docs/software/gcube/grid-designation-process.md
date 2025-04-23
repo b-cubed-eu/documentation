@@ -7,7 +7,6 @@ sidebar:
   label: Grid designation process
   order: 4
 source: https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/grid-designation-process.Rmd
-
 ---
 
 

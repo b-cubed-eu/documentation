@@ -8,7 +8,6 @@ sidebar:
   label: Introduction
   order: 1
 source: https://github.com/b-cubed-eu/gcube/blob/main/README.Rmd
-
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->

@@ -7,7 +7,6 @@ sidebar:
   label: Occurrence process
   order: 2
 source: https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd
-
 ---
 
 
