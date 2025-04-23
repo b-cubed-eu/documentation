@@ -17,7 +17,15 @@ The following code sets up the required environment to work with the `gcube` pac
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Required packages
+# Libraries
+
+```{r}
+devtools::install_github("b-cubed-eu/b3doc")
+library(b3doc)
+```
+
+
+## Required packages
 
 Make sure the required packages are installed and up to date.
 
