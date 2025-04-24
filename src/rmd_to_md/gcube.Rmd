@@ -19,26 +19,36 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Libraries
 
+## Install required packages
+
+### Install (or update) b3doc
+
 ```{r}
 devtools::install_github("b-cubed-eu/b3doc")
 library(b3doc)
 ```
 
-
-## Required packages
-
-Make sure the required packages are installed and up to date.
+### Install or update gcube
 
 ```{r}
-# Uncomment the lines below to install the required packages
+if (!rlang::is_installed("gcube")) {
+  # Install the package from the b-cubed-eu universe
+  install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
+} else {
+  # Update the package if already installed
+  update.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
+}
+```
 
-# install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
 
-# install.packages("sf")
-# install.packages("dplyr")
-# install.packages("ggplot2")
-# install.packages("tidyterra")
-# install.packages("ggExtra")
+### Install the packages used in the Rmd files
+
+```{r}
+rlang::check_installed("sf")
+rlang::check_installed("dplyr")
+rlang::check_installed("ggplot2")
+rlang::check_installed("tidyterra")
+rlang::check_installed("ggExtra")
 ```
 
 ## R Markdown Files
