@@ -2,7 +2,7 @@
 title: 1. Simulating the occurrence process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-23
+lastUpdated: 2025-04-24
 sidebar:
   label: Occurrence process
   order: 2

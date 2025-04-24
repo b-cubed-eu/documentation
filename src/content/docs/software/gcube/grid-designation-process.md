@@ -2,7 +2,7 @@
 title: 3. Specifying the grid designation process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-23
+lastUpdated: 2025-04-24
 sidebar:
   label: Grid designation process
   order: 4
@@ -28,7 +28,6 @@ library(sf)        # work with spatial objects
 library(dplyr)     # data wrangling
 library(ggplot2)   # data visualisation
 library(ggExtra)   # enhance data visualisation
-#> Error in library(ggExtra): there is no package called 'ggExtra'
 ```
 
 ## Input
@@ -328,8 +327,9 @@ In the case of uniform randomisation, we see samples everywhere and evenly sprea
 
 ``` r
 ggExtra::ggMarginal(scatter_uniform, type = "histogram")
-#> Error in loadNamespace(x): there is no package called 'ggExtra'
 ```
+
+<img src="/software/gcube/grid-designation-process-unnamed-chunk-20-1.png" alt="Distribution of random samples within uncertainty circle using uniform randomisation."  />
 
 In the case of normal randomisation, we see some samples outside the uncertainty circle.
 This should be 0.05 (=1 - `p_norm`) %.
@@ -338,8 +338,9 @@ We also see more samples closer to the central point.
 
 ``` r
 ggExtra::ggMarginal(scatter_normal, type = "histogram")
-#> Error in loadNamespace(x): there is no package called 'ggExtra'
 ```
+
+<img src="/software/gcube/grid-designation-process-unnamed-chunk-21-1.png" alt="Distribution of random samples within uncertainty circle using normal randomisation."  />
 
 If no coordinate uncertainty is provided, the original observation point is used for grid designation.
 

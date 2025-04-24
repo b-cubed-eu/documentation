@@ -2,7 +2,7 @@
 title: 4. Creating cubes for multiple species
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-23
+lastUpdated: 2025-04-24
 sidebar:
   label: Multi-species approach
   order: 5
