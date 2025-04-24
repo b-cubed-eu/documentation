@@ -64,22 +64,22 @@ rmd_files <- list(
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd",
-    title = "1. Simulating the occurrence process",
+    title = "Simulating the occurrence process",
     sidebar_label = "Occurrence process"
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/detection-process.Rmd",
-    title = "2. Simulating the detection process",
+    title = "Simulating the detection process",
     sidebar_label = "Detection process"
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/grid-designation-process.Rmd",
-    title = "3. Specifying the grid designation process",
+    title = "Specifying the grid designation process",
     sidebar_label = "Grid designation process"
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/multi-species-approach.Rmd",
-    title = "4. Creating cubes for multiple species",
+    title = "Creating cubes for multiple species",
     sidebar_label = "Multi-species approach"
   )
 )

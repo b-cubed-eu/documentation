@@ -1,5 +1,5 @@
 ---
-title: 4. Creating cubes for multiple species
+title: Creating cubes for multiple species
 editor_options:
   chunk_output_type: console
 lastUpdated: 2025-04-24

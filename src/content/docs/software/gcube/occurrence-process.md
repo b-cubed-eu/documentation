@@ -1,5 +1,5 @@
 ---
-title: 1. Simulating the occurrence process
+title: Simulating the occurrence process
 editor_options:
   chunk_output_type: console
 lastUpdated: 2025-04-24
@@ -240,9 +240,6 @@ ggplot() +
   geom_spatraster(data = rs_pattern_random) +
   scale_fill_continuous(type = "viridis") +
   theme_minimal()
-#> Registered S3 method overwritten by 'data.table':
-#>   method           from
-#>   print.data.table
 ```
 
 <img src="/software/gcube/occurrence-process-unnamed-chunk-15-1.png" alt="Random spatial pattern to sample occurrences."  />

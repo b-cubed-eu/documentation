@@ -1,5 +1,5 @@
 ---
-title: 2. Simulating the detection process
+title: Simulating the detection process
 editor_options:
   chunk_output_type: console
 lastUpdated: 2025-04-24

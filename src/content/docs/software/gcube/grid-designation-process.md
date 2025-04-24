@@ -1,5 +1,5 @@
 ---
-title: 3. Specifying the grid designation process
+title: Specifying the grid designation process
 editor_options:
   chunk_output_type: console
 lastUpdated: 2025-04-24
