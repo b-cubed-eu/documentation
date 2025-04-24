@@ -28,7 +28,7 @@ devtools::install_github("b-cubed-eu/b3doc")
 library(b3doc)
 ```
 
-### Install or update gcube
+### Install or update b-cubed packages
 
 ```{r}
 if (!rlang::is_installed("gcube")) {
@@ -49,6 +49,10 @@ rlang::check_installed("dplyr")
 rlang::check_installed("ggplot2")
 rlang::check_installed("tidyterra")
 rlang::check_installed("ggExtra")
+rlang::check_installed("geodata")
+rlang::check_installed("virtualspecies")
+rlang::check_installed("frictionless")
+rlang::check_installed("worldclim")
 ```
 
 ## R Markdown Files
@@ -81,6 +85,16 @@ rmd_files <- list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/multi-species-approach.Rmd",
     title = "Creating cubes for multiple species",
     sidebar_label = "Multi-species approach"
+  ),
+    list(
+    rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/cube-for-virtual-species.Rmd",
+    title = "Create occurrence cubes for virtual species",
+    sidebar_label = "Cube for virtual species"
+  ),
+    list(
+    rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/custom-grid-designation.Rmd",
+    title = "Grid designation for custom datasets",
+    sidebar_label = "Custom grid designation"
   )
 )
 ```
