@@ -2,7 +2,7 @@
 title: Grid designation for custom datasets
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-24
+lastUpdated: 2025-04-29
 sidebar:
   label: Custom grid designation
   order: 7
@@ -230,7 +230,7 @@ occurrence_cube_df1 <- distinct(occurrence_cube_full)
 
 end_time <- Sys.time()
 end_time - start_time
-#> Time difference of 1.370434 secs
+#> Time difference of 1.69146 secs
 ```
 
 Geometry columns are often large and complex, making operations like `distinct()` significantly slower.
@@ -249,7 +249,7 @@ occurrence_cube_df2 <- occurrence_cube_full %>%
 
 end_time <- Sys.time()
 end_time - start_time
-#> Time difference of 0.008685112 secs
+#> Time difference of 0.008394957 secs
 ```
 
 
