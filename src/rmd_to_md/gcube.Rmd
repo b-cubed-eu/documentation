@@ -9,15 +9,13 @@ output: html_document
 
 This document provides a guide for converting R Markdown files to Markdown format for the `gcube` package. The process involves downloading `.Rmd` files from a repository, transforming them to `.md` files, and organizing associated figures for the documentation website.
 
-## Setup
+# Setup
 
 The following code sets up the required environment to work with the `gcube` package and other essential libraries.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-# Libraries
 
 ## Install required packages
 
@@ -40,7 +38,6 @@ if (!rlang::is_installed("gcube")) {
 }
 ```
 
-
 ### Install the packages used in the Rmd files
 
 ```{r}
@@ -53,6 +50,8 @@ rlang::check_installed("geodata")
 rlang::check_installed("virtualspecies")
 rlang::check_installed("frictionless")
 ```
+
+# Conversion
 
 ## R Markdown Files
 
