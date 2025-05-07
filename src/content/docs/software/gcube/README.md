@@ -14,7 +14,7 @@ source: https://github.com/b-cubed-eu/gcube/blob/main/README.Rmd
 
 
 
-# gcube <a href="https://b-cubed-eu.github.io/gcube/"><img src="man/figures/logo.png" align="right" height="139" alt="gcube website" /></a>
+# gcube <a href="https://b-cubed-eu.github.io/gcube/"><img src="https://b-cubed-eu.github.io/gcube/logo.png" align="right" height="139" alt="gcube website" /></a>
 
 <!-- badges: start -->
 
