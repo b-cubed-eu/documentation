@@ -1,6 +1,9 @@
 ---
 title: dubicube R package
 authors: Ward Langeraert
+sidebar:
+  label: dubicube
+  order: 3
 ---
 
 Tutorials for the "dubicube” R package, a tool for assessing the applicability of biodiversity data cubes. Additionally, the package includes functions for calculating indicator uncertainty using bootstrapping, as well as tools for interpreting and visualising uncertainty in biodiversity indicators derived from occurrence cubes.
