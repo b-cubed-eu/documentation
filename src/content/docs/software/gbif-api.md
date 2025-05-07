@@ -1,6 +1,8 @@
 ---
 title: GBIF SQL download API
 authors: Matt Blissett & John Waller
+sidebar:
+  order: 1
 ---
 
 Tutorials for the GBIF SQL download API, a service to aggregate occurrence data. It can also be used to create species occurrence cubes.
