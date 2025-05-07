@@ -62,6 +62,7 @@ export default defineConfig({
     '/occurrence-cube/specification/': '/guides/occurrence-cube/'
   },
   markdown: {
+    gfm: true,
     remarkPlugins: [remarkHeadingId]
   }
 });
