@@ -19,15 +19,15 @@ Suggestion citation:
 
 **Citing this guide:**
 
-> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
+> Langeraert W (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
 
 **Citing the data package:**
 
-> Langeraert W, Van Daele T (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181097>
+> Langeraert W (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181097>
 
 **Citing the data scripts:**
 
-> Langeraert W, Van Daele T (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
+> Langeraert W (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
 
 ## What is b3data?
 
@@ -62,7 +62,9 @@ The content of the data package can be consulted using `read_package()`.
 
 
 ``` r
-b3data_package <- read_package("https://zenodo.org/records/15211029/files/datapackage.json")
+b3data_package <- read_package(
+  "https://zenodo.org/records/15211029/files/datapackage.json"
+)
 b3data_package
 #> A Data Package with 2 resources:
 #> • bird_cube_belgium_mgrs10

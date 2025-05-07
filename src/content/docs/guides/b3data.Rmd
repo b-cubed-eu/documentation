@@ -68,7 +68,9 @@ library(frictionless)
 The content of the data package can be consulted using `read_package()`.
 
 ```{r}
-b3data_package <- read_package("https://zenodo.org/records/15211029/files/datapackage.json")
+b3data_package <- read_package(
+  "https://zenodo.org/records/15211029/files/datapackage.json"
+)
 b3data_package
 ```
 
