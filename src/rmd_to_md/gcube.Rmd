@@ -63,50 +63,43 @@ rmd_files <- list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd", # md also available
     title = "Introduction",
     sidebar_label = "Introduction",
-    logo_from = "man/figures/logo.png", 
-    logo_to = "https://b-cubed-eu.github.io/gcube/logo.png"
+    logo = "https://b-cubed-eu.github.io/gcube/logo.png"
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd",
     title = "Simulating the occurrence process",
     sidebar_label = "Occurrence process",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/detection-process.Rmd",
     title = "Simulating the detection process",
     sidebar_label = "Detection process",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/grid-designation-process.Rmd",
     title = "Specifying the grid designation process",
     sidebar_label = "Grid designation process",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   ),
   list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/multi-species-approach.Rmd",
     title = "Creating cubes for multiple species",
     sidebar_label = "Multi-species approach",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   ),
     list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/cube-for-virtual-species.Rmd",
     title = "Create occurrence cubes for virtual species",
     sidebar_label = "Cube for virtual species",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   ),
     list(
     rmd_file = "https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/custom-grid-designation.Rmd",
     title = "Grid designation for custom datasets",
     sidebar_label = "Custom grid designation",
-    log_from = NULL,
-    logo_to = NULL
+    logo = NULL
   )
 )
 ```
@@ -130,10 +123,7 @@ purrr::walk(
     title = .x$title,
     sidebar_label = .x$sidebar_label,
     sidebar_order = which(purrr::map_chr(rmd_files, "rmd_file") == .x$rmd_file),
-    logo_from = .x$logo_from,
-    logo_to = .x$logo_to
+    logo = .x$logo
   )
 )
 ```
-
-
