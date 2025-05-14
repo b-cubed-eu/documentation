@@ -30,5 +30,24 @@ gcube:
   dependencies: frictionless ggplot2 dplyr sf
 
 dubicube:
-- source: https://example.com
-  title: Example
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.Rmd
+  title: Introduction
+  sidebar_label: Introduction
+  logo: https://b-cubed-eu.github.io/dubicube/logo.png
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
+  title: Group-level sensitivity analysis
+  sidebar_label: Group-level sensitivity analysis
+  dependencies: frictionless, ggplot2, dplyr, iNEXT
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
+  title: Bootstrap method for data cubes
+  sidebar_label: Bootstrap method cubes
+  dependencies: frictionless, ggplot2, dplyr, tidyr, iNEXT
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
+  title: Classifying effects using confidence limits
+  sidebar_label: Effect classification
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-temporal-trends.Rmd
+  title: Visualising temporal trends
+  sidebar_label: Visualising temporal trends
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
+  title: Visualising spatial trends
+  sidebar_label: Visualising spatial trends
