@@ -1,0 +1,77 @@
+---
+title: "R Markdown to Markdown Conversion"
+author: "Sanne Govaert"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Set up
+
+## Libraries
+
+```{r}
+library(yaml)
+library(purrr)
+library(here)
+```
+
+## Install all b3verse packages
+
+```{r}
+pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
+install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
+```
+
+## Read yaml
+
+```{r}
+yaml <- yaml::read_yaml(here::here("src", "rmd_to_md", "vignettes.yml"))
+```
+
+# Convertion per tutorial group
+
+## Select tutorial
+
+```{r}
+tutorial <- "gcube"
+yaml_tutorial <- yaml[[tutorial]]
+```
+
+## Install the packages used in the Rmd files
+
+```{r}
+dependencies <- unlist(
+  purrr::map(yaml_tutorial, function(item) {
+    if (!is.null(item$dependencies)) {
+      unlist(strsplit(item$dependencies, "[ ]+"))
+    } else {
+      NULL
+    }
+  })
+)
+
+purrr::map(unique(dependencies), ~ rlang::check_installed(.x))
+```
+
+### Convert vignettes
+
+```{r}
+md_dir <- here::here("src", "content", "docs", "software", tutorial)
+fig_dir <- here::here("public", "software", tutorial)
+fig_url_dir <- paste0("/software/", tutorial, "/")
+
+purrr::walk(
+  yaml_tutorial,
+  ~ b3doc::rmd_to_md(
+    .x$source,
+    md_dir,
+    fig_dir,
+    fig_url_dir,
+    title = purrr::pluck(.x, "title", .default = NULL),
+    sidebar_label = purrr::pluck(.x, "sidebar_label", .default = NULL),
+    sidebar_order = which(purrr::map_chr(yaml_tutorial, "source") == .x$source),
+    logo = purrr::pluck(.x, "logo", .default = NULL)
+  )
+)
+```
+
