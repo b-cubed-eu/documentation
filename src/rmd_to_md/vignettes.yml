@@ -37,11 +37,11 @@ dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
   title: Group-level sensitivity analysis
   sidebar_label: Group-level sensitivity analysis
-  dependencies: frictionless, ggplot2, dplyr, iNEXT
+  dependencies: frictionless, ggplot2, dplyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
   title: Bootstrap method for data cubes
   sidebar_label: Bootstrap method cubes
-  dependencies: frictionless, ggplot2, dplyr, tidyr, iNEXT
+  dependencies: frictionless, ggplot2, dplyr, tidyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
   title: Classifying effects using confidence limits
   sidebar_label: Effect classification
