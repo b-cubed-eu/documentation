@@ -1,0 +1,53 @@
+gcube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd
+  title: Introduction
+  sidebar_label: Introduction
+  logo: https://b-cubed-eu.github.io/gcube/logo.png
+  dependencies: sf dplyr ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd
+  title: Simulating the occurrence process
+  sidebar_label: Occurrence process
+  dependencies: sf dplyr ggplot2 tidyterra
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/detection-process.Rmd
+  title: Simulating the detection process
+  sidebar_label: Detection process
+  dependencies: sf dplyr ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/grid-designation-process.Rmd
+  title: Specifying the grid designation process
+  sidebar_label: Grid designation process
+  dependencies: sf dplyr ggplot2 ggExtra
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/multi-species-approach.Rmd
+  title: Creating cubes for multiple species
+  sidebar_label: Multi-species approach
+  dependencies: sf dplyr ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/cube-for-virtual-species.Rmd
+  title: Create occurrence cubes for virtual species
+  sidebar_label: Cube for virtual species
+  dependencies: geodata virtualspecies sf terra ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/custom-grid-designation.Rmd
+  title: Grid designation for custom datasets
+  sidebar_label: Custom grid designation
+  dependencies: frictionless ggplot2 dplyr sf
+
+dubicube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.Rmd
+  title: Introduction
+  sidebar_label: Introduction
+  logo: https://b-cubed-eu.github.io/dubicube/logo.png
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
+  title: Group-level sensitivity analysis
+  sidebar_label: Group-level sensitivity analysis
+  dependencies: frictionless, ggplot2, dplyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
+  title: Bootstrap method for data cubes
+  sidebar_label: Bootstrap method cubes
+  dependencies: frictionless, ggplot2, dplyr, tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
+  title: Classifying effects using confidence limits
+  sidebar_label: Effect classification
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-temporal-trends.Rmd
+  title: Visualising temporal trends
+  sidebar_label: Visualising temporal trends
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
+  title: Visualising spatial trends
+  sidebar_label: Visualising spatial trends

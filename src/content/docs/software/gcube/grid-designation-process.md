@@ -2,7 +2,7 @@
 title: Specifying the grid designation process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-29
+lastUpdated: 2025-05-14
 sidebar:
   label: Grid designation process
   order: 4

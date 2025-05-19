@@ -2,7 +2,7 @@
 title: Grid designation for custom datasets
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-04-29
+lastUpdated: 2025-05-14
 sidebar:
   label: Custom grid designation
   order: 7
@@ -80,7 +80,6 @@ In this example, we show how **gcube** can be used to perform grid designation o
 ``` r
 # Load packages
 library(gcube)
-
 
 library(frictionless) # Load example dataset
 library(ggplot2)      # Data visualisation
@@ -203,7 +202,7 @@ for (i in seq_along(taxa)) {
 
   # Perform grid designation
   taxon_cube <- grid_designation(
-    observations = example_data,
+    observations = taxon_data,
     grid = mgrs10_belgium,
     seed = 123
   )
@@ -219,43 +218,12 @@ for (i in seq_along(taxa)) {
 occurrence_cube_full <- bind_rows(occurrence_cube_list)
 ```
 
-This will however result in many duplicate rows for grid cells where no species were seen.
-They can be removed by filtering or unique rows can be retained using the `dplyr::distinct()` function.
+We select the occupied grid cells.
 
 
 ``` r
-start_time <- Sys.time()
-
-occurrence_cube_df1 <- distinct(occurrence_cube_full)
-
-end_time <- Sys.time()
-end_time - start_time
-#> Time difference of 1.69146 secs
-```
-
-Geometry columns are often large and complex, making operations like `distinct()` significantly slower.
-Dropping geometry before deduplication and rejoining spatial info afterwards drastically improves performance on large datasets.
-A faster option is to drop the geometry and join it again with the grid after retaining unique columns.
-
-
-``` r
-start_time <- Sys.time()
-
-occurrence_cube_df2 <- occurrence_cube_full %>%
-  st_drop_geometry() %>%
-  distinct() %>%
-  left_join(mgrs10_belgium, by = join_by(mgrscode)) %>%
-  st_sf(crs = st_crs(mgrs10_belgium))
-
-end_time <- Sys.time()
-end_time - start_time
-#> Time difference of 0.008394957 secs
-```
-
-
-``` r
-identical(occurrence_cube_df1, occurrence_cube_df2)
-#> [1] FALSE
+occurrence_cube_df <- occurrence_cube_full %>%
+  filter(n != 0)
 ```
 
 We visualise the final occurrence cube.
@@ -263,10 +231,10 @@ Since we have only three species occurrences per year spread over the whole grid
 
 
 ``` r
-ggplot(occurrence_cube_df1) +
-  geom_sf(aes(fill = factor(n))) +
-  facet_wrap(~time_point, nrow = 2) +
-  labs(fill = "number of\nobservations")
+ggplot(occurrence_cube_df) +
+  geom_sf(data = mgrs10_belgium) +
+  geom_sf(aes(fill = species)) +
+  facet_wrap(~time_point, nrow = 2)
 ```
 
-<img src="/software/gcube/custom-grid-designation-unnamed-chunk-10-1.png" alt="Visualisation of example data cube"  />
+<img src="/software/gcube/custom-grid-designation-unnamed-chunk-8-1.png" alt="Visualisation of example data cube"  />
