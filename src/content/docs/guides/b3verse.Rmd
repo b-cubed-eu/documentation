@@ -21,13 +21,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-<p align="left">
-  <a href="https://b-cubed-eu.r-universe.dev/"><img src="https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4" alt="name status badge" style="display:inline-block;"></a>
-  <a href="https://b-cubed-eu.r-universe.dev/"><img src="https://b-cubed-eu.r-universe.dev/badges/:registry" alt="registry status badge" style="display:inline-block;"></a>
-  <a href="https://b-cubed-eu.r-universe.dev/packages"><img src="https://b-cubed-eu.r-universe.dev/badges/:packages" alt="packages status badge" style="display:inline-block;"></a>
-  <a href="https://b-cubed-eu.r-universe.dev/articles"><img src="https://b-cubed-eu.r-universe.dev/badges/:articles" alt="articles status badge" style="display:inline-block;"></a>
-  <a href="https://b-cubed-eu.r-universe.dev/datasets"><img src="https://b-cubed-eu.r-universe.dev/badges/:datasets" alt="datasets status badge" style="display:inline-block;"></a>
-</p>
+[![name status badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)
+[![registry status badge](https://b-cubed-eu.r-universe.dev/badges/:registry)](https://b-cubed-eu.r-universe.dev/)
+[![packages status badge](https://b-cubed-eu.r-universe.dev/badges/:packages)](https://b-cubed-eu.r-universe.dev/packages)
+[![articles status badge](https://b-cubed-eu.r-universe.dev/badges/:articles)](https://b-cubed-eu.r-universe.dev/articles)
+[![datasets status badge](https://b-cubed-eu.r-universe.dev/badges/:datasets)](https://b-cubed-eu.r-universe.dev/datasets)
 
 This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
 
@@ -51,7 +49,8 @@ Install all packages of the **b3verse** via this command in R:
 
 ```r
 pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
-install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
+install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev",
+                                 "https://cloud.r-project.org"))
 ```
 
 The following packages are currently included:
