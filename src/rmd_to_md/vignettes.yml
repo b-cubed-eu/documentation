@@ -51,17 +51,3 @@ dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
   title: Visualising spatial trends
   sidebar_label: Visualising spatial trends
-
-GBIF_API:
-- source: https://raw.githubusercontent.com/gbif/tech-docs/b7e5e18c9fcf7c75b3a63253afe5f3fdd7dbfce6/en/data-use/modules/ROOT/pages/api-sql-downloads.adoc
-  title: API SQL Downloadss
-  sidebar_label: API SQL Downloads
-- source: https://raw.githubusercontent.com/gbif/tech-docs/b7e5e18c9fcf7c75b3a63253afe5f3fdd7dbfce6/en/data-use/modules/ROOT/pages/api-sql-download-functions.adoc
-  title: API SQL Downloads – Functions
-  sidebar_label: Custom functions
-- source: https://raw.githubusercontent.com/gbif/data-blog/refs/heads/master/content/post/2024-06-24-gbif-sql-downloads/index.en.md
-  title: GBIF SQL Downloads
-  sidebar_label: Using the SQL download API
-- source: https://github.com/gbif/tech-docs/blob/b7e5e18c9fcf7c75b3a63253afe5f3fdd7dbfce6/en/data-use/modules/ROOT/pages/data-cubes.adoc
-  title: Species occurrence cubes
-  sidebar_label: How to create a species occurrence cube in SQL
