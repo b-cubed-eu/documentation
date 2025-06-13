@@ -2,7 +2,7 @@
 title: Converting GBIF data cubes in cloud-native data formats
 sidebar:
   label: Build a cloud native data cube
-  order: 5
+  order: 3
 ---
 
 Suggestion citation:
