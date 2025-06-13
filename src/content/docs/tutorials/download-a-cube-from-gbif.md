@@ -28,17 +28,21 @@ Here are the steps to create and download a species occurrence cube from GBIF.or
 
     ![cube options](/tutorials/download-a-cube-from-gbif/cube-options.png)
 
-6. Click the `Download` button at the bottom of the window and your cube will be generated:
+6. If you want more advanced options, click `Edit as SQL` to completely customize your query:
+
+    ![cube sql](/tutorials/download-a-cube-from-gbif/cube-sql.png)
+
+7. Click the `Download` button at the bottom of the window and your cube will be generated:
 
     ![cube processing](/tutorials/download-a-cube-from-gbif/cube-processing.png)
 
-7. You will receive an email linked with your GBIF account when the data are ready for download. You can also find all your downloads in [your profile](https://www.gbif.org/user/download).
+8. You will receive an email linked with your GBIF account when the data are ready for download. You can also find all your downloads in [your profile](https://www.gbif.org/user/download).
 
-8. Click the link to open the [unique landing page](https://doi.org/10.15468/dl.c733pv) for your cube. Here you can download the data, see how to cite it using its DOI, get an overview of all the parameters that were used and learn what datasets contributed data to it:
+9. Click the link to open the [unique landing page](https://doi.org/10.15468/dl.c733pv) for your cube. Here you can download the data, see how to cite it using its DOI, get an overview of all the parameters that were used and learn what datasets contributed data to it:
 
     ![download page](/tutorials/download-a-cube-from-gbif/download-page.png)
 
-9. Download the data and unzip it. It is a tab-delimited text file, where each row represents the requested measures per dimension combination:
+10. Download the data and unzip it. It is a tab-delimited text file, where each row represents the requested measures per dimension combination:
 
     ```
     kingdom	kingdomkey	phylum	phylumkey	class	classkey	order	orderkey	family	familykey	genus	genuskey	species	specieskey	yearmonth	eeacellcode	familycount	genuscount	occurrences	mintemporaluncertainty	mincoordinateuncertaintyinmeters
