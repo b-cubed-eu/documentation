@@ -2,7 +2,7 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-05-14
+lastUpdated: 2025-06-16
 sidebar:
   label: Visualising spatial trends
   order: 6

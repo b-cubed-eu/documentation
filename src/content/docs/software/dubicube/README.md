@@ -3,7 +3,7 @@ output: github_document
 editor_options:
   chunk_output_type: console
 title: Introduction
-lastUpdated: 2025-05-14
+lastUpdated: 2025-06-16
 sidebar:
   label: Introduction
   order: 1
@@ -36,7 +36,7 @@ The **dubicube** package aims to deliver measures for assessing the applicabilit
 Install **dubicube** in R:
 
 ```r
-install.packages("dubicube", repos = "https://b-cubed-eu.r-universe.dev")
+install.packages("dubicube"", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 You can install the development version from [GitHub](https://github.com/) with:
@@ -46,6 +46,42 @@ You can install the development version from [GitHub](https://github.com/) with:
 remotes::install_github("b-cubed-eu/dubicube")
 ```
 
-## Example
+## Key Features
 
-Basic example coming soon.
+The **dubicube** package offers:
+
+### 🔍 1. Data Exploration & Variability Assessment
+
+Gain insights into the structure and sensitivity of biodiversity data cubes.
+
+* `cross_validate_cube()`
+  Perform cross-validation (leave-one-out or k-fold) to assess group-level sensitivity of indicators and evaluate how individual categories influence results.\
+  📘 [Read the tutorial →](https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)
+
+> 🛠️ Additional data quality diagnostics are on the way!
+
+### 📈 2. Estimating Indicator Uncertainty
+
+Use bootstrap methods to understand variability, bias, and confidence in your indicators.
+
+* `bootstrap_cube()`
+  Create bootstrap replicates to estimate indicator variability, bias, and standard error.\
+  📘 [Read the tutorial →](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)
+
+* `calculate_bootstrap_ci()`
+  Compute confidence intervals (percentile, BCa, normal, basic), with optional transformations and bias correction.\
+  📘 [Read the tutorial →](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)
+
+### 🧠 3. Interpretation & Visualisation
+
+Put your results in context with reference values and uncertainty thresholds.
+
+* `add_effect_classification()`
+  Classify indicator trends (e.g. increase, stable, decrease) by comparing confidence intervals to thresholds.\
+  📘 [Read the tutorial →](https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)
+
+> 📚 Tutorials on best practices for spatial and temporal interpretation are coming soon!
+
+---
+
+🔗 Learn more at our [website](https://b-cubed-eu.github.io/dubicube/) or explore the [documentation](https://b-cubed-eu.github.io/dubicube/reference/).
