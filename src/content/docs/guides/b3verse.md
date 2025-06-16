@@ -49,12 +49,15 @@ The following packages are currently included:
 
 | Package | Description | GitHub repository |
 | :-----  | :---------- | :---------------- |
-| **rgbif** | Download occurrence cubes | <https://github.com/ropensci/rgbif> |
-| **gcube** | Simulation of occurrence cubes | <https://github.com/b-cubed-eu/gcube> |
-| **b3gbi** | Calculate general biodiversity indicators from occurrence cubes | <https://github.com/b-cubed-eu/b3gbi> |
-| **pdindicatoR** | Calculate phylogenetic indicators from occurrence cubes | <https://github.com/b-cubed-eu/pdindicatoR> |
-| **impIndicatoR** | Calculate alien impact indicators from occurrence cubes | <https://github.com/b-cubed-eu/impIndicator> |
-| **dubicube** | Data exploration for occurrence cubes and uncertainty calculation for indicators | <https://github.com/b-cubed-eu/dubicube> |
+| **b3doc**        | Create Markdown pages for B-Cubed documentation website                          | [https://github.com/b-cubed-eu/b3doc](https://github.com/b-cubed-eu/b3doc)               |
+| **b3gbi**        | Calculate general biodiversity indicators from occurrence cubes                  | [https://github.com/b-cubed-eu/b3gbi](https://github.com/b-cubed-eu/b3gbi)               |
+| **dubicube**     | Data exploration for occurrence cubes and uncertainty calculation for indicators | [https://github.com/b-cubed-eu/dubicube](https://github.com/b-cubed-eu/dubicube)         |
+| **ebvcube**      | Access and visualise datacubes of Essential Biodiversity Variables (EBV)         | [https://github.com/EBVcube/ebvcube](https://github.com/EBVcube/ebvcube)                 |
+| **gcube**        | Simulation of occurrence cubes                                                   | [https://github.com/b-cubed-eu/gcube](https://github.com/b-cubed-eu/gcube)               |
+| **impIndicatoR** | Calculate alien impact indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/impIndicator](https://github.com/b-cubed-eu/impIndicator) |
+| **pdindicatoR**  | Calculate phylogenetic indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/pdindicatoR](https://github.com/b-cubed-eu/pdindicatoR)   |
+| **rgbif**        | Download occurrence cubes                                                        | [https://github.com/ropensci/rgbif](https://github.com/ropensci/rgbif)                   |
+| **trias**        | Functionality for the TrIAS and LIFE RIPARIAS projects                           | [https://github.com/trias-project/trias](https://github.com/trias-project/trias)         |
 
 Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.
 
@@ -72,11 +75,11 @@ We welcome contributions to the **b3verse**! Each package in the collection has 
 
 **Adding or removing packages**
 - Open an issue and/or pull request in the [b3verse development repository](https://github.com/b-cubed-eu/b-cubed-eu.r-universe.dev/).
-- Clearly describe the purpose of the package and how it integrates with the existing **b3verse** workflow.
+- Clearly describe the purpose of the package and how it integrates with the existing **b3verse**.
 - Newly proposed packages will undergo a review in line with the [B-Cubed software development guidelines](https://docs.b-cubed.eu/guides/software-development/).
 
 ## Getting started
-### The b3verse workflow
+### The b3verse indicator calculation workflow
 
 Occurrence cubes can be derived from GBIF data using the **rgbif** package or simulated using the **gcube** package.
 They are then processed using the `process_cube()` function from the **b3gbi** package.
@@ -93,7 +96,7 @@ We provide a basic example of an analysis workflow using the **b3verse** package
 This example demonstrates the process but is not intended as a best-practice analysis.
 For more detailed guidance, refer to the package tutorials.  
 
-In this workflow, we use **gcube** v1.1.2 to simulate an occurrence cube, **b3gbi** v0.4.2 to process the cube, and **dubicube** v0.4.0 to calculate uncertainty around indicator estimates.
+In this workflow, we use **gcube** v1.3.5 to simulate an occurrence cube, **b3gbi** v0.6.3 to process the cube, and **dubicube** v0.8.0 to calculate uncertainty around indicator estimates.
 
 
 ``` r
@@ -303,7 +306,7 @@ We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each est
 ``` r
 # Perform bootstrapping
 bootstrap_observations <- dubicube::bootstrap_cube(
-  data_cube = processed_cube$data,
+  data_cube = processed_cube,
   fun = species_observations,
   grouping_var = c("scientificName", "year"),
   samples = 1000,
@@ -316,7 +319,7 @@ ci_observations <- dubicube::calculate_bootstrap_ci(
   grouping_var = c("scientificName", "year"),
   type = "bca",
   conf = 0.95,
-  data_cube = processed_cube$data,
+  data_cube = processed_cube,
   fun = species_observations
 )
 
