@@ -51,3 +51,8 @@ dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
   title: Visualising spatial trends
   sidebar_label: Visualising spatial trends
+
+b3doc:
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3doc/refs/heads/main/README.Rmd
+  title: "b3doc: Tools for the B-Cubed Documentation Website"
+  sidebar_label: Introduction
