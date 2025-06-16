@@ -97,12 +97,6 @@ Therefore, we will use the **b3gbi** package for processing the raw data before 
 ``` r
 # Load packages
 library(dubicube)
-#> Registered S3 method overwritten by 'data.table':
-#>   method           from
-#>   print.data.table
-#> Registered S3 method overwritten by 'htmlwidgets':
-#>   method           from         
-#>   print.htmlwidget tools:rstudio
 
 # Data loading and processing
 library(frictionless) # Load example datasets
@@ -111,14 +105,6 @@ library(b3gbi)        # Process occurrence cubes
 # General
 library(ggplot2)      # Data visualisation
 library(dplyr)        # Data wrangling
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 ```
 
 ### Loading and processing the data
