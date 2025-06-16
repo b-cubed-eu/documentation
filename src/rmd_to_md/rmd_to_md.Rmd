@@ -34,7 +34,7 @@ yaml <- yaml::read_yaml(here::here("src", "rmd_to_md", "vignettes.yml"))
 ## Select tutorial
 
 ```{r}
-tutorial <- "dubicube"
+tutorial <- "gcube"
 yaml_tutorial <- yaml[[tutorial]]
 ```
 
