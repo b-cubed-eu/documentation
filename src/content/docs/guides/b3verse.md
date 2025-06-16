@@ -1,5 +1,5 @@
 ---
-title: "b3verse: A collection of R packages to calculate indicators from occurrence cubes"
+title: "b3verse: A collection of R packages to work with occurrence cubes"
 sidebar:
   label: b3verse
   order: 6
@@ -19,17 +19,17 @@ knit: (function(inputFile, ...) {
 [![articles status badge](https://b-cubed-eu.r-universe.dev/badges/:articles)](https://b-cubed-eu.r-universe.dev/articles)
 [![datasets status badge](https://b-cubed-eu.r-universe.dev/badges/:datasets)](https://b-cubed-eu.r-universe.dev/datasets)
 
-This guide provides an overview of the integration and maintenance of R packages designed for calculating biodiversity indicators from occurrence cubes.
+This guide provides an overview of the integration and maintenance of R packages designed for working with occurrence cubes.
 
 Suggestion citation:
 
-> Langeraert W, Desmet P, Van Daele T (2025). b3verse: A collection of R packages to calculate indicators from occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
+> Langeraert W, Desmet P, Van Daele T (2025). b3verse: A collection of R packages to work with occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
 
 <a href="https://b-cubed-eu.r-universe.dev/"><img src="/guides/b3verse/b3verse-logo.png" align="right" width="139" alt="b3verse logo" /></a>
 
 ## What is the b3verse?
 
-The **b3verse** is a collection of related R packages that streamline indicator calculation from occurrence cubes. These packages are accessible and maintained via a [dedicated R-universe platform](https://b-cubed-eu.r-universe.dev/), ensuring continuous updates, easy distribution, and efficient [installation](#installation).
+The **b3verse** is a collection of related R packages that support the entire workflow of working with occurrence cubes. This includes data retrieval, cube simulation, data processing, exploration, indicator calculation, and uncertainty estimation. These packages are accessible and maintained via a [dedicated R-universe platform](https://b-cubed-eu.r-universe.dev/), ensuring continuous updates, easy distribution, and efficient [installation](#installation).
 
 In addition to the R packages, the **b3verse** also includes a dedicated [data package](https://doi.org/10.5281/zenodo.15181097), **b3data**, published in the [Frictionless Data](https://frictionlessdata.io/) format. This package provides datasets that can be used directly with the **b3verse software**, including example occurrence cubes and spatial reference layers. For more information, visit the [b3data documentation](https://docs.b-cubed.eu/guides/b3data/).
 
