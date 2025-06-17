@@ -74,7 +74,7 @@ $$
    - The standard deviation of the bootstrap replications, which estimates
    the variability of the statistic.
 
-<img src="figures/bootstrapping.png" alt="Bootstrap resampling a data cube." width="60%">
+<img src="https://b-cubed-eu.github.io/dubicube/articles/figures/bootstrapping.png" alt="Bootstrap resampling a data cube." width="60%">
 
 ## Getting started with dubicube
 
