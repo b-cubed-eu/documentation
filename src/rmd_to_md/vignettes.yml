@@ -56,3 +56,12 @@ b3doc:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3doc/refs/heads/main/README.Rmd
   title: "b3doc: Tools for the B-Cubed Documentation Website"
   sidebar_label: Introduction
+
+b3gbi:
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/README.Rmd
+  title: "b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes"
+  sidebar_label: Introduction
+  logo: https://b-cubed-eu.github.io/b3gbi/logo.png
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
+  title: Functionality overview
+  sidebar_label: Functionality overview
