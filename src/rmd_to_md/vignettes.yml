@@ -63,5 +63,5 @@ b3gbi:
   sidebar_label: Introduction
   logo: https://b-cubed-eu.github.io/b3gbi/logo.png
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
-  title: Functionality overview
-  sidebar_label: Functionality overview
+  title: Get started
+  sidebar_label: Get started

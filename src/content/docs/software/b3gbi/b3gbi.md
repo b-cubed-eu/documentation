@@ -1,11 +1,11 @@
 ---
-title: Functionality overview
+title: Get started
 author: Shawn Dove
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Tutorial} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
 lastUpdated: 2025-07-01
 sidebar:
-  label: Functionality overview
+  label: Get started
   order: 2
 source: https://github.com/b-cubed-eu/b3gbi/blob/main/vignettes/b3gbi.Rmd
 ---
