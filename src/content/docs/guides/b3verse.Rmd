@@ -49,8 +49,7 @@ Install all packages of the **b3verse** via this command in R:
 
 ```r
 pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
-install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev",
-                                 "https://cloud.r-project.org"))
+install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 
 The following packages are currently included:

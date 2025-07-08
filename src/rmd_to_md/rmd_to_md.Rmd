@@ -19,8 +19,7 @@ library(here)
 
 ```{r}
 pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
-install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev",
-                                 "https://cloud.r-project.org"))
+install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 
 ## Read yaml

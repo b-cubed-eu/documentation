@@ -104,9 +104,8 @@ head(mgrs10_belgium)
 Once loaded, resources can be filtered, joined, or passed into **b3verse** indicator functions.
 
 ```{r, warning=FALSE, message=FALSE}
-# Install b3verse packages
-# pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
-# install.packages(pkgs, repos = "https://b-cubed-eu.r-universe.dev")
+# Install b3gbi package from b3verse:
+# install.packages("b3gbi", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
 
 # Load packages
 library(b3gbi)   # General biodiversity indicators for occurrence cubes
