@@ -2,7 +2,7 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-06-16
+lastUpdated: 2025-07-08
 sidebar:
   label: Bootstrap method cubes
   order: 3
@@ -112,6 +112,15 @@ b3data_package <- read_package(
 # Load bird cube data
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
+#> # A tibble: 6 × 8
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -153,6 +162,22 @@ processed_cube
 #> Kingdoms represented: Data not present 
 #> 
 #> First 10 rows of data (use n = to show more):
+#> 
+#> # A tibble: 957 × 13
+#>     year cellCode taxonKey scientificName          family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>                   <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus         Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus phoenicurus Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalus ridibu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa striata       Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus         Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus glandarius     Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x Branta c… Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus           Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentatus        Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querquedula     Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
+#> # ℹ 947 more rows
+#> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
 ```
 
 ### Analysis of the data
@@ -179,6 +204,17 @@ We get the following results:
 
 ``` r
 mean_obs(processed_cube$data)
+#>    year diversity_val
+#> 1  2011      34.17777
+#> 2  2012      35.27201
+#> 3  2013      33.25581
+#> 4  2014      55.44160
+#> 5  2015      49.24754
+#> 6  2016      48.34063
+#> 7  2017      70.42202
+#> 8  2018      48.83850
+#> 9  2019      47.46795
+#> 10 2020      43.00411
 ```
 
 On their own, these values don’t reveal how much uncertainty surrounds them. To better understand their variability, we use bootstrapping to estimate the distribution of the yearly means.
@@ -219,6 +255,13 @@ bootstrap_results <- bootstrap_cube(
 
 ``` r
 head(bootstrap_results)
+#>   sample year est_original rep_boot est_boot se_boot  bias_boot
+#> 1      1 2011     34.17777 24.23133 33.80046 4.24489 -0.3773142
+#> 2      2 2011     34.17777 24.28965 33.80046 4.24489 -0.3773142
+#> 3      3 2011     34.17777 31.81445 33.80046 4.24489 -0.3773142
+#> 4      4 2011     34.17777 33.42530 33.80046 4.24489 -0.3773142
+#> 5      5 2011     34.17777 35.03502 33.80046 4.24489 -0.3773142
+#> 6      6 2011     34.17777 33.72037 33.80046 4.24489 -0.3773142
 ```
 
 We can visualise the bootstrap distributions using a violin plot.
@@ -302,6 +345,13 @@ bootstrap_results_ref <- bootstrap_cube(
 
 ``` r
 head(bootstrap_results_ref)
+#>   sample year est_original   rep_boot  est_boot  se_boot  bias_boot
+#> 1      1 2012     1.094245  8.1881078 0.6583191 5.475053 -0.4359261
+#> 2      2 2012     1.094245  7.6061946 0.6583191 5.475053 -0.4359261
+#> 3      3 2012     1.094245 -4.6058908 0.6583191 5.475053 -0.4359261
+#> 4      4 2012     1.094245  2.4102039 0.6583191 5.475053 -0.4359261
+#> 5      5 2012     1.094245  6.2626545 0.6583191 5.475053 -0.4359261
+#> 6      6 2012     1.094245 -0.1577162 0.6583191 5.475053 -0.4359261
 ```
 
 We see that the mean number of observations is higher in most years compared to 2011.
