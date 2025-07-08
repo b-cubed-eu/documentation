@@ -18,7 +18,7 @@ library(here)
 ## Install all b3verse packages
 
 ```{r}
-pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
+pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev"))
 install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 

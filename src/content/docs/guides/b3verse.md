@@ -40,7 +40,7 @@ In addition to the R packages, the **b3verse** also includes a dedicated [data p
 Install all packages of the **b3verse** via this command in R:
 
 ```r
-pkgs <- available.packages(repos = "https://b-cubed-eu.r-universe.dev")[, "Package"]
+pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev"))
 install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 
