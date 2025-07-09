@@ -2,8 +2,8 @@
 output: github_document
 editor_options:
   chunk_output_type: console
-title: Introduction
-lastUpdated: 2025-05-14
+title: 'gcube: Simulating Biodiversity Data Cubes'
+lastUpdated: 2025-07-09
 sidebar:
   label: Introduction
   order: 1

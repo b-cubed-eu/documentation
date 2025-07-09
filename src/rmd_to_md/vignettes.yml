@@ -1,6 +1,6 @@
 gcube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd
-  title: Introduction
+  title: "gcube: Simulating Biodiversity Data Cubes"
   sidebar_label: Introduction
   logo: https://b-cubed-eu.github.io/gcube/logo.png
   dependencies: sf dplyr ggplot2
@@ -31,7 +31,7 @@ gcube:
 
 dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.md
-  title: Introduction
+  title: "dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty"
   sidebar_label: Introduction
   logo: https://b-cubed-eu.github.io/dubicube/logo.png
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd

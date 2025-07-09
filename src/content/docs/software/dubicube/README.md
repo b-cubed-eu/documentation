@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: 'dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty'
 lastUpdated: 2025-07-08
 sidebar:
   label: Introduction
