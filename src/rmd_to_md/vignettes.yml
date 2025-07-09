@@ -66,3 +66,15 @@ b3gbi:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
   title: Get started
   sidebar_label: Get started
+
+impIndicator:
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/README.Rmd
+  title: "impIndicator: Impact Indicators of Alien Taxa"
+  sidebar_label: Introduction
+  logo: https://b-cubed-eu.github.io/impIndicator/logo.png
+  dependencies: b3gbi ggplot2 tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/Background.Rmd
+  sidebar_label: Background
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/Prepare_data.Rmd
+  sidebar_labe: Prepare data
+  dependencies: b3gbi dplyr knitr
