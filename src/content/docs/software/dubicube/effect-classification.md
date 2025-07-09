@@ -2,7 +2,7 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-06-16
+lastUpdated: 2025-07-08
 sidebar:
   label: Effect classification
   order: 4
@@ -136,6 +136,17 @@ ds$ucl <- qnorm(0.95, ds$mean, ds$sd)
 
 # View the dataset
 ds
+#>    mean   sd         lcl         ucl
+#> 1   0.0 1.00 -1.64485363  1.64485363
+#> 2   0.5 0.50 -0.32242681  1.32242681
+#> 3  -0.5 0.50 -1.32242681  0.32242681
+#> 4   1.0 0.50  0.17757319  1.82242681
+#> 5  -1.0 0.50 -1.82242681 -0.17757319
+#> 6   1.5 0.25  1.08878659  1.91121341
+#> 7  -1.5 0.25 -1.91121341 -1.08878659
+#> 8   0.5 0.25  0.08878659  0.91121341
+#> 9  -0.5 0.25 -0.91121341 -0.08878659
+#> 10  0.0 0.50 -0.82242681  0.82242681
 ```
 
 ### Add effect classifications
@@ -173,6 +184,17 @@ result <- add_effect_classification(
 
 # View the result
 result
+#>    mean   sd         lcl         ucl effect_code effect_code_coarse             effect effect_coarse
+#> 1   0.0 1.00 -1.64485363  1.64485363           ?                  ?            unknown       unknown
+#> 2   0.5 0.50 -0.32242681  1.32242681          ?+                  ? potential increase       unknown
+#> 3  -0.5 0.50 -1.32242681  0.32242681          ?-                  ? potential decrease       unknown
+#> 4   1.0 0.50  0.17757319  1.82242681           +                  +           increase      increase
+#> 5  -1.0 0.50 -1.82242681 -0.17757319           -                  -           decrease      decrease
+#> 6   1.5 0.25  1.08878659  1.91121341          ++                  +    strong increase      increase
+#> 7  -1.5 0.25 -1.91121341 -1.08878659          --                  -    strong decrease      decrease
+#> 8   0.5 0.25  0.08878659  0.91121341          +~                  +  moderate increase      increase
+#> 9  -0.5 0.25 -0.91121341 -0.08878659          -~                  -  moderate decrease      decrease
+#> 10  0.0 0.50 -0.82242681  0.82242681           ~                  ~             stable        stable
 ```
 
 ### Visualising the result
@@ -215,7 +237,7 @@ The following plot shows point estimates and their 90% confidence intervals, col
 
 
 ``` r
-ggplot(data = result, aes(x = rownames(result))) +
+ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   geom_hline(yintercept = 0, linetype = "longdash", colour = "black") +
   geom_hline(yintercept = c(-1, 1), linetype = "dotdash") +
   geom_errorbar(aes(ymin = lcl, ymax = ucl, colour = effect_coarse),
@@ -232,7 +254,7 @@ The plot below provides a more detailed view using the **fine-grained** classifi
 
 
 ``` r
-ggplot(data = result, aes(x = rownames(result))) +
+ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   geom_hline(yintercept = 0, linetype = "longdash", colour = "black") +
   geom_hline(yintercept = c(-1, 1), linetype = "dotdash") +
   geom_errorbar(aes(ymin = lcl, ymax = ucl, colour = effect),

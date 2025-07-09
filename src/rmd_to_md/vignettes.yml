@@ -30,7 +30,7 @@ gcube:
   dependencies: frictionless ggplot2 dplyr sf
 
 dubicube:
-- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.Rmd
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.md
   title: Introduction
   sidebar_label: Introduction
   logo: https://b-cubed-eu.github.io/dubicube/logo.png
