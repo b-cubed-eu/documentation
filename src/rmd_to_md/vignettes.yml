@@ -73,8 +73,8 @@ impIndicator:
   sidebar_label: Introduction
   logo: https://b-cubed-eu.github.io/impIndicator/logo.png
   dependencies: b3gbi ggplot2 tidyr
-- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/Background.Rmd
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/background.Rmd
   sidebar_label: Background
-- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/Prepare_data.Rmd
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
   sidebar_labe: Prepare data
   dependencies: b3gbi dplyr knitr
