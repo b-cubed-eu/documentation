@@ -2,7 +2,8 @@ gcube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd
   title: "gcube: Simulating Biodiversity Data Cubes"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/gcube/logo.png
+  replace:
+    man/figures/logo.png: https://b-cubed-eu.github.io/gcube/logo.png
   dependencies: sf dplyr ggplot2
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd
   title: Simulating the occurrence process
@@ -33,7 +34,8 @@ dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.md
   title: "dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/dubicube/logo.png
+  replace:
+    man/figures/logo.png: https://b-cubed-eu.github.io/dubicube/logo.png
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
   title: Group-level sensitivity analysis
   sidebar_label: Group-level sensitivity analysis
@@ -62,7 +64,8 @@ b3gbi:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/README.Rmd
   title: "b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/b3gbi/logo.png
+  replace:
+    man/figures/logo.png: https://b-cubed-eu.github.io/b3gbi/logo.png
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
   title: Get started
   sidebar_label: Get started
@@ -71,7 +74,8 @@ impIndicator:
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/README.Rmd
   title: "impIndicator: Impact Indicators of Alien Taxa"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/impIndicator/logo.png
+  replace:
+    man/figures/logo.png: https://b-cubed-eu.github.io/impIndicator/logo.png
   dependencies: b3gbi ggplot2 tidyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/background.Rmd
   sidebar_label: Background
