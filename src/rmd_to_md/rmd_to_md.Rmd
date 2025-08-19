@@ -7,7 +7,7 @@ output: html_document
 
 ## Setup
 
-## Select package
+### Select package
 
 For what package do you want to (re)generate the documentation? See `vignettes.yml` for settings:
 
