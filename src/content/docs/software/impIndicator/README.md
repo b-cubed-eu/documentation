@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'impIndicator: Impact Indicators of Alien Taxa'
-lastUpdated: 2025-07-10
+lastUpdated: 2025-08-19
 sidebar:
   label: Introduction
   order: 1
@@ -12,7 +12,7 @@ source: https://github.com/b-cubed-eu/impIndicator/blob/main/README.Rmd
 
 
 
-# impIndicator <img src="https://b-cubed-eu.github.io/impIndicator/logo.png" align="right" height="139" alt="" />
+<img src="https://b-cubed-eu.github.io/impIndicator/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 

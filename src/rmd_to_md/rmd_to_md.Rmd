@@ -7,7 +7,7 @@ output: html_document
 
 ## Setup
 
-## Select package
+### Select package
 
 For what package do you want to (re)generate the documentation? See `vignettes.yml` for settings:
 
@@ -80,7 +80,7 @@ purrr::walk(
     title = purrr::pluck(.x, "title", .default = NULL),
     sidebar_label = purrr::pluck(.x, "sidebar_label", .default = NULL),
     sidebar_order = which(purrr::map_chr(yaml_package, "source") == .x$source),
-    logo = purrr::pluck(.x, "logo", .default = NULL)
+    replace = unlist(purrr::pluck(.x, "replace", .default = NULL))
   )
 )
 ```

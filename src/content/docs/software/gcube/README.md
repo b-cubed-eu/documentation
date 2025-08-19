@@ -3,7 +3,7 @@ output: github_document
 editor_options:
   chunk_output_type: console
 title: 'gcube: Simulating Biodiversity Data Cubes'
-lastUpdated: 2025-07-09
+lastUpdated: 2025-08-19
 sidebar:
   label: Introduction
   order: 1
@@ -14,7 +14,7 @@ source: https://github.com/b-cubed-eu/gcube/blob/main/README.Rmd
 
 
 
-# gcube <a href="https://b-cubed-eu.github.io/gcube/"><img src="https://b-cubed-eu.github.io/gcube/logo.png" align="right" height="139" alt="gcube website" /></a>
+<a href="https://b-cubed-eu.github.io/gcube/"><img src="https://b-cubed-eu.github.io/gcube/logo.png" align="right" height="139" alt="gcube website" /></a>
 
 <!-- badges: start -->
 
