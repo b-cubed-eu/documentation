@@ -99,7 +99,7 @@ Mac operating systems create [.DS_Store](https://en.wikipedia.org/wiki/.DS_Store
 
 ### Add a CITATION.cff file {#repo-citation-cff}
 
-Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](#versioning-releases). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
+Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](#versioning-releases)). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
 
 1. Go to the main page of your repository.
 2. Click `Add file` then `Create new file`.
@@ -336,14 +336,12 @@ Major and minor versions MUST have an associated GitHub release:
 
 Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
 
-1. Log in on [Zenodo](https://zenodo.org/).
-2. Go to 'GitHub' in your account settings.
-3. Find your repository, and flip the toggle to 'on'.
-4. Create a release on your GitHub repository. This triggers a Zenodo publication.
+1. Log in to [Zenodo](https://zenodo.org/).
+2. Open the dropdown menu under your account name and select `GitHub`.
+3. Find your repository, and flip the toggle to `on`.
+4. Create a release on your GitHub repository. This will trigger a Zenodo publication.
 
-Repository metadata is picked up from the `CITATION.cff` file (follow the [Add a CITATION.cff file](#repo-citation-cff) instructions).
-You can also tune your repository metadata for Zenodo using a `.zenodo.json` file (optional).
-See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
+Repository metadata is picked up from the `CITATION.cff` file (see [Add a CITATION.cff file](#repo-citation-cff)). Optionally, you can use a `.zenodo.json` file to define the metadata (see [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details).
 
 ### Data products {#versioning-data-products}
 
