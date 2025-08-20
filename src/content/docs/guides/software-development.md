@@ -910,6 +910,9 @@ covr::codecov(token = "YOUR_TOKEN_GOES_HERE")
 usethis::use_github_action("test-coverage", badge = TRUE)
 ```  
 
+Running this will create `test-coverage.yaml` in the `.github/workflows` directory. And add a badge reporting your test coverage to your README file.
+
+
 5. Configure Codecov Settings
    - Create a **codecov.yml** file in the root of your repository with the following content:  
 
