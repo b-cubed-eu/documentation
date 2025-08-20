@@ -99,7 +99,7 @@ Mac operating systems create [.DS_Store](https://en.wikipedia.org/wiki/.DS_Store
 
 ### Add a CITATION.cff file {#repo-citation-cff}
 
-Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](#versioning-releases). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
+Repositories MUST contain a `CITATION.cff` file so users know how to cite the software. Its metadata also gets picked up when depositing a repository to Zenodo (see [releases](#versioning-releases)). For more information see [What is a CITATION.cff file](https://citation-file-format.github.io/#/what-is-a-citation-cff-file) or GitHub’s [About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files).
 
 1. Go to the main page of your repository.
 2. Click `Add file` then `Create new file`.
@@ -334,7 +334,14 @@ Major and minor versions MUST have an associated GitHub release:
 1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
 2. Use the semantic version number for the tag (e.g. `0.1`, `1.1.1`)
 
-Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated. See [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details.
+Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
+
+1. Log in to [Zenodo](https://zenodo.org/).
+2. Open the dropdown menu under your account name and select `GitHub`.
+3. Find your repository, and flip the toggle to `on`.
+4. Create a release on your GitHub repository. This will trigger a Zenodo publication.
+
+Repository metadata is picked up from the `CITATION.cff` file (see [Add a CITATION.cff file](#repo-citation-cff)). Optionally, you can use a `.zenodo.json` file to define the metadata (see [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details).
 
 ### Data products {#versioning-data-products}
 
@@ -869,6 +876,38 @@ my_function <- function(file) {
 ```
 
 For dependency recommendations, see the [dependencies section](#r-dependencies) in the R section.
+
+### Code coverage {#r-pkg-codecov}
+<!-- Author: Ward Langeraert  -->
+
+Code coverage helps software participants measure and visualize how much of their code is covered by [tests](#r-testing). We recommend the use of [Codecov](https://about.codecov.io/) as a tool to calculate and report code coverage. It integrates with GitHub Actions and provides insights into untested code.
+
+To integrate Codecov with your R package, follow these steps:
+
+1. Get the `CODECOV_TOKEN`:
+
+    1. Login to Codecov (<https://about.codecov.io/>) with your GitHub account.
+    2. Go to <https://app.codecov.io/gh/b-cubed-eu> and search for your package.
+    3. Open it and click the `Configuration` tab.
+    4. Select `General` from the menu.
+    5. Copy the `CODECOV_TOKEN` value (a UUID, without `CODECOV_TOKEN=`).
+
+2. Store the token in your repository:
+
+    1. Go to your package repository on GitHub.
+    2. Navigate to `Settings > Secrets and variables > Actions`.
+    3. Click `New repository secret` and name it `CODECOV_TOKEN`.
+    4. Paste the copied token as the value and save.
+
+3. In R, create a GitHub Action that will automatically test and report code coverage on pull requests:
+
+    ```r
+    usethis::use_github_action("test-coverage", badge = TRUE)
+    ```
+
+4. Commit the files (new `test-coverage.yaml` and updated README file).
+
+5. Optionally, if you want to deviate from the default Codecov settings, create a `codecov.yml` file in the root of your repository (see [these instructions](https://docs.codecov.com/docs/codecov-yaml)).
 
 ## R analysis code {#r-analysis}
 
