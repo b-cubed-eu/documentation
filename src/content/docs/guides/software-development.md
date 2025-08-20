@@ -880,7 +880,7 @@ my_function <- function(file) {
 For dependency recommendations, see the [dependencies section](#r-dependencies) in the R section.
 
 ### Setting up code coverage with Codecov 
-
+<!-- Author: Ward Langeraert  -->
 [Codecov](https://about.codecov.io/) is a code coverage reporting tool that helps developers measure and visualise how much of their code is covered by tests.
 It integrates with GitHub Actions and provides insights into untested code.
 To integrate Codecov into your R package and track code coverage, follow these steps:  
