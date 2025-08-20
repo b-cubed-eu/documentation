@@ -877,62 +877,37 @@ my_function <- function(file) {
 
 For dependency recommendations, see the [dependencies section](#r-dependencies) in the R section.
 
-### Setting up code coverage with Codecov 
+### Code coverage {#r-pkg-codecov}
 <!-- Author: Ward Langeraert  -->
-[Codecov](https://about.codecov.io/) is a code coverage reporting tool that helps developers measure and visualise how much of their code is covered by tests.
-It integrates with GitHub Actions and provides insights into untested code.
-To integrate Codecov into your R package and track code coverage, follow these steps:  
 
-1. Log in to Codecov and retrieve your token
-   - Visit [Codecov](https://about.codecov.io/) and log in using your GitHub account.
-   - Navigate to the **B-Cubed** organization and locate your package repository.  
-   - Copy the **Codecov token** for your repository.  
+Code coverage helps software participants measure and visualize how much of their code is covered by [tests](#r-testing). We recommend the use of [Codecov](https://about.codecov.io/) as a tool to calculate and report code coverage. It integrates with GitHub Actions and provides insights into untested code.
 
-2. Configure code coverage results with Codecov
-   - Run the following command in R, replacing `"YOUR_TOKEN_GOES_HERE"` with the token you copied in the previous step:  
+To integrate Codecov with your R package, follow these steps:
 
-```r
-covr::codecov(token = "YOUR_TOKEN_GOES_HERE")
-```  
+1. Get the `CODECOV_TOKEN`:
 
-3. Store the token in GitHub Secrets  
-   - Go to your package repository on GitHub.  
-   - Navigate to **Settings** > **Secrets and variables** > **Actions**.  
-   - Click **New repository secret** and name it `CODECOV_TOKEN`.  
-   - Paste the copied token as the value and save it.  
+    1. Login to Codecov (<https://about.codecov.io/>) with your GitHub account.
+    2. Go to <https://app.codecov.io/gh/b-cubed-eu> and search for your package.
+    3. Open it and click the `Configuration` tab.
+    4. Select `General` from the menu.
+    5. Copy the `CODECOV_TOKEN` value (a UUID, without `CODECOV_TOKEN=`).
 
-4. Add a GitHub Action for Code Coverage  
-   - In R, run the following command to set up a GitHub Action for test coverage reporting:  
+2. Store the token in your repository:
 
-```r
-usethis::use_github_action("test-coverage", badge = TRUE)
-```  
+    1. Go to your package repository on GitHub.
+    2. Navigate to `Settings > Secrets and variables > Actions`.
+    3. Click `New repository secret` and name it `CODECOV_TOKEN`.
+    4. Paste the copied token as the value and save.
 
-Running this will create `test-coverage.yaml` in the `.github/workflows` directory. And add a badge reporting your test coverage to your README file.
+3. In R, create a GitHub Action that will automatically test and report code coverage on pull requests:
 
+    ```r
+    usethis::use_github_action("test-coverage", badge = TRUE)
+    ```
 
-5. Configure Codecov Settings
-   - Create a **codecov.yml** file in the root of your repository with the following content:  
+4. Commit the files (new `test-coverage.yaml` and updated README file).
 
-```yaml
-comment: true
-
-coverage:
-  precision: 1
-  round: down
-  range: "70...100"
-  status:
-    patch:
-      default:
-        target: auto
-        threshold: 10%
-        informational: true
-    project:
-      default:
-        target: auto
-        threshold: 1%
-        informational: false
-```
+5. Optionally, if you want to deviate from the default Codecov settings, create a `codecov.yml` file in the root of your repository (see [these instructions](https://docs.codecov.com/docs/codecov-yaml)).
 
 ## R analysis code {#r-analysis}
 
