@@ -9,7 +9,11 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd
 ---
 
-
+<p align="right" style="margin-bottom: -4em;">
+  <a href="https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd">
+    <img src="https://img.shields.io/badge/View%20source-on%20GitHub-blue?logo=github" alt="View source on GitHub">
+  </a>
+</p>
 
 ## Introduction
 
