@@ -62,12 +62,14 @@ The following packages are currently included:
 
 | Package | Description | GitHub repository |
 | :-----  | :---------- | :---------------- |
-| **b3doc**        | Create Markdown pages for the B-Cubed documentation website                          | [https://github.com/b-cubed-eu/b3doc](https://github.com/b-cubed-eu/b3doc)               |
+| **b3doc**        | Create Markdown pages for the B-Cubed documentation website                      | [https://github.com/b-cubed-eu/b3doc](https://github.com/b-cubed-eu/b3doc)               |
 | **b3gbi**        | Calculate general biodiversity indicators from occurrence cubes                  | [https://github.com/b-cubed-eu/b3gbi](https://github.com/b-cubed-eu/b3gbi)               |
+| **dissmapr**     | Analyse and map multi-site compositional dissimilarity (ζ-diversity)             | [https://github.com/b-cubed-eu/dissmapr](https://github.com/b-cubed-eu/dissmapr)         |
 | **dubicube**     | Data exploration for occurrence cubes and uncertainty calculation for indicators | [https://github.com/b-cubed-eu/dubicube](https://github.com/b-cubed-eu/dubicube)         |
 | **ebvcube**      | Access and visualise datacubes of Essential Biodiversity Variables (EBV)         | [https://github.com/EBVcube/ebvcube](https://github.com/EBVcube/ebvcube)                 |
 | **gcube**        | Simulation of occurrence cubes                                                   | [https://github.com/b-cubed-eu/gcube](https://github.com/b-cubed-eu/gcube)               |
 | **impIndicator** | Calculate alien impact indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/impIndicator](https://github.com/b-cubed-eu/impIndicator) |
+| **invasimapr** | Estimate and map invasion fitness (λ)                                              | [https://github.com/b-cubed-eu/invasimapr](https://github.com/b-cubed-eu/invasimapr)     |
 | **pdindicatoR**  | Calculate phylogenetic indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/pdindicatoR](https://github.com/b-cubed-eu/pdindicatoR)   |
 | **rgbif**        | Download occurrence cubes                                                        | [https://github.com/ropensci/rgbif](https://github.com/ropensci/rgbif)                   |
 | **trias**        | Functionality for the TrIAS and LIFE RIPARIAS projects                           | [https://github.com/trias-project/trias](https://github.com/trias-project/trias)         |
