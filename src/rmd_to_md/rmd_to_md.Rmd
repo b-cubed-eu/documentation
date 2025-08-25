@@ -12,7 +12,7 @@ output: html_document
 For what package do you want to (re)generate the documentation? See `vignettes.yml` for settings:
 
 ```{r}
-package <- "gcube"
+package <- "dubicube"
 overwrite_b3verse <- FALSE
 ```
 

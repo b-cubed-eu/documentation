@@ -152,7 +152,7 @@ ds
 We use the `add_effect_classification()` for effect classification. It relies on the following arguments:
 
 - **`df`**:
-  The input data, a dataframe containing confidence limits, e.g. the result of [bootstrap confidence interval calculation](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html).
+  The input data, a dataframe containing confidence limits, e.g. the result of [bootstrap confidence interval calculation](https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/).
 
 - **`cl_columns`**:
   A character vector of length 2 specifying the column names in `df` that contain the **lower** and **upper** confidence limits. For example: `cl_columns = c("lcl", "ucl")`.
@@ -197,7 +197,7 @@ result
 
 ### Visualising the result
 
-Detailed guidance on best practices for visualising effect classifications is provided in the tutorials for [temporal trends](https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html) and [spatial trends](https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html).
+Detailed guidance on best practices for visualising effect classifications is provided in the tutorials for [temporal trends](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/) and [spatial trends](https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/).
 Below, we demonstrate a simple and direct way to visualise classified effects using **ggplot2**.
 
 

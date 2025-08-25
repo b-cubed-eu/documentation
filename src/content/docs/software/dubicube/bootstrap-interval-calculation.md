@@ -17,7 +17,7 @@ When working with data cubes, it’s essential to understand the uncertainty sur
 
 ## Calculating bootstrap confidence intervals
 
-In the [bootstrap tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html), we introduced bootstrapping as a way to assess the variability of statistics calculated from data cubes.
+In the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/), we introduced bootstrapping as a way to assess the variability of statistics calculated from data cubes.
 Bootstrapping involves repeatedly resampling the dataset and recalculating the statistic to create a distribution of possible outcomes (= bootstrap replicates).
 
 This tutorial builds on that foundation by showing how to compute confidence intervals from those bootstrap replicates. Confidence intervals provide a useful summary of uncertainty by indicating a range within which the true value of the statistic is likely to be. We consider four different types of intervals (with confidence level $\alpha$). The choice of confidence interval types and their calculation is in line with the **boot** package in R (Canty & Ripley, [1999](https://CRAN.R-project.org/package=boot)), to ensure ease of implementation. They are based on the definitions provided by Davison & Hinkley ([1997, Chapter 5](https://doi.org/10.1017/CBO9780511802843)) (see also DiCiccio & Efron, [1996](https://doi.org/10.1214/ss/1032280214); Efron, [1987](https://doi.org/10.1080/01621459.1987.10478410)).
@@ -140,14 +140,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinme…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                          <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                           3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                           3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                           1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                           1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                           3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                           3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
 #> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
@@ -192,21 +192,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName     family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord
-#>    <dbl> <chr>       <dbl> <chr>              <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus    Cucul…    11                   3536       67486 650000 5.66e6
-#>  2  2011 31UES28   5739317 Phoenicurus phoen… Musci…     6                   3536      610513 520000 5.68e6
-#>  3  2011 31UFS64   6065824 Chroicocephalus r… Larid…   143                   1000     2612978 660000 5.64e6
-#>  4  2011 31UFS96   2492576 Muscicapa striata  Musci…     3                   3536      610513 690000 5.66e6
-#>  5  2011 31UES04   5231198 Passer montanus    Passe…     1                   3536      175872 500000 5.64e6
-#>  6  2011 31UES85   5229493 Garrulus glandari… Corvi…    23                    707      816442 580000 5.65e6
-#>  7  2011 31UES88  10124612 Anser anser x Bra… Anati…     1                    100     2709975 580000 5.68e6
-#>  8  2011 31UES22   2481172 Larus marinus      Larid…     8                   1000     2612978 520000 5.62e6
-#>  9  2011 31UFS43   2481139 Larus argentatus   Larid…    10                   3536     2612978 640000 5.63e6
-#> 10  2011 31UFT00   9274012 Spatula querquedu… Anati…     8                   3536     2709975 600000 5.7 e6
+#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2011 31UFS56   5231918 Cuculus canorus     Cucul…    11                   3536       67486 650000
+#>  2  2011 31UES28   5739317 Phoenicurus phoeni… Musci…     6                   3536      610513 520000
+#>  3  2011 31UFS64   6065824 Chroicocephalus ri… Larid…   143                   1000     2612978 660000
+#>  4  2011 31UFS96   2492576 Muscicapa striata   Musci…     3                   3536      610513 690000
+#>  5  2011 31UES04   5231198 Passer montanus     Passe…     1                   3536      175872 500000
+#>  6  2011 31UES85   5229493 Garrulus glandarius Corvi…    23                    707      816442 580000
+#>  7  2011 31UES88  10124612 Anser anser x Bran… Anati…     1                    100     2709975 580000
+#>  8  2011 31UES22   2481172 Larus marinus       Larid…     8                   1000     2612978 520000
+#>  9  2011 31UFS43   2481139 Larus argentatus    Larid…    10                   3536     2612978 640000
+#> 10  2011 31UFT00   9274012 Spatula querquedula Anati…     8                   3536     2709975 600000
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 3 more variables: utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -252,7 +252,7 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 
 ### Bootstrapping
 
-We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)).
+We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 
 
 ``` r
@@ -387,12 +387,12 @@ bootstrap_results %>%
 
 <img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-14-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
 
-See the [visualising temporal trends tutorial](https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html) for information on which interval types should be calculated and/or reported and how temporal trends can be visualised.
+See the [visualising temporal trends tutorial](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/) for information on which interval types should be calculated and/or reported and how temporal trends can be visualised.
 
 ## Advanced usage of `calculate_bootstrap_ci()`
 ### Comparison with a reference group
 
-As discussed in the [bootstrap tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html), we can also  compare indicator values to a reference group. In time series analyses, this often means comparing each year’s indicator to a baseline year (e.g., the first or last year in the series).
+As discussed in the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/), we can also  compare indicator values to a reference group. In time series analyses, this often means comparing each year’s indicator to a baseline year (e.g., the first or last year in the series).
 To do this, we perform bootstrapping over the difference between indicator values.
 This process yields bootstrap replicate distributions of differences in indicator values.
 
@@ -458,7 +458,7 @@ ci_mean_obs_ref %>%
 
 We see that the mean number of observations is higher in some years compared to 2011.
 Because the BCa intervals are above 0 in 2014, 2015, 2017 and 2018, we might even say it is significant for those years.
-This will be further explored in the [effect classification tutorial](https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html).
+This will be further explored in the [effect classification tutorial](https://docs.b-cubed.eu/software/dubicube/effect-classification/).
 
 
 ``` r
@@ -764,7 +764,7 @@ calc_richness <- function(data) {
 
 
 
-We perform bootstrapping as before. Note that you can also perform bootstrapping of `processed_cube_small` using the **b3gbi** function `obs_richness_ts()`. In this case, a group-specific bootstrap would be more appropriate, but for the sake of simplicity we stick to the whole-cube bootstrap here. For a detailed discussion of when to use each approach, see [this tutorial](https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html).
+We perform bootstrapping as before. Note that you can also perform bootstrapping of `processed_cube_small` using the **b3gbi** function `obs_richness_ts()`. In this case, a group-specific bootstrap would be more appropriate, but for the sake of simplicity we stick to the whole-cube bootstrap here. For a detailed discussion of when to use each approach, see [this tutorial](https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/).
 
 
 ``` r
@@ -790,16 +790,16 @@ ci_richness <- calculate_bootstrap_ci(
   data_cube = processed_cube_even,
   fun = calc_richness
 )
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is
-#> infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is
-#> infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is
-#> infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is
-#> infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is
-#> infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
+#> is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
+#> is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
+#> is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
+#> is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
+#> is infinite.
 ```
 
 We notice that none of the intervals cover the estimate. The percentile interval does not account for bias, the BCa interval cannot be calculated because the bias is too large and the normal and basic intervals have overcompensated because of the large bootstrap bias.

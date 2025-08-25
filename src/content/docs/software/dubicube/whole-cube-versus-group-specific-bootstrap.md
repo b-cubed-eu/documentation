@@ -76,7 +76,7 @@ In this tutorial, we explain the differences, discuss the strengths and limitati
 
 ## An example of a group-specific analysis
 
-We reuse the example introduced in [bootstrap confidence interval calculation tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html) where we calculate confidence limits for the mean number of observations per grid cell per year for birds in Belgium between 2011 en 2020 using the MGRS grid at 10 km scale.
+We reuse the example introduced in [bootstrap confidence interval calculation tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/) where we calculate confidence limits for the mean number of observations per grid cell per year for birds in Belgium between 2011 en 2020 using the MGRS grid at 10 km scale.
 
 
 ``` r
@@ -105,14 +105,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinme…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                          <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                           3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                           3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                           1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                           1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                           3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                           3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
 #> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
@@ -157,21 +157,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName     family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord
-#>    <dbl> <chr>       <dbl> <chr>              <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus    Cucul…    11                   3536       67486 650000 5.66e6
-#>  2  2011 31UES28   5739317 Phoenicurus phoen… Musci…     6                   3536      610513 520000 5.68e6
-#>  3  2011 31UFS64   6065824 Chroicocephalus r… Larid…   143                   1000     2612978 660000 5.64e6
-#>  4  2011 31UFS96   2492576 Muscicapa striata  Musci…     3                   3536      610513 690000 5.66e6
-#>  5  2011 31UES04   5231198 Passer montanus    Passe…     1                   3536      175872 500000 5.64e6
-#>  6  2011 31UES85   5229493 Garrulus glandari… Corvi…    23                    707      816442 580000 5.65e6
-#>  7  2011 31UES88  10124612 Anser anser x Bra… Anati…     1                    100     2709975 580000 5.68e6
-#>  8  2011 31UES22   2481172 Larus marinus      Larid…     8                   1000     2612978 520000 5.62e6
-#>  9  2011 31UFS43   2481139 Larus argentatus   Larid…    10                   3536     2612978 640000 5.63e6
-#> 10  2011 31UFT00   9274012 Spatula querquedu… Anati…     8                   3536     2709975 600000 5.7 e6
+#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2011 31UFS56   5231918 Cuculus canorus     Cucul…    11                   3536       67486 650000
+#>  2  2011 31UES28   5739317 Phoenicurus phoeni… Musci…     6                   3536      610513 520000
+#>  3  2011 31UFS64   6065824 Chroicocephalus ri… Larid…   143                   1000     2612978 660000
+#>  4  2011 31UFS96   2492576 Muscicapa striata   Musci…     3                   3536      610513 690000
+#>  5  2011 31UES04   5231198 Passer montanus     Passe…     1                   3536      175872 500000
+#>  6  2011 31UES85   5229493 Garrulus glandarius Corvi…    23                    707      816442 580000
+#>  7  2011 31UES88  10124612 Anser anser x Bran… Anati…     1                    100     2709975 580000
+#>  8  2011 31UES22   2481172 Larus marinus       Larid…     8                   1000     2612978 520000
+#>  9  2011 31UFS43   2481139 Larus argentatus    Larid…    10                   3536     2612978 640000
+#> 10  2011 31UFT00   9274012 Spatula querquedula Anati…     8                   3536     2709975 600000
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 3 more variables: utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -223,7 +223,7 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 
 ### Group-specific bootstrapping
 
-We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)).
+We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 However, we now split the data per year and perform bootstrapping per year using `lapply()`.
 We store the data also in the output list to be used for interval calculation further on.
 
@@ -259,7 +259,7 @@ head(bootstrap_results_group[[1]]$bootstrap_results)
 
 ### Group-specific interval calculation
 
-Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits (see also the [bootstrap confidence interval calculation tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)).
+Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits (see also the [bootstrap confidence interval calculation tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 Because BCa interval calculation relies on jackknifing, we also need to do this per group using `lapply()`.
 
 

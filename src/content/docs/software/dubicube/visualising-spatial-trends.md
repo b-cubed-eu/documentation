@@ -18,7 +18,7 @@ The methods discussed here are more broadly applicable, be for this tutorial we 
 
 ## Calculating confidence intervals with dubicube
 
-We reuse the example introduced in [bootstrap confidence interval calculation tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html) where we look at an occurrence cube of birds in Belgium between 2000 en 2024 using the MGRS grid at 10 km scale. We calculate confidence limits for the mean number of observations per grid cell.
+We reuse the example introduced in [bootstrap confidence interval calculation tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/) where we look at an occurrence cube of birds in Belgium between 2000 en 2024 using the MGRS grid at 10 km scale. We calculate confidence limits for the mean number of observations per grid cell.
 
 
 ``` r
@@ -48,14 +48,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinme…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                          <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                           3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                           3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                           1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                           1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                           3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                           3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
 #> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
@@ -101,21 +101,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 2,391 × 13
-#>     year cellCode taxonKey scientificName     family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord
-#>    <dbl> <chr>       <dbl> <chr>              <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>
-#>  1  2000 31UES44   2481714 Tringa totanus     Scolo…     1                   3536      680179 540000 5.64e6
-#>  2  2000 31UFS05   2481740 Calidris temminck… Scolo…     3                   3536      680179 600000 5.65e6
-#>  3  2000 31UES43   2492943 Sylvia communis    Sylvi…     8                   1414      341890 540000 5.63e6
-#>  4  2000 31UES44   5739317 Phoenicurus phoen… Musci…    10                   1000      610513 540000 5.64e6
-#>  5  2000 31UFS63   2481700 Scolopax rusticola Scolo…     1                   3536      680179 660000 5.63e6
-#>  6  2000 31UFS74   5845582 Chloris chloris    Fring…     3                   3536      762066 670000 5.64e6
-#>  7  2000 31UFS65   2492960 Sylvia curruca     Sylvi…     7                   3536      341890 660000 5.65e6
-#>  8  2000 31UFS07   2493091 Phylloscopus coll… Phyll…    19                   1414      347345 600000 5.67e6
-#>  9  2000 31UDS86   2489214 Delichon urbicum   Hirun…     3                   3536      200242 480000 5.66e6
-#> 10  2000 31UES85   2473958 Perdix perdix      Phasi…     9                   1414      261414 580000 5.65e6
+#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2000 31UES44   2481714 Tringa totanus      Scolo…     1                   3536      680179 540000
+#>  2  2000 31UFS05   2481740 Calidris temminckii Scolo…     3                   3536      680179 600000
+#>  3  2000 31UES43   2492943 Sylvia communis     Sylvi…     8                   1414      341890 540000
+#>  4  2000 31UES44   5739317 Phoenicurus phoeni… Musci…    10                   1000      610513 540000
+#>  5  2000 31UFS63   2481700 Scolopax rusticola  Scolo…     1                   3536      680179 660000
+#>  6  2000 31UFS74   5845582 Chloris chloris     Fring…     3                   3536      762066 670000
+#>  7  2000 31UFS65   2492960 Sylvia curruca      Sylvi…     7                   3536      341890 660000
+#>  8  2000 31UFS07   2493091 Phylloscopus colly… Phyll…    19                   1414      347345 600000
+#>  9  2000 31UDS86   2489214 Delichon urbicum    Hirun…     3                   3536      200242 480000
+#> 10  2000 31UES85   2473958 Perdix perdix       Phasi…     9                   1414      261414 580000
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 3 more variables: utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -158,9 +158,9 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 
 ### Bootstrapping
 
-We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)).
+We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 Since this indicator is calculated independently per group (grid cell) we perform group-specific bootstrapping.
-For a detailed discussion of when to use each approach, see [this tutorial](https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html).
+For a detailed discussion of when to use each approach, see [this tutorial](https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/).
 
 
 ``` r
@@ -194,7 +194,7 @@ head(bootstrap_results[[1]]$bootstrap_results)
 
 ### Interval calculation
 
-Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits (see also the [bootstrap confidence interval calculation tutorial](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)).
+Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits (see also the [bootstrap confidence interval calculation tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 We get a warning message for BCa calculation because we are using a relatively small dataset.
 
 
