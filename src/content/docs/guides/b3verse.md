@@ -48,7 +48,7 @@ pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev")
 install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 
-Install not yet installed **b3verse** packages via:
+If you only want to install the **b3verse** packages you do not have yet, you can install them via:
 
 ```r
 pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev"))
