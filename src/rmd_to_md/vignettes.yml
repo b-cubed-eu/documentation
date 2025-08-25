@@ -1,8 +1,10 @@
 gcube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd
-  title: Introduction
+  title: "gcube: Simulating Biodiversity Data Cubes"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/gcube/logo.png
+  replace:
+  - "# gcube ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/gcube/logo.png"
   dependencies: sf dplyr ggplot2
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd
   title: Simulating the occurrence process
@@ -31,19 +33,22 @@ gcube:
 
 dubicube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.md
-  title: Introduction
+  title: "dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/dubicube/logo.png
+  replace:
+  - "# dubicube ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dubicube/logo.png"
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
   title: Group-level sensitivity analysis
   sidebar_label: Group-level sensitivity analysis
-  dependencies: frictionless, ggplot2, dplyr
+  dependencies: frictionless b3gbi ggplot2 dplyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
   title: Bootstrap method for data cubes
   sidebar_label: Bootstrap method cubes
-  dependencies: frictionless, ggplot2, dplyr, tidyr
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
   title: Classifying effects using confidence limits
+  dependencies: ggplot2
   sidebar_label: Effect classification
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-temporal-trends.Rmd
   title: Visualising temporal trends
@@ -56,12 +61,30 @@ b3doc:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3doc/refs/heads/main/README.Rmd
   title: "b3doc: Tools for the B-Cubed Documentation Website"
   sidebar_label: Introduction
+  replace:
+  - "# b3doc": ""
 
 b3gbi:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/README.Rmd
   title: "b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes"
   sidebar_label: Introduction
-  logo: https://b-cubed-eu.github.io/b3gbi/logo.png
+  replace:
+  - "# b3gbi ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/b3gbi/logo.png"
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
   title: Get started
   sidebar_label: Get started
+
+impIndicator:
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/README.Rmd
+  title: "impIndicator: Impact Indicators of Alien Taxa"
+  sidebar_label: Introduction
+  replace:
+  - "# impIndicator ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/impIndicator/logo.png"
+  dependencies: b3gbi ggplot2 tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/background.Rmd
+  sidebar_label: Background
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
+  sidebar_labe: Prepare data
+  dependencies: b3gbi dplyr knitr

@@ -1,13 +1,13 @@
 ---
-title: Introduction
-lastUpdated: 2025-07-08
+title: 'dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty'
+lastUpdated: 2025-08-19
 sidebar:
   label: Introduction
   order: 1
 source: https://github.com/b-cubed-eu/dubicube/blob/main/README.md
 ---
 
-# dubicube <a href="https://b-cubed-eu.github.io/dubicube/"><img src="https://b-cubed-eu.github.io/dubicube/logo.png" align="right" height="139" alt="dubicube website" /></a>
+<a href="https://b-cubed-eu.github.io/dubicube/"><img src="https://b-cubed-eu.github.io/dubicube/logo.png" align="right" height="139" alt="dubicube website" /></a>
 
 <!-- badges: start -->
 

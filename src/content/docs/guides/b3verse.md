@@ -11,6 +11,10 @@ knit: (function(inputFile, ...) {
 
 <!-- b3verse.md is generated from b3verse.Rmd Please edit that file -->
 
+:::tip[Explore]
+Explore the [b3verse website](https://b-cubed-eu.r-universe.dev/).
+:::
+
 
 
 [![name status badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)

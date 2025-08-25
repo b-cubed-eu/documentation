@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'b3doc: Tools for the B-Cubed Documentation Website'
-lastUpdated: 2025-06-16
+lastUpdated: 2025-08-19
 sidebar:
   label: Introduction
   order: 1
@@ -12,13 +12,18 @@ source: https://github.com/b-cubed-eu/b3doc/blob/main/README.Rmd
 
 
 
-# b3doc
+
 
 <!-- badges: start -->
+[![repo status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Release](https://img.shields.io/github/release/b-cubed-eu/b3doc.svg)](https://github.com/b-cubed-eu/b3doc/releases)
+[![b3doc status
+badge](https://b-cubed-eu.r-universe.dev/b3doc/badges/version)](https://b-cubed-eu.r-universe.dev/b3doc)
+[![CRAN status](https://www.r-pkg.org/badges/version/b3doc)](https://CRAN.R-project.org/package=b3doc)
 [![R-CMD-check](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/b-cubed-eu/b3doc/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/b-cubed-eu/b3doc/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/b3doc)
-[![repo status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15649519.svg)](https://doi.org/10.5281/zenodo.15649519)
+[![name status badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)
 <!-- badges: end -->
 
 b3doc is an R package to create Markdown pages for the [B-Cubed documentation website](https://docs.b-cubed.eu) from external R Markdown files, such as vignettes. The package has functionality to set the necessary metadata in the front matter.

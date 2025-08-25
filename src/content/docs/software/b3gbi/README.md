@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes'
-lastUpdated: 2025-07-01
+lastUpdated: 2025-08-19
 sidebar:
   label: Introduction
   order: 1
@@ -12,7 +12,7 @@ source: https://github.com/b-cubed-eu/b3gbi/blob/main/README.Rmd
 
 
 
-# b3gbi <a href="https://b-cubed-eu.github.io/b3gbi/"><img src="https://b-cubed-eu.github.io/b3gbi/logo.png" align="right" height="120" alt="b3gbi website"/></a>
+<a href="https://b-cubed-eu.github.io/b3gbi/"><img src="https://b-cubed-eu.github.io/b3gbi/logo.png" align="right" height="120" alt="b3gbi website"/></a>
 
 <!-- badges: start -->
 
