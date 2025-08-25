@@ -37,6 +37,8 @@ Suggestion citation:
 
 > Langeraert W (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
 
+<a href="https://doi.org/10.5281/zenodo.15181097"><img src="/guides/b3data/b3data-logo.png" align="right" width="139" alt="b3data logo" /></a>
+
 ## What is b3data?
 
 The **b3data** data package is a curated and versioned collection of datasets, designed for use in the **b3verse** indicator calculation workflow.
