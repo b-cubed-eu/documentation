@@ -2,7 +2,7 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-07-08
+lastUpdated: 2025-08-25
 sidebar:
   label: Bootstrap method cubes
   order: 3
@@ -18,6 +18,8 @@ When working with data cubes, it’s essential to understand the uncertainty sur
 ## Bootstrapping for data cubes
 
 Bootstrapping is a resampling method used to approximate the distribution of a statistic by repeatedly sampling from the data with replacement. In the context of biodiversity data cubes, `bootstrap_cube()` enables us to assess the variability of derived statistics, such as by computing confidence intervals.
+
+Note that we also make a distinction between whole-cube bootstrapping and group-specific bootstrapping. This is further explained in [this tutorial](https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html).
 
 ### A data cube and a statistic
 
@@ -78,23 +80,21 @@ $$
 
 ## Getting started with dubicube
 
-Our method can be used on any dataframe from which a statistic is calculated and a grouping variable is present.
+The **dubicube** bootstrapping method can be used on any dataframe from which a statistic is calculated and a grouping variable is present.
 For this tutorial, we focus on occurrence cubes.
-Therefore, we will use the **b3gbi** package for processing the raw data before we go over to bootstrapping.
+Therefore, we will use the **b3gbi** package for processing the raw data before moving on to the bootstrapping.
 
 
 ``` r
 # Load packages
-library(dubicube)
+library(ggplot2)      # Data visualisation
+library(dplyr)        # Data wrangling
+library(tidyr)        # Data wrangling
 
 # Data loading and processing
 library(frictionless) # Load example datasets
 library(b3gbi)        # Process occurrence cubes
-
-# General
-library(ggplot2)      # Data visualisation
-library(dplyr)        # Data wrangling
-library(tidyr)        # Data wrangling
+library(dubicube)     # Analysis of data quality & indicator uncertainty
 ```
 
 ### Loading and processing the data
@@ -113,14 +113,15 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinme…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                          <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                           3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                           3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                           1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                           1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                           3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                           3536      855924
+#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
 We process the cube with **b3gbi**.
@@ -164,20 +165,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName          family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
-#>    <dbl> <chr>       <dbl> <chr>                   <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
-#>  1  2011 31UFS56   5231918 Cuculus canorus         Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
-#>  2  2011 31UES28   5739317 Phoenicurus phoenicurus Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
-#>  3  2011 31UFS64   6065824 Chroicocephalus ridibu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
-#>  4  2011 31UFS96   2492576 Muscicapa striata       Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
-#>  5  2011 31UES04   5231198 Passer montanus         Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
-#>  6  2011 31UES85   5229493 Garrulus glandarius     Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
-#>  7  2011 31UES88  10124612 Anser anser x Branta c… Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
-#>  8  2011 31UES22   2481172 Larus marinus           Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
-#>  9  2011 31UFS43   2481139 Larus argentatus        Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
-#> 10  2011 31UFT00   9274012 Spatula querquedula     Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
+#>     year cellCode taxonKey scientificName     family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord
+#>    <dbl> <chr>       <dbl> <chr>              <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>
+#>  1  2011 31UFS56   5231918 Cuculus canorus    Cucul…    11                   3536       67486 650000 5.66e6
+#>  2  2011 31UES28   5739317 Phoenicurus phoen… Musci…     6                   3536      610513 520000 5.68e6
+#>  3  2011 31UFS64   6065824 Chroicocephalus r… Larid…   143                   1000     2612978 660000 5.64e6
+#>  4  2011 31UFS96   2492576 Muscicapa striata  Musci…     3                   3536      610513 690000 5.66e6
+#>  5  2011 31UES04   5231198 Passer montanus    Passe…     1                   3536      175872 500000 5.64e6
+#>  6  2011 31UES85   5229493 Garrulus glandari… Corvi…    23                    707      816442 580000 5.65e6
+#>  7  2011 31UES88  10124612 Anser anser x Bra… Anati…     1                    100     2709975 580000 5.68e6
+#>  8  2011 31UES22   2481172 Larus marinus      Larid…     8                   1000     2612978 520000 5.62e6
+#>  9  2011 31UFS43   2481139 Larus argentatus   Larid…    10                   3536     2612978 640000 5.63e6
+#> 10  2011 31UFT00   9274012 Spatula querquedu… Anati…     8                   3536     2709975 600000 5.7 e6
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 3 more variables: utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -187,7 +189,7 @@ We create a function to calculate this.
 
 
 ``` r
-# Function to calculate statistic of interest
+# Function to calculate the statistic of interest
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
   obs <- x <- NULL
@@ -304,7 +306,7 @@ bootstrap_results %>%
 
 As stated in the documentation, it is also possible to bootstrap a dataframe.
 In this case, set the argument `processed_cube = FALSE`.
-This is implemented allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
+This is implemented to allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
 
 ```r
 bootstrap_results_df <- bootstrap_cube(
@@ -321,7 +323,7 @@ bootstrap_results_df <- bootstrap_cube(
 
 A particularly insightful approach is comparing indicator values to a reference group. In time series analyses, this often means comparing each year’s indicator to a baseline year (e.g., the first or last year in the series).
 
-To do this, we perform bootstrapping over the difference between indicator values:
+To do this, we perform bootstrapping over the differences between indicator values:
 
 1. Resample the dataset with replacement  
 2. Calculate the indicator for each group (e.g., each year)  
@@ -401,6 +403,6 @@ Furthermore, the variability of the estimate of reference period affects the wid
 A more variable reference period will propagate greater uncertainty.
 In the case of GBIF data, more data will be available in recent years than in earlier years.
 If this is the case, it could make sense to select the last period as a reference period.
-In a way, this also avoids the arbitrariness of choice for the reference period.
+In a way, this also avoids the arbitrariness of choosing the reference period.
 You compare previous situations with the current situation (last year), where you could repeat this comparison annually, for example.
-Finally, when comparing multiple indicators, we recommend using a consistent reference period to maintain comparability
+Finally, when comparing multiple indicators, we recommend using a consistent reference period to maintain comparability.

@@ -2,10 +2,10 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-07-08
+lastUpdated: 2025-08-25
 sidebar:
   label: Effect classification
-  order: 4
+  order: 6
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd
 ---
 
@@ -113,10 +113,8 @@ See the [effectclass tutorial](https://inbo.github.io/effectclass/articles/class
 
 ``` r
 # Load packages
-library(dubicube)
-
-# General
 library(ggplot2)      # Data visualisation
+library(dubicube)     # Analysis of data quality & indicator uncertainty
 ```
 
 Your dataframe must contain **lower and upper confidence limits**, e.g. `"lcl"` and `"ucl"`.

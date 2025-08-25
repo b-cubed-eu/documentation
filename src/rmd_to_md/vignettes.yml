@@ -46,16 +46,30 @@ dubicube:
   title: Bootstrap method for data cubes
   sidebar_label: Bootstrap method cubes
   dependencies: frictionless b3gbi ggplot2 dplyr tidyr
+  replace:
+  - "figures/bootstrapping.png": "https://b-cubed-eu.github.io/dubicube/articles/figures/bootstrapping.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-interval-calculation.Rmd
+  title: Calculating bootstrap confidence intervals
+  sidebar_label: Bootstrap confidence intervals
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd
+  title: Whole-cube bootstrap versus group-specific bootstrap
+  sidebar_label: Grouped bootstrapping
+  dependencies: frictionless b3gbi ggplot2 dplyr
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
   title: Classifying effects using confidence limits
-  dependencies: ggplot2
   sidebar_label: Effect classification
+  dependencies: ggplot2
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-temporal-trends.Rmd
   title: Visualising temporal trends
   sidebar_label: Visualising temporal trends
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr effectclass
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
   title: Visualising spatial trends
   sidebar_label: Visualising spatial trends
+  dependencies: frictionless b3gbi ggplot2 dplyr sf
+  replace:
+  - "figures/blur-spatial-uncertainty.png": "https://b-cubed-eu.github.io/dubicube/articles/figures/blur-spatial-uncertainty.png"
 
 b3doc:
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3doc/refs/heads/main/README.Rmd
