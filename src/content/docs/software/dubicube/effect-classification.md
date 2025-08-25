@@ -2,14 +2,18 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-07-08
+lastUpdated: 2025-08-25
 sidebar:
   label: Effect classification
-  order: 4
+  order: 6
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd
 ---
 
-
+<p align="right" style="margin-bottom: -4em;">
+  <a href="https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd">
+    <img src="https://img.shields.io/badge/View%20source-on%20GitHub-blue?logo=github" alt="View source on GitHub">
+  </a>
+</p>
 
 ## Introduction
 
@@ -113,10 +117,8 @@ See the [effectclass tutorial](https://inbo.github.io/effectclass/articles/class
 
 ``` r
 # Load packages
-library(dubicube)
-
-# General
 library(ggplot2)      # Data visualisation
+library(dubicube)     # Analysis of data quality & indicator uncertainty
 ```
 
 Your dataframe must contain **lower and upper confidence limits**, e.g. `"lcl"` and `"ucl"`.
@@ -154,7 +156,7 @@ ds
 We use the `add_effect_classification()` for effect classification. It relies on the following arguments:
 
 - **`df`**:
-  The input data, a dataframe containing confidence limits, e.g. the result of [bootstrap confidence interval calculation](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html).
+  The input data, a dataframe containing confidence limits, e.g. the result of [bootstrap confidence interval calculation](https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/).
 
 - **`cl_columns`**:
   A character vector of length 2 specifying the column names in `df` that contain the **lower** and **upper** confidence limits. For example: `cl_columns = c("lcl", "ucl")`.
@@ -199,7 +201,7 @@ result
 
 ### Visualising the result
 
-Detailed guidance on best practices for visualising effect classifications is provided in the tutorials for [temporal trends](https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html) and [spatial trends](https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html).
+Detailed guidance on best practices for visualising effect classifications is provided in the tutorials for [temporal trends](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/) and [spatial trends](https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/).
 Below, we demonstrate a simple and direct way to visualise classified effects using **ggplot2**.
 
 

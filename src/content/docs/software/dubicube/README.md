@@ -1,6 +1,6 @@
 ---
 title: 'dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty'
-lastUpdated: 2025-08-19
+lastUpdated: 2025-08-25
 sidebar:
   label: Introduction
   order: 1
@@ -65,7 +65,7 @@ cubes.
   group-level sensitivity of indicators and evaluate how individual
   categories influence results.  
   📘 [Read the tutorial
-  →](https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)
+  →](https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/)
 
 > 🛠️ Additional data quality diagnostics are on the way!
 
@@ -78,13 +78,13 @@ your indicators.
   Create bootstrap replicates to estimate indicator variability, bias,
   and standard error.  
   📘 [Read the tutorial
-  →](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)
+  →](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)
 
 - `calculate_bootstrap_ci()`  
   Compute confidence intervals (percentile, BCa, normal, basic), with
   optional transformations and bias correction.  
   📘 [Read the tutorial
-  →](https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)
+  →](https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/)
 
 ### 🧠 3. Interpretation & Visualisation
 
@@ -95,15 +95,15 @@ thresholds.
   Classify indicator trends (e.g. increase, stable, decrease) by
   comparing confidence intervals to thresholds.  
   📘 [Read the tutorial
-  →](https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)
+  →](https://docs.b-cubed.eu/software/dubicube/effect-classification/)
 
 - **Spatial and temporal interpretation**  
   Learn how to visualise and assess patterns across space and time using
   indicator uncertainty.  
   📘 [Best practices for temporal trends
-  →](https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)  
+  →](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/)  
   📘 [Best practices for spatial trends
-  →](https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)
+  →](https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/)
 
 ---
 
