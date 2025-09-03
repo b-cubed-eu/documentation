@@ -9,12 +9,6 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd
 ---
 
-<p align="right" style="margin-bottom: -4em;">
-  <a href="https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd">
-    <img src="https://img.shields.io/badge/View%20source-on%20GitHub-blue?logo=github" alt="View source on GitHub">
-  </a>
-</p>
-
 ## Introduction
 
 This tutorial demonstrates how to use the `add_effect_classification()` function to classify effect sizes based on confidence intervals. This is useful when you want to interpret uncertainty in trends or treatment effects using a transparent and rule-based approach.

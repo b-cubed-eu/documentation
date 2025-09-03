@@ -9,12 +9,6 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd
 ---
 
-<p align="right" style="margin-bottom: -4em;">
-  <a href="https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd">
-    <img src="https://img.shields.io/badge/View%20source-on%20GitHub-blue?logo=github" alt="View source on GitHub">
-  </a>
-</p>
-
 ## Introduction
 
 When calculating biodiversity indicators from a cube, we often want confidence intervals (CIs) using bootstrapping. In **dubicube**, bootstrapping can be done in two ways:

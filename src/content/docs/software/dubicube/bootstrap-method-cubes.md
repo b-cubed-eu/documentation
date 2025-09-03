@@ -9,12 +9,6 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/bootstrap-method-cubes.Rmd
 ---
 
-<p align="right" style="margin-bottom: -4em;">
-  <a href="https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/bootstrap-method-cubes.Rmd">
-    <img src="https://img.shields.io/badge/View%20source-on%20GitHub-blue?logo=github" alt="View source on GitHub">
-  </a>
-</p>
-
 ## Introduction
 
 When working with data cubes, it’s essential to understand the uncertainty surrounding derived statistics. This tutorial introduces the `bootstrap_cube()` function from **dubicube**,  which uses bootstrap resampling to estimate the variability, bias, and standard error of estimates.
