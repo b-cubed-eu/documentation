@@ -42,7 +42,7 @@ Suggestion citation:
 ## What is b3data?
 
 The **b3data** data package is a curated and versioned collection of datasets, designed for use in the **b3verse** indicator calculation workflow.
-It is published in accordance with the [Frictionless Data](https://frictionlessdata.io/) specifications, that allow publishing datasets in a [FAIR](https://www.go-fair.org/fair-principles/) and open manner.
+It is published in accordance with the [Frictionless Data](https://specs.frictionlessdata.io/) specifications, that allow publishing datasets in a [FAIR](https://www.go-fair.org/fair-principles/) and open manner.
 
 To learn more about the **b3verse**, visit the [documentation site](https://docs.b-cubed.eu/guides/b3verse/), or explore related packages via the [b3verse R-universe](https://b-cubed-eu.r-universe.dev/).
 
