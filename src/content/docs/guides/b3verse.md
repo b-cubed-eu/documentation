@@ -41,28 +41,52 @@ In addition to the R packages, the **b3verse** also includes a dedicated [data p
 
 ## Installation
 
-Install all packages of the **b3verse** via this command in R:
+Install or update all packages of the **b3verse** via this command in R:
 
 ```r
 pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev"))
 install.packages(pkgs, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
 ```
 
+If you only want to install the **b3verse** packages you do not have yet, you can install them via:
+
+```r
+pkgs <- rownames(available.packages(repos = "https://b-cubed-eu.r-universe.dev"))
+pkgs_to_install <- setdiff(pkgs, rownames(installed.packages()))
+if (length(pkgs_to_install) > 0) {
+  install.packages(pkgs_to_install, repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
+}
+```
+
 The following packages are currently included:
 
 | Package | Description | GitHub repository |
 | :-----  | :---------- | :---------------- |
-| **b3doc**        | Create Markdown pages for the B-Cubed documentation website                          | [https://github.com/b-cubed-eu/b3doc](https://github.com/b-cubed-eu/b3doc)               |
+| **b3doc**        | Create Markdown pages for the B-Cubed documentation website                      | [https://github.com/b-cubed-eu/b3doc](https://github.com/b-cubed-eu/b3doc)               |
 | **b3gbi**        | Calculate general biodiversity indicators from occurrence cubes                  | [https://github.com/b-cubed-eu/b3gbi](https://github.com/b-cubed-eu/b3gbi)               |
+| **dissmapr**     | Analyse and map multi-site compositional dissimilarity (ζ-diversity)             | [https://github.com/b-cubed-eu/dissmapr](https://github.com/b-cubed-eu/dissmapr)         |
 | **dubicube**     | Data exploration for occurrence cubes and uncertainty calculation for indicators | [https://github.com/b-cubed-eu/dubicube](https://github.com/b-cubed-eu/dubicube)         |
 | **ebvcube**      | Access and visualise datacubes of Essential Biodiversity Variables (EBV)         | [https://github.com/EBVcube/ebvcube](https://github.com/EBVcube/ebvcube)                 |
 | **gcube**        | Simulation of occurrence cubes                                                   | [https://github.com/b-cubed-eu/gcube](https://github.com/b-cubed-eu/gcube)               |
 | **impIndicator** | Calculate alien impact indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/impIndicator](https://github.com/b-cubed-eu/impIndicator) |
+| **invasimapr** | Estimate and map invasion fitness (λ)                                              | [https://github.com/b-cubed-eu/invasimapr](https://github.com/b-cubed-eu/invasimapr)     |
 | **pdindicatoR**  | Calculate phylogenetic indicators from occurrence cubes                          | [https://github.com/b-cubed-eu/pdindicatoR](https://github.com/b-cubed-eu/pdindicatoR)   |
 | **rgbif**        | Download occurrence cubes                                                        | [https://github.com/ropensci/rgbif](https://github.com/ropensci/rgbif)                   |
 | **trias**        | Functionality for the TrIAS and LIFE RIPARIAS projects                           | [https://github.com/trias-project/trias](https://github.com/trias-project/trias)         |
 
 Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.
+
+Single packages can be installed via:
+
+```r
+install.packages("dubicube", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+If the package has Bioconductor dependencies, add the Bioconductor repo:
+
+```r
+install.packages("ebvcube", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
+```
 
 ## Contributing and reporting issues
 
