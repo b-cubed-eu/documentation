@@ -27,3 +27,12 @@
   --sl-color-gray-7: #ecfaf9;
   --sl-color-black: #ffffff;
 }
+
+/* Display images in links inline (e.g. badges) */
+.sl-markdown-content {
+  a {
+    img {
+      display: inline;
+    }
+  }
+}

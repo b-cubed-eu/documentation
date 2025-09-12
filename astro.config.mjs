@@ -15,11 +15,19 @@ export default defineConfig({
       customCss: [
         './src/styles/custom.css',
       ],
-      social: {
-        github: 'https://github.com/b-cubed-eu/documentation/',
-      },
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/js/matomo.js',
+          }
+        }
+      ],
       editLink: {
         baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
+      social: {
+        github: 'https://github.com/b-cubed-eu/documentation/',
       },
       sidebar: [
         {
@@ -28,11 +36,7 @@ export default defineConfig({
         },
         {
           label: 'Software',
-          // autogenerate: { directory: 'software' },
-          items: [
-            'software/gbif-api',
-            'software/gcube'
-          ],
+          autogenerate: { directory: 'software' },
           collapsed: true,
         },
         {
@@ -58,6 +62,7 @@ export default defineConfig({
     '/occurrence-cube/specification/': '/guides/occurrence-cube/'
   },
   markdown: {
+    gfm: true,
     remarkPlugins: [remarkHeadingId]
   }
 });

@@ -1,0 +1,165 @@
+gcube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/README.Rmd
+  title: "gcube: Simulating Biodiversity Data Cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# gcube ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/gcube/logo.png"
+  dependencies: sf, dplyr, ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd
+  title: Simulating the occurrence process
+  sidebar_label: Occurrence process
+  dependencies: sf, dplyr, ggplot2, tidyterra
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/detection-process.Rmd
+  title: Simulating the detection process
+  sidebar_label: Detection process
+  dependencies: sf dplyr ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/grid-designation-process.Rmd
+  title: Specifying the grid designation process
+  sidebar_label: Grid designation process
+  dependencies: sf dplyr ggplot2 ggExtra
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/multi-species-approach.Rmd
+  title: Creating cubes for multiple species
+  sidebar_label: Multi-species approach
+  dependencies: sf dplyr ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/cube-for-virtual-species.Rmd
+  title: Create occurrence cubes for virtual species
+  sidebar_label: Cube for virtual species
+  dependencies: geodata virtualspecies sf terra ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/custom-grid-designation.Rmd
+  title: Grid designation for custom datasets
+  sidebar_label: Custom grid designation
+  dependencies: frictionless ggplot2 dplyr sf
+
+dubicube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/README.md
+  title: "dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty"
+  sidebar_label: Introduction
+  replace:
+  - "# dubicube ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dubicube/logo.png"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/group-level-sensitivity.Rmd
+  title: Group-level sensitivity analysis
+  sidebar_label: Group-level sensitivity analysis
+  dependencies: frictionless b3gbi ggplot2 dplyr
+  replace:
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
+  title: Bootstrap method for data cubes
+  sidebar_label: Bootstrap method cubes
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr
+  replace:
+  - "figures/bootstrapping.png": "https://b-cubed-eu.github.io/dubicube/articles/figures/bootstrapping.png"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-interval-calculation.Rmd
+  title: Calculating bootstrap confidence intervals
+  sidebar_label: Bootstrap confidence intervals
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr
+  replace:
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd
+  title: Whole-cube bootstrap versus group-specific bootstrap
+  sidebar_label: Grouped bootstrapping
+  dependencies: frictionless b3gbi ggplot2 dplyr
+  replace:
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/effect-classification.Rmd
+  title: Classifying effects using confidence limits
+  sidebar_label: Effect classification
+  dependencies: ggplot2
+  replace:
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-temporal-trends.Rmd
+  title: Visualising temporal trends
+  sidebar_label: Visualising temporal trends
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr effectclass
+  replace:
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/visualising-spatial-trends.Rmd
+  title: Visualising spatial trends
+  sidebar_label: Visualising spatial trends
+  dependencies: frictionless b3gbi ggplot2 dplyr sf
+  replace:
+  - "figures/blur-spatial-uncertainty.png": "https://b-cubed-eu.github.io/dubicube/articles/figures/blur-spatial-uncertainty.png"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html)": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/bootstrap-interval-calculation.html)": "https://docs.b-cubed.eu/software/dubicube/bootstrap-interval-calculation/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/whole-cube-versus-group-specific-bootstrap.html)": "https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/effect-classification.html)": "https://docs.b-cubed.eu/software/dubicube/effect-classification/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-temporal-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/"
+  - "(https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html)": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
+
+b3doc:
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3doc/refs/heads/main/README.Rmd
+  title: "b3doc: Tools for the B-Cubed Documentation Website"
+  sidebar_label: Introduction
+  replace:
+  - "# b3doc": ""
+
+b3gbi:
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/README.Rmd
+  title: "b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# b3gbi ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/b3gbi/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
+  title: Get started
+  sidebar_label: Get started
+
+impIndicator:
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/README.Rmd
+  title: "impIndicator: Impact Indicators of Alien Taxa"
+  sidebar_label: Introduction
+  replace:
+  - "# impIndicator ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/impIndicator/logo.png"
+  dependencies: b3gbi ggplot2 tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/background.Rmd
+  sidebar_label: Background
+- source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
+  sidebar_labe: Prepare data
+  dependencies: b3gbi dplyr knitr

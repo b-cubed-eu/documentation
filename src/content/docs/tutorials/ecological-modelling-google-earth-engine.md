@@ -2,7 +2,7 @@
 title: An introduction to ecological modelling with Google Earth Engine
 sidebar:
   label: Ecological modelling with Google Earth Engine
-  order: 3
+  order: 6
 ---
 
 This tutorial covers the basics of Google Earth Engine for conservation science, focusing on remote sensing fundamentals, geospatial data visualisation, and introductory analysis.
@@ -39,7 +39,7 @@ The first step is to access the GEE code editor.  This can be done from the eart
 
 ![gee_screenshot1](/tutorials/ecological-modelling-google-earth-engine/practical-1_1.png)
 
-Take a look at the <a href=" https://developers.google.com/earth-engine/guides/playground">Google Earth Engine >> Guides >> Earth Engine Code Editor</a> section for a nice description of different panels and tabs.
+Take a look at the <a href="https://developers.google.com/earth-engine/guides/playground">Google Earth Engine >> Guides >> Earth Engine Code Editor</a> section for a nice description of different panels and tabs.
 
 ![gee_screenshot2](/tutorials/ecological-modelling-google-earth-engine/practical-1_2.png)
 
