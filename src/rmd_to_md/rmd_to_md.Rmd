@@ -53,7 +53,7 @@ yaml_package <- yaml[[package]]
 dependencies <- unlist(
   purrr::map(yaml_package, function(item) {
     if (!is.null(item$dependencies)) {
-      unlist(strsplit(dependencies, "[ ,]+"))
+      unlist(strsplit(item$dependencies, "[ ,]+"))
     } else {
       NULL
     }
