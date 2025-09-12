@@ -218,3 +218,11 @@ dissmapr:
   side_label: Compute orderwise examples
   replace:
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+
+invasimapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd
+  title: "invasimapr: A Novel Framework to visualise trait dispersion and assess species invasiveness or site invasibility"
+  side_label: Introduction
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
+  dependencies: dplyr, tidyr, tibble, purrr, stringr, fastDummies, ggplot2, viridis, factoextra, pheatmap, grid, sf, terra, glmmTMB, MASS, cluster, geometry, ClustGeo, performance
