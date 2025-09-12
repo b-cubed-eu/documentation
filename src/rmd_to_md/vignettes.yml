@@ -163,3 +163,58 @@ impIndicator:
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
   sidebar_labe: Prepare data
   dependencies: b3gbi dplyr knitr
+
+dissmapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/README.Rmd
+  title: "dissmapr: A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis"
+  side_label: Introduction
+  replace:
+  - "# `dissmapr`": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+  dependencies: httr, geodata, data.table, dplyr, tidyr, zoo, sf, terra, tidyterra, zetadiv, ggplot2, viridis, patchwork, mclust, zen4R, purrr, RColorBrewer
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/1-setup.Rmd
+  title: Getting started
+  side_label: Getting started
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+  dependencies: httr, geodata, data.table, dplyr, tidyr, zoo, sf, terra, tidyterra, zetadiv, ggplot2, viridis, patchwork, mclust
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/2-grid.Rmd
+  title: User-defined grid
+  side_label: User-defined grid
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/3-enviro.Rmd
+  title: Environmental data for sites
+  side_label: Environmental data for sites
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/4-zeta.Rmd
+  title: Zeta diversity
+  side_label: Zeta diversity
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/5-zeta-workflow.Rmd
+  title: Zeta-MSGDM with dissmapr
+  side_label: Zeta-MSGDM with dissmapr
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/6-predict.Rmd
+  title: Predict community turnover
+  side_label: Predict community turnover
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/7-bioregion.Rmd
+  title: Map bioregions
+  side_label: Map bioregions
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/8-change.Rmd
+  title: Map bioregion change
+  side_label: Map bioregion change
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/03f5bf43ccc0e99eab67c0cd45c9a5c4572abee1/vignettes/9-examples.Rmd
+  title: Compute orderwise examples
+  side_label: Compute orderwise examples
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
