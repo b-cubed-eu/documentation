@@ -5,11 +5,11 @@ gcube:
   replace:
   - "# gcube ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/gcube/logo.png"
-  dependencies: sf dplyr ggplot2
+  dependencies: sf, dplyr, ggplot2
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/occurrence-process.Rmd
   title: Simulating the occurrence process
   sidebar_label: Occurrence process
-  dependencies: sf dplyr ggplot2 tidyterra
+  dependencies: sf, dplyr, ggplot2, tidyterra
 - source: https://raw.githubusercontent.com/b-cubed-eu/gcube/refs/heads/main/vignettes/articles/detection-process.Rmd
   title: Simulating the detection process
   sidebar_label: Detection process
