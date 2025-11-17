@@ -108,14 +108,18 @@ library(sf)
 # Read data from repository
 mgrs10_belgium <- st_read(
   "https://zenodo.org/records/15211029/files/mgrs10_refgrid_belgium.gpkg",
-  quiet = TRUE
+  quiet = FALSE
 )
 head(mgrs10_belgium)
-#> Simple feature collection with 6 features and 1 field
+#> Reading layer `mgrs10_refgrid_belgium' from data source 
+#>   `https://zenodo.org/records/15211029/files/mgrs10_refgrid_belgium.gpkg' 
+#>   using driver `GPKG'
+#> Simple feature collection with 384 features and 1 field
 #> Geometry type: POLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: 460000.1 ymin: 5620000 xmax: 480000.1 ymax: 5670000
+#> Bounding box:  xmin: 460000.1 ymin: 5480000 xmax: 747688.3 ymax: 5710000
 #> Projected CRS: WGS 84 / UTM zone 31N
+#> 
 #>   mgrscode                           geom
 #> 1  31UDS65 POLYGON ((470000.1 5651000,...
 #> 2  31UDS66 POLYGON ((470000.1 5661000,...
