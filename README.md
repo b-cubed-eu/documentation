@@ -11,20 +11,20 @@ The website makes use of [Astro](https://docs.astro.build/) (a web framework) an
 
 To preview the site locally, use:
 
-- `npm install`: install all dependencies
+- `npm install`: install dependencies.
 - `npm run dev`: start a local development server at `localhost:4321` to preview the site.
 
 See [astro.config.mjs](astro.config.mjs) for site configuration.
 
 ## Updating a page
 
-The site contains two types of pages/tutorials: **source pages** and **external pages**. The way they are updated is different.
+The site contains two types of pages/tutorials: **source pages** and **external pages**. The way they are updated differs.
 
 ### Source pages
 
 Source pages are maintained in this repository. Follow these steps to update:
 
-1. Browse to the markdown file for the page (in `src/content/docs`). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on the website.
+1. Browse to the markdown file for the page (in [`src/content/docs`](src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on the website.
 2. Make changes in the markdown file (either in your browser or locally).
 3. Commit your changes to a new branch (and push).
 4. Create a pull request and assign a reviewer.
@@ -40,11 +40,11 @@ Source pages are licensed under a [Creative Commons Attribution 4.0 Internationa
 
 ### External pages
 
-External pages are maintained elsewhere. We currently only consider **vignettes**, which are tutorials maintained with the source code for an R package ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)). We use a script to include these in the website (and its search). Follow these steps to update a vignette:
+External pages are maintained elsewhere. We currently only consider **vignettes**, which are tutorials maintained with the source code for an R package ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)). We use a script to include these in the website (and its search functionality). Follow these steps to update a vignette:
 
 1. Clone this repository.
-2. Check if vignette is listed in [src/rmd_to_md/vignettes.yml](src/rmd_to_md/vignettes.yml) (organized by R package). Add it if not (use the other vignettes as examples).
-3. Open `documentation.Rproj` in R Studio and open [src/rmd_to_md/rmd_to_md.Rmd](src/rmd_to_md/rmd_to_md.Rmd).
+2. Check if vignette is listed in [`vignettes.yml`](src/rmd_to_md/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
+3. Open `documentation.Rproj` in R Studio and open [`rmd_to_md.Rmd`](src/rmd_to_md/rmd_to_md.Rmd).
 4. Select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
 5. Check if you encountered any errors. If yes, fix and rebuild again.
 6. Commit your changes to a new branch (and push).
