@@ -163,3 +163,13 @@ impIndicator:
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
   sidebar_labe: Prepare data
   dependencies: b3gbi dplyr knitr
+
+pdindicatoR:
+- source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
+  title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
+    on species occurrence data cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# pdindicatoR ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
+  dependencies: sf dplyr
