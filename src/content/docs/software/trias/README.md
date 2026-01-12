@@ -12,7 +12,7 @@ source: https://github.com/trias-project/trias/blob/main/README.Rmd
 
 
 
-<img src="man/figures/logo.png" align="right" alt="" width="120">
+<img src="https://trias-project.github.io/trias/logo.png" align="right" alt="" width="120">
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/trias)](https://CRAN.R-project.org/package=trias)
