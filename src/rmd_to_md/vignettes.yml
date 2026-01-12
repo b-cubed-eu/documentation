@@ -163,3 +163,10 @@ impIndicator:
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/vignettes/prepare_data.Rmd
   sidebar_labe: Prepare data
   dependencies: b3gbi dplyr knitr
+
+trias:
+- source: https://raw.githubusercontent.com/trias-project/trias/refs/heads/main/README.Rmd
+  title: "trias: Functionality for TrIAS and LIFE RIPARIAS"
+  sidebar_label: Introduction
+  replace:
+  - "# trias ": ""
