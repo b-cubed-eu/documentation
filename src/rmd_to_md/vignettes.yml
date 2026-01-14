@@ -179,6 +179,3 @@ rgbif:
   replace:
   - "# rgbif ": ""
   - "man/figures/logo.png": "https://docs.ropensci.org/rgbif/logo.png"
-
-
-
