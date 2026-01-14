@@ -12,7 +12,7 @@ source: https://github.com/EBVcube/ebvcube/blob/main/README.Rmd
 
 
 
-# ebvcube package
+
 
 <!-- badges: start -->
 
