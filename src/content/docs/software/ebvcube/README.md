@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'EBVcube: Working with netCDF for Essential Biodiversity Variables'
-lastUpdated: 2026-01-13
+lastUpdated: 2026-01-14
 sidebar:
   label: Introduction
   order: 1
@@ -136,11 +136,9 @@ To discover the spatial distribution of the data, you can plot a map of the data
 dc <- datacubes[2, 1]
 ebv_map(file, dc, entity=1, timestep = 1, classes = 9,
         verbose=FALSE, col_rev = TRUE)
-#> Warning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
-#> Warning: [crs<-] Cannot set SRS to vector: empty srs
-#> Error in `st_transform.sfc()`:
-#> ! cannot transform sfc object with missing crs
 ```
+
+<img src="/software/ebvcube/man/figures/README-unnamed-chunk-11-1.png" alt="" width="100%" />
 
 It's nice to see the global distribution, but how is the change of that datacube (non forest birds) over time? Let's take a look at the average. The function returns the values, catch them!
 
@@ -154,8 +152,8 @@ averages <- ebv_trend(file, dc, entity=1, verbose=FALSE)
 
 ``` r
 averages
-#>  [1]  0.6140731  1.2972444  2.2045310  3.6016083  6.4691830  8.8957375  9.7711291 10.3299345
-#>  [9] 10.9822654 11.5685090 11.9421034 12.3869482
+#>  [1]  0.6140731  1.2972444  2.2045310  3.6016083  6.4691830  8.8957375  9.7711291
+#>  [8] 10.3299345 10.9822654 11.5685090 11.9421034 12.3869482
 ```
 
 It would be cool to have that for other indicators as well? Check out the different options for 'method'.
@@ -181,8 +179,6 @@ measurements$n
 #you can also define the subset by a Shapefile - check it out!
 bb <- c(-26, 64, 30, 38)
 measurements_bb <- ebv_analyse(file, dc, entity = 1, subset = bb, verbose=FALSE)
-#> Warning in value[[3L]](cond): Could not process EPSG. See warning from terra:
-#> simpleWarning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
 #check out the mean of the subset
 measurements_bb$mean
 #> [1] 0.3241093
@@ -207,17 +203,10 @@ You can also get a spatial subset of the data by providing a Shapefile.
 #load subset from shapefile (Cameroon)
 shp <- system.file(file.path('extdata', 'cameroon.shp'), package="ebvcube")
 data_shp <- ebv_read_shp(file, dc, entity=1, shp = shp, timestep = c(1, 2, 3), verbose=FALSE)
-#> Warning: PROJ: proj_identify: Cannot find proj.db (GDAL error 1)
-#> Warning in value[[3L]](cond): Could not process EPSG. See warning from terra:
-#> simpleWarning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
-#> Warning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
-#> Warning in value[[3L]](cond): Could not process EPSG. See warning from terra:
-#> simpleWarning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
 dim(data_shp)
 #> [1] 12  9  3
 #very quick plot of the resulting raster plus the shapefile
 borders <- terra::vect(shp)
-#> Warning: PROJ: proj_identify: Cannot find proj.db (GDAL error 1)
 ggplot2::ggplot() +
   tidyterra::geom_spatraster(data = data_shp[[1]]) +
   tidyterra::geom_spatvector(data = borders, fill = NA) +
@@ -249,10 +238,6 @@ fv <- -3.4e+38
 ebv_create(jsonpath = json, outputpath = new_nc, entities = entities,
            epsg = 4326, extent = c(-180, 180, -90, 90), resolution = c(1, 1),
            fillvalue = fv, overwrite=TRUE, verbose=FALSE)
-#> Warning in value[[3L]](cond): Could not process EPSG. See warning from terra:
-#> simpleWarning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
-#> Warning in value[[3L]](cond): Could not process EPSG. See warning from terra:
-#> simpleWarning: PROJ: proj_create_from_database: Cannot find proj.db (GDAL error 1)
 
 #needless to say: check the properties of your newly created file to see if you get what you want
 #especially the entity_names from the slot general should be checked to see if your csv was formatted the right way
@@ -314,8 +299,8 @@ citation('ebvcube')
 #> 
 #>   Quoss L, Fernandez N, Langer C, Valdez J, Pereira H (2024). _ebvcube: Working
 #>   with netCDF for Essential Biodiversity Variables_. German Centre for
-#>   Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Germany. R package
-#>   version 0.5.2, <https://github.com/EBVcube/ebvcube>.
+#>   Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Germany. R
+#>   package version 0.5.2, <https://github.com/EBVcube/ebvcube>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
