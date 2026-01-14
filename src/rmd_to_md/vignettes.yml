@@ -172,6 +172,22 @@ trias:
   - "# trias ": ""
   - "man/figures/logo.png": https://trias-project.github.io/trias/logo.png
 
+rgbif:
+- source: https://raw.githubusercontent.com/ropensci/rgbif/refs/heads/master/README.md
+  title: "rgbif: Interface to the Global Biodiversity Information Facility API"
+  sidebar_label: Introduction
+  replace:
+  - "# rgbif ": ""
+  - "man/figures/logo.png": "https://docs.ropensci.org/rgbif/logo.png"
+
+ebvcube:
+- source: https://raw.githubusercontent.com/EBVcube/ebvcube/refs/heads/main/README.Rmd
+  title: "EBVcube: Working with netCDF for Essential Biodiversity Variables"
+  sidebar_label: Introduction
+  replace:
+  - "# ebvcube package": ""
+  dependencies: BiocManager rhdf5 DelayedArray HDF5Array terra ggplot2 tidyterra
+
 pdindicatoR:
 - source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
   title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
