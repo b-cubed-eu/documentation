@@ -40,6 +40,11 @@ export default defineConfig({
           collapsed: true,
         },
         {
+          label: 'Infrastructure',
+          autogenerate: { directory: 'infrastructure' },
+          collapsed: true,
+        },
+        {
           label: 'Tutorials',
           autogenerate: { directory: 'tutorials' },
           collapsed: true,

@@ -68,4 +68,4 @@ Here are the steps to create and download a species occurrence cube from GBIF.or
     Animalia	1	Arthropoda	54	Insecta	216	Coleoptera	1470	Hydrophilidae	7830	Cercyon	1034418	Cercyon impressus	1034479	2013-05	1kmE5217N2980	1	1	1	86400	1000.0
     ```
 
-See the **software** and **tutorials** on this website for ways to explore and process the data. The steps describe above can also be repeated programmatically, using the [GBIF SQL download API](/software/gbif-api/).
+See the **software** and **tutorials** on this website for ways to explore and process the data. The steps describe above can also be repeated programmatically, using the [GBIF SQL download API](/infrastructure/gbif-api/).
