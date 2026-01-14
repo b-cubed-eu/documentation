@@ -164,6 +164,14 @@ impIndicator:
   sidebar_labe: Prepare data
   dependencies: b3gbi dplyr knitr
 
+trias:
+- source: https://raw.githubusercontent.com/trias-project/trias/refs/heads/main/README.Rmd
+  title: "trias: Functionality for TrIAS and LIFE RIPARIAS"
+  sidebar_label: Introduction
+  replace:
+  - "# trias ": ""
+  - "man/figures/logo.png": https://trias-project.github.io/trias/logo.png
+
 rgbif:
 - source: https://raw.githubusercontent.com/ropensci/rgbif/refs/heads/master/README.md
   title: "rgbif: Interface to the Global Biodiversity Information Facility API"
@@ -171,3 +179,6 @@ rgbif:
   replace:
   - "# rgbif ": ""
   - "man/figures/logo.png": "https://docs.ropensci.org/rgbif/logo.png"
+
+
+
