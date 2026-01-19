@@ -84,13 +84,13 @@ The following packages are currently included:
 
 Note that any dependencies not available in mainstream repositories are also added to the R-universe platform. These dependencies will be installed automatically but are not explicitly listed above.
 
-Single packages can be installed via:
+Individual packages can be installed separately, for example:
 
 ```r
 install.packages("dubicube", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
-If the package has Bioconductor dependencies, add the Bioconductor repo:
+For packages with Bioconductor dependencies, the Bioconductor repository must be included:
 
 ```r
 install.packages("ebvcube", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org", "https://bioc.r-universe.dev"))
