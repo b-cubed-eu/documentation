@@ -2,7 +2,7 @@
 title: Specifying the grid designation process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-05-14
+lastUpdated: 2026-01-19
 sidebar:
   label: Grid designation process
   order: 4
@@ -36,7 +36,7 @@ The functions are set up such that a single polygon as input is enough to go thr
 
 The user can change these arguments to allow for more flexibility.
 As input, we create a polygon in which we simulate occurrences.
-It represents the spatial extend of the species.
+It represents the spatial extent of the species.
 
 
 ``` r
@@ -53,7 +53,7 @@ ggplot() +
   theme_minimal()
 ```
 
-<img src="/software/gcube/grid-designation-process-unnamed-chunk-3-1.png" alt="Spatial extend in which we will simulate species occurrences."  />
+<img src="/software/gcube/grid-designation-process-unnamed-chunk-3-1.png" alt="Spatial extent in which we will simulate species occurrences."  />
 
 Also consider a road across our polygon.
 
@@ -85,7 +85,7 @@ ggplot() +
   theme_minimal()
 ```
 
-<img src="/software/gcube/grid-designation-process-unnamed-chunk-5-1.png" alt="Spatial extend with road in which we will simulate species occurrences."  />
+<img src="/software/gcube/grid-designation-process-unnamed-chunk-5-1.png" alt="Spatial extent with road in which we will simulate species occurrences."  />
 
 We can for example sample randomly within the polygon over 6 time points were we use a random walk over time with an initial average number of occurrences equal to 100 (see tutorial 1 about simulating the occurrence process).
 
@@ -365,6 +365,15 @@ The latter is 25 for each grid cell since each observation had the same coordina
 
 ``` r
 head(occurrence_cube_df %>% st_drop_geometry())
+#> # A tibble: 6 × 4
+#>   time_point cell_code     n min_coord_uncertainty
+#>        <int> <chr>     <int>                 <dbl>
+#> 1          1 107           2                    25
+#> 2          1 109           1                    25
+#> 3          1 113           2                    25
+#> 4          1 119           2                    25
+#> 5          1 124           1                    25
+#> 6          1 130           1                    25
 ```
 
 Get sampled points within uncertainty circle by setting `aggregate = FALSE`.
