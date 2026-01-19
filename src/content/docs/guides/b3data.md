@@ -237,7 +237,7 @@ plot(bird_cube_richness_ts)
 
 ![plot of chunk unnamed-chunk-10](../../../../public/guides/b3data/unnamed-chunk-10-1.png)
 
-> **Note:** The spatial and temporal patterns shown in these outputs primarily reflect the data coverage in GBIF, not actual biodiversity patterns. This tutorial is meant to demonstrate the use of the **b3data** resources and indicator workflow, and is not intended as an example of rigorous ecological analysis.
+> **Note:** The example demonstrates the use of the b3data resources, and is not intended as an example of rigorous ecological analysis. The spatial and temporal patterns shown in the outputs below primarily reflect the data coverage in GBIF, and may not reflect actual biodiversity patterns.
 
 ## Contributing and reporting issues
 

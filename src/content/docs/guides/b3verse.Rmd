@@ -147,7 +147,7 @@ library(ggplot2)   # data visualisation
 #### Simulate occurrence cube
 
 As input, we create a polygon in which we simulate occurrences.
-It represents the spatial extend of the species.
+It represents the spatial extent of the species.
 We also need a grid.
 Each observation will be designated to a grid cell.
 
@@ -215,7 +215,7 @@ glimpse(occurrence_cube_df)
 #### Process occurrence cube
 
 We process our simulated cube using the `process_cube()` function from the **b3gbi** package.
-This ensures standarisation and verifies a correct data format.
+This ensures standardisation and verifies a correct data format.
 
 ```{r}
 # Process cube
@@ -253,7 +253,7 @@ species_observations(processed_cube$data)
 ```
 
 We use bootstrapping to calculate uncertainty around the estimates.
-We calculate the 95 % Bias-corrected and accelerated (BCa) interval for each estimate.
+We calculate the 95 % bias-corrected and accelerated (BCa) interval for each estimate.
 
 ```{r}
 # Perform bootstrapping
