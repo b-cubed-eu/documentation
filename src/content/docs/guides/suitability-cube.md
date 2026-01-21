@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::tip[Learn by doing]
-Want to create a Virtual Suitability Cube? See [this tutorial](https://github.com/b-cubed-eu/virtual-suitability-cube).
+Want to create a Virtual Suitability Cube? See [this tutorial](https://github.com/b-cubed-eu/virtual-suitability-cube). Or run through examples of a Suitability Cube [here](https://github.com/b-cubed-eu/suitabilitycube)
 :::
 
 This guide introduces **Suitability Cubes (SCs)**—a standardized, reproducible data cube developed within WP4 of the B3 project to support habitat suitability modelling and the critical evaluation of Species Distribution Models (SDMs). The Suitability Cube is designed as an *evaluation layer* that complements SDM outputs by making explicit where predictions are environmentally supported and where they rely on extrapolation.
