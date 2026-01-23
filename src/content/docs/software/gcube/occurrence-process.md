@@ -2,7 +2,7 @@
 title: Simulating the occurrence process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-05-14
+lastUpdated: 2026-01-19
 sidebar:
   label: Occurrence process
   order: 2
@@ -37,7 +37,7 @@ The user can change these arguments to allow for more flexibility.
 In this tutorial we will demonstrate the different options.
 
 As input, we create a polygon in which we want to simulate occurrences.
-It represents the spatial extend of the species.
+It represents the spatial extent of the species.
 
 
 ``` r
@@ -54,7 +54,7 @@ ggplot() +
   theme_minimal()
 ```
 
-<img src="/software/gcube/occurrence-process-unnamed-chunk-3-1.png" alt="Spatial extend in which we will simulate species occurrences."  />
+<img src="/software/gcube/occurrence-process-unnamed-chunk-3-1.png" alt="Spatial extent in which we will simulate species occurrences."  />
 
 ## Simulate occurrences
 
@@ -240,9 +240,6 @@ ggplot() +
   geom_spatraster(data = rs_pattern_random) +
   scale_fill_continuous(type = "viridis") +
   theme_minimal()
-#> Registered S3 method overwritten by 'data.table':
-#>   method           from
-#>   print.data.table
 ```
 
 <img src="/software/gcube/occurrence-process-unnamed-chunk-15-1.png" alt="Random spatial pattern to sample occurrences."  />
