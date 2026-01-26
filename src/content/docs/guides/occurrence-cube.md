@@ -39,28 +39,32 @@ The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RE
 
 ### Dimensions
 
-Dimensions define how occurrences are grouped into a combination of categories, similar to the GROUP BY clause in SQL. A combination of dimension categories is called a “group”, e.g. taxon `X`, year `Y` and grid cell `Z` is a group.
+A **dimension** consists of one or more related **axes** to aggregate occurrences into distinct **categories**. For example, a taxonomic dimension might consist of a family and species axis and aggregate occurrences into the categories `Regulidae > Regulus regulus` and `Regulidae > Regulus ignicapilla`. Multiple dimensions can be used to aggregate occurrences, similar to the GROUP BY clause in SQL. A single combination of dimension categories is called a **group**, e.g. taxon `X`, year `Y` and grid cell `Z` (see [Figure 1](#figure-1)).
 
 1. A cube MUST have at least one dimension.
 2. A cube MUST at maximum have a number of groups that is equal to the number of dimensions multiplied by the number of categories per dimension.
 3. Groups without any associated occurrences MUST NOT be included in the cube, to ensure a user won't unwittingly assume this represents a statement of species absence. A cube will therefore typically contain (far) less groups than are theoretically possible.
+
+<span id="figure-1"></span>
+![Schematic representation of a cube](/guides/occurrence-cube/cube-schema.png)
+**Figure 1: Schematic representation of a cube.**
 
 #### Taxonomic
 
 The taxonomic dimension groups occurrences into categories using their taxonomic information, i.e. “what was observed?”. Relevant terms are `scientificName`, `kingdom`, and terms derived from species matching with the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]). Grouping is especially useful to lump synonyms and child taxa.
 
 1. This dimension MUST be optional.
-2. A number of categories MUST be supported (see [Table 1](#taxonomic-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]).
-    - The category `speciesKey` SHOULD be selected by default.
-    - Note that the category `taxonKey` is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (`taxonKey` [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (`taxonKey` [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (`taxonKey` [1311484](https://www.gbif.org/species/1311484)). The category `taxonKey` should only lump occurrences that share the same `taxonKey`. This SHOULD be communicated clearly to the user.
-3. Occurrences that are identified at a higher taxon rank than the selected category MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (`taxonKey` [1311334](https://www.gbif.org/species/1311334)) is excluded when using a `speciesKey` category.
+2. A number of axes MUST be supported (see [Table 1](#taxonomic-axes) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)). They are added automatically by the GBIF occurrence processing pipeline, when matching an occurrence to the GBIF Backbone Taxonomy ([GBIF Secretariat 2022][gbif_2022]).
+    - The axis `speciesKey` SHOULD be selected by default.
+    - Note that the axis `taxonKey` is different from the GBIF [taxonKey](https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences) search parameter. The latter lumps synonyms and child taxa, e.g. _Vespa velutina_ Lepeletier, 1836 (`taxonKey` [1311477](https://www.gbif.org/species/1311477)) includes both the accepted subspecies _Vespa velutina nigrithorax_ Buysson, 1905 (`taxonKey` [6247411](https://www.gbif.org/species/6247411)) and the synonym _Vespa auraria_ Smith, 1852 (`taxonKey` [1311484](https://www.gbif.org/species/1311484)). The axis `taxonKey` should only lump occurrences that share the same `taxonKey`. This SHOULD be communicated clearly to the user.
+3. Occurrences that are identified at a higher taxon rank than the selected axis MUST NOT be included, e.g. an occurrence identified as genus _Vespa_ (`taxonKey` [1311334](https://www.gbif.org/species/1311334)) is excluded when using a `speciesKey` axis.
 4. Occurrences MUST NOT be assigned to multiple categories.
-5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-categories-examples)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
+5. Since the values in the categories are integers that are not self-explanatory, additional columns with the names of the taxa and their higher taxonomy (see [Table 2](#taxonomic-axes-columns)) SHOULD be provided. This MAY be provided in the form of a taxonomic compendium as an additional file (cf. [be_species_info.csv](https://zenodo.org/record/7389450/files/be_species_info.csv?download=1) in [Oldoni et al. 2022)][oldoni_2022].
 
-<span id="taxonomic-categories"></span>
-**Table 1**: Categories for the taxonomic dimension.
+<span id="taxonomic-axes"></span>
+**Table 1**: Axes for the taxonomic dimension.
 
-Category | Remarks | Need
+Axis | Remarks | Need
 -------- | ------- | ----
 `kingdomKey` | Lumps synonyms and child taxa. | SHOULD
 `phylumKey` | Lumps synonyms and child taxa. | SHOULD
@@ -72,8 +76,8 @@ Category | Remarks | Need
 `acceptedKey` | Lumps synonyms, but not child taxa. | SHOULD
 `taxonKey` | Does not lump synonyms nor child taxa. | MUST
 
-<span id="taxonomic-categories-examples"></span>
-**Table 2**: Examples of which columns of taxonomic information to include for three different taxonomic dimensions (`taxonKey`, `speciesKey` and `orderKey`).
+<span id="taxonomic-axes-columns"></span>
+**Table 2**: Examples of which axes and columns to include for three different taxonomic dimensions (at `taxonKey`, `speciesKey` and `orderKey`).
 
 Column | Cube at `taxonKey` | Cube at `speciesKey` | Cube at `orderKey`
 ------ | ---------------- | ------------------ | ----------------
@@ -103,16 +107,16 @@ Column | Cube at `taxonKey` | Cube at `speciesKey` | Cube at `orderKey`
 The temporal dimension groups occurrences into categories using their temporal information, i.e. “when was it observed?”. Relevant terms are `eventDate`, `year`, `month`, and `day`. Grouping is especially useful to reduce the temporal information from a continuum into discrete categories.
 
 1. This dimension MUST be optional.
-2. A number of categories MUST be supported (see [Table 3](#temporal-categories) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)), albeit as discrete (`year`, `month`, `day`) not combined (`year`, `yearmonth`, `yearmonthday`) properties. They are added automatically by the GBIF occurrence processing pipeline, when processing the `eventDate` into `year`, `month`, and `day`.
-    - The category `year` SHOULD be selected by default.
-3. Occurrences that have temporal information that is wider than the selected category SHOULD NOT be included, e.g. an occurrence with date range `2020-12-15/2021-01-15` is excluded when using a `year` category.
+2. A number of axes MUST be supported (see [Table 3](#temporal-axes) for details). All of these are existing occurrence properties ([example](https://api.gbif.org/v1/occurrence/4021976280)), albeit as discrete (`year`, `month`, `day`) not combined (`year`, `yearmonth`, `yearmonthday`) properties. They are added automatically by the GBIF occurrence processing pipeline, when processing the `eventDate` into `year`, `month`, and `day`.
+    - The axis `year` SHOULD be selected by default.
+3. Occurrences that have temporal information that is wider than the selected axis SHOULD NOT be included, e.g. an occurrence with date range `2020-12-15/2021-01-15` is excluded when using a `year` axis.
     - Alternatively, the middle of the date range MAY be used.
 4. Occurrences MUST NOT be assigned to multiple categories.
 
-<span id="temporal-categories"></span>
-**Table 3**: Categories for the temporal dimension.
+<span id="temporal-axes"></span>
+**Table 3**: Axes for the temporal dimension.
 
-Category | Remarks | Need
+Axis | Remarks | Need
 -------- | ------- | -----
 `year` |  | MUST
 `yearmonth` |  | SHOULD
@@ -163,18 +167,19 @@ Other dimensions could be envisioned to group occurrences.
 1. These dimensions MUST be optional.
 2. These dimensions MUST be categorical (i.e. controlled vocabularies) or converted to a specified number of quantiles.
 3. Occurrences that are not associated with a category MUST be assigned to NOT-SUPPLIED.
-4. A number of other categories MAY be supported (see [Table 6](#other-dimensions) for details).
-    - By default, other categories SHOULD NOT be selected.
+4. A number of other dimensions MAY be supported (see [Table 6](#other-dimensions) for details).
+    - By default, other dimensions SHOULD NOT be selected.
     - Note that for some (e.g. `establishmentMeans`), users are advised to assign these properties after cube production. This also allows them more control and flexibility.
 5. Occurrences MUST NOT be assigned to multiple categories.
 
 <span id="other-dimensions"></span>
 **Table 6:** Other dimensions.
 
-Category | Remarks  | Need
+Dimension | Remarks  | Need
 --------- | -------- | ----
 Sex |  | SHOULD
 Life stage | Especially important for insects ([Radchuk et al. 2013][radchuk_2013]) and invasive species ([Wallace et al. 2021][wallace_2021]). | MAY
+Depth | Especially important for marine data. | MAY
 Establishment means (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `introduced` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 Degree of establishment (derived) | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `managed` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
 IUCN Global Red List Category | Derived from comparing the occurrence with checklist information (e.g. occurrence is considered `vulnerable` by checklist x for this species, area and time). This is a spatial dimension, occurrences SHOULD be assigned using one of the methods in [Table 4](#grid-assignment-methods). | MAY
@@ -244,16 +249,15 @@ An easy metric is the total number of occurrences for a “target group” ([Bot
 5. This measure SHOULD NOT increase the number of records in the cube. For example, grid cells that are occupied by the higher taxon, but not by the focal taxon, SHOULD NOT be included.
 6. The higher taxon rank SHOULD be defined by the user:
     - It SHOULD either be `genus`, `family`, `order`, `class`, `phylum`, `kingdom` or life (all kingdoms).
-    - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-categories)), e.g. only `phylum`, `kingdom` or life are valid for a cube at class level (`classKey`).
+    - The rank MUST be higher than the selected rank for the taxonomic dimension (see [Table 1](#taxonomic-axes)), e.g. only `phylum`, `kingdom` or life are valid for a cube at class level (`classKey`).
     - family SHOULD be selected by default for cubes with a taxonomic dimension at taxon level (`acceptedKey`, `taxonKey`), species level (`speciesKey`) or genus level (`genusKey`). The direct higher rank SHOULD be selected by default for other cubes with a higher taxonomic dimension.
-    - It SHOULD NOT be possible to select more than one rank. Note that it is theoretically possible to provide this measure for all (higher) ranks.
     - If a taxon does not have a parent at the selected rank, its target occurrence count SHOULD be NULL.
 7. Other measures than target occurrence count MAY be considered, including:
     - Number of days observed.
     - Number of observers (`recordedBy`). Note that this value is not controlled and can lead to higher numbers than expected.
 
 <span id="example-target-occurrence-counts"></span>
-**Table 8:** Example of target occurrence counts at `genus` level for a cube with taxonomic and temporal dimensions.
+**Table 8:** Example of target occurrence counts at genus level (`genusCount`) for a cube with taxonomic and temporal dimensions.
 
 speciesKey | year | count | genusCount
 ---------- | ---- | ----  | ----------
@@ -291,7 +295,6 @@ eoJSON | See [https://geojson.org/](https://geojson.org/) | MAY
 GeoParquet | See [https://geoparquet.org/](https://geoparquet.org/) | MAY
 GeoTIFF | See [https://www.ogc.org/standard/geotiff/](https://www.ogc.org/standard/geotiff/) | MAY
 HDF5 | See [https://www.hdfgroup.org/solutions/hdf5/](https://www.hdfgroup.org/solutions/hdf5/) | MAY
-JSON | See [https://www.json.org/](https://www.json.org/) | MAY
 PMTiles | See [https://protomaps.com/docs/pmtiles](https://protomaps.com/docs/pmtiles) | MAY
 ZARR | See [https://zarr.readthedocs.io/en/stable/](https://zarr.readthedocs.io/en/stable/) | MAY
 
@@ -301,16 +304,15 @@ Metadata documents how a cube was generated and can be cited.
 
 1. Metadata MUST be provided in a machine-readable format such as JSON or XML.
 2. Metadata SHOULD make use of DataCite Metadata Schema ([DateCite Metadata Working Group 2021][datacite_2021]). This is currently the case for GBIF occurrence downloads ([example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)).
-3. Metadata MUST include the properties in [Table 9](#output-formats).
-4. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
+3. Metadata MUST include all the parameters that were used to generate the cube, allowing it to be reproduced.
     - The parameters MUST be provided in a machine-readable format such as JSON or REST API query parameters.
     - The parameters MUST include the selected occurrence search filters. This is currently the case for GBIF occurrence downloads ([GBIF Secretariat 2023a][gbif_2023a]) (see `descriptions` in this [example](https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.15468/dl.4bzxua)). Any default values SHOULD also be included.
-    - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
-5. Metadata MUST include a stable and unique global identifier, so it can be referenced. This SHOULD be a Digital Object Identifier (DOI).
-6. Metadata MUST include the creator, publisher, and creation date of the cube.
-7. Metadata MUST include the GBIF-mediated occurrence datasets that contributed to the cube as related identifiers, so these can be credited.
-8. Metadata MUST include the licence under which it is deposited.
-9. Metadata SHOULD document the columns in the cube. This MAY be expressed using Frictionless Table Schema ([Walsh & Pollock 2012][walsh_2012]) or STAC.
+    - The parameters MUST include the selected cube properties, such as dimensions, axes, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
+4. Metadata MUST include a stable and unique global identifier, so it can be referenced. This SHOULD be a Digital Object Identifier (DOI).
+5. Metadata MUST include the creator, publisher, and creation date of the cube.
+6. Metadata MUST include the GBIF-mediated occurrence datasets that contributed to the cube as related identifiers, so these can be credited.
+7. Metadata MUST include the licence under which it is deposited.
+8. Metadata SHOULD document the columns in the cube. This MAY be expressed using Frictionless Table Schema ([Walsh & Pollock 2012][walsh_2012]) or STAC.
 
 ### Findability and storage
 
@@ -346,7 +348,7 @@ This software produces cubes following the specification above.
     - The software MUST NOT assume the GBIF occurrence index to be the source of this data. Users SHOULD be able to provide their own occurrence data (e.g. for testing purposes).
 
 1. The software MUST use parameters by which users can define how a cube is produced.
-    - The parameters MUST include the selected cube properties, such as dimensions, categories, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
+    - The parameters MUST include the selected cube properties, such as dimensions, axes, reference grids, default coordinate uncertainty, seed for random grid assignment (see [Spatial](#spatial)), measures (see [Measures](#measures)) and format (see [Format](#format)).
     - The parameter values MUST be controlled.
     - The parameters SHOULD use reasonable defaults where relevant (see [Cube specification](#cube-specification)).
     - SQL MAY be considered as the notation format for the parameters.
@@ -378,7 +380,7 @@ This software produces cubes following the specification above.
 
 ### Cube workflow service
 
-This service SHOULD embed the cube production software ([Cube production software](cube-production-software)) into the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
+This service SHOULD embed the cube production software (see [Cube production software](cube-production-software)) into the GBIF occurrence download service ([GBIF Secretariat 2023a][gbif_2023a]), allowing users to search for occurrences of interest and download/deposit these as a cube following their specification.
 
 1. The service MUST allow users to **search and filter for occurrences** of interest. Note that the GBIF occurrence search ([GBIF Secretariat 2023b][gbif_2023b]) already provides this functionality.
 
@@ -387,7 +389,7 @@ This service SHOULD embed the cube production software ([Cube production softwar
 
 3. The service MUST allow users to **define the dimensions** of the cube (see [Dimensions](#dimensions)):
     - The user MUST be able to select what dimensions (controlled list) to include.
-    - The user MUST be able to select what category/categories (controlled list) to use for each dimension.
+    - The user MUST be able to select what axes (controlled list) to use for each dimension.
     - The user MUST be able to select what reference grid (controlled list, see [Table 5](#reference-grids)) and grid assignment method (controlled list, see [Table 4](#grid-assignment-methods)) to use for the spatial dimension.
     - The user MAY be able to select a default coordinate uncertainty for occurrences that do not have this information.
     - The user MAY be able to select the seed for random grid assignment.

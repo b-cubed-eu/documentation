@@ -193,7 +193,6 @@ A repository can have additional README files beyond the one in the root. These 
 
 :::tip[B-Cubed software requirements]
 - All software MUST have a code of conduct (as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant template](https://www.contributor-covenant.org/)).
-- All participants to software MUST abide by its code of conduct.
 - Maintainers MUST watch the repository they maintain.
 - Code contributions MUST follow the GitHub flow.
 - The main branch MUST contain the software code in a state that can be installed without issue.
@@ -211,7 +210,7 @@ All steps below can be completed in the browser. For more information on GitHub 
 
 A [code of conduct](https://opensource.guide/code-of-conduct/) is a document that establishes expectations for behaviour from all software participants. Adopting and enforcing it can help to create a safe and positive working space.
 
-All software MUST have a code of conduct, as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant](https://www.contributor-covenant.org/) template. All participants to software MUST abide by its code of conduct.
+All software MUST have a code of conduct, as a `CODE_OF_CONDUCT.md` file following the [Contributor Covenant](https://www.contributor-covenant.org/) template.
 
 To add a `CODE_OF_CONDUCT.md`:
 
@@ -1113,11 +1112,11 @@ GitHub Actions SHOULD be used to test, build and release your Python packages. A
 
 :::tip[B-Cubed software requirements]
 - Each package and analysis MUST have at least one tutorial.
-- Tutorials MUST be included in the B-Cubed guides and tutorials website.
+- Tutorials MUST be included in the B-Cubed documentation website.
 - Tutorials MUST be written in English using literate programming documents. 
 :::
 
-To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed guides and tutorials website](https://docs.b-cubed.eu/).
+To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed documentation website](https://docs.b-cubed.eu/).
 
 ### Documenting software and code in B-Cubed {#tutorial-documentating}
 

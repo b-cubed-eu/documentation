@@ -1,54 +1,71 @@
-# Starlight Starter Kit: Basics
+# B-Cubed documentation website
 
+[![repostatus](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
+This repository contains the source files for the [B-Cubed documentation website](https://docs.b-cubed.eu/).
+
+## Usage
+
+The website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlights](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild the site on GitHub Pages for each commit on the `main` branch.
+
+To preview the site locally, use:
+
+- `npm install`: install dependencies.
+- `npm run dev`: start a local development server at `localhost:4321` to preview the site.
+
+See [astro.config.mjs](astro.config.mjs) for site configuration.
+
+## Updating a page
+
+The site contains two types of pages/tutorials: **source pages** and **external pages**. The way they are updated differs.
+
+### Source pages
+
+Source pages are maintained in this repository. Follow these steps to update:
+
+1. Browse to the markdown file for the page (in [`src/content/docs`](src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on the website.
+2. Make changes in the markdown file (either in your browser or locally).
+3. Commit your changes to a new branch (and push).
+4. Create a pull request and assign a reviewer.
+5. Once accepted and merged, your changes will go live on the site.
+
+Does your page contain images or data? Place them in `public/<page-type>/<name-of-page>/`. It's best to do this locally on your new branch. To refer to images in markdown, use:
+
 ```
-npm create astro@latest -- --template starlight
+![Short description](/<page-type>/<name-of-page>/<name-of-image>.png)
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
+Source pages are licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### External pages
 
-## 🚀 Project Structure
+External pages are maintained elsewhere. We currently only consider **vignettes**, which are tutorials maintained with the source code for an R package ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)). We use a script to include these in the website (and its search functionality). Follow these steps to update a vignette:
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+1. Clone this repository.
+2. Check if vignette is listed in [`vignettes.yml`](src/rmd_to_md/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
+3. Open `documentation.Rproj` in R Studio and open [`rmd_to_md.Rmd`](src/rmd_to_md/rmd_to_md.Rmd).
+4. Select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
+5. Check if you encountered any errors. If yes, fix and rebuild again.
+6. Commit your changes to a new branch (and push).
+7. Create a pull request and assign a reviewer.
+6. Once accepted and merged, your changes will go live on the site.
+
+Do you want to include an external page that is not a vignette? [Create an issue](https://github.com/b-cubed-eu/documentation/issues).
+
+## Repo structure
+
+The repository structure is that of an Astro + Starlight project, with the following directories:
 
 ```
-.
-├── public/
 ├── src/
-│   ├── assets/
 │   ├── content/
-│   │   ├── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+│   │   └── docs/          : Source markdown files
+│   ├── rmd_to_md/         : Script to create markdown files from external tutorials
+│   │
+│   ├── assets/            : Theme assets
+│   ├── layouts/           : Theme layouts
+│   └── styles/            : Theme style
+│
+└── public/                : Static files referenced in the markdown files (figures, data)
 ```
-
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
-
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
