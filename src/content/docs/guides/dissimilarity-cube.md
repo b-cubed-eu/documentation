@@ -45,7 +45,7 @@ The cube integrates:
 
 By storing these components within a unified structure, the Dissimilarity Cube enables consistent slicing across **space, predictors, dissimilarity orders, and scenarios**, supporting both exploratory and inferential analyses of biodiversity turnover.
 
-![Conceptual illustration of zeta diversity](/public/guides/dissimilarity-cube/fig1_zeta.png)
+![Conceptual illustration of zeta diversity](/guides/dissimilarity-cube/fig1_zeta.png)
 
 **Figure 1.** Conceptual illustration of zeta (ζ) diversity across multiple sites.
 
@@ -112,7 +112,7 @@ Prior to analysis, data are screened for sampling bias, collinearity among predi
 
 Predicted turnover surfaces can be clustered into **bioregions**, representing spatially coherent units of community composition. The same workflow can be applied to future scenarios, enabling comparison of present and projected compositional structure and identification of regions prone to reorganisation.
 
-![dissmapr workflow](/public/guides/dissimilarity-cube/fig2_workflow.png)
+![dissmapr workflow](/guides/dissimilarity-cube/fig2_workflow.png)
 
 **Figure 2.** Conceptual workflow of the Dissimilarity Cube implemented in `dissmapr`.
 
@@ -156,7 +156,7 @@ A large-scale application analyses butterfly assemblages in South Africa using o
 
 ζ-MS-GDM results reveal a strong, order-dependent hierarchy in the drivers of turnover. At low orders (ζ₂), geographic distance dominates, reflecting local distance decay. At intermediate orders (ζ₃–ζ₄), climatic heterogeneity becomes increasingly influential. At high orders (ζ₅–ζ₆), turnover is governed primarily by climatic envelopes and sampling completeness, indicating processes controlling regional persistence of widespread species.
 
-![Partial‐Dependence Curves for all covariates at different orders](/public/guides/dissimilarity-cube/fig3_full_zeta.png)
+![Partial‐Dependence Curves for all covariates at different orders](/guides/dissimilarity-cube/fig3_full_zeta.png)
 
 **Figure 3.** Partial-dependence curves for environmental predictors across ζ-orders.
 
@@ -174,7 +174,7 @@ Collectively, these patterns reveal **which gradients matter most, and at which 
 
 Spatial predictions of ζ₂ produce smooth turnover gradients across South Africa, highlighting regions of strong environmental contrast or isolation. Clustering these surfaces yields coherent bioregions that are largely consistent across algorithms, with local boundary uncertainty aligning with ecological transition zones.
 
-![Bioregions under Current and Future Scenarios](/public/guides/dissimilarity-cube/fig6_forcast_bioregions.png)
+![Bioregions under Current and Future Scenarios](/guides/dissimilarity-cube/fig6_forcast_bioregions.png)
 
 **Figure 4.** Bioregional configurations under current and future scenarios.
 
@@ -184,7 +184,7 @@ Spatial predictions of ζ₂ produce smooth turnover gradients across South Afri
 
 Sensitivity analyses explicitly separate **methodological uncertainty** from **environmental change signals**. Regions stable across clustering methods but sensitive to climate projections indicate robust ecological reorganisation, whereas areas sensitive to both require cautious interpretation.
 
-![Sensitivity of Bioregion Delineation](/public/guides/dissimilarity-cube/fig7_sensitivity.png)
+![Sensitivity of Bioregion Delineation](/guides/dissimilarity-cube/fig7_sensitivity.png)
 
 **Figure 5.** Sensitivity of bioregional delineation to clustering method.
 
