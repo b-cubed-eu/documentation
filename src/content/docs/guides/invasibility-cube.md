@@ -41,7 +41,7 @@ An **Invasibility Cube** is a multi-dimensional data structure that estimates **
 
 These inputs support a workflow that (a) constructs a shared trait geometry, (b) estimates site-level predictors of abiotic opportunity and biotic resistance, and (c) synthesises these components into a **site × invader invasion-fitness surface**. From this surface, two headline indicators are derived: **species invasiveness** (who tends to establish) and **site invasibility** (where invasions are most likely), along with trait-level diagnostics to explain why.
 
-![Invasibility Cube data structure](/public/guides/invasibility-cube/fig1_invasi_cube.png)
+![Invasibility Cube data structure](/guides/invasibility-cube/fig1_invasi_cube.png)
 
 **Figure 1.** Interoperable environment, community, and trait structures underpinning the Invasibility Cube.
 
@@ -53,7 +53,7 @@ These inputs support a workflow that (a) constructs a shared trait geometry, (b)
 
 The Invasibility Cube formalises the principle that establishment success depends jointly on **abiotic suitability**, **biotic resistance**, and **invader traits**. Rather than treating these as separate modelling steps, the cube embeds them in a shared trait–environment representation. Resident communities define the set of trait strategies currently supported at each site, while candidate invaders are positioned relative to this resident “trait cloud”. This geometric framing provides an interpretable bridge between measurable traits and invasion outcomes.
 
-![Trait-space geometry](/public/guides/invasibility-cube/fig2_trait_space.png)
+![Trait-space geometry](/guides/invasibility-cube/fig2_trait_space.png)
 
 **Figure 2.** Conceptual trait-space geometry: residents form a trait cloud; invaders succeed or fail depending on trait novelty/overlap and site context.
 
@@ -131,7 +131,7 @@ Invasion processes are rarely uniform across trait strategies. The workflow ther
 
 Finally, the model synthesises opportunity and resistance into invasion fitness (λ) and transforms λ into establishment probability (P). This yields the central product of the cube: a site × invader surface that answers, directly and explicitly, **which invaders can establish where**, given both environmental conditions and resident community constraints.
 
-![Invasimapr workflow](/public/guides/invasibility-cube/fig3_workflow.png)
+![Invasimapr workflow](/guides/invasibility-cube/fig3_workflow.png)
 
 **Figure 3.** Conceptual workflow linking data preparation, trait-space modelling, resident predictors, and invasion fitness estimation.
 
@@ -171,23 +171,23 @@ A demonstrative application analyses Afrotropical Lepidoptera across South Afric
 
 Results show that invasion success is strongly spatially heterogeneous and emerges from trade-offs between abiotic suitability, trait overlap, and saturation. Regions with high abiotic opportunity but weak crowding and low saturation exhibit elevated invasibility, whereas sites with strong functional overlap and high competitive loading remain resistant even under favourable environments.
 
-![Resident species richness](/public/guides/invasibility-cube/fig4_richness.png)
+![Resident species richness](/guides/invasibility-cube/fig4_richness.png)
 
 **Figure 4.** Resident richness provides baseline context, but resistance emerges mechanistically through trait overlap and saturation rather than richness alone.
 
-![Prepare Trait Space](/public/guides/invasibility-cube/fig5_results_trait_space.png)
+![Prepare Trait Space](/guides/invasibility-cube/fig5_results_trait_space.png)
 
 **Figure 5.** Trait-space diagnostics: resident density structure, niche envelopes, and invader novelty/centrality.
 
-![Resident predictors](/public/guides/invasibility-cube/fig6_abc.png)
+![Resident predictors](/guides/invasibility-cube/fig6_abc.png)
 
 **Figure 6.** Resident predictors separating abiotic opportunity from biotic resistance mechanisms.
 
-![Establishment Marix](/public/guides/invasibility-cube/fig7_est_matrix.png)
+![Establishment Marix](/guides/invasibility-cube/fig7_est_matrix.png)
 
 **Figure 7.** Site × invader establishment outcomes reveal structured, heterogeneous invasion risk.
 
-![Invasiness and Invasibility](/public/guides/invasibility-cube/fig8_invasiveness_invasibility.png)
+![Invasiness and Invasibility](/guides/invasibility-cube/fig8_invasiveness_invasibility.png)
 
 **Figure 8.** Decision-ready summaries: species invasiveness, site invasibility, and trait drivers of establishment.
 

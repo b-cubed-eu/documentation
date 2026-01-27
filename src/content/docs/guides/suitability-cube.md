@@ -44,7 +44,7 @@ Within this shared structure, the cube stores multiple indicators that describe 
 
 Importantly, the Suitability Cube does not replace SDMs. Instead, it complements them by answering a different question: *where are SDM predictions environmentally supported, and where should they be treated with caution?*
 
-![Conceptual structure of the Suitability Cube showing dimensions and attributes](/public/guides/suitability-cube/fig1_concept.png)
+![Conceptual structure of the Suitability Cube showing dimensions and attributes](/guides/suitability-cube/fig1_concept.png)
 
 **Figure 1.** Conceptual structure of the Suitability Cube, organised along spatial, taxonomic, and temporal dimensions.
 
@@ -76,7 +76,7 @@ The **Area of Applicability (AOA)** defines the spatial domain within which SDM 
 
 AOA therefore provides a binary mask that separates environmentally supported predictions from those that should be interpreted with caution.
 
-![Environmental Distance and Area of Applicability](/public/guides/suitability-cube/fig2_aoa.png)
+![Environmental Distance and Area of Applicability](/guides/suitability-cube/fig2_aoa.png)
 
 **Figure 2.** Conceptual relationship between Environmental Distance (DI) and Area of Applicability (AOA).
 
@@ -110,7 +110,7 @@ Using the processed inputs, hypervolumes are estimated for each species under pr
 
 Indicators are aggregated onto the spatial grid and combined into a single multi-attribute cube with dimensions **cell × taxon × time**. Hypervolume values are stored as species-level attributes, while DI and AOA vary across space and time. The resulting cube provides a unified object for joint analysis and visualisation.
 
-![Suitability Cube workflow](/public/guides/suitability-cube/fig3_workflow.png)
+![Suitability Cube workflow](/guides/suitability-cube/fig3_workflow.png)
 
 **Figure 3.** Overview of the Suitability Cube workflow.
 
@@ -128,7 +128,7 @@ This design promotes transparency, reproducibility, and portability across regio
 
 The final product is a multi-attribute environmental data cube containing continuous DI values, binary AOA masks, and species-level hypervolume estimates. Because all indicators share the same spatial, taxonomic, and temporal dimensions, the cube supports robust querying, comparison, and visualisation without additional alignment steps.
 
-![Suitability Cube structure](/public/guides/suitability-cube/fig4_grid.png)
+![Suitability Cube structure](/guides/suitability-cube/fig4_grid.png)
 
 **Figure 4.** Dimensions and attributes of the Suitability Cube.
 
@@ -146,7 +146,7 @@ A demonstrative application considers three amphibian species (*Bufo bufo*, *Buf
 
 Results reveal increasing environmental novelty and contracting Areas of Applicability under future climate scenarios, indicating declining model transferability despite continued model predictions.
 
-![Example of DI and AOA mapped for present and future conditions](/public/guides/suitability-cube/fig5_aoa-maps.png)
+![Example of DI and AOA mapped for present and future conditions](/guides/suitability-cube/fig5_aoa-maps.png)
 
 **Figure 5.** Environmental Distance and Area of Applicability for amphibians in Italy.
 
