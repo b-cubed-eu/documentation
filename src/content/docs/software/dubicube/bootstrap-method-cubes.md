@@ -2,12 +2,14 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-08-25
+lastUpdated: 2026-01-28
 sidebar:
-  label: Bootstrap method cubes
+  label: Bootstrapping data cubes
   order: 3
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/bootstrap-method-cubes.Rmd
 ---
+
+
 
 ## Introduction
 
@@ -111,15 +113,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
-#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -163,21 +164,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus     Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoeni… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus ri… Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata   Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus     Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandarius Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Bran… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus       Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus    Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querquedula Anati…     8                   3536     2709975 600000
+#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
+#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000 5.66e6      31 N         
+#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000 5.68e6      31 N         
+#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000 5.64e6      31 N         
+#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000 5.66e6      31 N         
+#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000 5.64e6      31 N         
+#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000 5.65e6      31 N         
+#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000 5.68e6      31 N         
+#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000 5.62e6      31 N         
+#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000 5.63e6      31 N         
+#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000 5.7 e6      31 N         
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 1 more variable: resolution <chr>
 ```
 
 ### Analysis of the data
@@ -250,18 +251,27 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+#> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
+
+This returned a list of `"boot"` objects. We can convert this to a dataframe 
 
 
 ``` r
-head(bootstrap_results)
-#>   sample year est_original rep_boot est_boot se_boot  bias_boot
-#> 1      1 2011     34.17777 24.23133 33.80046 4.24489 -0.3773142
-#> 2      2 2011     34.17777 24.28965 33.80046 4.24489 -0.3773142
-#> 3      3 2011     34.17777 31.81445 33.80046 4.24489 -0.3773142
-#> 4      4 2011     34.17777 33.42530 33.80046 4.24489 -0.3773142
-#> 5      5 2011     34.17777 35.03502 33.80046 4.24489 -0.3773142
-#> 6      6 2011     34.17777 33.72037 33.80046 4.24489 -0.3773142
+bootstrap_results_df <- boot_list_to_dataframe(
+  boot_list = bootstrap_results,
+  grouping_var = "year"
+) %>%
+  mutate(year = as.numeric(year))
+
+head(bootstrap_results_df)
+#>   sample year est_original rep_boot est_boot  se_boot  bias_boot
+#> 1      1 2011     34.17777 31.15094  33.7093 4.304673 -0.4684721
+#> 2      2 2011     34.17777 32.45489  33.7093 4.304673 -0.4684721
+#> 3      3 2011     34.17777 29.31098  33.7093 4.304673 -0.4684721
+#> 4      4 2011     34.17777 34.10232  33.7093 4.304673 -0.4684721
+#> 5      5 2011     34.17777 25.46354  33.7093 4.304673 -0.4684721
+#> 6      6 2011     34.17777 33.85088  33.7093 4.304673 -0.4684721
 ```
 
 We can visualise the bootstrap distributions using a violin plot.
@@ -269,7 +279,7 @@ We can visualise the bootstrap distributions using a violin plot.
 
 ``` r
 # Get bias vales
-bias_mean_obs <- bootstrap_results %>%
+bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
 # Get estimate values
@@ -280,7 +290,7 @@ estimate_mean_obs <- bias_mean_obs %>%
                          ordered = TRUE))
 
 # Visualise bootrap distributions
-bootstrap_results %>%
+bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -291,7 +301,7 @@ bootstrap_results %>%
   # Settings
   labs(y = "Mean Number of Observations\nper Grid Cell",
        x = "", shape = "Legend:") +
-  scale_x_continuous(breaks = sort(unique(bootstrap_results$year))) +
+  scale_x_continuous(breaks = sort(unique(bootstrap_results_df$year))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.title = element_text(face = "bold"))
@@ -312,6 +322,7 @@ bootstrap_results_df <- bootstrap_cube(
   fun = mean_obs,
   grouping_var = "year",
   samples = 1000,
+  method = "whole_cube",
   seed = 123,
   processed_cube = FALSE
 )
@@ -340,7 +351,10 @@ bootstrap_results_ref <- bootstrap_cube(
   ref_group = 2011,
   seed = 123
 )
+#> [1] "Performing whole-cube bootstrap."
 ```
+
+This time, a dataframe is returned since the **boot** package cannot be used with a reference group (see Bootstrap method section).
 
 
 ``` r
@@ -404,3 +418,39 @@ If this is the case, it could make sense to select the last period as a referenc
 In a way, this also avoids the arbitrariness of choosing the reference period.
 You compare previous situations with the current situation (last year), where you could repeat this comparison annually, for example.
 Finally, when comparing multiple indicators, we recommend using a consistent reference period to maintain comparability.
+
+### Bootstrap method
+
+The **dubicube** package supports multiple bootstrap strategies depending on the type of indicator, the structure of your data, and whether a reference group is used. Users rarely need to specify the method explicitly, as the default `method = "smart"` automatically selects the appropriate approach. More info in [this tutorial](https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/).
+
+#### 1. Smart (`method = "smart"`)
+
+This is the default and recommended option. **dubicube** infers the most suitable bootstrap method by comparing indicator values across subsets of the data. If the values of common groups are identical when calculated separately, group-specific bootstrapping is applied; otherwise, whole-cube bootstrapping is used (see further).
+
+#### 2. Whole-cube bootstrap (`method = "whole_cube"`)
+
+In whole-cube bootstrapping, resampling is performed across all rows of the dataset, ignoring the grouping variable. This is suitable for indicators that depend on the full dataset (e.g., aggregate biodiversity metrics).
+
+* Can be used with a reference group.
+* Does not use the **boot** package.
+
+#### 3. Group-specific bootstrap (`method = "group_specific"`)
+
+Here, resampling occurs independently within each group defined by the grouping variable (e.g., per species, year, or habitat). This method preserves group structure and is suitable for indicators calculated independently per group.
+
+* Can be used with a reference group.
+* Does not use the **boot** package.
+
+#### 4. Boot-based whole-cube (`method = "boot_whole_cube"`)
+
+Performs whole-cube bootstrapping using the **boot** package. Resampling occurs across all rows.
+
+* Cannot be used with a reference group.
+* Only valid when there is a single grouping variable.
+
+#### 5. Boot-based group-specific (`method = "boot_group_specific"`)
+
+Performs group-specific bootstrapping using the **boot** package. Resampling occurs independently within each group.
+
+* Cannot be used with a reference group.
+* Only valid when there is a single grouping variable.

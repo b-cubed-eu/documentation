@@ -1,6 +1,6 @@
 ---
 title: 'dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty'
-lastUpdated: 2025-08-25
+lastUpdated: 2026-01-28
 sidebar:
   label: Introduction
   order: 1
@@ -23,6 +23,7 @@ status](https://www.r-pkg.org/badges/version/dubicube)](https://CRAN.R-project.o
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14850237.svg)](https://doi.org/10.5281/zenodo.14850237)
 [![name status
 badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)
+[![funder](https://badgen.net/static/funder/European%20Union/f2a)](https://doi.org/10.3030/101059592)
 
 <!-- badges: end -->
 
