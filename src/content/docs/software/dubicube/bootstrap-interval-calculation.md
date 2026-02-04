@@ -2,7 +2,7 @@
 title: Calculating bootstrap confidence intervals
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-08-25
+lastUpdated: 2026-02-04
 sidebar:
   label: Bootstrap confidence intervals
   order: 4
@@ -174,12 +174,12 @@ processed_cube
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2011 - 2020 
-#> Single-resolution cube with cell size 10km ^2 
+#> Single-resolution cube with cell size 10km ^2
 #> Number of cells: 242 
 #> Grid reference system: mgrs 
 #> Coordinate range:
-#>    xmin    xmax    ymin    ymax 
-#>  280000  710000 5490000 5700000 
+#>      xmin      xmax      ymin      ymax 
+#>  2.428844  6.329718 49.538733 51.444030 
 #> 
 #> Total number of observations: 45143 
 #> Number of species represented: 253 
@@ -189,22 +189,21 @@ processed_cube
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus     Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoeni… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus ri… Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata   Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus     Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandarius Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Bran… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus       Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus    Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querquedula Anati…     8                   3536     2709975 600000
+#> # A tibble: 957 × 11
+#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord resolution
+#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl> <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus  Cucul…    11                   3536       67486   5.14   51.1 10km      
+#>  2  2011 31UES28   5739317 Phoenicurus pho… Musci…     6                   3536      610513   3.29   51.3 10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalus… Larid…   143                   1000     2612978   5.27   50.9 10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stria… Musci…     3                   3536      610513   5.71   51.1 10km      
+#>  5  2011 31UES04   5231198 Passer montanus  Passe…     1                   3536      175872   3      50.9 10km      
+#>  6  2011 31UES85   5229493 Garrulus glanda… Corvi…    23                    707      816442   4.14   51.0 10km      
+#>  7  2011 31UES88  10124612 Anser anser x B… Anati…     1                    100     2709975   4.15   51.3 10km      
+#>  8  2011 31UES22   2481172 Larus marinus    Larid…     8                   1000     2612978   3.28   50.7 10km      
+#>  9  2011 31UFS43   2481139 Larus argentatus Larid…    10                   3536     2612978   4.99   50.8 10km      
+#> 10  2011 31UFT00   9274012 Spatula querque… Anati…     8                   3536     2709975   4.44   51.4 10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -279,7 +278,7 @@ head(bootstrap_results)
 
 Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits. It relies on the following arguments:
 
-- **`bootstrap_samples_df`**:
+- **`bootstrap_results`**:
   A dataframe containing the bootstrap replicates, where each row represents a bootstrap sample. As returned by `bootstrap_cube()`.
 
 - **`grouping_var`**:
@@ -297,7 +296,7 @@ Now we can use the `calculate_bootstrap_ci()` function to calculate confidence l
   The confidence level of the intervals. Default is `0.95` (95 % confidence level).
 
 - **`aggregate`**:
-  Logical. If `TRUE` (default), the function returns confidence limits per group. If `FALSE`, the confidence limits are added to the original bootstrap dataframe `bootstrap_samples_df`.
+  Logical. If `TRUE` (default), the function returns confidence limits per group. If `FALSE`, the confidence limits are added to the original bootstrap dataframe `bootstrap_results`.
 
 - **`data_cube`**:
   Only used when `type = "bca"`. The input data as a processed data cube (from `b3gbi::process_cube()`).
@@ -313,7 +312,7 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 ``` r
 ci_mean_obs <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results,
+  bootstrap_results = bootstrap_results,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   conf = 0.95,
@@ -435,7 +434,15 @@ $\hat{\theta}_{-i} = \hat{\theta}_{1} - \hat{\theta}_{2,-i} \text{ for } i = n_1
 Therefore, if you want to calculate the BCa intervals using `calculate_bootstrap_ci()`, you also need to provide `ref_group = 2011`.
 
 
-```
+``` r
+ci_mean_obs_ref <- calculate_bootstrap_ci(
+  bootstrap_results = bootstrap_results_ref,
+  grouping_var = "year",
+  type = c("perc", "bca", "norm", "basic"),
+  data_cube = processed_cube,   # Required for BCa
+  fun = mean_obs,               # Required for BCa
+  ref_group = 2011              # Required for BCa
+)
 #> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
 #> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
 ```
@@ -594,7 +601,7 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 ``` r
 ci_evenness <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_evenness,
+  bootstrap_results = bootstrap_results_evenness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   data_cube = processed_cube_even,
@@ -678,7 +685,7 @@ We enter them through `calculate_bootstrap_ci()`.
 
 ``` r
 ci_evenness_trans <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_evenness,
+  bootstrap_results = bootstrap_results_evenness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   h = logit,
@@ -782,7 +789,7 @@ The bias is infinite such that the BCa intervals cannot be calculated.
 
 ``` r
 ci_richness <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_richness,
+  bootstrap_results = bootstrap_results_richness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   data_cube = processed_cube_even,
@@ -869,7 +876,7 @@ However, it is important to note that these are alternative estimators — they 
 
 ``` r
 ci_richness_no_bias <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_richness,
+  bootstrap_results = bootstrap_results_richness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   no_bias = TRUE,

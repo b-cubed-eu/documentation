@@ -2,7 +2,7 @@
 title: Whole-cube bootstrap versus group-specific bootstrap
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-08-25
+lastUpdated: 2026-02-04
 sidebar:
   label: Grouped bootstrapping
   order: 5
