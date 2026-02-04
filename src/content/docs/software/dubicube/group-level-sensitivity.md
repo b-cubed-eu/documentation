@@ -11,6 +11,8 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/group-level-sensitivity.Rmd
 ---
 
+
+
 ## Introduction
 
 When working with biodiversity data cubes, understanding how sensitive your indicators are to individual groups (like species, sites, or time periods) can be crucial for robust analysis.
@@ -121,15 +123,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
-#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi** to put the data in a format, ready for analysis.

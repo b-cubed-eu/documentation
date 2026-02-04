@@ -9,6 +9,8 @@ sidebar:
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/bootstrap-interval-calculation.Rmd
 ---
 
+
+
 ## Introduction
 
 When working with data cubes, it’s essential to understand the uncertainty surrounding derived statistics. This tutorial introduces the `calculate_bootstrap_ci()` function from **dubicube**,  which uses bootstrap replications to estimate the confidence intervals around statistics calculated from data cubes.
@@ -138,15 +140,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
-#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -260,18 +261,7 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
-```
-
-
-``` r
-head(bootstrap_results)
-#>   sample year est_original rep_boot est_boot se_boot  bias_boot
-#> 1      1 2011     34.17777 24.23133 33.80046 4.24489 -0.3773142
-#> 2      2 2011     34.17777 24.28965 33.80046 4.24489 -0.3773142
-#> 3      3 2011     34.17777 31.81445 33.80046 4.24489 -0.3773142
-#> 4      4 2011     34.17777 33.42530 33.80046 4.24489 -0.3773142
-#> 5      5 2011     34.17777 35.03502 33.80046 4.24489 -0.3773142
-#> 6      6 2011     34.17777 33.72037 33.80046 4.24489 -0.3773142
+#> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
 
 ### Interval calculation
@@ -299,15 +289,16 @@ Now we can use the `calculate_bootstrap_ci()` function to calculate confidence l
   Logical. If `TRUE` (default), the function returns confidence limits per group. If `FALSE`, the confidence limits are added to the original bootstrap dataframe `bootstrap_results`.
 
 - **`data_cube`**:
-  Only used when `type = "bca"`. The input data as a processed data cube (from `b3gbi::process_cube()`).
+  Only used when `type = "bca"` and no boot method is used. The input data as a processed data cube (from `b3gbi::process_cube()`).
 
 - **`fun`**:
-  Only used when `type = "bca"`. A user-defined function that computes the statistic(s) of interest from `data_cube$data`. This function should return a dataframe that includes a column named `diversity_val`, containing the statistic to evaluate.
+  Only used when `type = "bca"` and no boot method is used. A user-defined function that computes the statistic(s) of interest from `data_cube$data`. This function should return a dataframe that includes a column named `diversity_val`, containing the statistic to evaluate.
 
 - **`progress`**:
   Logical flag to show a progress bar. Set to `TRUE` to enable progress reporting; default is `FALSE`.
 
 We get a warning message for BCa calculation because we are using a relatively small dataset.
+Since we are working with `"boot"` objects, we do not need to specify `data_cube` or `fun`.
 
 
 ``` r
@@ -315,24 +306,21 @@ ci_mean_obs <- calculate_bootstrap_ci(
   bootstrap_results = bootstrap_results,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
-  conf = 0.95,
-  data_cube = processed_cube,   # Required for BCa
-  fun = mean_obs                # Required for BCa
+  conf = 0.95
 )
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
 ```
   
 
 ``` r
 head(ci_mean_obs)
-#>   year est_original est_boot   se_boot  bias_boot int_type conf       ll       ul
-#> 1 2011     34.17777 33.80046  4.244890 -0.3773142     perc 0.95 26.57582 42.77975
-#> 2 2012     35.27201 34.45877  3.776430 -0.8132403     perc 0.95 27.23367 41.66334
-#> 3 2013     33.25581 33.72937  5.351881  0.4735622     perc 0.95 24.91414 46.62692
-#> 4 2014     55.44160 53.13004 10.597359 -2.3115608     perc 0.95 36.04170 77.37950
-#> 5 2015     49.24754 48.60624  9.888400 -0.6412965     perc 0.95 34.60635 73.13698
-#> 6 2016     48.34063 47.10668 11.388627 -1.2339492     perc 0.95 30.82583 73.16598
+#>   year est_original int_type       ll       ul conf
+#> 1 2011     34.17777     norm 26.20924 43.08325 0.95
+#> 2 2011     34.17777    basic 24.99408 42.17612 0.95
+#> 3 2011     34.17777     perc 26.17942 43.36146 0.95
+#> 4 2011     34.17777      bca 27.43845 45.60900 0.95
+#> 5 2012     35.27201     norm 28.62332 43.67756 0.95
+#> 6 2012     35.27201    basic 28.26708 43.07078 0.95
 ```
 
 We visualise the distribution of the bootstrap replicates and the confidence intervals.
@@ -342,6 +330,7 @@ We visualise the distribution of the bootstrap replicates and the confidence int
 # Make interval type a factor
 ci_mean_obs <- ci_mean_obs %>%
   mutate(
+    year = as.numeric(year),
     int_type = factor(
       int_type, levels = c("perc", "bca", "norm", "basic")
     )
@@ -350,8 +339,15 @@ ci_mean_obs <- ci_mean_obs %>%
 
 
 ``` r
+# Convert bootstrap replicates to dataframe
+bootstrap_results_df <- boot_list_to_dataframe(
+  boot_list = bootstrap_results,
+  grouping_var = "year"
+) %>%
+  mutate(year = as.numeric(year))
+
 # Get bias values
-bias_mean_obs <- bootstrap_results %>%
+bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
 # Get estimate values
@@ -361,7 +357,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 # Visualise
-bootstrap_results %>%
+bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -376,13 +372,13 @@ bootstrap_results %>%
   # Settings
   labs(y = "Mean Number of Observations\nper Grid Cell",
        x = "", shape = "Legend:", colour = "Interval type:") +
-  scale_x_continuous(breaks = sort(unique(bootstrap_results$year))) +
+  scale_x_continuous(breaks = sort(unique(bootstrap_results_df$year))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-14-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-13-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
 
 See the [visualising temporal trends tutorial](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/) for information on which interval types should be calculated and/or reported and how temporal trends can be visualised.
 
@@ -403,6 +399,7 @@ bootstrap_results_ref <- bootstrap_cube(
   ref_group = 2011,
   seed = 123
 )
+#> [1] "Performing whole-cube bootstrap."
 ```
 
 
@@ -432,6 +429,7 @@ $\hat{\theta}_{-i} = \hat{\theta}_{1,-i} - \hat{\theta}_2 \text{ for } i = 1, \l
 $\hat{\theta}_{-i} = \hat{\theta}_{1} - \hat{\theta}_{2,-i} \text{ for } i = n_1 + 1, \ldots, n_1 + n_2$
 
 Therefore, if you want to calculate the BCa intervals using `calculate_bootstrap_ci()`, you also need to provide `ref_group = 2011`.
+Since we are not working with `"boot"` objects, we need to specify `data_cube` and `fun` as well.
 
 
 ``` r
@@ -511,7 +509,7 @@ bootstrap_results_ref %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-20-1.png" alt="Confidence intervals for mean number of occurrences over time (ref)."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-19-1.png" alt="Confidence intervals for mean number of occurrences over time (ref)."  />
 
 Note that the choice of the reference year should be well considered.
 Keep in mind which comparisons should be made, and what the motivation is behind the reference period.
@@ -593,6 +591,7 @@ bootstrap_results_evenness <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+#> [1] "Performing group-specific bootstrap with `boot::boot()`."
 ```
 
 We calculate the percentile, BCa, normal and basic intervals with `calculate_bootstrap_ci()`.
@@ -603,15 +602,13 @@ We get a warning message for BCa calculation because we are using a relatively s
 ci_evenness <- calculate_bootstrap_ci(
   bootstrap_results = bootstrap_results_evenness,
   grouping_var = "year",
-  type = c("perc", "bca", "norm", "basic"),
-  data_cube = processed_cube_even,
-  fun = calc_evenness
+  type = c("perc", "bca", "norm", "basic")
 )
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
 ```
 
 
@@ -619,6 +616,7 @@ ci_evenness <- calculate_bootstrap_ci(
 # Make interval type factor
 ci_evenness <- ci_evenness %>%
   mutate(
+    year = as.numeric(year),
     int_type = factor(
       int_type, levels = c("perc", "bca", "norm", "basic")
     )
@@ -627,8 +625,15 @@ ci_evenness <- ci_evenness %>%
 
 
 ``` r
+# Convert bootstrap replicates to dataframe
+bootstrap_results_evenness_df <- boot_list_to_dataframe(
+  boot_list = bootstrap_results_evenness,
+  grouping_var = "year"
+) %>%
+  mutate(year = as.numeric(year))
+
 # Get bias vales
-bias_mean_obs <- bootstrap_results_evenness %>%
+bias_mean_obs <- bootstrap_results_evenness_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
 # Get estimate values
@@ -638,7 +643,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 # Visualise
-bootstrap_results_evenness %>%
+bootstrap_results_evenness_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -652,14 +657,15 @@ bootstrap_results_evenness %>%
                 position = position_dodge(0.8), linewidth = 0.8) +
   # Settings
   labs(y = "Evenness", x = "", shape = "Legend:", colour = "Interval type:") +
-  scale_x_continuous(breaks = sort(unique(bootstrap_results_evenness$year))) +
+  scale_x_continuous(
+    breaks = sort(unique(bootstrap_results_evenness_df$year))
+  ) +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.title = element_text(face = "bold"))
-#> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-28-1.png" alt="Confidence intervals for evenness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-27-1.png" alt="Confidence intervals for evenness over time."  />
 
 We notice that the normal and basic intervals have limits larger than 1 which is an impossible value for evenness.
 This is because their intervals are symmetrical around $\hat{\theta} - \text{Bias}_{\text{boot}}$.
@@ -689,15 +695,13 @@ ci_evenness_trans <- calculate_bootstrap_ci(
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   h = logit,
-  hinv = inv_logit,
-  data_cube = processed_cube_even,
-  fun = calc_evenness
+  hinv = inv_logit
 )
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
 ```
 
 
@@ -705,6 +709,7 @@ ci_evenness_trans <- calculate_bootstrap_ci(
 # Make interval type factor
 ci_evenness_trans <- ci_evenness_trans %>%
   mutate(
+    year = as.numeric(year),
     int_type = factor(
       int_type, levels = c("perc", "bca", "norm", "basic")
     )
@@ -713,18 +718,8 @@ ci_evenness_trans <- ci_evenness_trans %>%
 
 
 ``` r
-# Get bias vales
-bias_mean_obs <- bootstrap_results_evenness %>%
-  distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
-
-# Get estimate values
-estimate_mean_obs <- bias_mean_obs %>%
-  pivot_longer(cols = c("estimate", "bootstrap estimate"),
-               names_to = "Legend", values_to = "value") %>%
-  mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
-                         ordered = TRUE))
 # Visualise
-bootstrap_results_evenness %>%
+bootstrap_results_evenness_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -739,14 +734,15 @@ bootstrap_results_evenness %>%
   # Settings
   labs(y = "Evenness", x = "", shape = "Legend:", colour = "Interval type:") +
   scale_y_continuous(limits = c(NA, 1)) +
-  scale_x_continuous(breaks = sort(unique(bootstrap_results_evenness$year))) +
+  scale_x_continuous(
+    breaks = sort(unique(bootstrap_results_evenness_df$year))
+  ) +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.title = element_text(face = "bold"))
-#> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-32-1.png" alt="Confidence intervals for evenness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-31-1.png" alt="Confidence intervals for evenness over time."  />
 
 Now we see that all the intervals fall within the expected range.
 
@@ -769,7 +765,7 @@ calc_richness <- function(data) {
 
 
 
-We perform bootstrapping as before. Note that you can also perform bootstrapping of `processed_cube_small` using the **b3gbi** function `obs_richness_ts()`. In this case, a group-specific bootstrap would be more appropriate, but for the sake of simplicity we stick to the whole-cube bootstrap here. For a detailed discussion of when to use each approach, see [this tutorial](https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/).
+We perform bootstrapping as before. We will not use any boot method (`method = "group_specific"`).
 
 
 ``` r
@@ -778,8 +774,10 @@ bootstrap_results_richness <- bootstrap_cube(
   fun = calc_richness,
   grouping_var = "year",
   samples = 1000,
+  method = "group_specific",
   seed = 123
 )
+#> [1] "Performing group-specific bootstrap."
 ```
 
 We calculate the percentile, BCa, normal and basic intervals with `calculate_bootstrap_ci()`.
@@ -795,16 +793,11 @@ ci_richness <- calculate_bootstrap_ci(
   data_cube = processed_cube_even,
   fun = calc_richness
 )
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
-#> is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
-#> is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
-#> is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
-#> is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0'
-#> is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
 ```
 
 We notice that none of the intervals cover the estimate. The percentile interval does not account for bias, the BCa interval cannot be calculated because the bias is too large and the normal and basic intervals have overcompensated because of the large bootstrap bias.
@@ -855,7 +848,7 @@ bootstrap_results_richness %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-39-1.png" alt="Confidence intervals for richness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-38-1.png" alt="Confidence intervals for richness over time."  />
 
 This issue arises because bootstrap resampling cannot introduce new species that were not present in the original sample (Dixon, [2001, p. 287](https://doi.org/10.1093/oso/9780195131871.003.0014)).
 As a result, the observed species richness — which is simply the count of unique species — tends to be negatively biased in bootstrap replicates.
@@ -900,16 +893,6 @@ ci_richness_no_bias <- ci_richness_no_bias %>%
 
 
 ``` r
-# Get bias vales
-bias_mean_obs <- bootstrap_results_richness %>%
-  distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
-
-# Get estimate values
-estimate_mean_obs <- bias_mean_obs %>%
-  pivot_longer(cols = c("estimate", "bootstrap estimate"),
-               names_to = "Legend", values_to = "value") %>%
-  mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
-                         ordered = TRUE))
 # Visualise
 bootstrap_results_richness %>%
   ggplot(aes(x = year)) +
@@ -933,7 +916,7 @@ bootstrap_results_richness %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-42-1.png" alt="Confidence intervals for richness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-41-1.png" alt="Confidence intervals for richness over time."  />
 
 ## References
 <!-- spell-check: ignore:start -->
