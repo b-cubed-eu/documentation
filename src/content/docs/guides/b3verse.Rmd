@@ -131,9 +131,9 @@ We provide a basic example of an analysis workflow using the **b3verse** package
 This example demonstrates the process but is not intended as a best-practice analysis.
 For more detailed guidance, refer to the package tutorials.  
 
-In this workflow, we use **gcube** v1.3.5 to simulate an occurrence cube, **b3gbi** v0.6.3 to process the cube, and **dubicube** v0.8.0 to calculate uncertainty around indicator estimates.
+In this workflow, we use **gcube** v1.4.1 to simulate an occurrence cube, **b3gbi** v0.6.3 to process the cube, and **dubicube** v0.11.0 to calculate uncertainty around indicator estimates.
 
-```{r, message=FALSE}
+```{r, warning=FALSE, message=FALSE}
 # Load packages
 library(gcube)     # simulate occurrence cubes
 library(b3gbi)     # process occurrence cubes
@@ -235,44 +235,43 @@ processed_cube
 
 #### Indicator calculation
 
-Finally, we calculate a simple indicator: the total number of observations per species per year.
+Finally, we calculate a simple indicator: the total number of observations are there in the cube per year.
 
 ```{r}
-species_observations <- function(cube) {
-  # Calculate the number of observations per species per year
+total_abundance <- function(cube) {
   cube %>%
-    summarise(diversity_val = sum(obs),
-              .by = c(scientificName, year))
+    summarise(
+      diversity_val = sum(obs),
+      .by = "year"
+    )
 }
 ```
 
 The values are calculated and added to a new column `diversity_val`.
 
 ```{r}
-species_observations(processed_cube$data)
+total_abundance(processed_cube$data)
 ```
 
 We use bootstrapping to calculate uncertainty around the estimates.
-We calculate the 95 % bias-corrected and accelerated (BCa) interval for each estimate.
+We calculate the 95 % percentile interval for each estimate.
 
 ```{r}
 # Perform bootstrapping
 bootstrap_observations <- dubicube::bootstrap_cube(
   data_cube = processed_cube,
-  fun = species_observations,
-  grouping_var = c("scientificName", "year"),
+  fun = total_abundance,
+  grouping_var = "year",
   samples = 1000,
   seed = 123
 )
 
-# Calculate BCa intervals
+# Calculate percentile intervals
 ci_observations <- dubicube::calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_observations,
-  grouping_var = c("scientificName", "year"),
-  type = "bca",
-  conf = 0.95,
-  data_cube = processed_cube,
-  fun = species_observations
+  bootstrap_results = bootstrap_observations,
+  grouping_var = "year",
+  type = "perc",
+  conf = 0.95
 )
 
 ci_observations
@@ -282,10 +281,9 @@ We visualise the results.
 
 ```{r indicator-trends}
 ci_observations %>%
-  ggplot(aes(x = year, y = est_original, colour = scientificName)) +
-      geom_errorbar(aes(ymin = ll, ymax = ul),
-                    linewidth = 0.8, position = position_dodge(1)) +
-      geom_point(size = 3, position = position_dodge(1)) +
-      labs(y = "number of observations", x = "time point", colour = "species") +
-      theme_minimal()
+  ggplot(aes(x = year, y = est_original)) +
+    geom_errorbar(aes(ymin = ll, ymax = ul), width = 0.5) +
+    geom_point(size = 3, position = position_dodge(1)) +
+    labs(y = "number of observations", x = "time point") +
+    theme_minimal()
 ```

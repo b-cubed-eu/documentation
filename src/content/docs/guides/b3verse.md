@@ -123,7 +123,7 @@ We provide a basic example of an analysis workflow using the **b3verse** package
 This example demonstrates the process but is not intended as a best-practice analysis.
 For more detailed guidance, refer to the package tutorials.  
 
-In this workflow, we use **gcube** v1.3.5 to simulate an occurrence cube, **b3gbi** v0.6.3 to process the cube, and **dubicube** v0.8.0 to calculate uncertainty around indicator estimates.
+In this workflow, we use **gcube** v1.4.1 to simulate an occurrence cube, **b3gbi** v0.6.3 to process the cube, and **dubicube** v0.11.0 to calculate uncertainty around indicator estimates.
 
 
 ``` r
@@ -289,15 +289,16 @@ processed_cube
 
 #### Indicator calculation
 
-Finally, we calculate a simple indicator: the total number of observations per species per year.
+Finally, we calculate a simple indicator: the total number of observations are there in the cube per year.
 
 
 ``` r
-species_observations <- function(cube) {
-  # Calculate the number of observations per species per year
+total_abundance <- function(cube) {
   cube %>%
-    summarise(diversity_val = sum(obs),
-              .by = c(scientificName, year))
+    summarise(
+      diversity_val = sum(obs),
+      .by = "year"
+    )
 }
 ```
 
@@ -305,84 +306,47 @@ The values are calculated and added to a new column `diversity_val`.
 
 
 ``` r
-species_observations(processed_cube$data)
-#> # A tibble: 15 × 3
-#>    scientificName  year diversity_val
-#>    <chr>          <dbl>         <dbl>
-#>  1 species_1          1           290
-#>  2 species_2          1           402
-#>  3 species_3          1           487
-#>  4 species_1          2           320
-#>  5 species_2          2           428
-#>  6 species_3          2           526
-#>  7 species_1          3           270
-#>  8 species_2          3           401
-#>  9 species_3          3           462
-#> 10 species_1          4           302
-#> 11 species_2          4           382
-#> 12 species_3          4           502
-#> 13 species_1          5           329
-#> 14 species_2          5           373
-#> 15 species_3          5           538
+total_abundance(processed_cube$data)
+#> # A tibble: 5 × 2
+#>    year diversity_val
+#>   <dbl>         <dbl>
+#> 1     1          1179
+#> 2     2          1274
+#> 3     3          1133
+#> 4     4          1186
+#> 5     5          1240
 ```
 
 We use bootstrapping to calculate uncertainty around the estimates.
-We calculate the 95 % bias-corrected and accelerated (BCa) interval for each estimate.
+We calculate the 95 % percentile interval for each estimate.
 
 
 ``` r
 # Perform bootstrapping
 bootstrap_observations <- dubicube::bootstrap_cube(
   data_cube = processed_cube,
-  fun = species_observations,
-  grouping_var = c("scientificName", "year"),
+  fun = total_abundance,
+  grouping_var = "year",
   samples = 1000,
   seed = 123
 )
+#> [1] "Performing group-specific bootstrap with `boot::boot()`."
 
-# Calculate BCa intervals
+# Calculate percentile intervals
 ci_observations <- dubicube::calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_observations,
-  grouping_var = c("scientificName", "year"),
-  type = "bca",
-  conf = 0.95,
-  data_cube = processed_cube,
-  fun = species_observations
+  bootstrap_results = bootstrap_observations,
+  grouping_var = "year",
+  type = "perc",
+  conf = 0.95
 )
 
 ci_observations
-#>    scientificName year est_original est_boot  se_boot bias_boot int_type conf
-#> 1       species_1    1          290  290.105 24.46022     0.105      bca 0.95
-#> 2       species_1    2          320  321.075 26.30561     1.075      bca 0.95
-#> 3       species_1    3          270  270.229 22.48569     0.229      bca 0.95
-#> 4       species_1    4          302  302.541 25.74146     0.541      bca 0.95
-#> 5       species_1    5          329  329.187 26.90535     0.187      bca 0.95
-#> 6       species_2    1          402  401.399 35.75847    -0.601      bca 0.95
-#> 7       species_2    2          428  428.076 37.34537     0.076      bca 0.95
-#> 8       species_2    3          401  401.521 33.43716     0.521      bca 0.95
-#> 9       species_2    4          382  379.198 33.83018    -2.802      bca 0.95
-#> 10      species_2    5          373  374.539 35.58917     1.539      bca 0.95
-#> 11      species_3    1          487  488.132 41.80905     1.132      bca 0.95
-#> 12      species_3    2          526  526.244 45.72784     0.244      bca 0.95
-#> 13      species_3    3          462  461.012 40.02179    -0.988      bca 0.95
-#> 14      species_3    4          502  503.143 40.87546     1.143      bca 0.95
-#> 15      species_3    5          538  536.906 45.84350    -1.094      bca 0.95
-#>          ll       ul
-#> 1  246.7550 343.0000
-#> 2  271.0000 373.0000
-#> 3  228.6241 316.2085
-#> 4  252.6628 352.6329
-#> 5  279.1095 387.0513
-#> 6  338.4143 485.4423
-#> 7  361.6378 512.0000
-#> 8  340.7850 473.1140
-#> 9  319.9624 456.0000
-#> 10 308.3428 446.0000
-#> 11 401.9035 563.2030
-#> 12 440.0000 626.4637
-#> 13 384.7805 544.3632
-#> 14 426.0000 582.5442
-#> 15 453.3883 635.0000
+#>   year est_original int_type       ll       ul conf
+#> 1    1         1179     perc 1081.025 1271.000 0.95
+#> 2    2         1274     perc 1166.051 1373.000 0.95
+#> 3    3         1133     perc 1047.000 1229.949 0.95
+#> 4    4         1186     perc 1088.025 1280.975 0.95
+#> 5    5         1240     perc 1145.025 1344.000 0.95
 ```
 
 We visualise the results.
@@ -390,12 +354,11 @@ We visualise the results.
 
 ``` r
 ci_observations %>%
-  ggplot(aes(x = year, y = est_original, colour = scientificName)) +
-      geom_errorbar(aes(ymin = ll, ymax = ul),
-                    linewidth = 0.8, position = position_dodge(1)) +
-      geom_point(size = 3, position = position_dodge(1)) +
-      labs(y = "number of observations", x = "time point", colour = "species") +
-      theme_minimal()
+  ggplot(aes(x = year, y = est_original)) +
+    geom_errorbar(aes(ymin = ll, ymax = ul), width = 0.5) +
+    geom_point(size = 3, position = position_dodge(1)) +
+    labs(y = "number of observations", x = "time point") +
+    theme_minimal()
 ```
 
 ![plot of chunk indicator-trends](../../../../public/guides/b3verse/indicator-trends-1.png)
