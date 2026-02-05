@@ -120,7 +120,7 @@ We filter out any data with minimal coordinate uncertainty larger than 10 km.
 
 ```{r}
 bird_cube_belgium_clean <- bird_cube_belgium %>%
-  dplyr::filter(mincoordinateuncertaintyinmeters <= 100000)
+  dplyr::filter(mincoordinateuncertaintyinmeters <= 10 * 10^3)
 ```
 
 We join the loaded resources together and visualise the number of species per grid cell.
