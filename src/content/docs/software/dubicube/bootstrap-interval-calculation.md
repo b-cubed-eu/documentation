@@ -2,7 +2,7 @@
 title: Calculating bootstrap confidence intervals
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-04
+lastUpdated: 2026-02-05
 sidebar:
   label: Bootstrap confidence intervals
   order: 4
@@ -175,12 +175,12 @@ processed_cube
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2011 - 2020 
-#> Single-resolution cube with cell size 10km ^2
+#> Single-resolution cube with cell size 10km ^2 
 #> Number of cells: 242 
 #> Grid reference system: mgrs 
 #> Coordinate range:
-#>      xmin      xmax      ymin      ymax 
-#>  2.428844  6.329718 49.538733 51.444030 
+#>    xmin    xmax    ymin    ymax 
+#>  280000  710000 5490000 5700000 
 #> 
 #> Total number of observations: 45143 
 #> Number of species represented: 253 
@@ -190,21 +190,22 @@ processed_cube
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 957 × 11
-#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord resolution
-#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl> <chr>     
-#>  1  2011 31UFS56   5231918 Cuculus canorus  Cucul…    11                   3536       67486   5.14   51.1 10km      
-#>  2  2011 31UES28   5739317 Phoenicurus pho… Musci…     6                   3536      610513   3.29   51.3 10km      
-#>  3  2011 31UFS64   6065824 Chroicocephalus… Larid…   143                   1000     2612978   5.27   50.9 10km      
-#>  4  2011 31UFS96   2492576 Muscicapa stria… Musci…     3                   3536      610513   5.71   51.1 10km      
-#>  5  2011 31UES04   5231198 Passer montanus  Passe…     1                   3536      175872   3      50.9 10km      
-#>  6  2011 31UES85   5229493 Garrulus glanda… Corvi…    23                    707      816442   4.14   51.0 10km      
-#>  7  2011 31UES88  10124612 Anser anser x B… Anati…     1                    100     2709975   4.15   51.3 10km      
-#>  8  2011 31UES22   2481172 Larus marinus    Larid…     8                   1000     2612978   3.28   50.7 10km      
-#>  9  2011 31UFS43   2481139 Larus argentatus Larid…    10                   3536     2612978   4.99   50.8 10km      
-#> 10  2011 31UFT00   9274012 Spatula querque… Anati…     8                   3536     2709975   4.44   51.4 10km      
+#> # A tibble: 957 × 13
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
+#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
+#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
+#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
+#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
+#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
+#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
+#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
+#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
+#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data

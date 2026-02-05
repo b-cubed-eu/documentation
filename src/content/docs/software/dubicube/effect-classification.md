@@ -2,7 +2,7 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-04
+lastUpdated: 2026-02-05
 sidebar:
   label: Effect classification
   order: 6

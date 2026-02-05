@@ -2,7 +2,7 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-04
+lastUpdated: 2026-02-05
 sidebar:
   label: Visualising spatial trends
   order: 8
@@ -84,12 +84,12 @@ processed_cube
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2000 - 2024 
-#> Single-resolution cube with cell size 10km ^2
+#> Single-resolution cube with cell size 10km ^2 
 #> Number of cells: 134 
 #> Grid reference system: mgrs 
 #> Coordinate range:
-#>      xmin      xmax      ymin      ymax 
-#>  2.428844  5.716702 50.622563 51.438468 
+#>    xmin    xmax    ymin    ymax 
+#>  460000  690000 5610000 5700000 
 #> 
 #> Total number of observations: 91206 
 #> Number of species represented: 316 
@@ -99,21 +99,22 @@ processed_cube
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 2,391 × 11
-#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord resolution
-#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl> <chr>     
-#>  1  2000 31UES44   2481714 Tringa totanus   Scolo…     1                   3536      680179   3.57   50.9 10km      
-#>  2  2000 31UFS05   2481740 Calidris temmin… Scolo…     3                   3536      680179   4.42   51.0 10km      
-#>  3  2000 31UES43   2492943 Sylvia communis  Sylvi…     8                   1414      341890   3.57   50.8 10km      
-#>  4  2000 31UES44   5739317 Phoenicurus pho… Musci…    10                   1000      610513   3.57   50.9 10km      
-#>  5  2000 31UFS63   2481700 Scolopax rustic… Scolo…     1                   3536      680179   5.27   50.8 10km      
-#>  6  2000 31UFS74   5845582 Chloris chloris  Fring…     3                   3536      762066   5.42   50.9 10km      
-#>  7  2000 31UFS65   2492960 Sylvia curruca   Sylvi…     7                   3536      341890   5.28   51.0 10km      
-#>  8  2000 31UFS07   2493091 Phylloscopus co… Phyll…    19                   1414      347345   4.43   51.2 10km      
-#>  9  2000 31UDS86   2489214 Delichon urbicum Hirun…     3                   3536      200242   2.71   51.1 10km      
-#> 10  2000 31UES85   2473958 Perdix perdix    Phasi…     9                   1414      261414   4.14   51.0 10km      
+#> # A tibble: 2,391 × 13
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2000 31UES44   2481714 Tringa totanus       Scolo…     1                   3536      680179 540000 5.64e6      31
+#>  2  2000 31UFS05   2481740 Calidris temminckii  Scolo…     3                   3536      680179 600000 5.65e6      31
+#>  3  2000 31UES43   2492943 Sylvia communis      Sylvi…     8                   1414      341890 540000 5.63e6      31
+#>  4  2000 31UES44   5739317 Phoenicurus phoenic… Musci…    10                   1000      610513 540000 5.64e6      31
+#>  5  2000 31UFS63   2481700 Scolopax rusticola   Scolo…     1                   3536      680179 660000 5.63e6      31
+#>  6  2000 31UFS74   5845582 Chloris chloris      Fring…     3                   3536      762066 670000 5.64e6      31
+#>  7  2000 31UFS65   2492960 Sylvia curruca       Sylvi…     7                   3536      341890 660000 5.65e6      31
+#>  8  2000 31UFS07   2493091 Phylloscopus collyb… Phyll…    19                   1414      347345 600000 5.67e6      31
+#>  9  2000 31UDS86   2489214 Delichon urbicum     Hirun…     3                   3536      200242 480000 5.66e6      31
+#> 10  2000 31UES85   2473958 Perdix perdix        Phasi…     9                   1414      261414 580000 5.65e6      31
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data

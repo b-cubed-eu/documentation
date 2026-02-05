@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
   markdown:
     wrap: sentence
-lastUpdated: 2026-02-04
+lastUpdated: 2026-02-05
 sidebar:
   label: Group-level sensitivity analysis
   order: 2
@@ -149,12 +149,12 @@ processed_cube
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2011 - 2020 
-#> Single-resolution cube with cell size 10km ^2
+#> Single-resolution cube with cell size 10km ^2 
 #> Number of cells: 379 
 #> Grid reference system: mgrs 
 #> Coordinate range:
-#>      xmin      xmax      ymin      ymax 
-#>  2.428844  6.334746 49.445981 51.444030 
+#>    xmin    xmax    ymin    ymax 
+#>  280000  710000 5480000 5700000 
 #> 
 #> Total number of observations: 13225290 
 #> Number of species represented: 646 
@@ -164,21 +164,22 @@ processed_cube
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 280,184 × 11
-#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord resolution
-#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl> <chr>     
-#>  1  2011 31UDS65   2474051 Alectoris rufa   Phasi…     1                    100      261414   2.43   51.0 10km      
-#>  2  2011 31UDS65   2474377 Fulica atra      Ralli…     6                   1000      507437   2.43   51.0 10km      
-#>  3  2011 31UDS65   2474831 Rallus aquaticus Ralli…     1                   1000      507437   2.43   51.0 10km      
-#>  4  2011 31UDS65   2478523 Picus viridis    Picid…     5                   3536      403587   2.43   51.0 10km      
-#>  5  2011 31UDS65   2480242 Vanellus vanell… Chara…     4                   1000      294808   2.43   51.0 10km      
-#>  6  2011 31UDS65   2480332 Pluvialis apric… Chara…     1                   1000      294808   2.43   51.0 10km      
-#>  7  2011 31UDS65   2480482 Circus aerugino… Accip…     2                   3536      855924   2.43   51.0 10km      
-#>  8  2011 31UDS65   2480487 Circus cyaneus   Accip…     9                   3536      855924   2.43   51.0 10km      
-#>  9  2011 31UDS65   2480537 Buteo buteo      Accip…     8                   3536      855924   2.43   51.0 10km      
-#> 10  2011 31UDS65   2480637 Accipiter nisus  Accip…     9                   3536      855924   2.43   51.0 10km      
+#> # A tibble: 280,184 × 13
+#>     year cellCode taxonKey scientificName      family    obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>               <chr>   <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2011 31UDS65   2474051 Alectoris rufa      Phasia…     1                    100      261414 460000 5.65e6      31
+#>  2  2011 31UDS65   2474377 Fulica atra         Rallid…     6                   1000      507437 460000 5.65e6      31
+#>  3  2011 31UDS65   2474831 Rallus aquaticus    Rallid…     1                   1000      507437 460000 5.65e6      31
+#>  4  2011 31UDS65   2478523 Picus viridis       Picidae     5                   3536      403587 460000 5.65e6      31
+#>  5  2011 31UDS65   2480242 Vanellus vanellus   Charad…     4                   1000      294808 460000 5.65e6      31
+#>  6  2011 31UDS65   2480332 Pluvialis apricaria Charad…     1                   1000      294808 460000 5.65e6      31
+#>  7  2011 31UDS65   2480482 Circus aeruginosus  Accipi…     2                   3536      855924 460000 5.65e6      31
+#>  8  2011 31UDS65   2480487 Circus cyaneus      Accipi…     9                   3536      855924 460000 5.65e6      31
+#>  9  2011 31UDS65   2480537 Buteo buteo         Accipi…     8                   3536      855924 460000 5.65e6      31
+#> 10  2011 31UDS65   2480637 Accipiter nisus     Accipi…     9                   3536      855924 460000 5.65e6      31
 #> # ℹ 280,174 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
