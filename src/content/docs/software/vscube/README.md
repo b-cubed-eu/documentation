@@ -136,7 +136,7 @@ ggplot(df_tmin, aes(x, y, fill = tmin)) +
 #> ℹ Consider using `geom_tile()` instead.
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-14-1.png" alt="" width="100%" />
+<img src="/software/vscube/man/figures/README-unnamed-chunk-23-1.png" alt="" width="100%" />
 
 ### Second output: stars data cube 
 A `stars` Data Cube with predictors as attributes and x, y, t as dimensions
@@ -180,11 +180,14 @@ occ <- vsc_read_occurrences(
   year_min = 2000,
   year_max = 2010
   )
-#> Error in `example_file()`:
-#> ! could not find function "example_file"
 head(occ)
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'occ' not found
+#>         scientificName decimalLatitude decimalLongitude year
+#> 1  Anemone nemorosa L.        52.09306          6.27293 2007
+#> 2 Ophrys apifera Huds.        50.89106          5.92014 2010
+#> 3      Galium verum L.        53.43582          5.46957 2010
+#> 4      Galium verum L.        51.70893          5.94423 2000
+#> 5      Galium verum L.        51.65332          4.37782 2000
+#> 6      Galium verum L.        52.51377          6.55657 2000
 ```
 
 The example contains 5 species of flowers in Flanders. 
@@ -199,16 +202,14 @@ This creates a list of data frames, one per species, that will be used in model 
 ``` r
 # split the data by species name
 sp_list <- split_species_data(occ)
-#> Error:
-#> ! object 'occ' not found
 
 # show list summary
 length(sp_list)
-#> Error:
-#> ! object 'sp_list' not found
+#> [1] 5
 names(sp_list)
-#> Error:
-#> ! object 'sp_list' not found
+#> [1] "Anemone nemorosa L."             "Chrysosplenium alternifolium L."
+#> [3] "Galium verum L."                 "Ophrys apifera Huds."           
+#> [5] "Paris quadrifolia L."
 ```
 
 ## Train SDMs (MaxEnt) for multiple species
@@ -243,23 +244,26 @@ background_points = 10000, # adjust as needed
 predictors = names(cl_nld$predictors),
 verbose = TRUE
 )
-#> Error:
-#> ! object 'sp_list' not found
+#> [vscube] Processing species: Anemone nemorosa L.
+#> [vscube] Processing species: Chrysosplenium alternifolium L.
+#> [vscube] Processing species: Galium verum L.
+#> [vscube] Processing species: Ophrys apifera Huds.
+#> [vscube] Processing species: Paris quadrifolia L.
 
 # Inspect outputs
 names(sdms)
-#> Error:
-#> ! object 'sdms' not found
+#> [1] "models"      "predictions"
 
 names(sdms$models)[1:5]
-#> Error:
-#> ! object 'sdms' not found
+#> [1] "Anemone nemorosa L."             "Chrysosplenium alternifolium L."
+#> [3] "Galium verum L."                 "Ophrys apifera Huds."           
+#> [5] "Paris quadrifolia L."
 
 # Quick look at predictions (training area)
 terra::plot(terra::rast(sdms$predictions), col = mako(100))
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'plot': error in evaluating the argument 'x' in selecting a method for function 'rast': object 'sdms' not found
 ```
+
+<img src="/software/vscube/man/figures/README-unnamed-chunk-27-1.png" alt="" width="100%" />
 
 
 ## Project trained models to a new area (same month/variables)
@@ -285,8 +289,11 @@ pred_bel <- vsc_predict_sdm_for_new_area(
 models = sdms$models,
 new_stack = cl_bel$predictors
 )
-#> Error:
-#> ! object 'sdms' not found
+#> [vscube] Predicting: Anemone nemorosa L.
+#> [vscube] Predicting: Chrysosplenium alternifolium L.
+#> [vscube] Predicting: Galium verum L.
+#> [vscube] Predicting: Ophrys apifera Huds.
+#> [vscube] Predicting: Paris quadrifolia L.
 ```
 
 The 3 dimensions are: **x**, **y** and **species**.
@@ -295,8 +302,15 @@ The 3 dimensions are: **x**, **y** and **species**.
 ``` r
 # Inspect the stars output
 pred_bel # stars object with attribute "suit"
-#> Error:
-#> ! object 'pred_bel' not found
+#> stars object with 3 dimensions and 1 attribute
+#> attribute(s):
+#>               Min.    1st Qu.    Median      Mean   3rd Qu.      Max.  NA's
+#> suit  1.914258e-11 0.05447042 0.1916771 0.2603388 0.4252165 0.9997836 67380
+#> dimension(s):
+#>         from  to offset     delta refsys                                       values x/y
+#> x          1 480    2.5  0.008333 WGS 84                                         NULL [x]
+#> y          1 360     52 -0.008333 WGS 84                                         NULL [y]
+#> species    1   5     NA        NA     NA Anemone nemorosa L.,...,Paris quadrifolia L.
 ```
 
 ## Aggregate species suitability into a polygon grid
@@ -334,25 +348,35 @@ grid_bel <- vsc_make_grid_over(cl_bel$predictors, cellsize = 0.1)
 
 # Aggregate the species stars cube (pred_bel) over polygons
 agg_bel <- aggregate_suitability(pred_bel, grid_bel, fun = mean)
-#> Error:
-#> ! object 'pred_bel' not found
 
 # output: 
 agg_bel
-#> Error:
-#> ! object 'agg_bel' not found
+#> stars object with 2 dimensions and 1 attribute
+#> attribute(s):
+#>                   Min.   1st Qu.    Median      Mean  3rd Qu.      Max.
+#> suitability  0.1217177 0.2892506 0.3617538 0.4141844 0.552128 0.8192915
+#> dimension(s):
+#>          from   to refsys point
+#> geometry    1 1200 WGS 84 FALSE
+#> species     1    5     NA    NA
+#>                                                                 values
+#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
 st_dimensions(agg_bel) 
-#> Error:
-#> ! object 'agg_bel' not found
+#>          from   to refsys point
+#> geometry    1 1200 WGS 84 FALSE
+#> species     1    5     NA    NA
+#>                                                                 values
+#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
 names(agg_bel)
-#> Error:
-#> ! object 'agg_bel' not found
+#> [1] "suitability"
 
 # show a raster layer with the grid on top
 vsc_plot_raster_with_grid(cl_bel$predictors[[1]], grid_bel)
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-21-1.png" alt="" width="100%" />
+<img src="/software/vscube/man/figures/README-unnamed-chunk-30-1.png" alt="" width="100%" />
 ## Inspect species suitability for a specific location
 
 Once the aggregated cube is ready, you can zoom in on a single grid cell — for example, the one containing Brussels — to see how all modeled species perform there.
@@ -377,17 +401,17 @@ cell_id <- vsc_cell_id_for_point(grid_bel, lon = 4.3517, lat = 50.8503)
 
 # extract long table of suitability per species for that cell
 df_long <- vsc_cell_suitability_long(agg_bel, cell_id)
-#> Error:
-#> ! object 'agg_bel' not found
 head(df_long)
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'df_long' not found
+#>   cell                         species suitability
+#> 1  739             Anemone nemorosa L.   0.7682141
+#> 2  739 Chrysosplenium alternifolium L.   0.3264491
+#> 3  739                 Galium verum L.   0.3115535
+#> 4  739            Ophrys apifera Huds.   0.5521280
+#> 5  739            Paris quadrifolia L.   0.1573691
 
 # Quick plot of species profile for this cell
 p_cell <- vsc_plot_cell_suitability(df_long)
-#> Error:
-#> ! object 'df_long' not found
 p_cell
-#> Error:
-#> ! object 'p_cell' not found
 ```
+
+<img src="/software/vscube/man/figures/README-unnamed-chunk-31-1.png" alt="" width="100%" />
