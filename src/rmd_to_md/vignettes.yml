@@ -195,3 +195,4 @@ vscube:
   dependencies: terra stars ggplot2 viridis
   replace:
   - "# Virtual Suitability Cube": ""
+  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above

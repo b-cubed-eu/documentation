@@ -377,6 +377,7 @@ vsc_plot_raster_with_grid(cl_bel$predictors[[1]], grid_bel)
 ```
 
 <img src="/software/vscube/man/figures/README-unnamed-chunk-30-1.png" alt="" width="100%" />
+
 ## Inspect species suitability for a specific location
 
 Once the aggregated cube is ready, you can zoom in on a single grid cell — for example, the one containing Brussels — to see how all modeled species perform there.
