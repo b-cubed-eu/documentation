@@ -187,3 +187,12 @@ ebvcube:
   replace:
   - "# ebvcube package": ""
   dependencies: BiocManager rhdf5 DelayedArray HDF5Array terra ggplot2 tidyterra
+
+vscube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
+  title: "vscube: Virtual Suitability Cube"
+  sidebar_label: Introduction
+  dependencies: terra stars ggplot2 viridis
+  replace:
+  - "# Virtual Suitability Cube": ""
+  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above
