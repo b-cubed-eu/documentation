@@ -277,10 +277,6 @@ print(plots)
 
 ![](/software/pdindicatoR/man/figures/unnamed-chunk-18-2.png)
 
-``` r
-print(paste("The percentage of high PD grid cells that fall within",
-                "protected areas is", round(indicators$Overall, digits=2), "%"))
-```
 
 ```
 ## [1] "The percentage of high PD grid cells that fall within protected areas is 23.46 %"
