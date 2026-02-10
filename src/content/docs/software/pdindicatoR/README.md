@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 title: 'pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
   on species occurrence data cubes'
-lastUpdated: 2026-01-12
+lastUpdated: 2026-02-10
 sidebar:
   label: Introduction
   order: 1
@@ -27,6 +27,7 @@ source: https://github.com/b-cubed-eu/pdindicatoR/blob/main/README.Rmd
 [![Codecov test coverage](https://codecov.io/gh/b-cubed-eu/pdindicatoR/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/pdindicatoR)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14237551.svg)](https://doi.org/10.5281/zenodo.14237551)
 [![name status badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)
+[![funder](https://badgen.net/static/funder/European%20Union/f2a)](https://doi.org/10.3030/101059592)
 
 <!-- badges: end -->
 
@@ -119,6 +120,16 @@ plot(tree, cex = 0.35, y.lim = 100)
 head(cube)
 ```
 
+```
+##   year   eeacellcode specieskey           species establishmentmeans degreeofestablishment pathway occurrences distinctobservers
+## 1 2024 1kmE3996N3087    2880539     Quercus rubra                                       NA      NA           1                 1
+## 2 2024 1kmE3997N3088    3054357     Juglans nigra                                       NA      NA           2                 1
+## 3 2024 1kmE3997N3090    3054368     Juglans regia                                       NA      NA           1                 1
+## 4 2024 1kmE3997N3100    2880539     Quercus rubra                                       NA      NA           1                 1
+## 5 2024 1kmE3997N3104    5333294   Castanea sativa                                       NA      NA           1                 1
+## 6 2024 1kmE3997N3104    8313153 Quercus palustris                                       NA      NA           1                 1
+```
+
 ### Matching species in phylogenetic tree and datacube
 
 The leaf labels of a phylogenetic tree downloaded from the OTL database are specified as either species names or OTL id's (`ott_id`). We can use the function `taxonmatch()` to retrieve the corresponding GBIF id's.
@@ -127,6 +138,16 @@ The leaf labels of a phylogenetic tree downloaded from the OTL database are spec
 ``` r
 matched <- taxonmatch(tree)
 head(matched)
+```
+
+```
+##               search_string               unique_name approximate_match score  ott_id is_synonym  flags number_matches gbif_id             orig_tiplabel
+## 1     alfaroa costaricensis     Alfaroa costaricensis             FALSE     1  199041      FALSE                     1 7310550     Alfaroa costaricensis
+## 2    alfaroa guanacastensis    Alfaroa guanacastensis             FALSE     1  199043      FALSE                     2      NA    Alfaroa guanacastensis
+## 3         alfaroa manningii         Alfaroa manningii             FALSE     1  199049      FALSE                     1 4205554         Alfaroa manningii
+## 4        alfaroa williamsii        Alfaroa williamsii             FALSE     1 1064109      FALSE                     1 7310534        Alfaroa williamsii
+## 5                alfaropsis                Alfaropsis             FALSE     1  200433      FALSE barren              2      NA                Alfaropsis
+## 6 allocasuarina acutivalvis Allocasuarina acutivalvis             FALSE     1  769753      FALSE                     1 2891875 Allocasuarina acutivalvis
 ```
 
 Carefully evaluate the table with matches to ensure that matching scores are acceptable and that most species have a corresponding `gbif_id`. Species that cannot be reliable matched or that don't have an associated `gbif_id`, can not contribute to the PD calculation and should be removed.
@@ -145,6 +166,16 @@ mcube <- append_ott_id(tree, cube, matched_nona)
 head(mcube)
 ```
 
+```
+##   year   eeacellcode specieskey           species establishmentmeans degreeofestablishment pathway occurrences distinctobservers  ott_id       unique_name     orig_tiplabel
+## 1 2024 1kmE3996N3087    2880539     Quercus rubra                                       NA      NA           1                 1  791115     Quercus rubra     Quercus rubra
+## 2 2024 1kmE3997N3088    3054357     Juglans nigra                                       NA      NA           2                 1 1072887     Juglans nigra     Juglans nigra
+## 3 2024 1kmE3997N3090    3054368     Juglans regia                                       NA      NA           1                 1  138717     Juglans regia     Juglans regia
+## 4 2024 1kmE3997N3100    2880539     Quercus rubra                                       NA      NA           1                 1  791115     Quercus rubra     Quercus rubra
+## 5 2024 1kmE3997N3104    5333294   Castanea sativa                                       NA      NA           1                 1 1028994   Castanea sativa   Castanea sativa
+## 6 2024 1kmE3997N3104    8313153 Quercus palustris                                       NA      NA           1                 1  538292 Quercus palustris Quercus palustris
+```
+
 When species in the datacube are not included in the provided phylogenetic tree, the `ott_id` variable will be `NA`. We can use the function check_completeness() to see how complete the provided phylogenetic tree is.
 
 ``` r
@@ -153,6 +184,17 @@ check_completeness(mcube)
 
 ```
 ## The following species are not part of the provided phylogenetic tree:
+##    specieskey                 species
+## 1     9148577            Alnus incana
+## 2          NA                        
+## 3     2880130         Quercus petraea
+## 4     2880580          Quercus cerris
+## 5     8288647 Pterocarya fraxinifolia
+## 6     2879292         Quercus rosacea
+## 7     2879520        Quercus conferta
+## 8     2876571         Alnus pubescens
+## 9     7797155           Alnus hirsuta
+## 10    2880652         Quercus phellos
 ```
 
 Please note that occurrence records for species that are not part of the provided phylogenetic tree will need to be removed. In case this number is large, please consider searching for a more complete phylogenetic tree that covers all your species!
