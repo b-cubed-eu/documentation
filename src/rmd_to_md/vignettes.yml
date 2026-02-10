@@ -196,3 +196,12 @@ vscube:
   replace:
   - "# Virtual Suitability Cube": ""
   - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above
+
+suitabilitycube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/README.Rmd
+  title: "suitabilitycube: Simulating suitability cubes for species distribution models"
+  sidebar_label: Introduction
+  dependencies: sf tidyverse terra dismo viridis
+  replace:
+  - "# suitabilitycube ": ""
+  - "images/": "https://github.com/b-cubed-eu/suitabilitycube/blob/main/images/"
