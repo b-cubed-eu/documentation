@@ -3,7 +3,7 @@ output: github_document
 editor_options:
   chunk_output_type: console
 title: 'gcube: Simulating Biodiversity Data Cubes'
-lastUpdated: 2025-08-19
+lastUpdated: 2026-01-19
 sidebar:
   label: Introduction
   order: 1
@@ -26,6 +26,7 @@ source: https://github.com/b-cubed-eu/gcube/blob/main/README.Rmd
 [![codecov](https://codecov.io/gh/b-cubed-eu/gcube/branch/main/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/gcube/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14038996.svg)](https://doi.org/10.5281/zenodo.14038996)
 [![name status badge](https://b-cubed-eu.r-universe.dev/badges/:name?color=6CDDB4)](https://b-cubed-eu.r-universe.dev/)
+[![funder](https://badgen.net/static/funder/European%20Union/f2a)](https://doi.org/10.3030/101059592)
 
 <!-- badges: end -->
 
@@ -38,7 +39,7 @@ Simulation studies offer numerous benefits due to their ability to mimic real-wo
 Install **gcube** in R:
 
 ```r
-install.packages("gcube", repos = "https://b-cubed-eu.r-universe.dev")
+install.packages("gcube", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 You can install the development version from [GitHub](https://github.com/) with:
@@ -51,7 +52,7 @@ remotes::install_github("b-cubed-eu/gcube")
 ## Package name rationale and origin story
 
 The name **gcube** stands for "generate cube" since it can be used to generate biodiversity data cubes from minimal input.
-It was first developed during the hackathon "Hacking Biodiversity Data Cubes for Policy", where it won the first price in the category "Visualization and training".
+It was first developed during the hackathon "Hacking Biodiversity Data Cubes for Policy", where it won the first prize in the category "Visualization and training".
 You can read the full story here: <https://doi.org/10.37044/osf.io/vcyr7>
 
 ## Example
@@ -77,7 +78,7 @@ library(dplyr)   # data wrangling
 library(ggplot2) # visualisation with ggplot
 ```
 
-We create a polygon as input. It represents the spatial extend of the species.
+We create a polygon as input. It represents the spatial extent of the species.
 
 
 ``` r
@@ -90,7 +91,7 @@ ggplot() +
   theme_minimal()
 ```
 
-<img src="/software/gcube/man/figures/readme-polygon-1.png" alt="Spatial extend in which we will simulate species occurrences." width="80%" />
+<img src="/software/gcube/man/figures/readme-polygon-1.png" alt="Spatial extent in which we will simulate species occurrences." width="80%" />
 
 ### Occurrence process
 
@@ -178,11 +179,11 @@ ggplot() +
 ### Grid designation process
 
 Finally, observations are designated to a grid with `grid_designation()` to create an occurrence cube.
-We create a grid over the spatial extend using `sf::st_make_grid()`. 
+We create a grid over the spatial extent using `sf::st_make_grid()`. 
 
 
 ``` r
-# Define a grid over spatial extend
+# Define a grid over spatial extent
 grid_df <- st_make_grid(
     buffered_observations,
     square = TRUE,
@@ -221,7 +222,7 @@ ggplot() +
           fill = alpha("firebrick", 0.3)) +
   geom_sf(data = sampled_points, colour = "blue") +
   geom_sf(data = observations_df, colour = "firebrick") +
-  labs(x = "", y = "", fill = "n") +
+  labs(x = "", y = "") +
   theme_minimal()
 ```
 
