@@ -188,6 +188,16 @@ ebvcube:
   - "# ebvcube package": ""
   dependencies: BiocManager rhdf5 DelayedArray HDF5Array terra ggplot2 tidyterra
 
+pdindicatoR:
+- source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
+  title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
+    on species occurrence data cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# pdindicatoR ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
+  dependencies: sf dplyr
+  
 vscube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
   title: "vscube: Virtual Suitability Cube"
