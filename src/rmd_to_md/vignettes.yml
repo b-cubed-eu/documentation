@@ -203,4 +203,4 @@ suitabilitycube:
   dependencies: sf tidyverse terra dismo viridis
   replace:
   - "# suitabilitycube ": ""
-  - "images/": "https://github.com/b-cubed-eu/suitabilitycube/blob/main/images/"
+  - "images/": "https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/"
