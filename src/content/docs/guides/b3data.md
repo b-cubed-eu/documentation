@@ -19,7 +19,7 @@ Suggestion citation:
 
 **Citing this guide:**
 
-> Langeraert W (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
+> Langeraert W (2026). b3data: Data resources for the b3verse. Version 1.0. <https://docs.b-cubed.eu/guides/b3data/>
 
 **Citing the data package:**
 
@@ -146,7 +146,7 @@ We filter out any data with minimal coordinate uncertainty larger than 10 km.
 
 ``` r
 bird_cube_belgium_clean <- bird_cube_belgium %>%
-  dplyr::filter(mincoordinateuncertaintyinmeters <= 100000)
+  dplyr::filter(mincoordinateuncertaintyinmeters <= 10 * 10^3)
 ```
 
 We join the loaded resources together and visualise the number of species per grid cell.
@@ -190,15 +190,15 @@ bird_cube_processed
 #>      xmin      xmax      ymin      ymax 
 #>  2.428844  6.334746 49.445981 51.444030 
 #> 
-#> Total number of observations: 17609482 
-#> Number of species represented: 734 
+#> Total number of observations: 17609047 
+#> Number of species represented: 733 
 #> Number of families represented: 95 
 #> 
 #> Kingdoms represented: Data not present 
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 557,965 × 11
+#> # A tibble: 557,608 × 11
 #>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹
 #>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>
 #>  1  2000 31UDS65   2473958 Perdix perdix     Phasi…     1                   3536
@@ -211,7 +211,7 @@ bird_cube_processed
 #>  8  2000 31UDS65   2481174 Larus fuscus      Larid…     1                   3536
 #>  9  2000 31UDS65   2481890 Phalacrocorax ca… Phala…     2                   1000
 #> 10  2000 31UDS65   2482054 Podiceps cristat… Podic…     5                   1000
-#> # ℹ 557,955 more rows
+#> # ℹ 557,598 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
 #> # ℹ 4 more variables: familyCount <dbl>, xcoord <dbl>, ycoord <dbl>,
 #> #   resolution <chr>
@@ -237,7 +237,7 @@ plot(bird_cube_richness_ts)
 
 ![plot of chunk unnamed-chunk-10](../../../../public/guides/b3data/unnamed-chunk-10-1.png)
 
-> **Note:** The spatial and temporal patterns shown in these outputs primarily reflect the data coverage in GBIF, not actual biodiversity patterns. This tutorial is meant to demonstrate the use of the **b3data** resources and indicator workflow, and is not intended as an example of rigorous ecological analysis.
+> **Note:** The example demonstrates the use of the b3data resources, and is not intended as an example of rigorous ecological analysis. The spatial and temporal patterns shown in the outputs below primarily reflect the data coverage in GBIF, and may not reflect actual biodiversity patterns.
 
 ## Contributing and reporting issues
 

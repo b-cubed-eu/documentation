@@ -2,7 +2,7 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-28
+lastUpdated: 2026-02-05
 sidebar:
   label: Visualising spatial trends
   order: 8
@@ -100,21 +100,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 2,391 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
-#>  1  2000 31UES44   2481714 Tringa totanus    Scolo…     1                   3536      680179 540000 5.64e6      31 N         
-#>  2  2000 31UFS05   2481740 Calidris temminc… Scolo…     3                   3536      680179 600000 5.65e6      31 N         
-#>  3  2000 31UES43   2492943 Sylvia communis   Sylvi…     8                   1414      341890 540000 5.63e6      31 N         
-#>  4  2000 31UES44   5739317 Phoenicurus phoe… Musci…    10                   1000      610513 540000 5.64e6      31 N         
-#>  5  2000 31UFS63   2481700 Scolopax rustico… Scolo…     1                   3536      680179 660000 5.63e6      31 N         
-#>  6  2000 31UFS74   5845582 Chloris chloris   Fring…     3                   3536      762066 670000 5.64e6      31 N         
-#>  7  2000 31UFS65   2492960 Sylvia curruca    Sylvi…     7                   3536      341890 660000 5.65e6      31 N         
-#>  8  2000 31UFS07   2493091 Phylloscopus col… Phyll…    19                   1414      347345 600000 5.67e6      31 N         
-#>  9  2000 31UDS86   2489214 Delichon urbicum  Hirun…     3                   3536      200242 480000 5.66e6      31 N         
-#> 10  2000 31UES85   2473958 Perdix perdix     Phasi…     9                   1414      261414 580000 5.65e6      31 N         
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2000 31UES44   2481714 Tringa totanus       Scolo…     1                   3536      680179 540000 5.64e6      31
+#>  2  2000 31UFS05   2481740 Calidris temminckii  Scolo…     3                   3536      680179 600000 5.65e6      31
+#>  3  2000 31UES43   2492943 Sylvia communis      Sylvi…     8                   1414      341890 540000 5.63e6      31
+#>  4  2000 31UES44   5739317 Phoenicurus phoenic… Musci…    10                   1000      610513 540000 5.64e6      31
+#>  5  2000 31UFS63   2481700 Scolopax rusticola   Scolo…     1                   3536      680179 660000 5.63e6      31
+#>  6  2000 31UFS74   5845582 Chloris chloris      Fring…     3                   3536      762066 670000 5.64e6      31
+#>  7  2000 31UFS65   2492960 Sylvia curruca       Sylvi…     7                   3536      341890 660000 5.65e6      31
+#>  8  2000 31UFS07   2493091 Phylloscopus collyb… Phyll…    19                   1414      347345 600000 5.67e6      31
+#>  9  2000 31UDS86   2489214 Delichon urbicum     Hirun…     3                   3536      200242 480000 5.66e6      31
+#> 10  2000 31UES85   2473958 Perdix perdix        Phasi…     9                   1414      261414 580000 5.65e6      31
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 1 more variable: resolution <chr>
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -179,7 +179,7 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 ``` r
 ci_mean_obs <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results,
+  bootstrap_results = bootstrap_results,
   grouping_var = "cellCode",
   type = c("perc", "bca", "norm", "basic"),
   conf = 0.95

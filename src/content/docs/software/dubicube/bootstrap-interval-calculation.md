@@ -2,7 +2,7 @@
 title: Calculating bootstrap confidence intervals
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-28
+lastUpdated: 2026-02-05
 sidebar:
   label: Bootstrap confidence intervals
   order: 4
@@ -191,21 +191,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000 5.66e6      31 N         
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000 5.68e6      31 N         
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000 5.64e6      31 N         
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000 5.66e6      31 N         
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000 5.64e6      31 N         
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000 5.65e6      31 N         
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000 5.68e6      31 N         
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000 5.62e6      31 N         
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000 5.63e6      31 N         
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000 5.7 e6      31 N         
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
+#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
+#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
+#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
+#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
+#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
+#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
+#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
+#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
+#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 1 more variable: resolution <chr>
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -269,7 +269,7 @@ bootstrap_results <- bootstrap_cube(
 
 Now we can use the `calculate_bootstrap_ci()` function to calculate confidence limits. It relies on the following arguments:
 
-- **`bootstrap_samples_df`**:
+- **`bootstrap_results`**:
   A dataframe containing the bootstrap replicates, where each row represents a bootstrap sample. As returned by `bootstrap_cube()`.
 
 - **`grouping_var`**:
@@ -287,7 +287,7 @@ Now we can use the `calculate_bootstrap_ci()` function to calculate confidence l
   The confidence level of the intervals. Default is `0.95` (95 % confidence level).
 
 - **`aggregate`**:
-  Logical. If `TRUE` (default), the function returns confidence limits per group. If `FALSE`, the confidence limits are added to the original bootstrap dataframe `bootstrap_samples_df`.
+  Logical. If `TRUE` (default), the function returns confidence limits per group. If `FALSE`, the confidence limits are added to the original bootstrap dataframe `bootstrap_results`.
 
 - **`data_cube`**:
   Only used when `type = "bca"` and no boot method is used. The input data as a processed data cube (from `b3gbi::process_cube()`).
@@ -304,7 +304,7 @@ Since we are working with `"boot"` objects, we do not need to specify `data_cube
 
 ``` r
 ci_mean_obs <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results,
+  bootstrap_results = bootstrap_results,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   conf = 0.95
@@ -435,7 +435,7 @@ Since we are not working with `"boot"` objects, we need to specify `data_cube` a
 
 ``` r
 ci_mean_obs_ref <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_ref,
+  bootstrap_results = bootstrap_results_ref,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   data_cube = processed_cube,   # Required for BCa
@@ -601,7 +601,7 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 ``` r
 ci_evenness <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_evenness,
+  bootstrap_results = bootstrap_results_evenness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic")
 )
@@ -692,7 +692,7 @@ We enter them through `calculate_bootstrap_ci()`.
 
 ``` r
 ci_evenness_trans <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_evenness,
+  bootstrap_results = bootstrap_results_evenness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   h = logit,
@@ -788,7 +788,7 @@ The bias is infinite such that the BCa intervals cannot be calculated.
 
 ``` r
 ci_richness <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_richness,
+  bootstrap_results = bootstrap_results_richness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   data_cube = processed_cube_even,
@@ -870,7 +870,7 @@ However, it is important to note that these are alternative estimators — they 
 
 ``` r
 ci_richness_no_bias <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_richness,
+  bootstrap_results = bootstrap_results_richness,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
   no_bias = TRUE,
