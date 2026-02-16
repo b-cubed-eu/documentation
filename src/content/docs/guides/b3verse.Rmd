@@ -35,7 +35,7 @@ This guide provides an overview of the integration and maintenance of R packages
 
 Suggestion citation:
 
-> Langeraert W, Desmet P, Van Daele T (2025). b3verse: A collection of R packages to work with occurrence cubes. <https://docs.b-cubed.eu/guides/b3verse/>
+> Langeraert W, Desmet P, Van Daele T (2026). b3verse: A collection of R packages to work with occurrence cubes. Version 1.0. <https://docs.b-cubed.eu/guides/b3verse/>
 
 <a href="https://b-cubed-eu.r-universe.dev/"><img src="/guides/b3verse/b3verse-logo.png" align="right" width="139" alt="b3verse logo" /></a>
 

@@ -27,7 +27,7 @@ Suggestion citation:
 
 **Citing this guide:**
 
-> Langeraert W (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
+> Langeraert W (2026). b3data: Data resources for the b3verse. Version 1.0. <https://docs.b-cubed.eu/guides/b3data/>
 
 **Citing the data package:**
 
