@@ -2,12 +2,14 @@
 title: Visualising temporal trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-08-25
+lastUpdated: 2026-02-05
 sidebar:
   label: Visualising temporal trends
   order: 7
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/visualising-temporal-trends.Rmd
 ---
+
+
 
 ## Introduction
 
@@ -47,15 +49,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
-#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -99,21 +100,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus     Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoeni… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus ri… Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata   Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus     Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandarius Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Bran… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus       Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus    Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querquedula Anati…     8                   3536     2709975 600000
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
+#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
+#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
+#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
+#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
+#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
+#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
+#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
+#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
+#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -170,18 +171,7 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
-```
-
-
-``` r
-head(bootstrap_results)
-#>   sample year est_original rep_boot est_boot se_boot  bias_boot
-#> 1      1 2011     34.17777 24.23133 33.80046 4.24489 -0.3773142
-#> 2      2 2011     34.17777 24.28965 33.80046 4.24489 -0.3773142
-#> 3      3 2011     34.17777 31.81445 33.80046 4.24489 -0.3773142
-#> 4      4 2011     34.17777 33.42530 33.80046 4.24489 -0.3773142
-#> 5      5 2011     34.17777 35.03502 33.80046 4.24489 -0.3773142
-#> 6      6 2011     34.17777 33.72037 33.80046 4.24489 -0.3773142
+#> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
 
 ### Interval calculation
@@ -192,19 +182,17 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 ``` r
 ci_mean_obs <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results,
+  bootstrap_results = bootstrap_results,
   grouping_var = "year",
   type = c("perc", "bca", "norm", "basic"),
-  conf = 0.95,
-  data_cube = processed_cube,   # Required for BCa
-  fun = mean_obs                # Required for BCa
+  conf = 0.95
 )
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
 
 # Make interval type factor
 ci_mean_obs <- ci_mean_obs %>%
   mutate(
+    year = as.numeric(year),
     int_type = factor(
       int_type, levels = c("perc", "bca", "norm", "basic")
     )
@@ -214,13 +202,13 @@ ci_mean_obs <- ci_mean_obs %>%
 
 ``` r
 head(ci_mean_obs)
-#>   year est_original est_boot   se_boot  bias_boot int_type conf       ll       ul
-#> 1 2011     34.17777 33.80046  4.244890 -0.3773142     perc 0.95 26.57582 42.77975
-#> 2 2012     35.27201 34.45877  3.776430 -0.8132403     perc 0.95 27.23367 41.66334
-#> 3 2013     33.25581 33.72937  5.351881  0.4735622     perc 0.95 24.91414 46.62692
-#> 4 2014     55.44160 53.13004 10.597359 -2.3115608     perc 0.95 36.04170 77.37950
-#> 5 2015     49.24754 48.60624  9.888400 -0.6412965     perc 0.95 34.60635 73.13698
-#> 6 2016     48.34063 47.10668 11.388627 -1.2339492     perc 0.95 30.82583 73.16598
+#>   year est_original int_type       ll       ul conf
+#> 1 2011     34.17777     norm 26.20924 43.08325 0.95
+#> 2 2011     34.17777    basic 24.99408 42.17612 0.95
+#> 3 2011     34.17777     perc 26.17942 43.36146 0.95
+#> 4 2011     34.17777      bca 27.43845 45.60900 0.95
+#> 5 2012     35.27201     norm 28.62332 43.67756 0.95
+#> 6 2012     35.27201    basic 28.26708 43.07078 0.95
 ```
 
 ## Visualising uncertainty in temporal trends
@@ -244,15 +232,22 @@ ci_mean_obs %>%
   facet_wrap(~int_type)
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-13-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-12-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
 
 However, the question remains which interval types should be calculated and/or reported.
 A good idea is to compare different interval types next to each other together with the bootstrap distribution and the bootstrap bias (the difference between the estimate and the bootstrap estimate).
 
 
 ``` r
+# Convert bootstrap replicates to dataframe
+bootstrap_results_df <- boot_list_to_dataframe(
+  boot_list = bootstrap_results,
+  grouping_var = "year"
+) %>%
+  mutate(year = as.numeric(year))
+
 # Get bias vales
-bias_mean_obs <- bootstrap_results %>%
+bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
 # Get estimate values
@@ -262,7 +257,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 # Visualise
-bootstrap_results %>%
+bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -277,14 +272,14 @@ bootstrap_results %>%
   # Settings
   labs(y = "Mean Number of Observations\nper Grid Cell",
        x = "", shape = "Legend:", colour = "Interval type:") +
-  scale_x_continuous(breaks = sort(unique(bootstrap_results$year))) +
+  scale_x_continuous(breaks = sort(unique(bootstrap_results_df$year))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.title = element_text(face = "bold"))
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-14-1.png" alt="Confidence intervals with bootstrap distribution for mean number of occurrences over time."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-13-1.png" alt="Confidence intervals with bootstrap distribution for mean number of occurrences over time."  />
 
 This informs us about the shape of the bootstrap distribution and the amount of bootstrap bias.
 In combination with bootstrap interval theory, it can be decided which interval type(s) should be reported.
@@ -454,7 +449,7 @@ ci_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-15-1.png" alt="Confidence intervals with loess smoother."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-14-1.png" alt="Confidence intervals with loess smoother."  />
 
 ### Fan plots
 
@@ -470,7 +465,7 @@ Therefore, we check the assumption of normality by making a Q-Q plot of the boot
 
 
 ``` r
-ggplot(bootstrap_results, aes(sample = rep_boot)) +
+ggplot(bootstrap_results_df, aes(sample = rep_boot)) +
   # Q-Q plot
   stat_qq() +
   stat_qq_line(col = "red") +
@@ -481,14 +476,14 @@ ggplot(bootstrap_results, aes(sample = rep_boot)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-17-1.png" alt="Q-Q plot of bootstrap replications."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-16-1.png" alt="Q-Q plot of bootstrap replications."  />
 
 As expected, it looks like the bootstrap distributions are not normally distributed in most years.
 If we log-transform the bootstrap replications, the Q-Q plots look better.
 
 
 ``` r
-ggplot(bootstrap_results, aes(sample = log(rep_boot))) +
+ggplot(bootstrap_results_df, aes(sample = log(rep_boot))) +
   # Q-Q plot
   stat_qq() +
   stat_qq_line(col = "red") +
@@ -499,14 +494,14 @@ ggplot(bootstrap_results, aes(sample = log(rep_boot))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-18-1.png" alt="Q-Q plot of log-transformed bootstrap replications."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-17-1.png" alt="Q-Q plot of log-transformed bootstrap replications."  />
 
 We therefore calculate the log-transformed normal intervals and compare them with the BCa and normal intervals.
 
 
 ``` r
 ci_mean_obs_lognorm <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results,
+  bootstrap_results = bootstrap_results,
   grouping_var = "year",
   type = c("norm"),
   conf = 0.95,
@@ -522,10 +517,14 @@ The log-normal intervals look indeed more correct then the normal intervals, alt
 # Combine interval data
 ci_mean_obs_new <- ci_mean_obs %>%
   filter(int_type %in% c("bca", "norm")) %>%
-  bind_rows(ci_mean_obs_lognorm %>% mutate(int_type = "log_norm"))
+  bind_rows(
+    ci_mean_obs_lognorm %>%
+      mutate(year = as.numeric(year),
+             int_type = "log_norm")
+  )
 
 # Visualise
-bootstrap_results %>%
+bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
   geom_violin(aes(y = rep_boot, group = year),
@@ -546,7 +545,7 @@ bootstrap_results %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-20-1.png" alt="Compare log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-19-1.png" alt="Compare log-normal intervals."  />
 
 Finally, we can create a fan plot assuming the log-normal distribution.
 Note that for `stat_fan()`, the `link_sd` is the standard error on the link scale, while `y` is on the natural scale.
@@ -556,7 +555,7 @@ As noted in the previous section, year is a discrete variable in our data cube. 
 
 
 ``` r
-bootstrap_results %>%
+bootstrap_results_df %>%
   # Calculate standard error on link scale
   mutate(rep_boot_log = log(rep_boot),
          est_boot_log = mean(rep_boot_log), # Needed for bias calculation
@@ -579,7 +578,7 @@ bootstrap_results %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-21-1.png" alt="Categorical fan plot of log-normal interval with effectclass."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-20-1.png" alt="Categorical fan plot of log-normal interval with effectclass."  />
 
 We can make use of this concept to make fan plots for other interval types ourselves.
 We calculate BCA and log-normal intervals  for five coverages using a for loop.
@@ -599,20 +598,21 @@ for (i in seq_along(coverages)) {
 
   # Calculate confidence limits for confidence level
   ci_cov <- calculate_bootstrap_ci(
-    bootstrap_samples_df = bootstrap_results,
+    bootstrap_results = bootstrap_results,
     grouping_var = "year",
     type = c("bca", "norm"),
     conf = cov,
     h = log,
-    hinv = exp,
-    data_cube = processed_cube,   # Required for BCa
-    fun = mean_obs                # Required for BCa
+    hinv = exp
   )
 
   out_ci_list[[i]] <- ci_cov
 }
 out_ci <- bind_rows(out_ci_list) %>%
-  mutate(int_type = ifelse(int_type == "norm", "log_norm", int_type))
+  mutate(
+    year = as.numeric(year),
+    int_type = ifelse(int_type == "norm", "log_norm", int_type)
+  )
 ```
 
 We can visualise this in a categorical way with `geom_rect()` from **ggplot2**.
@@ -658,7 +658,7 @@ ggplot(out_ci, aes()) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-23-1.png" alt="Categorical fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-22-1.png" alt="Categorical fan plot of BCa and log-normal intervals."  />
 
 We can visualise this in a continuous way with `geom_ribbon()` from **ggplot2**.
 Linear (like the default of `stat_fan()`):
@@ -678,7 +678,7 @@ ggplot(out_ci, aes(x = year)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-24-1.png" alt="Linear fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-23-1.png" alt="Linear fan plot of BCa and log-normal intervals."  />
 
 Smooth (like in the previous paragraph):
 
@@ -706,7 +706,7 @@ out_ci %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-25-1.png" alt="Smooth fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-24-1.png" alt="Smooth fan plot of BCa and log-normal intervals."  />
 
 ## Visualising temporal effects
 
@@ -725,10 +725,11 @@ bootstrap_results_ref <- bootstrap_cube(
   ref_group = 2011,
   seed = 123
 )
+#> [1] "Performing whole-cube bootstrap."
 
 # Calculate confidence intervals
 ci_mean_obs_ref <- calculate_bootstrap_ci(
-  bootstrap_samples_df = bootstrap_results_ref,
+  bootstrap_results = bootstrap_results_ref,
   grouping_var = "year",
   type = "bca",
   data_cube = processed_cube,   # Required for BCa
@@ -783,7 +784,7 @@ ggplot(data = result, aes(x = year, y = est_original, ymin = ll, ymax = ul)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-27-1.png" alt="Effect visualisation for mean number of occurrences over per year compared to 2011."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-26-1.png" alt="Effect visualisation for mean number of occurrences over per year compared to 2011."  />
 
 With this function, you can also add symbols to `stat_fan()`.
 

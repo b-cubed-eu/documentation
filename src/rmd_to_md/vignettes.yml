@@ -59,7 +59,7 @@ dubicube:
   - "https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/bootstrap-method-cubes.Rmd
   title: Bootstrap method for data cubes
-  sidebar_label: Bootstrap method cubes
+  sidebar_label: Bootstrapping data cubes
   dependencies: frictionless b3gbi ggplot2 dplyr tidyr
   replace:
   - "figures/bootstrapping.png": "https://b-cubed-eu.github.io/dubicube/articles/figures/bootstrapping.png"
@@ -84,8 +84,8 @@ dubicube:
   - "https://b-cubed-eu.github.io/dubicube/articles/visualising-spatial-trends.html": "https://docs.b-cubed.eu/software/dubicube/visualising-spatial-trends/"
 - source: https://raw.githubusercontent.com/b-cubed-eu/dubicube/refs/heads/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd
   title: Whole-cube bootstrap versus group-specific bootstrap
-  sidebar_label: Grouped bootstrapping
-  dependencies: frictionless b3gbi ggplot2 dplyr
+  sidebar_label: Bootstrap methods
+  dependencies: frictionless b3gbi ggplot2 dplyr tidyr
   replace:
   - "https://b-cubed-eu.github.io/dubicube/articles/group-level-sensitivity.html": "https://docs.b-cubed.eu/software/dubicube/group-level-sensitivity/"
   - "https://b-cubed-eu.github.io/dubicube/articles/bootstrap-method-cubes.html": "https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/"
@@ -246,3 +246,22 @@ invasimapr:
 - source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/tutorial_5.Rmd
   sidebar_label: Tutorial on computing invasion fitness
   dependencies: invasimapr dplyr knitr
+  
+pdindicatoR:
+- source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
+  title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
+    on species occurrence data cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# pdindicatoR ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
+  dependencies: sf dplyr
+  
+vscube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
+  title: "vscube: Virtual Suitability Cube"
+  sidebar_label: Introduction
+  dependencies: terra stars ggplot2 viridis
+  replace:
+  - "# Virtual Suitability Cube": ""
+  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above

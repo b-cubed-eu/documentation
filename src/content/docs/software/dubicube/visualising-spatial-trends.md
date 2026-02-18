@@ -2,12 +2,14 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2025-08-25
+lastUpdated: 2026-02-05
 sidebar:
   label: Visualising spatial trends
   order: 8
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/visualising-spatial-trends.Rmd
 ---
+
+
 
 ## Introduction
 
@@ -46,15 +48,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertain…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                    <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                     3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                     3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                     1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                     1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                     3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                     3536      855924
-#> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
+#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -99,21 +100,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 2,391 × 13
-#>     year cellCode taxonKey scientificName      family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>               <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2000 31UES44   2481714 Tringa totanus      Scolo…     1                   3536      680179 540000
-#>  2  2000 31UFS05   2481740 Calidris temminckii Scolo…     3                   3536      680179 600000
-#>  3  2000 31UES43   2492943 Sylvia communis     Sylvi…     8                   1414      341890 540000
-#>  4  2000 31UES44   5739317 Phoenicurus phoeni… Musci…    10                   1000      610513 540000
-#>  5  2000 31UFS63   2481700 Scolopax rusticola  Scolo…     1                   3536      680179 660000
-#>  6  2000 31UFS74   5845582 Chloris chloris     Fring…     3                   3536      762066 670000
-#>  7  2000 31UFS65   2492960 Sylvia curruca      Sylvi…     7                   3536      341890 660000
-#>  8  2000 31UFS07   2493091 Phylloscopus colly… Phyll…    19                   1414      347345 600000
-#>  9  2000 31UDS86   2489214 Delichon urbicum    Hirun…     3                   3536      200242 480000
-#> 10  2000 31UES85   2473958 Perdix perdix       Phasi…     9                   1414      261414 580000
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2000 31UES44   2481714 Tringa totanus       Scolo…     1                   3536      680179 540000 5.64e6      31
+#>  2  2000 31UFS05   2481740 Calidris temminckii  Scolo…     3                   3536      680179 600000 5.65e6      31
+#>  3  2000 31UES43   2492943 Sylvia communis      Sylvi…     8                   1414      341890 540000 5.63e6      31
+#>  4  2000 31UES44   5739317 Phoenicurus phoenic… Musci…    10                   1000      610513 540000 5.64e6      31
+#>  5  2000 31UFS63   2481700 Scolopax rusticola   Scolo…     1                   3536      680179 660000 5.63e6      31
+#>  6  2000 31UFS74   5845582 Chloris chloris      Fring…     3                   3536      762066 670000 5.64e6      31
+#>  7  2000 31UFS65   2492960 Sylvia curruca       Sylvi…     7                   3536      341890 660000 5.65e6      31
+#>  8  2000 31UFS07   2493091 Phylloscopus collyb… Phyll…    19                   1414      347345 600000 5.67e6      31
+#>  9  2000 31UDS86   2489214 Delichon urbicum     Hirun…     3                   3536      200242 480000 5.66e6      31
+#> 10  2000 31UES85   2473958 Perdix perdix        Phasi…     9                   1414      261414 580000 5.65e6      31
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -157,37 +158,17 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 ### Bootstrapping
 
 We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
-Since this indicator is calculated independently per group (grid cell) we perform group-specific bootstrapping.
-For a detailed discussion of when to use each approach, see [this tutorial](https://docs.b-cubed.eu/software/dubicube/whole-cube-versus-group-specific-bootstrap/).
 
 
 ``` r
-bootstrap_results <- processed_cube$data %>%
-  split(processed_cube$data$cellCode) %>%
-  lapply(function(cube) {
-    bootstrap_results <- bootstrap_cube(
-      data_cube = cube,
-      fun = mean_obs_grid,
-      grouping_var = "cellCode",
-      samples = 1000,
-      seed = 123,
-      processed_cube = FALSE
-    )
-
-    return(list(bootstrap_results = bootstrap_results, data = cube))
-  })
-```
-
-
-``` r
-head(bootstrap_results[[1]]$bootstrap_results)
-#>   sample cellCode est_original rep_boot est_boot   se_boot bias_boot
-#> 1      1  31UDS65     3.285714 4.357143 3.263714 0.9057524    -0.022
-#> 2      2  31UDS65     3.285714 2.714286 3.263714 0.9057524    -0.022
-#> 3      3  31UDS65     3.285714 3.571429 3.263714 0.9057524    -0.022
-#> 4      4  31UDS65     3.285714 3.714286 3.263714 0.9057524    -0.022
-#> 5      5  31UDS65     3.285714 3.214286 3.263714 0.9057524    -0.022
-#> 6      6  31UDS65     3.285714 2.785714 3.263714 0.9057524    -0.022
+bootstrap_results <- bootstrap_cube(
+  data_cube = processed_cube,
+  fun = mean_obs_grid,
+  grouping_var = "cellCode",
+  samples = 1000,
+  seed = 123
+)
+#> [1] "Performing group-specific bootstrap with `boot::boot()`."
 ```
 
 ### Interval calculation
@@ -197,30 +178,26 @@ We get a warning message for BCa calculation because we are using a relatively s
 
 
 ``` r
-ci_mean_obs_list <- bootstrap_results %>%
-  lapply(function(list) {
-    calculate_bootstrap_ci(
-      list$bootstrap_results,
-      grouping_var = "cellCode",
-      type = c("perc", "bca", "norm", "basic"),
-      conf = 0.95,
-      data_cube = list$data, # Required for Bca
-      fun = mean_obs_grid    # Required for Bca
-    )
-  })
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
-#> Warning in norm_inter(h(t), adj_alpha): Extreme order statistics used as endpoints.
+ci_mean_obs <- calculate_bootstrap_ci(
+  bootstrap_results = bootstrap_results,
+  grouping_var = "cellCode",
+  type = c("perc", "bca", "norm", "basic"),
+  conf = 0.95
+)
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
+#> Warning in norm.inter(t, adj.alpha): extreme order statistics used as endpoints
 
 # Make interval type factor
-ci_mean_obs <- bind_rows(ci_mean_obs_list) %>%
+ci_mean_obs <- ci_mean_obs %>%
   mutate(
     int_type = factor(
       int_type, levels = c("perc", "bca", "norm", "basic")
@@ -231,13 +208,13 @@ ci_mean_obs <- bind_rows(ci_mean_obs_list) %>%
 
 ``` r
 head(ci_mean_obs)
-#>   cellCode est_original  est_boot   se_boot bias_boot int_type conf       ll        ul
-#> 1  31UDS65     3.285714  3.263714 0.9057524   -0.0220     perc 0.95 1.785714  5.214286
-#> 2  31UDS65     3.285714  3.263714 0.9057524   -0.0220      bca 0.95 2.000000  6.434174
-#> 3  31UDS65     3.285714  3.263714 0.9057524   -0.0220     norm 0.95 1.532472  5.082956
-#> 4  31UDS65     3.285714  3.263714 0.9057524   -0.0220    basic 0.95 1.357143  4.785714
-#> 5  31UDS66    10.333333 10.357533 6.1848863    0.0242     perc 0.95 2.400000 24.000000
-#> 6  31UDS66    10.333333 10.357533 6.1848863    0.0242      bca 0.95 3.066667 36.095861
+#>   cellCode est_original int_type        ll        ul conf
+#> 1  31UDS65     3.285714     norm  1.553808  5.061621 0.95
+#> 2  31UDS65     3.285714    basic  1.287529  4.785714 0.95
+#> 3  31UDS65     3.285714     perc  1.785714  5.283900 0.95
+#> 4  31UDS65     3.285714      bca  2.000000  6.513062 0.95
+#> 5  31UDS66    10.333333     norm -1.740367 22.170101 0.95
+#> 6  31UDS66    10.333333    basic -3.064973 18.200000 0.95
 ```
 
 ## Visualising uncertainty in spatial trends
@@ -274,7 +251,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-14-1.png" alt="Estimates for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-13-1.png" alt="Estimates for mean number of occurrences per grid cell."  />
 
 
 ``` r
@@ -290,7 +267,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-15-1.png" alt="Lower CI's for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-14-1.png" alt="Lower CI's for mean number of occurrences per grid cell."  />
 
 
 ``` r
@@ -306,7 +283,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-16-1.png" alt="Upper CI's for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-15-1.png" alt="Upper CI's for mean number of occurrences per grid cell."  />
 
 If we want to visualise estimates and uncertainty in a single figure, we need a good uncertainty measure.
 One straightforward option is the width of the confidence interval (CI):
@@ -365,7 +342,7 @@ st_centroid(bca_mean_obs) %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-17-1.png" alt="Spatial uncertainty using transparency."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-16-1.png" alt="Spatial uncertainty using transparency."  />
 
 To make the visualisation even more clear, we can also vary size based on the uncertainty measure.
 Size can be scaled using the `scale_size()` function from **ggplot2**.
@@ -394,14 +371,12 @@ st_centroid(bca_mean_obs) %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-18-1.png" alt="Spatial uncertainty using transparency and size."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-17-1.png" alt="Spatial uncertainty using transparency and size."  />
 
 ### Blurriness
 
 Unlike transparency or point size, blurriness is not natively supported in **ggplot2**.
 Therefore, we present a custom figure using a hard-coded example that illustrates the difference between blurriness and transparency as visual indicators of spatial uncertainty.
-
-
 
 <img src="https://b-cubed-eu.github.io/dubicube/articles/figures/blur-spatial-uncertainty.png" alt="Compare spatial blur and transparency." width="100%">
 

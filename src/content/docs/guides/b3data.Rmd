@@ -27,7 +27,7 @@ Suggestion citation:
 
 **Citing this guide:**
 
-> Langeraert W (2025). b3data: Data resources for the b3verse. <https://docs.b-cubed.eu/guides/b3data/>
+> Langeraert W (2026). b3data: Data resources for the b3verse. Version 1.0. <https://docs.b-cubed.eu/guides/b3data/>
 
 **Citing the data package:**
 
@@ -120,7 +120,7 @@ We filter out any data with minimal coordinate uncertainty larger than 10 km.
 
 ```{r}
 bird_cube_belgium_clean <- bird_cube_belgium %>%
-  dplyr::filter(mincoordinateuncertaintyinmeters <= 100000)
+  dplyr::filter(mincoordinateuncertaintyinmeters <= 10 * 10^3)
 ```
 
 We join the loaded resources together and visualise the number of species per grid cell.
@@ -165,7 +165,7 @@ bird_cube_richness_ts <- obs_richness_ts(bird_cube_processed, ci_type = "none")
 plot(bird_cube_richness_ts)
 ```
 
-> **Note:** The spatial and temporal patterns shown in these outputs primarily reflect the data coverage in GBIF, not actual biodiversity patterns. This tutorial is meant to demonstrate the use of the **b3data** resources and indicator workflow, and is not intended as an example of rigorous ecological analysis.
+> **Note:** The example demonstrates the use of the b3data resources, and is not intended as an example of rigorous ecological analysis. The spatial and temporal patterns shown in the outputs below primarily reflect the data coverage in GBIF, and may not reflect actual biodiversity patterns.
 
 ## Contributing and reporting issues
 
