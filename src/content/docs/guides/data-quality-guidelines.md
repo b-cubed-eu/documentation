@@ -2,7 +2,7 @@
 title: Guidelines for reliable indicator and trend calculations from occurrence cubes
 sidebar:
   label: Data quality guidelines
-  order: 8
+  order: 6
 ---
 
 This guide provides practical guidance for assessing the reliability of species status and trend estimates derived from aggregated occurrence cubes from the Global Biodiversity Information Facility (GBIF), building on a comparative analysis between unstructured GBIF data and structured monitoring datasets from Flanders (Belgium) and the Western Cape (South Africa). The aim of that analysis was to determine under which conditions, such as sampling effort, taxonomic consistency, spatial precision, and detectability, indicators can be considered sufficiently robust for reporting and policy use.
