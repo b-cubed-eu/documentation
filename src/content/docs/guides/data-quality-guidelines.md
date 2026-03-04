@@ -39,7 +39,7 @@ Taken together, these findings lead to several practical implications for analys
 ### Software support for occurrence cubes
 Several tools developed within the B3 project support working with occurrence cubes in practice. The [**gcube**](https://docs.b-cubed.eu/software/gcube/readme/) R package allows simulation of multi-species occurrence cubes, including variation in sampling processes, detection probability, and spatial uncertainty, enabling exploration of indicator sensitivity under controlled scenarios. The [**dubicube**](https://docs.b-cubed.eu/software/dubicube/readme/) R package provides diagnostics for examining the structure, quality, and uncertainty of empirical occurrence cubes, translating insights from the deliverable into practical checks for applied analyses.
 
-## Guidelines
+## Quality and reliability guidance for occurrence cubes
 ### Cube preparation and baseline data filtering
 This first step defines the analytical boundaries and removes technically invalid records. It establishes the spatial, temporal, and biological scope within which indicators will be calculated.
 
