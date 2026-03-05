@@ -9,7 +9,9 @@ This guide provides practical guidance for assessing the reliability of species 
 
 ## How to cite
 
-> When using or citing these guidelines, users should consult the full deliverable report "D4.3 Report on the criteria for data quality and species characteristics for estimating species status and trends" and use the recommended citation provided within that report. https://b-cubed.eu/library
+If you use these guidelines, please cite the deliverable report from which this derived:
+
+> Langeraert W, Faulkner K, Cartuyvels E, Groom Q, Van Daele T (2026) Report on the criteria for data quality and species characteristics for estimating species status and trends. B3 project deliverable D4.3. <https://b-cubed.eu/storage/app/uploads/public/69a/943/ea1/69a943ea17e66799908588.pdf>
 
 ## Evidence base and scope
 
