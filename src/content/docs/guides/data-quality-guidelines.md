@@ -5,6 +5,10 @@ sidebar:
   order: 6
 ---
 
+:::tip[Read more]
+This guide is based on a deliverable report. For full details and analyses, consult the [original report](https://b-cubed.eu/storage/app/uploads/public/69a/943/ea1/69a943ea17e66799908588.pdf).
+:::
+
 This guide provides practical guidance for assessing the reliability of species status and trend estimates derived from aggregated occurrence cubes from the Global Biodiversity Information Facility (GBIF), building on a comparative analysis between unstructured GBIF data and structured monitoring datasets from Flanders (Belgium) and the Western Cape (South Africa). The aim of that analysis was to determine under which conditions, such as sampling effort, taxonomic consistency, spatial precision, and detectability, indicators can be considered sufficiently robust for reporting and policy use.
 
 ## How to cite
