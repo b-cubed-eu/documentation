@@ -15,17 +15,17 @@ knit: (function(inputFile, ...) {
 
 This guide provides an overview of the **b3data** Frictionless data package and supporting scripts, which serve as foundational resources for calculating biodiversity indicators from occurrence cubes within the **b3verse**.
 
-Suggestion citation:
+## How to cite
 
-**Citing this guide:**
+Citing this guide:
 
 > Langeraert W (2026). b3data: Data resources for the b3verse. Version 1.0. <https://docs.b-cubed.eu/guides/b3data/>
 
-**Citing the data package:**
+Citing the data package:
 
 > Langeraert W (2025). b3data: Data resources for the b3verse [Data set]. <https://doi.org/10.5281/zenodo.15181097>
 
-**Citing the data scripts:**
+Citing the data scripts:
 
 > Langeraert W (2025). Scripts used to create the b3data frictionless data package [Computer software]. <https://github.com/b-cubed-eu/b3data-scripts/>
 

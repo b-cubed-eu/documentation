@@ -7,7 +7,7 @@ sidebar:
 
 This guide provides practical guidance for assessing the reliability of species status and trend estimates derived from aggregated occurrence cubes from the Global Biodiversity Information Facility (GBIF), building on a comparative analysis between unstructured GBIF data and structured monitoring datasets from Flanders (Belgium) and the Western Cape (South Africa). The aim of that analysis was to determine under which conditions, such as sampling effort, taxonomic consistency, spatial precision, and detectability, indicators can be considered sufficiently robust for reporting and policy use.
 
-**Suggested citation:**
+## How to cite
 
 > When using or citing these guidelines, users should consult the full deliverable report "D4.3 Report on the criteria for data quality and species characteristics for estimating species status and trends" and use the recommended citation provided within that report. https://b-cubed.eu/library
 
