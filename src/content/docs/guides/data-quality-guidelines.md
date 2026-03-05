@@ -12,7 +12,9 @@ This guide provides practical guidance for assessing the reliability of species 
 > When using or citing these guidelines, users should consult the full deliverable report "D4.3 Report on the criteria for data quality and species characteristics for estimating species status and trends" and use the recommended citation provided within that report. https://b-cubed.eu/library
 
 ## Evidence base and scope
+
 ### Evidence and validation approach
+
 This guidance is grounded in a comparative assessment of cube-based indicators derived from aggregated GBIF occurrence data and indicators derived from structured bird monitoring schemes in Flanders (Belgium) and the Western Cape (South Africa). Rather than assuming that large data volumes automatically produce reliable indicators, the analysis explicitly tested when and under which conditions cube-based estimates align with structured monitoring results.
 
 The results show that unstructured occurrence data require careful quality control and explicit assessment of biases and uncertainty.
@@ -37,10 +39,13 @@ Taken together, these findings lead to several practical implications for analys
 * Technical issues such as spatial uncertainty, taxonomic harmonisation, and publication delay should be evaluated before interpretation.
 
 ### Software support for occurrence cubes
+
 Several tools developed within the B3 project support working with occurrence cubes in practice. The [**gcube**](https://docs.b-cubed.eu/software/gcube/readme/) R package allows simulation of multi-species occurrence cubes, including variation in sampling processes, detection probability, and spatial uncertainty, enabling exploration of indicator sensitivity under controlled scenarios. The [**dubicube**](https://docs.b-cubed.eu/software/dubicube/readme/) R package provides diagnostics for examining the structure, quality, and uncertainty of empirical occurrence cubes, translating insights from the deliverable into practical checks for applied analyses.
 
 ## Quality and reliability guidance for occurrence cubes
+
 ### Cube preparation and baseline data filtering
+
 This first step defines the analytical boundaries and removes technically invalid records. It establishes the spatial, temporal, and biological scope within which indicators will be calculated.
 
 1. Explicitly **define the spatial and temporal scope of the analysis** before generating occurrence cubes, including grid resolution, geographic extent, and intended indicator type (spatial vs. temporal).
@@ -60,6 +65,7 @@ AND decimalLongitude IS NOT NULL
 ```
 
 ### Exploratory assessment of data coverage and structure
+
 This step is descriptive and diagnostic. Its purpose is to understand how the data are distributed and structured before defining analytical constraints or exclusion rules.
 
 1. Examine the **spatial distribution** of observations to ensure the study area is well covered and that data density is sufficient for the chosen grid resolution.
@@ -75,6 +81,7 @@ This step is descriptive and diagnostic. Its purpose is to understand how the da
 6. **Group-level sensitivity analyses** can help to explore how indicator values respond to the inclusion or exclusion of predefined groups (e.g. datasets, species, spatial units, or time periods). Such analyses are useful for identifying influential components, understanding structural properties of indicators, and distinguishing methodological effects from patterns that may otherwise be interpreted as ecological signals. Sensitivity analysis supports more informed interpretation of indicator results when working with heterogeneous occurrence data.
 
 ### Operational quality criteria and documentation
+
 This step translates the study design and diagnostic findings into explicit, reproducible analytical rules. It defines what data are considered suitable for indicator calculation at the chosen resolution and how decisions are documented.
 
 1. **Define coordinate uncertainty thresholds consistent with the spatial scale and indicator purpose**. For spatial indicators, exclude records with coordinate uncertainty exceeding the grid resolution and treat records with missing uncertainty conservatively. For temporal indicators covering broad areas, prioritise data completeness while documenting potential spatial imprecision.
@@ -88,6 +95,7 @@ This step translates the study design and diagnostic findings into explicit, rep
 5. **Document all filtering, harmonisation, and data-quality decisions transparently**, including uncertainty thresholds, temporal cut-off dates, taxonomic corrections, and any dataset-level decisions to ensure reproducibility and transparency.
 
 ### Examples
+
 Below are examples from the SQL query to obtain the unstructured data used in the spatial analysis of bird data for the Western Cape of South Africa. The query followed the recommendations above. The full query can be found in Annex [2](?tab=t.0#heading=h.9uvyr9igpmbt).
 
 1. Data used covers 2015-2023 for an analysis performed in 2025\.
