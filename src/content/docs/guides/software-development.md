@@ -1,7 +1,7 @@
 ---
 title: B-Cubed software development guide
 sidebar:
-  label: Software development guide
+  label: Software development
   order: 2
 ---
 
