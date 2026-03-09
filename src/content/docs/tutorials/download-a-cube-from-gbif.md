@@ -5,9 +5,11 @@ sidebar:
   order: 1
 ---
 
-Suggestion citation:
+## How to cite
 
 > Desmet P (2025). Download a species occurrence cube from GBIF.org. <https://docs.b-cubed.eu/tutorials/download-a-cube-from-gbif/>
+
+## Steps
 
 Here are the steps to create and download a species occurrence cube from GBIF.org:
 
