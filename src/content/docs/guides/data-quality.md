@@ -1,7 +1,7 @@
 ---
 title: Guidelines for reliable indicator and trend calculations from occurrence cubes
 sidebar:
-  label: Data quality guidelines
+  label: Data quality
   order: 6
 ---
 
@@ -13,7 +13,7 @@ This guide provides practical guidance for assessing the reliability of species 
 
 ## How to cite
 
-If you use these guidelines, please cite the deliverable report from which this derived:
+If you use this guide, please cite the deliverable report from which it was derived:
 
 > Langeraert W, Faulkner K, Cartuyvels E, Groom Q, Van Daele T (2026) Report on the criteria for data quality and species characteristics for estimating species status and trends. B3 project deliverable D4.3. <https://b-cubed.eu/storage/app/uploads/public/69a/943/ea1/69a943ea17e66799908588.pdf>
 
