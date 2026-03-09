@@ -26,9 +26,13 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
       },
-      social: {
-        github: 'https://github.com/b-cubed-eu/documentation/',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/b-cubed-eu/documentation/'
+        }
+      ],
       sidebar: [
         {
           label: 'Guides',
