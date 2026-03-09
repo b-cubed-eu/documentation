@@ -1,13 +1,9 @@
 ---
 import Default from '@astrojs/starlight/components/PageTitle.astro';
 const { title } = Astro.locals.starlightRoute.entry.data;
+const { source } = Astro.locals.starlightRoute.entry.data;
 ---
 
 <Default><slot /></Default>
 
-<style>
-  h1 {
-    color: red;
-  }
-</style>
-<p>Title: {title}</p>
+<p>Source: {source}</p>
