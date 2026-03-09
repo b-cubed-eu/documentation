@@ -28,6 +28,17 @@
   --sl-color-black: #ffffff;
 }
 
+/* Custom source-url */
+.sl-container {
+  .source-url {
+    font-size: 90%;
+    margin-top: 0.5rem;
+    a {
+      color: var(--sl-color-text-accent);
+    }
+  }
+}
+
 /* Display images in links inline (e.g. badges) */
 .sl-markdown-content {
   a {
