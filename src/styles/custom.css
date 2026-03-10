@@ -28,20 +28,6 @@
   --sl-color-black: #ffffff;
 }
 
-/* Title metadata */
-.metadata {
-  gap: 0.75rem 3rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  font-size: var(--sl-text-sm);
-  color: var(--sl-color-gray-3);
-
-  a {
-    color: var(--sl-color-text-accent);
-  }
-}
-
 /* Markdown */
 .sl-markdown-content {
   a {
