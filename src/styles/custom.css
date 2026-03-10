@@ -28,15 +28,39 @@
   --sl-color-black: #ffffff;
 }
 
-/* Custom source-url */
-.sl-container {
-  .source-url {
-    font-size: 90%;
-    margin-top: 0.5rem;
-    a {
-      color: var(--sl-color-text-accent);
-    }
-  }
+/* Source URL as Starlight-style pill badge */
+.sl-container .source-url {
+  margin-top: 0.5rem;
+}
+
+/* hide the long URL text */
+.sl-container .source-url a {
+  font-size: 0;
+  text-decoration: none;
+}
+
+/* badge */
+.sl-container .source-url a::after {
+  content: "Source on GitHub";
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+
+  background: var(--sl-color-gray-6);   /* light neutral background */
+  color: var(--sl-color-gray-2);        /* readable text */
+
+  border: 1px solid var(--sl-color-gray-5);
+  transition: all 0.15s ease;
+}
+
+/* hover effect */
+.sl-container .source-url a:hover::after {
+  background: var(--sl-color-gray-7);
+  color: var(--sl-color-accent-high);
+  border-color: var(--sl-color-accent);
 }
 
 /* Display images in links inline (e.g. badges) */
