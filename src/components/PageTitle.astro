@@ -1,5 +1,6 @@
 ---
 import Default from '@astrojs/starlight/components/PageTitle.astro';
+import LastUpdated from 'virtual:starlight/components/LastUpdated';
 const { source } = Astro.locals.starlightRoute.entry.data;
 ---
 
@@ -8,3 +9,9 @@ const { source } = Astro.locals.starlightRoute.entry.data;
 {source && (
 <p class="source-url">Source: <a href={source}>{source}</a></p>
 )}
+<div class="metadata sl-flex">
+  {source && (
+    <a href={source} class="sl-flex">Source file</a>
+  )}
+  <LastUpdated />
+</div>
