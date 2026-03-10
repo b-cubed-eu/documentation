@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { remarkHeadingId } from 'remark-custom-heading-id';
+import remarkMath from 'remark-math';
+import rehypeMathJax from 'rehype-mathjax';
 
 // https://astro.build/config
 export default defineConfig({
@@ -75,6 +77,12 @@ export default defineConfig({
   },
   markdown: {
     gfm: true,
-    remarkPlugins: [remarkHeadingId]
+    remarkPlugins: [
+      remarkHeadingId,
+      remarkMath
+    ],
+    rehypePlugins: [
+      rehypeMathJax
+    ]
   }
 });
