@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import { remarkHeadingId } from 'remark-custom-heading-id';
 import remarkMath from 'remark-math';
 import rehypeMathJax from 'rehype-mathjax';
+import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
@@ -59,6 +60,9 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
       },
+      plugins: [
+        starlightImageZoom()
+      ],
     }),
   ],
   redirects: {
