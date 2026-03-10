@@ -40,17 +40,7 @@ export default defineConfig({
           label: 'Tutorials',
           autogenerate: { directory: 'tutorials' },
           collapsed: true,
-        },
-        // {
-        //   label: 'Training',
-        //   autogenerate: { directory: 'training' },
-        //   collapsed: true,
-        // },
-        // {
-        //   label: 'FAQ',
-        //   autogenerate: { directory: 'faq' },
-        //   collapsed: true,
-        // },
+        }
       ],
       components: {
         PageTitle: './src/components/PageTitle.astro',
