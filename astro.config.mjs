@@ -14,23 +14,6 @@ export default defineConfig({
       logo: {
         src: './src/assets/b3-logo.svg',
       },
-      customCss: [
-        './src/styles/custom.css',
-      ],
-      components: {
-        PageTitle: './src/components/PageTitle.astro',
-      },
-      head: [
-        {
-          tag: 'script',
-          attrs: {
-            src: '/js/matomo.js',
-          }
-        }
-      ],
-      editLink: {
-        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
-      },
       social: [
         {
           icon: 'github',
@@ -69,6 +52,23 @@ export default defineConfig({
         //   collapsed: true,
         // },
       ],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+      },
+      customCss: [
+        './src/styles/custom.css',
+      ],
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/js/matomo.js',
+          }
+        }
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
     }),
   ],
   redirects: {
