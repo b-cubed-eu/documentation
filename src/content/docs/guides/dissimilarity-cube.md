@@ -161,7 +161,3 @@ All analyses are fully scripted and version-controlled, with explicit handling o
 The Dissimilarity Cube provides a scale-explicit framework for analysing biodiversity turnover beyond pairwise comparisons. By integrating ζ-diversity, spatial modelling, and scenario analysis, it reveals **order-dependent ecological processes** and supports robust assessment of compositional change under global change.
 
 Future developments should prioritise improved bias correction, integration of land-use and dispersal constraints, and systematic comparisons across taxa, regions, and spatial grains.
-
-:::caution
-This guide is under active development. Content and examples may evolve.
-:::

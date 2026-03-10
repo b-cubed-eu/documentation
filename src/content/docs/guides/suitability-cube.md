@@ -127,7 +127,3 @@ Results reveal increasing environmental novelty and contracting Areas of Applica
 The Suitability Cube workflow is fully scripted, version-controlled, and based on open-source tools. All indicators are traceable back to raw inputs, supporting auditability and quality assurance. Future extensions may incorporate land-use predictors, additional temporal horizons, broader taxonomic coverage, and systematic comparisons across SDM algorithms and spatial resolutions.
 
 By embedding environmental applicability directly into SDM evaluation, Suitability Cubes provide a robust foundation for transparent biodiversity modelling under global change.
-
-:::caution
-This guide is under active development. Content and examples may evolve.
-:::

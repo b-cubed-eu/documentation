@@ -166,7 +166,3 @@ Quality assurance is enforced through standardised data schemas, explicit spatia
 The Invasibility Cube operationalises a trait-centred, community-aware approach to invasion risk assessment by explicitly integrating abiotic suitability, trait-mediated competition, and community saturation within a single analytical structure. This enables invasion outcomes to be interpreted mechanistically and mapped consistently across landscapes.
 
 Future developments should prioritise temporal dynamics, propagule pressure, alternative similarity kernels for crowding, explicit detection and sampling models, and scenario propagation under climate and land-use change. Repeated analyses through time will strengthen the cube’s role as a monitoring and decision-support tool for biodiversity management under global change.
-
-:::caution
-This guide is under active development. Content and examples may evolve.
-:::
