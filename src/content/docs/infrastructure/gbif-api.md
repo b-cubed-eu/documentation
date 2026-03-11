@@ -1,6 +1,5 @@
 ---
 title: GBIF SQL download API
-authors: Matt Blissett
 sidebar:
   order: 1
 ---
