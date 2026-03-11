@@ -226,7 +226,7 @@ siteImpact <- compute_impact_per_site(
 plot(x = siteImpact, region = southAfrica_sf, first_year = 2021)
 ```
 
-<img src="/software/impIndicator/man/figures/README-unnamed-chunk-13-1.png" alt="" width="100%" />
+<img src="/software/impIndicator/man/figures/README-unnamed-chunk-11-1.png" alt="" width="100%" />
 
 ### Overall impact indicators
 
@@ -251,14 +251,13 @@ impactIndicator <- compute_impact_indicator(
   ci_type = "perc",
   boot_args = list(seed = 123)
 )
-#> Error in `compute_impact_indicator()`:
-#> ! unused arguments (ci_type = "perc", boot_args = list(seed = 123))
+#> [1] "Performing whole-cube bootstrap."
 
 # Visualise impact indicator
 plot(impactIndicator, trend = "smooth")
-#> Error:
-#> ! object 'impactIndicator' not found
 ```
+
+<img src="/software/impIndicator/man/figures/README-unnamed-chunk-12-1.png" alt="" width="100%" />
 
 ### Species impact indicator
 
@@ -277,14 +276,12 @@ species_value <- compute_impact_per_species(
   method = "mean",
   ci_type = "none"
 )
-#> Error in `compute_impact_per_species()`:
-#> ! unused argument (ci_type = "none")
 
 # Visualise species impact
 plot(species_value)
-#> Error:
-#> ! object 'species_value' not found
 ```
+
+<img src="/software/impIndicator/man/figures/README-unnamed-chunk-13-1.png" alt="" width="100%" />
 
 ### Sensitivity analysis
 
@@ -307,29 +304,13 @@ calculation can be found here
 
 
 
-
-```
-#> Error in `compute_impact_indicator()`:
-#> ! unused argument (ci_type = "none")
-#> Error:
-#> ! object 'cv_results' not found
-#> Error:
-#> ! object 'cv_results' not found
-```
+<img src="/software/impIndicator/man/figures/README-unnamed-chunk-15-1.png" alt="" width="100%" />
 
 The above plot shows the RMSE of the impact indicator of Acacia species
 is South Africa. The figure indicates the values from the year 2019 are
 sensitive or dominated by some individual species in the indicator.
 
-
-```
-#> Error in `compute_impact_indicator()`:
-#> ! unused argument (ci_type = "none")
-#> Error:
-#> ! object 'original_estimates' not found
-#> Error:
-#> ! object 'cv_results' not found
-```
+<img src="/software/impIndicator/man/figures/README-unnamed-chunk-16-1.png" alt="" width="100%" />
 
 The above figure shows the impact indicator value and LOSO-CV Error of
 each species from the year 2017. The LOSO-CV indicates that the impact
