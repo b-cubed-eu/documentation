@@ -23,7 +23,7 @@ This tutorial will guide you through the three core steps of the b3gbi workflow:
 2. **Indicator Calculation**: Using indicator-specific wrapper functions.
 3. **Visualization**: Plotting the results as maps or time series using the generic `plot()` function.
 
-The package is publicly available at <https://www.github.com/b-cubed-eu/b3gbi>.
+
 
 ## Package Installation
 
@@ -89,21 +89,21 @@ denmark_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 30,985 × 15
-#>     year cellCode  kingdomKey kingdom  familyKey family     taxonKey scientificName   obs minCoordinateUncerta…¹ minTemporalUncertainty
-#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>         <dbl> <chr>          <dbl>                  <dbl>                  <dbl>
-#>  1  1980 E008N55CB          1 Animalia      5310 Phocidae    2434793 Phoca vitulina     1                      3                  86400
-#>  2  1980 E008N56BB          1 Animalia      5307 Mustelidae  5218987 Mustela nival…     1                   1000                  86400
-#>  3  1980 E008N57DC          1 Animalia      9361 Phocoenid…  2440669 Phocoena phoc…    27                   1000                  86400
-#>  4  1980 E009N55BB          1 Animalia      5722 Erinaceid…  5219616 Erinaceus eur…     1                     50                  86400
-#>  5  1980 E009N56BB          1 Animalia      9368 Vespertil…  5218507 Plecotus auri…     1                   1000                2678400
-#>  6  1980 E009N57DD          1 Animalia      9361 Phocoenid…  2440669 Phocoena phoc…     1                   1000                  86400
-#>  7  1980 E010N55AA          1 Animalia      5310 Phocidae    2434793 Phoca vitulina     1                      3                  86400
-#>  8  1980 E010N55AA          1 Animalia      5307 Mustelidae  5219019 Mustela ermin…     1                    930                  86400
-#>  9  1980 E010N55BB          1 Animalia      5310 Phocidae    2434793 Phoca vitulina     1                      3                  86400
-#> 10  1980 E010N56CB          1 Animalia      5307 Mustelidae  5218887 Martes foina       1                     92                  86400
+#>     year cellCode  kingdomKey kingdom  familyKey family           taxonKey scientificName     obs minCoordinateUncerta…¹
+#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>               <dbl> <chr>            <dbl>                  <dbl>
+#>  1  1980 E008N55CB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#>  2  1980 E008N56BB          1 Animalia      5307 Mustelidae        5218987 Mustela nivalis      1                   1000
+#>  3  1980 E008N57DC          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…    27                   1000
+#>  4  1980 E009N55BB          1 Animalia      5722 Erinaceidae       5219616 Erinaceus europ…     1                     50
+#>  5  1980 E009N56BB          1 Animalia      9368 Vespertilionidae  5218507 Plecotus auritus     1                   1000
+#>  6  1980 E009N57DD          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…     1                   1000
+#>  7  1980 E010N55AA          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#>  8  1980 E010N55AA          1 Animalia      5307 Mustelidae        5219019 Mustela erminea      1                    930
+#>  9  1980 E010N55BB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#> 10  1980 E010N56CB          1 Animalia      5307 Mustelidae        5218887 Martes foina         1                     92
 #> # ℹ 30,975 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
+#> # ℹ 5 more variables: minTemporalUncertainty <dbl>, familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
 ```
 
 The data itself is stored in a tibble within the object's `data` slot, and the rest is metadata.

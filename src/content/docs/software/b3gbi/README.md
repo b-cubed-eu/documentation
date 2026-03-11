@@ -77,4 +77,4 @@ plot(map_obs_rich_mammals, title = "Observed Species Richness: Mammals in Denmar
 
 <img src="/software/b3gbi/man/figures/README-example-1.png" alt="" width="100%" />
 
-For a more in-depth introduction, see the tutorial: https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html.
+For a more in-depth introduction, see [this tutorial](/software/b3gbi/b3gbi/).
