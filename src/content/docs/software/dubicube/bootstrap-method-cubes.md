@@ -2,7 +2,7 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-28
+lastUpdated: 2026-02-05
 sidebar:
   label: Bootstrapping data cubes
   order: 3
@@ -164,21 +164,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000 5.66e6      31 N         
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000 5.68e6      31 N         
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000 5.64e6      31 N         
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000 5.66e6      31 N         
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000 5.64e6      31 N         
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000 5.65e6      31 N         
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000 5.68e6      31 N         
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000 5.62e6      31 N         
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000 5.63e6      31 N         
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000 5.7 e6      31 N         
+#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
+#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
+#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
+#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
+#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
+#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
+#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
+#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
+#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
+#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
+#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
+#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 1 more variable: resolution <chr>
+#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
