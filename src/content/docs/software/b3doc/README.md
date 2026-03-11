@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'b3doc: Tools for the B-Cubed Documentation Website'
-lastUpdated: 2025-08-19
+lastUpdated: 2026-03-11
 sidebar:
   label: Introduction
   order: 1
