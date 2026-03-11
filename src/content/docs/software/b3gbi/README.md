@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes'
-lastUpdated: 2025-08-19
+lastUpdated: 2026-03-11
 sidebar:
   label: Introduction
   order: 1
@@ -55,37 +55,26 @@ Install **b3gbi** in R:
 ``` r
 install.packages("b3gbi", repos = c("https://b-cubed-eu.r-universe.dev", "https://cloud.r-project.org"))
 ```
+## Example: Three-Step Workflow
 
-You can install the development version from
-[GitHub](https://github.com/) with:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("b-cubed-eu/b3gbi")
-```
-
-## Example
-
-This is a basic example which shows you how to calculate and plot a map of species richness for a data cube containing GBIF occurrence data on amphibians in Europe:
+This basic example demonstrates the core workflow: preparing the data cube, calculating an indicator, and plotting the result as a spatial map of species richness for mammals in Denmark.
 
 
 ``` r
 # Load package
 library(b3gbi)
 
-# Load GBIF data cube
+# 1. Load and prepare the GBIF data cube
 cube_name <- system.file("extdata", "denmark_mammals_cube_eqdgc.csv", package = "b3gbi")
-
-# Prepare cube
 mammal_data <- process_cube(cube_name)
 
-# Calculate diversity metric
+# 2. Calculate a map of observed richness
 map_obs_rich_mammals <- obs_richness_map(mammal_data, level = "country", region = "Denmark", ne_scale = "medium")
 
-# Plot diversity metric
+# 3. Plot the indicator map
 plot(map_obs_rich_mammals, title = "Observed Species Richness: Mammals in Denmark")
 ```
 
-<img src="/software/b3gbi/man/figures/README-example-1.png" width="100%" />
+<img src="/software/b3gbi/man/figures/README-example-1.png" alt="" width="100%" />
 
 For a more in-depth introduction, see the tutorial: https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html.
