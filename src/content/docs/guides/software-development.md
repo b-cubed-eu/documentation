@@ -330,17 +330,40 @@ Versioning is built into git, where changes are expressed as commits. Try to cre
 
 Major and minor versions MUST have an associated GitHub release:
 
-1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
-2. Use the semantic version number for the tag (e.g. `0.1`, `1.1.1`)
+1. Follow the official GitHub documentation on [managing releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+2. Use the full semantic version number as the tag (e.g. `0.1.0`, `1.1.1`).
 
-Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
+Starting from release 1.0.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
 
 1. Log in to [Zenodo](https://zenodo.org/).
 2. Open the dropdown menu under your account name and select `GitHub`.
-3. Find your repository, and flip the toggle to `on`.
-4. Create a release on your GitHub repository. This will trigger a Zenodo publication.
+3. Find your repository and flip the toggle to `on`.
+4. Create a release on your GitHub repository. This automatically triggers a Zenodo deposition.
 
-Repository metadata is picked up from the `CITATION.cff` file (see [Add a CITATION.cff file](#repo-citation-cff)). Optionally, you can use a `.zenodo.json` file to define the metadata (see [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details).
+Zenodo retrieves repository metadata from the repository itself. If a `CITATION.cff` file is present (see [Add a CITATION.cff file](#repo-citation-cff)), Zenodo will use it to populate the record. In practice, however, this is not fully automated: after the release is created, you will typically still need to review and possibly update the Zenodo record manually, for example to add the correct Zenodo community (`b3`) or to verify funding and affiliation information.
+
+For most projects, this standard workflow is sufficient. If you prefer a fully automated and reproducible setup, you can additionally provide a `.zenodo.json` file in the root of the GitHub repository. This file allows you to define Zenodo-specific metadata directly in the repository so that the Zenodo record is configured automatically when the release is created.
+
+When using a `.zenodo.json` file, it must include the `b3` community and the correct grant ID (`101059592`). If the grant ID is missing or incorrect, the GitHub–Zenodo integration may fail silently.
+
+```json
+{
+  "communities": [
+    {
+      "identifier": "b3"
+    }
+  ],
+  "grants": [
+    {
+      "id": "101059592"
+    }
+  ]
+}
+```
+
+Further details on integrating GitHub and Zenodo using a `.zenodo.json` file are available in [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) and in the [Zenodo developer documentation](https://developers.zenodo.org/).
+
+Always verify the Zenodo record after the first release to ensure the integration behaves as expected.
 
 ### Data products {#versioning-data-products}
 
