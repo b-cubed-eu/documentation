@@ -188,6 +188,65 @@ ebvcube:
   - "# ebvcube package": ""
   dependencies: BiocManager rhdf5 DelayedArray HDF5Array terra ggplot2 tidyterra
 
+dissmapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/README.Rmd
+  title: "dissmapr: Compositional Dissimilarity and Biodiversity Turnover Analysis"
+  sidebar_label: Introduction
+  replace:
+  - "# dissmapr ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+  dependencies: dissmapr ggplot2 tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/1-setup.Rmd
+  sidebar_label: Setup
+  dependencies: dissmapr dplyr knitr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/2-grid.Rmd
+  sidebar_label: Define analysis grid
+  dependencies: dissmapr dplyr knitr sf terra ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/3-enviro.Rmd
+  sidebar_label: Get environmental site data
+  dependencies: dissmapr dplyr knitr geodata sf terra ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/4-zeta.Rmd
+  sidebar_label: Calculate Zeta diversity
+  dependencies: dissmapr dplyr knitr zetadiv ggplot2
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/5-zeta-workflow.Rmd
+  sidebar_label: Run Zeta-MSGDM workflow
+  dependencies: dissmapr dplyr knitr zetadiv ggplot2 sf
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/6-predict.Rmd
+  sidebar_label: Predict community turnover
+  dependencies: dissmapr dplyr knitr
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/7-bioregion.Rmd
+  sidebar_label: Map bioregions
+  dependencies: dissmapr dplyr knitr ggplot2 sf terra
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/8-change.Rmd
+  sidebar_label: Map bioregion change
+  dependencies: dissmapr dplyr knitr  ggplot2 sf terra
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/9-examples.Rmd
+  sidebar_label: Other 'orderwise' examples
+  dependencies: dissmapr dplyr knitr ggplot2 sf terra
+
+invasimapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/fREADME.Rmd
+  title: "invasimapr: Trait dispersion to assess species invasiveness and site invasibility"
+  sidebar_label: Key Concepts
+  replace:
+  - "# invasimapr ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
+  dependencies: invasimapr ggplot2 tidyr
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/introduction_1.Rmd
+  sidebar_label: Introduction
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/workflow_2.Rmd
+  sidebar_label: Step-by-step Workflow
+  dependencies: invasimapr dplyr knitr
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/clusters_3.Rmd
+  sidebar_label: Clustering and risk scenarios
+  dependencies: invasimapr dplyr knitr
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/synthesis_4.Rmd
+  sidebar_label: Invasion fitness synthesis
+  dependencies: invasimapr dplyr knitr
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/tutorial_5.Rmd
+  sidebar_label: Tutorial on computing invasion fitness
+  dependencies: invasimapr dplyr knitr
+  
 pdindicatoR:
 - source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
   title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
