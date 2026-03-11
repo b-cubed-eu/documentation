@@ -51,34 +51,83 @@ You can install the development version of suitabilitycube from GitHub with:
 
 ``` r
 install.packages("remotes")
-```
-
-```
-## 
-## The downloaded binary packages are in
-## 	/var/folders/3d/wszdkcfn7c13dcvcqy2h3y300000gn/T//RtmpuNljab/downloaded_packages
-```
-
-``` r
 remotes::install_github("b-cubed-eu/suitabilitycube")
-```
-
-```
-## Using GitHub PAT from the git credential store.
-```
-
-```
-## Skipping install of 'suitabilitycube' from a github remote, the SHA1 (15febac5) has not changed since last install.
-##   Use `force = TRUE` to force installation
 ```
 
 Then load the package
 
 
+``` r
+library(suitabilitycube)
+```
 
 Other packages needed
 
 
+``` r
+library(sf)
+```
+
+```
+## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
+```
+
+``` r
+library(tidyverse)
+library(terra)
+```
+
+```
+## terra 1.8.93
+```
+
+```
+## 
+## Attaching package: 'terra'
+```
+
+```
+## The following object is masked from 'package:knitr':
+## 
+##     spin
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+```
+
+``` r
+library(dismo)
+```
+
+```
+## Loading required package: raster
+```
+
+```
+## Loading required package: sp
+```
+
+```
+## 
+## Attaching package: 'raster'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+```
+
+``` r
+library(viridis)
+```
+
+```
+## Loading required package: viridisLite
+```
 
 
 ### Setup
@@ -156,12 +205,6 @@ bio_future_sel  <- bio_future[[vars_keep]]
 
 ## 3. GBIF occurrences --------------------------------------------------------
 occ_list <- gbif_occ_list(params$species, params$country_iso, params$gbif_years, params$gbif_limit)
-```
-
-```
-## Registered S3 method overwritten by 'data.table':
-##   method           from
-##   print.data.table
 ```
 
 <p align="center">
