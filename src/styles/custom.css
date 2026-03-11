@@ -28,17 +28,6 @@
   --sl-color-black: #ffffff;
 }
 
-/* Source URL */
-.sl-container {
-  .source-url {
-    font-size: 90%;
-    margin-top: 0.5rem;
-    a {
-      color: var(--sl-color-text-accent);
-    }
-  }
-}
-
 /* Markdown */
 .sl-markdown-content {
   a {

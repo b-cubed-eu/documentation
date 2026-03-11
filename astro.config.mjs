@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import { remarkHeadingId } from 'remark-custom-heading-id';
 import remarkMath from 'remark-math';
 import rehypeMathJax from 'rehype-mathjax';
+import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,23 +14,6 @@ export default defineConfig({
       title: 'B-Cubed documentation',
       logo: {
         src: './src/assets/b3-logo.svg',
-      },
-      customCss: [
-        './src/styles/custom.css',
-      ],
-      components: {
-        PageTitle: './src/components/PageTitle.astro',
-      },
-      head: [
-        {
-          tag: 'script',
-          attrs: {
-            src: '/js/matomo.js',
-          }
-        }
-      ],
-      editLink: {
-        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
       },
       social: [
         {
@@ -57,17 +41,27 @@ export default defineConfig({
           label: 'Tutorials',
           autogenerate: { directory: 'tutorials' },
           collapsed: true,
-        },
-        // {
-        //   label: 'Training',
-        //   autogenerate: { directory: 'training' },
-        //   collapsed: true,
-        // },
-        // {
-        //   label: 'FAQ',
-        //   autogenerate: { directory: 'faq' },
-        //   collapsed: true,
-        // },
+        }
+      ],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+      },
+      customCss: [
+        './src/styles/custom.css',
+      ],
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/js/matomo.js',
+          }
+        }
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
+      plugins: [
+        starlightImageZoom()
       ],
     }),
   ],
