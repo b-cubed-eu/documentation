@@ -1,0 +1,44 @@
+---
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+---
+
+<Default><slot /></Default>
+
+<div class="credit">
+  <div class="eu-funded">
+    <img src="/eu-flag.jpg" alt="EU flag">
+    <span>Funded by <br>the European Union</span>
+  </div>
+  
+  <p>
+    This site was created by B3 (<a href="https://b-cubed-eu">Biodiversity Building Blocks for policy</a>), which receives funding from the European Union’s Horizon Europe Research and Innovation Programme (ID No <a href="https://doi.org/10.3030/101059592">101059592</a>).
+  </p>
+</div>
+
+<style>
+  .credit {
+    color: var(--sl-color-text);
+    font-size: var(--sl-text-sm);
+    margin-top: auto;
+    a {
+      color: var(--sl-color-text);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--sl-color-white);
+    }
+    .eu-funded {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      margin: 1rem 0;
+      img {
+        max-height: 48px;
+      }
+      span {
+        font-weight: bold;
+        padding-left: 1rem;
+      }
+    }
+  }
+</style>
