@@ -146,9 +146,12 @@ b3gbi:
   replace:
   - "# b3gbi ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/b3gbi/logo.png"
+  - "the tutorial: https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html": "[this tutorial](/software/b3gbi/b3gbi/)"
 - source: https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd
   title: Get started
   sidebar_label: Get started
+  replace:
+  - "The package is publicly available at <https://www.github.com/b-cubed-eu/b3gbi>.": ""
 
 impIndicator:
 - source: https://raw.githubusercontent.com/b-cubed-eu/impIndicator/refs/heads/main/README.Rmd
@@ -197,7 +200,7 @@ pdindicatoR:
   - "# pdindicatoR ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
   dependencies: sf dplyr
-  
+
 vscube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
   title: "vscube: Virtual Suitability Cube"
