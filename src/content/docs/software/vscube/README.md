@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'vscube: Virtual Suitability Cube'
-lastUpdated: 2026-02-05
+lastUpdated: 2026-02-10
 sidebar:
   label: Introduction
   order: 1
@@ -25,16 +25,11 @@ Species Distribution Models (**SDMs**) are tools that use environmental and spec
 To facilitate the observation of suitability for multiple species over time and space, we developed a framework that uses **Data Cubes**, multidimensional arrays that organize data in a structured way. The goal of `vscube` is to outline the steps to create a stars object, which includes three dimensions: **time**, **space** (represented as grid cells), and **species**, with suitability as the main attribute. Stars objects can be sliced, aggregated along one of the dimensions, and analyzed, making them ideal for studying species suitability.
 
 
-
-
-
 ``` r
 # install.packages("remotes")
 # remotes::install_github("b-cubed-eu/vscube")
 
 ```
-
-
 
 ## Download WorldClim predictors for May (Netherlands)
 
@@ -48,7 +43,6 @@ It returns a list with three elements:
 * `$vars_kept`: a character vector with the successfully downloaded variables
 
 In this example we build May (`month = 5`) climatic predictors for the Netherlands (`"NLD"`).
-
 
 
 ``` r
@@ -84,7 +78,9 @@ str(cl_nld, max.level = 1)
 cl_nld$vars_kept
 #> [1] "tmin" "tmax" "prec" "tavg" "wind"
 ```
+
 ### First output: SpatRaster with predictors
+
 
 ``` r
 terra::plot(cl_nld$predictors, col = viridis(100))
@@ -136,11 +132,11 @@ ggplot(df_tmin, aes(x, y, fill = tmin)) +
 #> ℹ Consider using `geom_tile()` instead.
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-23-1.png" alt="" width="100%" />
+<img src="/software/vscube/man/figures/README-unnamed-chunk-14-1.png" alt="" width="100%" />
 
 ### Second output: stars data cube 
-A `stars` Data Cube with predictors as attributes and x, y, t as dimensions
 
+A `stars` Data Cube with predictors as attributes and x, y, t as dimensions
 
 
 ``` r
@@ -169,6 +165,7 @@ st_dimensions(cl_nld$stars)
 names(cl_nld$stars)
 #> [1] "tmin" "tmax" "prec" "tavg" "wind"
 ```
+
 ## Read and prepare occurrences
 
 Together with climatic predictors, occurrences are needed: `vsc_read_occurrences()` ingests a GBIF TSV/TXT and returns a cleaned data frame with the key columns (`scientificName`, `decimalLatitude`, `decimalLongitude`, `year`) filtered by year range and removing NAs.
@@ -192,7 +189,6 @@ head(occ)
 
 The example contains 5 species of flowers in Flanders. 
 
-
 ## Split occurrences by species
 
 After reading and cleaning the GBIF dataset with `vsc_read_occurrences()`, we can divide it into separate species datasets using `split_species_data()`.
@@ -213,8 +209,8 @@ names(sp_list)
 ```
 
 ## Train SDMs (MaxEnt) for multiple species
-The function `vsc_create_sdm_for_species_list()` trains a MaxEnt model for each species in your list (the output of `split_species_data()`), using a common stack of environmental predictors (e.g., the May predictors you built with `vsc_build_worldclim()`).
 
+The function `vsc_create_sdm_for_species_list()` trains a MaxEnt model for each species in your list (the output of `split_species_data()`), using a common stack of environmental predictors (e.g., the May predictors you built with `vsc_build_worldclim()`).
 
 The function: 
 
@@ -231,7 +227,6 @@ Returns a list with:
 * `$predictions`: suitability rasters (`SpatRaster`) for the training area (one per species).
 
 Note that this is not meant to have an ecological relevance: the purpose is to show the data cube structure with suitability values. 
-
 
 
 ``` r
@@ -263,8 +258,7 @@ names(sdms$models)[1:5]
 terra::plot(terra::rast(sdms$predictions), col = mako(100))
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-27-1.png" alt="" width="100%" />
-
+<img src="/software/vscube/man/figures/README-unnamed-chunk-18-1.png" alt="" width="100%" />
 
 ## Project trained models to a new area (same month/variables)
 
@@ -272,8 +266,6 @@ What this does:
 * Builds WorldClim predictors for the new target area (here: Belgium, May)
 * Applies each traine model to the new predictor stack
 * Returns a `stars` cube with attribute `suit` and dimension `species`.
-
-
 
 
 ``` r
@@ -305,7 +297,7 @@ pred_bel # stars object with attribute "suit"
 #> stars object with 3 dimensions and 1 attribute
 #> attribute(s):
 #>               Min.    1st Qu.    Median      Mean   3rd Qu.      Max.  NA's
-#> suit  1.914258e-11 0.05447042 0.1916771 0.2603388 0.4252165 0.9997836 67380
+#> suit  8.314893e-11 0.05599219 0.1969696 0.2659458 0.4346556 0.9994182 67380
 #> dimension(s):
 #>         from  to offset     delta refsys                                       values x/y
 #> x          1 480    2.5  0.008333 WGS 84                                         NULL [x]
@@ -314,6 +306,7 @@ pred_bel # stars object with attribute "suit"
 ```
 
 ## Aggregate species suitability into a polygon grid
+
 After predicting habitat suitability for each species over the new area (Belgium), we can summarize those high-resolution maps into a regular grid.
 This step serves three main purposes:
 
@@ -353,22 +346,16 @@ agg_bel <- aggregate_suitability(pred_bel, grid_bel, fun = mean)
 agg_bel
 #> stars object with 2 dimensions and 1 attribute
 #> attribute(s):
-#>                   Min.   1st Qu.    Median      Mean  3rd Qu.      Max.
-#> suitability  0.1217177 0.2892506 0.3617538 0.4141844 0.552128 0.8192915
+#>                   Min.   1st Qu.    Median     Mean   3rd Qu.     Max.
+#> suitability  0.1285719 0.2660415 0.3329749 0.414431 0.5659087 0.823852
 #> dimension(s):
-#>          from   to refsys point
-#> geometry    1 1200 WGS 84 FALSE
-#> species     1    5     NA    NA
-#>                                                                 values
-#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
-#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
+#>          from   to refsys point                                                        values
+#> geometry    1 1200 WGS 84 FALSE POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species     1    5     NA    NA                  Anemone nemorosa L.,...,Paris quadrifolia L.
 st_dimensions(agg_bel) 
-#>          from   to refsys point
-#> geometry    1 1200 WGS 84 FALSE
-#> species     1    5     NA    NA
-#>                                                                 values
-#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
-#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
+#>          from   to refsys point                                                        values
+#> geometry    1 1200 WGS 84 FALSE POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species     1    5     NA    NA                  Anemone nemorosa L.,...,Paris quadrifolia L.
 names(agg_bel)
 #> [1] "suitability"
 
@@ -376,7 +363,7 @@ names(agg_bel)
 vsc_plot_raster_with_grid(cl_bel$predictors[[1]], grid_bel)
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-30-1.png" alt="" width="100%" />
+<img src="/software/vscube/man/figures/README-unnamed-chunk-21-1.png" alt="" width="100%" />
 
 ## Inspect species suitability for a specific location
 
@@ -404,15 +391,15 @@ cell_id <- vsc_cell_id_for_point(grid_bel, lon = 4.3517, lat = 50.8503)
 df_long <- vsc_cell_suitability_long(agg_bel, cell_id)
 head(df_long)
 #>   cell                         species suitability
-#> 1  739             Anemone nemorosa L.   0.7682141
-#> 2  739 Chrysosplenium alternifolium L.   0.3264491
-#> 3  739                 Galium verum L.   0.3115535
-#> 4  739            Ophrys apifera Huds.   0.5521280
-#> 5  739            Paris quadrifolia L.   0.1573691
+#> 1  739             Anemone nemorosa L.   0.7447716
+#> 2  739 Chrysosplenium alternifolium L.   0.2984657
+#> 3  739                 Galium verum L.   0.3281477
+#> 4  739            Ophrys apifera Huds.   0.5573615
+#> 5  739            Paris quadrifolia L.   0.1596800
 
 # Quick plot of species profile for this cell
 p_cell <- vsc_plot_cell_suitability(df_long)
 p_cell
 ```
 
-<img src="/software/vscube/man/figures/README-unnamed-chunk-31-1.png" alt="" width="100%" />
+<img src="/software/vscube/man/figures/README-unnamed-chunk-22-1.png" alt="" width="100%" />
