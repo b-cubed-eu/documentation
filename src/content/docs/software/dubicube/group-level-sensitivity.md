@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
   markdown:
     wrap: sentence
-lastUpdated: 2026-02-05
+lastUpdated: 2026-03-17
 sidebar:
   label: Group-level sensitivity analysis
   order: 2
@@ -165,21 +165,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 280,184 × 13
-#>     year cellCode taxonKey scientificName      family    obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
-#>    <dbl> <chr>       <dbl> <chr>               <chr>   <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
-#>  1  2011 31UDS65   2474051 Alectoris rufa      Phasia…     1                    100      261414 460000 5.65e6      31
-#>  2  2011 31UDS65   2474377 Fulica atra         Rallid…     6                   1000      507437 460000 5.65e6      31
-#>  3  2011 31UDS65   2474831 Rallus aquaticus    Rallid…     1                   1000      507437 460000 5.65e6      31
-#>  4  2011 31UDS65   2478523 Picus viridis       Picidae     5                   3536      403587 460000 5.65e6      31
-#>  5  2011 31UDS65   2480242 Vanellus vanellus   Charad…     4                   1000      294808 460000 5.65e6      31
-#>  6  2011 31UDS65   2480332 Pluvialis apricaria Charad…     1                   1000      294808 460000 5.65e6      31
-#>  7  2011 31UDS65   2480482 Circus aeruginosus  Accipi…     2                   3536      855924 460000 5.65e6      31
-#>  8  2011 31UDS65   2480487 Circus cyaneus      Accipi…     9                   3536      855924 460000 5.65e6      31
-#>  9  2011 31UDS65   2480537 Buteo buteo         Accipi…     8                   3536      855924 460000 5.65e6      31
-#> 10  2011 31UDS65   2480637 Accipiter nisus     Accipi…     9                   3536      855924 460000 5.65e6      31
+#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
+#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
+#>  1  2011 31UDS65   2474051 Alectoris rufa   Phasi…     1                    100      261414 460000 5.65e6      31 N         
+#>  2  2011 31UDS65   2474377 Fulica atra      Ralli…     6                   1000      507437 460000 5.65e6      31 N         
+#>  3  2011 31UDS65   2474831 Rallus aquaticus Ralli…     1                   1000      507437 460000 5.65e6      31 N         
+#>  4  2011 31UDS65   2478523 Picus viridis    Picid…     5                   3536      403587 460000 5.65e6      31 N         
+#>  5  2011 31UDS65   2480242 Vanellus vanell… Chara…     4                   1000      294808 460000 5.65e6      31 N         
+#>  6  2011 31UDS65   2480332 Pluvialis apric… Chara…     1                   1000      294808 460000 5.65e6      31 N         
+#>  7  2011 31UDS65   2480482 Circus aerugino… Accip…     2                   3536      855924 460000 5.65e6      31 N         
+#>  8  2011 31UDS65   2480487 Circus cyaneus   Accip…     9                   3536      855924 460000 5.65e6      31 N         
+#>  9  2011 31UDS65   2480537 Buteo buteo      Accip…     8                   3536      855924 460000 5.65e6      31 N         
+#> 10  2011 31UDS65   2480637 Accipiter nisus  Accip…     9                   3536      855924 460000 5.65e6      31 N         
 #> # ℹ 280,174 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
+#> # ℹ 1 more variable: resolution <chr>
 ```
 
 ### Analysis of the data
@@ -246,8 +246,7 @@ It relies on the following arguments:
     Logical flag to show a progress bar.
     Set to `TRUE` to enable progress reporting; default is `FALSE`.
 
-
-``` r
+```r
 cv_results <- cross_validate_cube(
   data_cube = processed_cube,
   fun = mean_obs,
@@ -257,22 +256,24 @@ cv_results <- cross_validate_cube(
 ```
 
 
+
+
 ``` r
 head(cv_results)
-#>   id_cv year taxonkey_out   rep_cv est_original       error     sq_error  abs_error    rel_error perc_error
-#> 1     1 2011      2474051 48.85551     48.83864  0.01686866 0.0002845518 0.01686866 0.0003453959 0.03453959
-#> 2     2 2011      2474377 48.49272     48.83864 -0.34592150 0.1196616847 0.34592150 0.0070829473 0.70829473
-#> 3     3 2011      2474831 48.91447     48.83864  0.07583503 0.0057509524 0.07583503 0.0015527672 0.15527672
-#> 4     4 2011      2478523 48.66861     48.83864 -0.17002678 0.0289091060 0.17002678 0.0034813989 0.34813989
-#> 5     5 2011      2480242 48.56884     48.83864 -0.26979464 0.0727891466 0.26979464 0.0055242048 0.55242048
-#> 6     6 2011      2480332 48.97265     48.83864  0.13401280 0.0179594315 0.13401280 0.0027439914 0.27439914
-#>           mre        mse      rmse
-#> 1 0.001122516 0.03544285 0.1882627
-#> 2 0.001122516 0.03544285 0.1882627
-#> 3 0.001122516 0.03544285 0.1882627
-#> 4 0.001122516 0.03544285 0.1882627
-#> 5 0.001122516 0.03544285 0.1882627
-#> 6 0.001122516 0.03544285 0.1882627
+#>   id_cv year taxonkey_out   rep_cv est_original       error     sq_error  abs_error    rel_error perc_error         mre
+#> 1     1 2011      2474051 48.85551     48.83864  0.01686866 0.0002845518 0.01686866 0.0003453959 0.03453959 0.001122516
+#> 2     2 2011      2474377 48.49272     48.83864 -0.34592150 0.1196616847 0.34592150 0.0070829473 0.70829473 0.001122516
+#> 3     3 2011      2474831 48.91447     48.83864  0.07583503 0.0057509524 0.07583503 0.0015527672 0.15527672 0.001122516
+#> 4     4 2011      2478523 48.66861     48.83864 -0.17002678 0.0289091060 0.17002678 0.0034813989 0.34813989 0.001122516
+#> 5     5 2011      2480242 48.56884     48.83864 -0.26979464 0.0727891466 0.26979464 0.0055242048 0.55242048 0.001122516
+#> 6     6 2011      2480332 48.97265     48.83864  0.13401280 0.0179594315 0.13401280 0.0027439914 0.27439914 0.001122516
+#>          mse      rmse
+#> 1 0.03544285 0.1882627
+#> 2 0.03544285 0.1882627
+#> 3 0.03544285 0.1882627
+#> 4 0.03544285 0.1882627
+#> 5 0.03544285 0.1882627
+#> 6 0.03544285 0.1882627
 ```
 
 The RMSE is an average error measure we obtain for each year.
@@ -291,7 +292,7 @@ ggplot(cv_results, aes(x = as.factor(year))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/group-level-sensitivity-unnamed-chunk-9-1.png" alt="RMSE for mean number of occurrences over time."  />
+<img src="/software/dubicube/group-level-sensitivity-unnamed-chunk-9-1.png" alt="RMSE for mean number of occurrences over time." width="100%" />
 
 Indeed, looking at the individual error values reveals similar patterns for every year.
 The species with taxon key 2481174 has an error of -2 in year 2011. This means that without this species the average number of occurrences per grid cell would be 2 units lower than the estimate based on the full dataset (in this case around 46.8 instead of 48.8).
@@ -321,7 +322,7 @@ ggplot(cv_results, aes(x = as.factor(year))) +
   theme(legend.position = "")
 ```
 
-<img src="/software/dubicube/group-level-sensitivity-unnamed-chunk-10-1.png" alt="Species errors for mean number of occurrences over time."  />
+<img src="/software/dubicube/group-level-sensitivity-unnamed-chunk-10-1.png" alt="Species errors for mean number of occurrences over time." width="100%" />
 
 There are two species that have a big effect on the calculation of our statistic.
 
@@ -354,7 +355,7 @@ As stated in the documentation, it is also possible to cross-validate over a dat
 In this case, set the argument `processed_cube = FALSE`.
 This is implemented allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
 
-``` r
+```r
 cv_results_df <- cross_validate_cube(
   data_cube = processed_cube$data,      # data.frame object
   fun = mean_obs,

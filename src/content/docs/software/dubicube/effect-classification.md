@@ -2,7 +2,7 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-03-17
 sidebar:
   label: Effect classification
   order: 6
@@ -246,7 +246,7 @@ ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/effect-classification-unnamed-chunk-6-1.png" alt="Visualising coarse effect classification."  />
+<img src="/software/dubicube/effect-classification-unnamed-chunk-6-1.png" alt="Visualising coarse effect classification." width="100%" />
 
 The plot below provides a more detailed view using the **fine-grained** classification.
 
@@ -263,4 +263,4 @@ ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/effect-classification-unnamed-chunk-7-1.png" alt="Visualising fine effect classification."  />
+<img src="/software/dubicube/effect-classification-unnamed-chunk-7-1.png" alt="Visualising fine effect classification." width="100%" />

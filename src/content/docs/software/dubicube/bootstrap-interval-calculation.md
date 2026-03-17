@@ -2,7 +2,7 @@
 title: Calculating bootstrap confidence intervals
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-03-17
 sidebar:
   label: Bootstrap confidence intervals
   order: 4
@@ -138,16 +138,6 @@ b3data_package <- read_package(
 
 # Load bird cube data
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
-head(bird_cube_belgium)
-#> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -155,8 +145,7 @@ First, we select 2000 random rows to make the dataset smaller.
 This is to reduce the computation time for this tutorial.
 We select the data from 2011 - 2020.
 
-
-``` r
+```r
 set.seed(123)
 
 # Make dataset smaller
@@ -171,6 +160,12 @@ processed_cube <- process_cube(
   cols_occurrences = "n"
 )
 processed_cube
+```
+
+
+
+
+```
 #> 
 #> Processed data cube for calculating biodiversity indicators
 #> 
@@ -191,21 +186,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
-#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
-#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
-#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
-#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
-#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
-#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
-#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
-#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
-#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
-#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
-#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
+#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
+#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus  Cucul…    11                   3536       67486 650000 5.66e6      31 N         
+#>  2  2011 31UES28   5739317 Phoenicurus pho… Musci…     6                   3536      610513 520000 5.68e6      31 N         
+#>  3  2011 31UFS64   6065824 Chroicocephalus… Larid…   143                   1000     2612978 660000 5.64e6      31 N         
+#>  4  2011 31UFS96   2492576 Muscicapa stria… Musci…     3                   3536      610513 690000 5.66e6      31 N         
+#>  5  2011 31UES04   5231198 Passer montanus  Passe…     1                   3536      175872 500000 5.64e6      31 N         
+#>  6  2011 31UES85   5229493 Garrulus glanda… Corvi…    23                    707      816442 580000 5.65e6      31 N         
+#>  7  2011 31UES88  10124612 Anser anser x B… Anati…     1                    100     2709975 580000 5.68e6      31 N         
+#>  8  2011 31UES22   2481172 Larus marinus    Larid…     8                   1000     2612978 520000 5.62e6      31 N         
+#>  9  2011 31UFS43   2481139 Larus argentatus Larid…    10                   3536     2612978 640000 5.63e6      31 N         
+#> 10  2011 31UFT00   9274012 Spatula querque… Anati…     8                   3536     2709975 600000 5.7 e6      31 N         
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
+#> # ℹ 1 more variable: resolution <chr>
 ```
 
 ### Analysis of the data
@@ -217,8 +212,8 @@ We create a function to calculate this.
 
 
 ``` r
-# Function to calculate statistic of interest
-# Mean number of observations per grid cell per year
+# Function to calculate the statistic of interest
+# Mean observations per grid cell per year
 mean_obs <- function(data) {
   data %>%
     dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
@@ -253,8 +248,7 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 
 We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 
-
-``` r
+```r
 bootstrap_results <- bootstrap_cube(
   data_cube = processed_cube,
   fun = mean_obs,
@@ -262,6 +256,12 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+```
+
+
+
+
+```
 #> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
 
@@ -379,7 +379,7 @@ bootstrap_results_df %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-13-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-15-1.png" alt="Confidence intervals for mean number of occurrences over time." width="100%" />
 
 See the [visualising temporal trends tutorial](https://docs.b-cubed.eu/software/dubicube/visualising-temporal-trends/) for information on which interval types should be calculated and/or reported and how temporal trends can be visualised.
 
@@ -510,7 +510,7 @@ bootstrap_results_ref %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-19-1.png" alt="Confidence intervals for mean number of occurrences over time (ref)."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-21-1.png" alt="Confidence intervals for mean number of occurrences over time (ref)." width="100%" />
 
 Note that the choice of the reference year should be well considered.
 Keep in mind which comparisons should be made, and what the motivation is behind the reference period.
@@ -666,7 +666,7 @@ bootstrap_results_evenness_df %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-27-1.png" alt="Confidence intervals for evenness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-29-1.png" alt="Confidence intervals for evenness over time." width="100%" />
 
 We notice that the normal and basic intervals have limits larger than 1 which is an impossible value for evenness.
 This is because their intervals are symmetrical around $\hat{\theta} - \text{Bias}_{\text{boot}}$.
@@ -743,7 +743,7 @@ bootstrap_results_evenness_df %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-31-1.png" alt="Confidence intervals for evenness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-33-1.png" alt="Confidence intervals for evenness over time." width="100%" />
 
 Now we see that all the intervals fall within the expected range.
 
@@ -849,7 +849,7 @@ bootstrap_results_richness %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-38-1.png" alt="Confidence intervals for richness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-40-1.png" alt="Confidence intervals for richness over time." width="100%" />
 
 This issue arises because bootstrap resampling cannot introduce new species that were not present in the original sample (Dixon, [2001, p. 287](https://doi.org/10.1093/oso/9780195131871.003.0014)).
 As a result, the observed species richness — which is simply the count of unique species — tends to be negatively biased in bootstrap replicates.
@@ -917,7 +917,7 @@ bootstrap_results_richness %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-41-1.png" alt="Confidence intervals for richness over time."  />
+<img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-43-1.png" alt="Confidence intervals for richness over time." width="100%" />
 
 ## References
 <!-- spell-check: ignore:start -->

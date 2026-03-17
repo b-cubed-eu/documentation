@@ -2,7 +2,7 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-03-17
 sidebar:
   label: Visualising spatial trends
   order: 8
@@ -100,21 +100,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 2,391 × 13
-#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
-#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
-#>  1  2000 31UES44   2481714 Tringa totanus       Scolo…     1                   3536      680179 540000 5.64e6      31
-#>  2  2000 31UFS05   2481740 Calidris temminckii  Scolo…     3                   3536      680179 600000 5.65e6      31
-#>  3  2000 31UES43   2492943 Sylvia communis      Sylvi…     8                   1414      341890 540000 5.63e6      31
-#>  4  2000 31UES44   5739317 Phoenicurus phoenic… Musci…    10                   1000      610513 540000 5.64e6      31
-#>  5  2000 31UFS63   2481700 Scolopax rusticola   Scolo…     1                   3536      680179 660000 5.63e6      31
-#>  6  2000 31UFS74   5845582 Chloris chloris      Fring…     3                   3536      762066 670000 5.64e6      31
-#>  7  2000 31UFS65   2492960 Sylvia curruca       Sylvi…     7                   3536      341890 660000 5.65e6      31
-#>  8  2000 31UFS07   2493091 Phylloscopus collyb… Phyll…    19                   1414      347345 600000 5.67e6      31
-#>  9  2000 31UDS86   2489214 Delichon urbicum     Hirun…     3                   3536      200242 480000 5.66e6      31
-#> 10  2000 31UES85   2473958 Perdix perdix        Phasi…     9                   1414      261414 580000 5.65e6      31
+#>     year cellCode taxonKey scientificName   family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere
+#>    <dbl> <chr>       <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>     
+#>  1  2000 31UES44   2481714 Tringa totanus   Scolo…     1                   3536      680179 540000 5.64e6      31 N         
+#>  2  2000 31UFS05   2481740 Calidris temmin… Scolo…     3                   3536      680179 600000 5.65e6      31 N         
+#>  3  2000 31UES43   2492943 Sylvia communis  Sylvi…     8                   1414      341890 540000 5.63e6      31 N         
+#>  4  2000 31UES44   5739317 Phoenicurus pho… Musci…    10                   1000      610513 540000 5.64e6      31 N         
+#>  5  2000 31UFS63   2481700 Scolopax rustic… Scolo…     1                   3536      680179 660000 5.63e6      31 N         
+#>  6  2000 31UFS74   5845582 Chloris chloris  Fring…     3                   3536      762066 670000 5.64e6      31 N         
+#>  7  2000 31UFS65   2492960 Sylvia curruca   Sylvi…     7                   3536      341890 660000 5.65e6      31 N         
+#>  8  2000 31UFS07   2493091 Phylloscopus co… Phyll…    19                   1414      347345 600000 5.67e6      31 N         
+#>  9  2000 31UDS86   2489214 Delichon urbicum Hirun…     3                   3536      200242 480000 5.66e6      31 N         
+#> 10  2000 31UES85   2473958 Perdix perdix    Phasi…     9                   1414      261414 580000 5.65e6      31 N         
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
+#> # ℹ 1 more variable: resolution <chr>
 ```
 
 ### Analysis of the data
@@ -212,7 +212,7 @@ head(ci_mean_obs)
 #> 1  31UDS65     3.285714     norm  1.553808  5.061621 0.95
 #> 2  31UDS65     3.285714    basic  1.287529  4.785714 0.95
 #> 3  31UDS65     3.285714     perc  1.785714  5.283900 0.95
-#> 4  31UDS65     3.285714      bca  2.000000  6.513062 0.95
+#> 4  31UDS65     3.285714      bca  2.071429  6.957425 0.95
 #> 5  31UDS66    10.333333     norm -1.740367 22.170101 0.95
 #> 6  31UDS66    10.333333    basic -3.064973 18.200000 0.95
 ```
@@ -251,7 +251,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-13-1.png" alt="Estimates for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-13-1.png" alt="Estimates for mean number of occurrences per grid cell." width="100%" />
 
 
 ``` r
@@ -267,7 +267,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-14-1.png" alt="Lower CI's for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-14-1.png" alt="Lower CI's for mean number of occurrences per grid cell." width="100%" />
 
 
 ``` r
@@ -283,7 +283,7 @@ bca_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-15-1.png" alt="Upper CI's for mean number of occurrences per grid cell."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-15-1.png" alt="Upper CI's for mean number of occurrences per grid cell." width="100%" />
 
 If we want to visualise estimates and uncertainty in a single figure, we need a good uncertainty measure.
 One straightforward option is the width of the confidence interval (CI):
@@ -342,7 +342,7 @@ st_centroid(bca_mean_obs) %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-16-1.png" alt="Spatial uncertainty using transparency."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-16-1.png" alt="Spatial uncertainty using transparency." width="100%" />
 
 To make the visualisation even more clear, we can also vary size based on the uncertainty measure.
 Size can be scaled using the `scale_size()` function from **ggplot2**.
@@ -371,7 +371,7 @@ st_centroid(bca_mean_obs) %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-17-1.png" alt="Spatial uncertainty using transparency and size."  />
+<img src="/software/dubicube/visualising-spatial-trends-unnamed-chunk-17-1.png" alt="Spatial uncertainty using transparency and size." width="100%" />
 
 ### Blurriness
 
