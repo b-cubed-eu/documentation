@@ -7,7 +7,7 @@ sidebar:
 
 This tutorial provides an introduction to Generalized Dissimilarity Modelling (GDM) in R, focusing on data preparation, environmental gradient analysis, and community dissimilarity assessment using core geospatial and ecological modelling libraries.
 
-Suggested citation:
+## How to cite
 
 > MacFadyen S (2024). An introduction to species distribution modelling in R. <https://docs.b-cubed.eu/tutorials/species-distribution-modelling-r/>
 

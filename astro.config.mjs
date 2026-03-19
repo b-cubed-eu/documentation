@@ -2,6 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { remarkHeadingId } from 'remark-custom-heading-id';
+import remarkMath from 'remark-math';
+import rehypeMathJax from 'rehype-mathjax';
+import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,23 +15,13 @@ export default defineConfig({
       logo: {
         src: './src/assets/b3-logo.svg',
       },
-      customCss: [
-        './src/styles/custom.css',
-      ],
-      head: [
+      social: [
         {
-          tag: 'script',
-          attrs: {
-            src: '/js/matomo.js',
-          }
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/b-cubed-eu/documentation/'
         }
       ],
-      editLink: {
-        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
-      },
-      social: {
-        github: 'https://github.com/b-cubed-eu/documentation/',
-      },
       sidebar: [
         {
           label: 'Guides',
@@ -48,17 +41,28 @@ export default defineConfig({
           label: 'Tutorials',
           autogenerate: { directory: 'tutorials' },
           collapsed: true,
-        },
-        // {
-        //   label: 'Training',
-        //   autogenerate: { directory: 'training' },
-        //   collapsed: true,
-        // },
-        // {
-        //   label: 'FAQ',
-        //   autogenerate: { directory: 'faq' },
-        //   collapsed: true,
-        // },
+        }
+      ],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
+      },
+      customCss: [
+        './src/styles/custom.css',
+      ],
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/js/matomo.js',
+          }
+        }
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
+      },
+      plugins: [
+        starlightImageZoom()
       ],
     }),
   ],
@@ -68,6 +72,12 @@ export default defineConfig({
   },
   markdown: {
     gfm: true,
-    remarkPlugins: [remarkHeadingId]
+    remarkPlugins: [
+      remarkHeadingId,
+      remarkMath
+    ],
+    rehypePlugins: [
+      rehypeMathJax
+    ]
   }
 });

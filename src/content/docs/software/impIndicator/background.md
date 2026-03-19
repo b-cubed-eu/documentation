@@ -2,7 +2,7 @@
 title: Background
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Background} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
-lastUpdated: 2025-07-10
+lastUpdated: 2026-03-11
 sidebar:
   label: Background
   order: 2
