@@ -338,13 +338,12 @@ Starting from release 1.0, authors MUST also publish their releases on Zenodo. Z
 1. Log in to [Zenodo](https://zenodo.org/).
 2. Open the dropdown menu under your account name and select `GitHub`.
 3. Find your repository and flip the toggle to `on`.
-4. Create a release on your GitHub repository. This automatically triggers a Zenodo deposition.
+4. Create a release on your GitHub repository. This will automatically trigger a Zenodo deposit.
 
-Zenodo retrieves repository metadata from the repository itself. If a `CITATION.cff` file is present (see [Add a CITATION.cff file](#repo-citation-cff)), Zenodo will use it to populate the record. In practice, however, this is not fully automated: after the release is created, you will typically still need to review and possibly update the Zenodo record manually, for example to add the correct Zenodo community (`b3`) or to verify funding and affiliation information.
+By default, Zenodo will use the repository metadata to populate the deposit metadata. This will be of limited quality (e.g. GitHub usernames as author names). If a `CITATION.cff` file is present (see [Add a CITATION.cff file](#repo-citation-cff)), Zenodo will use that to populate the metadata. This will be of much higher quality, but you will typically have to review and update some properties manually on Zenodo, such as adding funding information, updating author affiliation to ROR-linked entries, updating the notes to the changelog and adding the deposit to the [B-Cubed](https://zenodo.org/communities/b3) community.
 
-For most projects, this standard workflow is sufficient. If you prefer a fully automated and reproducible setup, you can additionally provide a `.zenodo.json` file in the root of the GitHub repository. This file allows you to define Zenodo-specific metadata directly in the repository so that the Zenodo record is configured automatically when the release is created.
 
-When using a `.zenodo.json` file, it must include the `b3` community and the correct grant ID (`101059592`). If the grant ID is missing or incorrect, the GitHub–Zenodo integration may fail silently.
+If you prefer to fully automate the setup, you can add a `.zenodo.json` file in the root of the repository. In this file you can define Zenodo-specific metadata that will be used when a release is created. Note that for B-Cubed software, you must include the `b3` community and the `101059592` grant ID, otherwise the GitHub–Zenodo integration will silently fail:
 
 ```json
 {
