@@ -342,6 +342,9 @@ Starting from release 1.0, authors MUST also publish their releases on Zenodo. Z
 
 By default, Zenodo will use the repository metadata to populate the deposit metadata. This will be of limited quality (e.g. GitHub usernames as author names). If a `CITATION.cff` file is present (see [Add a CITATION.cff file](#repo-citation-cff)), Zenodo will use that to populate the metadata. This will be of much higher quality, but you will typically have to review and update some properties manually on Zenodo, such as adding funding information, updating author affiliation to ROR-linked entries, updating the notes to the changelog and adding the deposit to the [B-Cubed](https://zenodo.org/communities/b3) community.
 
+:::note
+See the [b3doc R package](https://doi.org/10.5281/zenodo.16910268) as an example of a well-documented Zenodo deposit.
+:::
 
 If you prefer to fully automate the setup, you can add a `.zenodo.json` file in the root of the repository. In this file you can define Zenodo-specific metadata that will be used when a release is created. Note that for B-Cubed software, you must include the `b3` community and the `101059592` grant ID, otherwise the GitHub–Zenodo integration will silently fail:
 
