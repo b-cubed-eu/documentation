@@ -330,10 +330,10 @@ Versioning is built into git, where changes are expressed as commits. Try to cre
 
 Major and minor versions MUST have an associated GitHub release:
 
-1. Follow the official GitHub documentation on [managing releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
-2. Use the full semantic version number as the tag (e.g. `0.1.0`, `1.1.1`).
+1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
+2. Use the semantic version number as the tag (e.g. `0.1`, `1.1.1`).
 
-Starting from release 1.0.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
+Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
 
 1. Log in to [Zenodo](https://zenodo.org/).
 2. Open the dropdown menu under your account name and select `GitHub`.
