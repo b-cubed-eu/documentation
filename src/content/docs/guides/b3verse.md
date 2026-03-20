@@ -2,7 +2,7 @@
 title: "b3verse: A collection of R packages to work with occurrence cubes"
 sidebar:
   label: b3verse
-  order: 6
+  order: 7
 knit: (function(inputFile, ...) {
   knitr::knit(
     input = inputFile,
@@ -25,7 +25,7 @@ Explore the [b3verse website](https://b-cubed-eu.r-universe.dev/).
 
 This guide provides an overview of the integration and maintenance of R packages designed for working with occurrence cubes.
 
-Suggestion citation:
+## How to cite
 
 > Langeraert W, Desmet P, Van Daele T (2026). b3verse: A collection of R packages to work with occurrence cubes. Version 1.0. <https://docs.b-cubed.eu/guides/b3verse/>
 

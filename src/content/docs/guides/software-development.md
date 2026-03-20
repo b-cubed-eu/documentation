@@ -1,13 +1,13 @@
 ---
 title: B-Cubed software development guide
 sidebar:
-  label: Software development guide
+  label: Software development
   order: 2
 ---
 
 This guide specifies high-level requirements for software, computational tools and resources developed for B-Cubed (referred to in the sections as "software") to ensure that the produced software meets the intended quality, openness, portability and reusability.
 
-Suggestion citation:
+## How to cite
 
 > Huybrechts P, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
 
@@ -331,16 +331,41 @@ Versioning is built into git, where changes are expressed as commits. Try to cre
 Major and minor versions MUST have an associated GitHub release:
 
 1. Follow the [Manage releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) instructions.
-2. Use the semantic version number for the tag (e.g. `0.1`, `1.1.1`)
+2. Use the semantic version number as the tag (e.g. `0.1`, `1.1.1`).
 
 Starting from release 1.0, authors MUST also publish their releases on Zenodo. Zenodo and GitHub are integrated, allowing this publication to be automated:
 
 1. Log in to [Zenodo](https://zenodo.org/).
 2. Open the dropdown menu under your account name and select `GitHub`.
-3. Find your repository, and flip the toggle to `on`.
-4. Create a release on your GitHub repository. This will trigger a Zenodo publication.
+3. Find your repository and flip the toggle to `on`.
+4. Create a release on your GitHub repository. This will automatically trigger a Zenodo deposit.
 
-Repository metadata is picked up from the `CITATION.cff` file (see [Add a CITATION.cff file](#repo-citation-cff)). Optionally, you can use a `.zenodo.json` file to define the metadata (see [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) for details).
+By default, Zenodo will use the repository metadata to populate the deposit metadata. This will be of limited quality (e.g. GitHub usernames as author names). If a `CITATION.cff` file is present (see [Add a CITATION.cff file](#repo-citation-cff)), Zenodo will use that to populate the metadata. This will be of much higher quality, but you will typically have to review and update some properties manually on Zenodo, such as adding funding information, updating author affiliation to ROR-linked entries, updating the notes to the changelog and adding the deposit to the [B-Cubed](https://zenodo.org/communities/b3) community.
+
+:::note
+See the [b3doc R package](https://doi.org/10.5281/zenodo.16910268) as an example of a well-documented Zenodo deposit.
+:::
+
+If you prefer to fully automate the setup, you can add a `.zenodo.json` file in the root of the repository. In this file you can define Zenodo-specific metadata that will be used when a release is created. Note that for B-Cubed software, you must include the `b3` community and the `101059592` grant ID, otherwise the GitHub–Zenodo integration will silently fail:
+
+```json
+{
+  "communities": [
+    {
+      "identifier": "b3"
+    }
+  ],
+  "grants": [
+    {
+      "id": "101059592"
+    }
+  ]
+}
+```
+
+Further details on integrating GitHub and Zenodo using a `.zenodo.json` file are available in [this tutorial](https://inbo.github.io/tutorials/tutorials/git_zenodo/) and in the [Zenodo developer documentation](https://developers.zenodo.org/).
+
+Always verify the Zenodo record after the first release to ensure the integration behaves as expected.
 
 ### Data products {#versioning-data-products}
 

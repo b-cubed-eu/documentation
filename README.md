@@ -24,7 +24,7 @@ The site contains two types of pages/tutorials: **source pages** and **external 
 
 Source pages are maintained in this repository. Follow these steps to update:
 
-1. Browse to the markdown file for the page (in [`src/content/docs`](src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on the website.
+1. Browse to the markdown file for the page (in [`src/content/docs/<page-type>/`](src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on the website.
 2. Make changes in the markdown file (either in your browser or locally).
 3. Commit your changes to a new branch (and push).
 4. Create a pull request and assign a reviewer.
