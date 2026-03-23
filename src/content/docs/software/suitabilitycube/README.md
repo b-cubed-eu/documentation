@@ -62,40 +62,26 @@ Other packages needed
 
 ``` r
 library(sf)
-```
-
-```
-## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
-```
-
-``` r
 library(tidyverse)
-```
-
-```
-## ── Attaching core tidyverse packages ──────────────────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.2.0     ✔ readr     2.2.0
-## ✔ forcats   1.0.1     ✔ stringr   1.6.0
-## ✔ ggplot2   4.0.2     ✔ tibble    3.3.1
-## ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-```
-
-```
-## ── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-``` r
 library(terra)
 ```
 
 ```
 ## terra 1.9.1
+```
+
+```
 ## 
 ## Attaching package: 'terra'
+```
+
+```
+## The following object is masked from 'package:knitr':
 ## 
+##     spin
+```
+
+```
 ## The following object is masked from 'package:tidyr':
 ## 
 ##     extract
@@ -107,10 +93,18 @@ library(dismo)
 
 ```
 ## Loading required package: raster
+```
+
+```
 ## Loading required package: sp
+```
+
+```
 ## 
 ## Attaching package: 'raster'
-## 
+```
+
+```
 ## The following object is masked from 'package:dplyr':
 ## 
 ##     select
@@ -202,12 +196,6 @@ bio_future_sel  <- bio_future[[vars_keep]]
 occ_list <- gbif_occ_list(params$species, params$country_iso, params$gbif_years, params$gbif_limit)
 ```
 
-```
-## Registered S3 method overwritten by 'data.table':
-##   method           from
-##   print.data.table
-```
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/plot_zoom_png%20-%202025-11-18T122427.415.png" alt="cube" width="800"><br>
   <em> Climatic variables </em>
@@ -287,10 +275,10 @@ print(data_cube)
 ## DI      0.000    0.2667322    0.430247    0.4886862    0.6315494    3.36364 11691
 ## HV   1472.595 1472.5946544 1915.109350 1776.2096349 1940.9249007 1940.92490  8232
 ## dimension(s):
-##       from   to refsys point                                                        values
-## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
-## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     1    2     NA    NA                                              present, future
+##       from   to refsys point       values
+## cell     1 2744 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     1    2     NA    NA present,....
 ```
 
 ### Basic usage
@@ -357,10 +345,10 @@ data_cube[,1361, , 1]
 ## DI      0.1114808    0.2776988    0.4439167    0.3430515    0.4588369    0.4737571
 ## HV   1472.5946544 1693.8520020 1915.1093496 1776.2096349 1928.0171252 1940.9249007
 ## dimension(s):
-##       from   to refsys point                                                  values
-## cell  1361 1361 WGS 84 FALSE                          POLYGON ((12.49 42.43, 12.3...
-## taxon    1    3     NA    NA Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     1    1     NA    NA                                                 present
+##       from   to refsys point       values
+## cell  1361 1361 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     1    1     NA    NA      present
 ```
 
 ``` r
@@ -376,10 +364,10 @@ data_cube[,1361, , 2]
 ## DI   0.4179193 0.4913466 0.5647739 0.562302 0.6344933 0.7042127    0
 ## HV          NA        NA        NA      NaN        NA        NA    3
 ## dimension(s):
-##       from   to refsys point                                                  values
-## cell  1361 1361 WGS 84 FALSE                          POLYGON ((12.49 42.43, 12.3...
-## taxon    1    3     NA    NA Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     2    2     NA    NA                                                  future
+##       from   to refsys point       values
+## cell  1361 1361 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     2    2     NA    NA       future
 ```
 
 #### Build a pairwise DI-difference cube (cell x comparison x time)
@@ -398,14 +386,10 @@ DI_diff_cube
 ##              Min.    1st Qu.   Median       Mean     3rd Qu.     Max.  NA's
 ## DI_diff  -2.35983 -0.3622762 -0.19558 -0.2231946 -0.07780134 1.792062 11691
 ## dimension(s):
-##            from   to refsys point
-## cell          1 2744 WGS 84 FALSE
-## comparison    1    3     NA    NA
-## time          1    2     NA    NA
-##                                                                                                                   values
-## cell                                                       POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
-## comparison Bufo bufo - Bufotes viridis        , Bufo bufo - Bombina variegata      , Bufotes viridis - Bombina variegata
-## time                                                                                                    present, future
+##            from   to refsys point       values
+## cell          1 2744 WGS 84 FALSE POLYGON ....
+## comparison    1    3     NA    NA Bufo buf....
+## time          1    2     NA    NA present,....
 ```
 
 #### Plot DI differences for a single cell 
@@ -671,10 +655,10 @@ print(stars::st_dimensions(data_cube))
 ```
 
 ```
-##       from   to refsys point                                                        values
-## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
-## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     1    2     NA    NA                                              present, future
+##       from   to refsys point       values
+## cell     1 2744 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     1    2     NA    NA present,....
 ```
 
 ``` r
@@ -695,10 +679,10 @@ data_cube
 ## HV            8232
 ## suitability  11691
 ## dimension(s):
-##       from   to refsys point                                                        values
-## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
-## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     1    2     NA    NA                                              present, future
+##       from   to refsys point       values
+## cell     1 2744 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     1    2     NA    NA present,....
 ```
 
 #### Apply AOA mask to SDM
@@ -753,10 +737,10 @@ suit_cube_masked
 ##                     Min.   1st Qu.     Median      Mean   3rd Qu.      Max.  NA's
 ## suitability_masked     0 0.0365757 0.08901115 0.1156223 0.1719519 0.4965992 15415
 ## dimension(s):
-##       from   to refsys point                                                        values
-## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
-## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
-## time     1    2     NA    NA                                              present, future
+##       from   to refsys point       values
+## cell     1 2744 WGS 84 FALSE POLYGON ....
+## taxon    1    3     NA    NA Bufo buf....
+## time     1    2     NA    NA present,....
 ```
 
 ``` r
