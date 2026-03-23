@@ -212,5 +212,5 @@ suitabilitycube:
   sidebar_label: Introduction
   dependencies: sf tidyverse terra dismo viridis
   replace:
-  - "# suitabilitycube ": ""
+  - "# Suitability Cube ": ""
   - "images/": "https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/"
