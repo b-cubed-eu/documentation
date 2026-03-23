@@ -4,7 +4,7 @@ author: Shawn Dove
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{A Gentle Introduction to b3gbi: Data Cubes to Biodiversity
   Indicators} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-03-11
+lastUpdated: 2026-03-23
 sidebar:
   label: Get started
   order: 2
@@ -13,9 +13,9 @@ source: https://github.com/b-cubed-eu/b3gbi/blob/main/vignettes/b3gbi.Rmd
 
 
 
-## Introduction 🌍
+## Introduction
 
-The goal of the **b3gbi** package (B3 General Biodiversity Indicators) is to provide standardized, automated, and reproducible workflows for calculating essential spatial and temporal biodiversity indicators. Developed as part of the EU-funded B3 (Biodiversity Building Blocks for Policy) project, b3gbi takes pre-processed GBIF occurrence cubes as input and quickly transforms them into actionable metrics, complete with integrated uncertainty estimation using robust bootstrapping methods.
+The goal of the **b3gbi** package (B3 General Biodiversity Indicators) is to provide standardized, automated, and reproducible workflows for calculating essential spatial and temporal biodiversity indicators. Developed as part of the EU-funded B3 (Biodiversity Building Blocks for Policy) project, b3gbi takes pre-processed GBIF occurrence cubes as input and quickly transforms them into actionable metrics, including richness, evenness, rarity, taxonomic distinctness, Shannon-Hill diversity, Simpson-Hill diversity, and completeness, complete with integrated uncertainty estimation using robust bootstrapping methods.
 
 This tutorial will guide you through the three core steps of the b3gbi workflow:
 
@@ -49,11 +49,11 @@ The first step is importing your GBIF occurrence cube (a .csv file) and converti
 | Argument | Description | Default/Details |
 |----------|-------------|-----------------|
 | `data` | Path to the .csv file containing the GBIF cube. Required. | |
-| `grid_type` | The grid system used (e.g., 'eea', 'mgrs', 'eqdgc', 'custom'). | Autodetected if possible. |
+| `grid_type` | The grid system used (e.g., 'eea', 'mgrs', 'eqdgc', 'isea3h', 'custom'). | Autodetected if possible. |
 | `first_year` | Filters the cube to start at this year. | First year in the data. |
 | `last_year` | Filters the cube to end at this year. | Last year in the data. |
 
-💡 **Note on Column Names**: The function automatically attempts to detect required columns (like cell code, year, species key). You only need to manually specify arguments like `cols_year` or `cols_cellCode` if your column names deviate from expected standards.
+**Note on Column Names**: The function automatically attempts to detect required columns (like cell code, year, species key). You only need to manually specify arguments like `cols_year` or `cols_cellCode` if your column names deviate from expected standards.
 
 ### Example: Import Data and Filter by Time
 
@@ -62,10 +62,13 @@ Here we import an example cube of mammals in Denmark, filtering the data to star
 
 ``` r
 # Function 1: process_cube()
-denmark_cube <- process_cube(system.file("extdata", 
-                                         "denmark_mammals_cube_eqdgc.csv", 
-                                         package = "b3gbi"),
-                             first_year = 1980) # Filter the cube to start at 1980
+denmark_cube <- process_cube(
+  system.file("extdata",
+    "denmark_mammals_cube_eqdgc.csv",
+    package = "b3gbi"
+  ),
+  first_year = 1980
+) # Filter the cube to start at 1980
 
 # Printing the object shows key metadata
 denmark_cube
@@ -89,21 +92,21 @@ denmark_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 30,985 × 15
-#>     year cellCode  kingdomKey kingdom  familyKey family           taxonKey scientificName     obs minCoordinateUncerta…¹
-#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>               <dbl> <chr>            <dbl>                  <dbl>
-#>  1  1980 E008N55CB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
-#>  2  1980 E008N56BB          1 Animalia      5307 Mustelidae        5218987 Mustela nivalis      1                   1000
-#>  3  1980 E008N57DC          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…    27                   1000
-#>  4  1980 E009N55BB          1 Animalia      5722 Erinaceidae       5219616 Erinaceus europ…     1                     50
-#>  5  1980 E009N56BB          1 Animalia      9368 Vespertilionidae  5218507 Plecotus auritus     1                   1000
-#>  6  1980 E009N57DD          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…     1                   1000
-#>  7  1980 E010N55AA          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
-#>  8  1980 E010N55AA          1 Animalia      5307 Mustelidae        5219019 Mustela erminea      1                    930
-#>  9  1980 E010N55BB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
-#> 10  1980 E010N56CB          1 Animalia      5307 Mustelidae        5218887 Martes foina         1                     92
+#>     year cellCode  kingdomKey kingdom  familyKey family        taxonKey scientificName   obs
+#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>            <dbl> <chr>          <dbl>
+#>  1  1980 E008N55CB          1 Animalia      5310 Phocidae       2434793 Phoca vitulina     1
+#>  2  1980 E008N56BB          1 Animalia      5307 Mustelidae     5218987 Mustela nival…     1
+#>  3  1980 E008N57DC          1 Animalia      9361 Phocoenidae    2440669 Phocoena phoc…    27
+#>  4  1980 E009N55BB          1 Animalia      5722 Erinaceidae    5219616 Erinaceus eur…     1
+#>  5  1980 E009N56BB          1 Animalia      9368 Vespertilion…  5218507 Plecotus auri…     1
+#>  6  1980 E009N57DD          1 Animalia      9361 Phocoenidae    2440669 Phocoena phoc…     1
+#>  7  1980 E010N55AA          1 Animalia      5310 Phocidae       2434793 Phoca vitulina     1
+#>  8  1980 E010N55AA          1 Animalia      5307 Mustelidae     5219019 Mustela ermin…     1
+#>  9  1980 E010N55BB          1 Animalia      5310 Phocidae       2434793 Phoca vitulina     1
+#> 10  1980 E010N56CB          1 Animalia      5307 Mustelidae     5218887 Martes foina       1
 #> # ℹ 30,975 more rows
-#> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 5 more variables: minTemporalUncertainty <dbl>, familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
+#> # ℹ 6 more variables: minCoordinateUncertaintyInMeters <dbl>, minTemporalUncertainty <dbl>,
+#> #   familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
 ```
 
 The data itself is stored in a tibble within the object's `data` slot, and the rest is metadata.
@@ -286,7 +289,7 @@ All indicator wrapper functions (e.g., `obs_richness_map`, `occ_turnover_ts`) sh
 | `ci_type` | Type of bootstrap confidence interval to calculate. Only relevant for time series. | 'norm', 'basic', 'perc', 'bca', or 'none'. Defaults to 'norm' for time series. |
 | `num_bootstrap` | Number of bootstrap runs for CI calculation. Only relevant for time series. | Defaults to 100. |
 
-⚠️ **Important Note on Confidence Intervals (CIs)**:
+**Important Note on Confidence Intervals (CIs)**:
 
 - The `ci_type` argument is only used for calculating uncertainty in general time series indicators (e.g., `obs_richness_ts`) and is ignored for map indicators.
 - For indicators based on Hill diversity (e.g., `hill_ts()`), the `ci_type` is ignored because CIs are calculated internally using the iNEXT package. However, the `num_bootstrap` argument is still required to define the number of runs for iNEXT's internal uncertainty estimation.
@@ -299,9 +302,10 @@ Let's calculate the observed richness spatially, covering the period from 1980 t
 ``` r
 # Calculate a gridded map of observed species richness for Denmark
 # Note that ci_type is ignored for map indicators
-Denmark_observed_richness_map <- obs_richness_map(denmark_cube, 
-                                                   level = "country", 
-                                                   region = "Denmark") 
+Denmark_observed_richness_map <- obs_richness_map(denmark_cube,
+  level = "country",
+  region = "Denmark"
+)
 ```
 
 The result is an `indicator_map` object (the data within it is also an `sf` object, containing geographical information).
@@ -321,11 +325,12 @@ Now, let's calculate the same indicator temporally for a trend analysis. We will
 
 ``` r
 # Calculate a time series of total occurrences for Denmark
-Denmark_total_occ_ts <- total_occ_ts(denmark_cube, 
-                                                 level = "country", 
-                                                 region = "Denmark", 
-                                                 ci_type = "norm", # Include confidence intervals
-                                                 num_bootstrap = 100) # Using the default number of runs
+Denmark_total_occ_ts <- total_occ_ts(denmark_cube,
+  level = "country",
+  region = "Denmark",
+  ci_type = "norm", # Include confidence intervals
+  num_bootstrap = 100
+) # Using the default number of runs
 ```
 
 The result is an `indicator_ts` object.
@@ -352,9 +357,10 @@ The generic `plot()` function automatically calls the appropriate helper functio
 
 ``` r
 # Plotting the map object
-plot(Denmark_observed_richness_map, 
-     legend_title = "Mammal Species Count",
-     title = "Observed Mammal Richness (1980-Present)")
+plot(Denmark_observed_richness_map,
+  legend_title = "Mammal Species Count",
+  title = "Observed Mammal Richness (1980-Present)"
+)
 ```
 
 <img src="/software/b3gbi/b3gbi-plot-map-1.png" alt="" width="95%" />
@@ -373,13 +379,14 @@ plot(Denmark_observed_richness_map,
 
 ``` r
 # Plotting the time series object
-plot(Denmark_total_occ_ts, 
-     title = "Temporal Trend of Total Mammal Occurrences in Denmark",
-     linecolour = "blue",
-     ribboncolour = "skyblue",
-     trendlinecolour = "darkorange",
-     envelopecolour = "orange",
-     smoothed_trend = TRUE)
+plot(Denmark_total_occ_ts,
+  title = "Temporal Trend of Total Mammal Occurrences in Denmark",
+  linecolour = "blue",
+  ribboncolour = "skyblue",
+  trendlinecolour = "darkorange",
+  envelopecolour = "orange",
+  smoothed_trend = TRUE
+)
 ```
 
 <img src="/software/b3gbi/b3gbi-plot-ts-1.png" alt="" width="95%" />
