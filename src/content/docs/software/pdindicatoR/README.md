@@ -14,8 +14,7 @@ source: https://github.com/b-cubed-eu/pdindicatoR/blob/main/README.Rmd
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-
-<img src="https://b-cubed-eu.github.io/pdindicatoR/logo.png" align="right" height="139" alt="" />
+<a href="https://b-cubed-eu.github.io/pdindicatoR/"><img src="https://b-cubed-eu.github.io/pdindicatoR/logo.png" align="right" height="138" alt="pdindicatoR website" /></a>
 
 <!-- badges: start -->
 

@@ -174,6 +174,7 @@ trias:
   replace:
   - "# trias ": ""
   - "man/figures/logo.png": https://trias-project.github.io/trias/logo.png
+  - "width=\"120\"": "width=\"120\" data-zoom-off"
 
 rgbif:
 - source: https://raw.githubusercontent.com/ropensci/rgbif/refs/heads/master/README.md
@@ -182,6 +183,7 @@ rgbif:
   replace:
   - "# rgbif ": ""
   - "man/figures/logo.png": "https://docs.ropensci.org/rgbif/logo.png"
+  - "width=\"120\"": "width=\"120\" data-zoom-off"
 
 ebvcube:
 - source: https://raw.githubusercontent.com/EBVcube/ebvcube/refs/heads/main/README.Rmd
@@ -208,4 +210,12 @@ vscube:
   dependencies: terra stars ggplot2 viridis
   replace:
   - "# Virtual Suitability Cube": ""
-  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above
+
+suitabilitycube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/README.Rmd
+  title: "suitabilitycube: Simulating suitability cubes for species distribution models"
+  sidebar_label: Introduction
+  dependencies: sf tidyverse terra dismo viridis
+  replace:
+  - "# Suitability Cube ": ""
+  - "images/": "https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/"
