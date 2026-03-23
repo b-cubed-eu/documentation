@@ -11,8 +11,7 @@ source: https://github.com/b-cubed-eu/impIndicator/blob/main/README.Rmd
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-
-<img src="https://b-cubed-eu.github.io/impIndicator/logo.png" align="right" height="139" alt="" />
+<a href="https://b-cubed-eu.github.io/impIndicator/"><img src="https://b-cubed-eu.github.io/impIndicator/logo.png" align="right" height="138" alt="impIndicator website" /></a>
 
 <!-- badges: start -->
 
