@@ -2,7 +2,7 @@
 title: Simulating the detection process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-19
+lastUpdated: 2026-03-23
 sidebar:
   label: Detection process
   order: 3
