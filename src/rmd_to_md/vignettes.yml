@@ -227,29 +227,6 @@ dissmapr:
   sidebar_label: Other 'orderwise' examples
   dependencies: dissmapr dplyr knitr ggplot2 sf terra
 
-invasimapr:
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/fREADME.Rmd
-  title: "invasimapr: Trait dispersion to assess species invasiveness and site invasibility"
-  sidebar_label: Key Concepts
-  replace:
-  - "# invasimapr ": ""
-  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
-  dependencies: invasimapr ggplot2 tidyr
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/introduction_1.Rmd
-  sidebar_label: Introduction
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/workflow_2.Rmd
-  sidebar_label: Step-by-step Workflow
-  dependencies: invasimapr dplyr knitr
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/clusters_3.Rmd
-  sidebar_label: Clustering and risk scenarios
-  dependencies: invasimapr dplyr knitr
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/synthesis_4.Rmd
-  sidebar_label: Invasion fitness synthesis
-  dependencies: invasimapr dplyr knitr
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/tutorial_5.Rmd
-  sidebar_label: Tutorial on computing invasion fitness
-  dependencies: invasimapr dplyr knitr
-  
 pdindicatoR:
 - source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
   title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
