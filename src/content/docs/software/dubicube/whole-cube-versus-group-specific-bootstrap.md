@@ -2,7 +2,7 @@
 title: Whole-cube bootstrap versus group-specific bootstrap
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-03-17
+lastUpdated: 2026-03-23
 sidebar:
   label: Bootstrap methods
   order: 5
@@ -208,7 +208,7 @@ We perform bootstrapping and confidence interval calculation for the period 2015
 
 
 
-<img src="/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-11-1.png" alt="Comparison of results between bootstrap methods." width="100%" />
+<img src="/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-11-1.png" alt="Comparison of results between bootstrap methods."  />
 
 ### Comparing speed
 
@@ -251,4 +251,4 @@ We observe that using the **boot** package results in faster performance for bot
 
 
 
-<img src="/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-15-1.png" alt="" width="100%" />
+![](/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-15-1.png)

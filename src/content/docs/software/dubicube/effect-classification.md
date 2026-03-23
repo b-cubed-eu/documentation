@@ -2,7 +2,7 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-03-17
+lastUpdated: 2026-03-23
 sidebar:
   label: Effect classification
   order: 6
@@ -182,17 +182,28 @@ result <- add_effect_classification(
 
 # View the result
 result
-#>    mean   sd         lcl         ucl effect_code effect_code_coarse             effect effect_coarse
-#> 1   0.0 1.00 -1.64485363  1.64485363           ?                  ?            unknown       unknown
-#> 2   0.5 0.50 -0.32242681  1.32242681          ?+                  ? potential increase       unknown
-#> 3  -0.5 0.50 -1.32242681  0.32242681          ?-                  ? potential decrease       unknown
-#> 4   1.0 0.50  0.17757319  1.82242681           +                  +           increase      increase
-#> 5  -1.0 0.50 -1.82242681 -0.17757319           -                  -           decrease      decrease
-#> 6   1.5 0.25  1.08878659  1.91121341          ++                  +    strong increase      increase
-#> 7  -1.5 0.25 -1.91121341 -1.08878659          --                  -    strong decrease      decrease
-#> 8   0.5 0.25  0.08878659  0.91121341          +~                  +  moderate increase      increase
-#> 9  -0.5 0.25 -0.91121341 -0.08878659          -~                  -  moderate decrease      decrease
-#> 10  0.0 0.50 -0.82242681  0.82242681           ~                  ~             stable        stable
+#>    mean   sd         lcl         ucl effect_code effect_code_coarse             effect
+#> 1   0.0 1.00 -1.64485363  1.64485363           ?                  ?            unknown
+#> 2   0.5 0.50 -0.32242681  1.32242681          ?+                  ? potential increase
+#> 3  -0.5 0.50 -1.32242681  0.32242681          ?-                  ? potential decrease
+#> 4   1.0 0.50  0.17757319  1.82242681           +                  +           increase
+#> 5  -1.0 0.50 -1.82242681 -0.17757319           -                  -           decrease
+#> 6   1.5 0.25  1.08878659  1.91121341          ++                  +    strong increase
+#> 7  -1.5 0.25 -1.91121341 -1.08878659          --                  -    strong decrease
+#> 8   0.5 0.25  0.08878659  0.91121341          +~                  +  moderate increase
+#> 9  -0.5 0.25 -0.91121341 -0.08878659          -~                  -  moderate decrease
+#> 10  0.0 0.50 -0.82242681  0.82242681           ~                  ~             stable
+#>    effect_coarse
+#> 1        unknown
+#> 2        unknown
+#> 3        unknown
+#> 4       increase
+#> 5       decrease
+#> 6       increase
+#> 7       decrease
+#> 8       increase
+#> 9       decrease
+#> 10        stable
 ```
 
 ### Visualising the result
@@ -246,7 +257,7 @@ ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/effect-classification-unnamed-chunk-6-1.png" alt="Visualising coarse effect classification." width="100%" />
+<img src="/software/dubicube/effect-classification-unnamed-chunk-6-1.png" alt="Visualising coarse effect classification."  />
 
 The plot below provides a more detailed view using the **fine-grained** classification.
 
@@ -263,4 +274,4 @@ ggplot(data = result, aes(x = as.numeric(rownames(result)))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/effect-classification-unnamed-chunk-7-1.png" alt="Visualising fine effect classification." width="100%" />
+<img src="/software/dubicube/effect-classification-unnamed-chunk-7-1.png" alt="Visualising fine effect classification."  />
