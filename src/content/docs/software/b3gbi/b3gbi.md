@@ -2,8 +2,9 @@
 title: Get started
 author: Shawn Dove
 output: rmarkdown::html_vignette
-vignette: '%\VignetteIndexEntry{Tutorial} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
-lastUpdated: 2025-07-01
+vignette: '%\VignetteIndexEntry{A Gentle Introduction to b3gbi: Data Cubes to Biodiversity
+  Indicators} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
+lastUpdated: 2026-03-11
 sidebar:
   label: Get started
   order: 2
@@ -12,167 +13,145 @@ source: https://github.com/b-cubed-eu/b3gbi/blob/main/vignettes/b3gbi.Rmd
 
 
 
+## Introduction 🌍
 
-## Introduction
+The goal of the **b3gbi** package (B3 General Biodiversity Indicators) is to provide standardized, automated, and reproducible workflows for calculating essential spatial and temporal biodiversity indicators. Developed as part of the EU-funded B3 (Biodiversity Building Blocks for Policy) project, b3gbi takes pre-processed GBIF occurrence cubes as input and quickly transforms them into actionable metrics, complete with integrated uncertainty estimation using robust bootstrapping methods.
 
-The goal of this tutorial is to get you familiar with how to use the b3gbi package, which contains a number of functions for calculating and plotting biodiversity indicators from GBIF occurrence cubes.
-The package is not ready for official release yet, but it is publicly available at https://www.github.com/b-cubed-eu/b3gbi. 
+This tutorial will guide you through the three core steps of the b3gbi workflow:
 
-Below I will explain how to install the package on your own computer, and give a quick tutorial on the core functions, with examples. Given that the package is unfinished and has undergone limited testing, it is possible that you will encounter errors.
+1. **Data Ingestion**: Preparing your GBIF data cube with `process_cube()`.
+2. **Indicator Calculation**: Using indicator-specific wrapper functions.
+3. **Visualization**: Plotting the results as maps or time series using the generic `plot()` function.
+
+
 
 ## Package Installation
 
+The package is available on the dedicated B-Cubed R-universe repository.
+
 
 ``` r
-
+# Install the package from the dedicated R-universe
 install.packages("b3gbi", repos = "https://b-cubed-eu.r-universe.dev")
 
+# Load the package
+library(b3gbi)
 ```
 
-## Core Functions
 
-Let's have a look at the core functions of the b3gbi package. The first one is called process_cube() and is used to import GBIF occurrence cubes from .csv files into R objects.
-It is very simple to use. You only need to provide it with the name and location of a cube in .csv format. Note that there are different versions of GBIF cubes floating around, and the format has changed. Since most of the code for this package was created before the present generation came available, it is compatible with both the old and new cubes.
-The old ones come with an additional .csv file containing taxonomic information for the cube.
 
+## Step 1: Data Ingestion with `process_cube()`
+
+The first step is importing your GBIF occurrence cube (a .csv file) and converting it into a structured `processed_cube` object. This function automatically validates the input and attempts to autodetect column names and grid types.
+
+### Key `process_cube()` Arguments
+
+| Argument | Description | Default/Details |
+|----------|-------------|-----------------|
+| `data` | Path to the .csv file containing the GBIF cube. Required. | |
+| `grid_type` | The grid system used (e.g., 'eea', 'mgrs', 'eqdgc', 'custom'). | Autodetected if possible. |
+| `first_year` | Filters the cube to start at this year. | First year in the data. |
+| `last_year` | Filters the cube to end at this year. | Last year in the data. |
+
+💡 **Note on Column Names**: The function automatically attempts to detect required columns (like cell code, year, species key). You only need to manually specify arguments like `cols_year` or `cols_cellCode` if your column names deviate from expected standards.
+
+### Example: Import Data and Filter by Time
+
+Here we import an example cube of mammals in Denmark, filtering the data to start from 1980.
 
 
 ``` r
 # Function 1: process_cube()
-# Description: Imports a data cube from a .csv file and prepares it as a 
-# processed_cube object for indicator calculations and plotting.
-#
-# Inputs: 
-#   * Argument 1: data, cube in .csv format 
-#   * Argument 2: grid_type (optional). By default the function will attempt to 
-#                 determine this automatically. However, you have the option to 
-#                 manually specify 'eea', 'mgrs', or 'eqdgc'. If you are using a 
-#                 simulated cube. e.g. output by the gcube package, choose 
-#                 'custom'.
-#   * Argument 3: first_year (optional), you can filter your cube to include 
-#                 only data in a certain time period, by default this will be 
-#                 the first year of data in your cube
-#   * Argument 4: last_year (optional), by default this will be the last year 
-#                 of data in your cube
-#   * Argument 5: force_gridcode (optional), this will force the function to 
-#                 assume a specific grid reference code, not recommended and 
-#                 could lead to problems downstream.
-#
-# The remaining arguments are all column names. Some columns are required, some 
-# are not, but it is only necessary to provide the names if they cannot be 
-# autodetected by the function.
-
-#   * Argument 6: cols_year (optional), the name of the column containing the 
-#                 year of occurrence. You must have either a year or yearMonth 
-#                 column in your cube.
-#   * Argument 7: cols_yearMonth (optional), the name of the column containing 
-#                 the year and month of occurrence
-#   * Argument 8: cols_cellCode (optional), the name of the column containing 
-#                 the cell codes. This column is required
-#   * Argument 9: cols_occurrences (optional), the name of the column 
-#                 containing species occurrences. This column is required
-#   * Argument 10: cols_scientificName (optional), the name of the column 
-#                  containing species names. This column is required
-#   * Argument 11: cols_minCoordinateUncertaintyInMeters (optional), the name 
-#                  of the column containing the minimum coordinate uncertainty. 
-#                  This column is not required
-#   * Argument 12: cols_minTemporalUncertainty (optional), the name of the 
-#                  column containing the minimum temporal uncertainty. This 
-#                  column is not required
-#   * Argument 13: cols_kingdom (optional)
-#   * Argument 14: cols_family (optional)
-#   * Argument 15: cols_species (optional), you must have either a 
-#                  scientificName or a species column, but you do not need both
-#   * Argument 16: cols_kingdomKey (optional)
-#   * Argument 17: cols_familyKey (optional)
-#   * Argument 18: cols_speciesKey (required), this can be either a taxonKey or 
-#                  speciesKey
-#   * Argument 19: cols_familyCount (optional)
-#   * Argument 20: cols_sex (optional)
-#   * Argument 20: cols_lifeStage (optional)
-#
-# Outputs:
-#   * processed_cube object containing the data cube as output_object$data 
-#     along with various metadata.
-#
-#     metadata include: range of years (as first_year and last_year), 
-#												coordinate range (as xmin, xmax, ymin, ymax), 
-#												number of grid cells (num_cells), 
-#												number of species (num_species), 
-#												total number of observations (num_obs), 
-#												vector of kingdoms (kingdoms), 
-#												number of families (num_families),
-#												resolutions (resolution)
-												
-
-# Example:
-library(b3gbi)
 denmark_cube <- process_cube(system.file("extdata", 
                                          "denmark_mammals_cube_eqdgc.csv", 
-                                         package="b3gbi"))
+                                         package = "b3gbi"),
+                             first_year = 1980) # Filter the cube to start at 1980
+
+# Printing the object shows key metadata
 denmark_cube
 #> 
 #> Processed data cube for calculating biodiversity indicators
 #> 
-#> Date Range: 1862 - 2024 
+#> Date Range: 1980 - 2024 
 #> Single-resolution cube with cell size 0.25degrees 
 #> Number of cells: 323 
 #> Grid reference system: eqdgc 
 #> Coordinate range:
-#>   xmin   xmax   ymin   ymax 
-#>  3.375 15.625 54.375 58.125 
+#>  xmin  xmax  ymin  ymax 
+#>  3.25 15.75 54.25 58.25 
 #> 
-#> Total number of observations: 207342 
-#> Number of species represented: 106 
+#> Total number of observations: 204664 
+#> Number of species represented: 100 
 #> Number of families represented: 31 
 #> 
 #> Kingdoms represented: Animalia 
 #> 
 #> First 10 rows of data (use n = to show more):
+#> 
+#> # A tibble: 30,985 × 15
+#>     year cellCode  kingdomKey kingdom  familyKey family           taxonKey scientificName     obs minCoordinateUncerta…¹
+#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>               <dbl> <chr>            <dbl>                  <dbl>
+#>  1  1980 E008N55CB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#>  2  1980 E008N56BB          1 Animalia      5307 Mustelidae        5218987 Mustela nivalis      1                   1000
+#>  3  1980 E008N57DC          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…    27                   1000
+#>  4  1980 E009N55BB          1 Animalia      5722 Erinaceidae       5219616 Erinaceus europ…     1                     50
+#>  5  1980 E009N56BB          1 Animalia      9368 Vespertilionidae  5218507 Plecotus auritus     1                   1000
+#>  6  1980 E009N57DD          1 Animalia      9361 Phocoenidae       2440669 Phocoena phocoe…     1                   1000
+#>  7  1980 E010N55AA          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#>  8  1980 E010N55AA          1 Animalia      5307 Mustelidae        5219019 Mustela erminea      1                    930
+#>  9  1980 E010N55BB          1 Animalia      5310 Phocidae          2434793 Phoca vitulina       1                      3
+#> 10  1980 E010N56CB          1 Animalia      5307 Mustelidae        5218887 Martes foina         1                     92
+#> # ℹ 30,975 more rows
+#> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 5 more variables: minTemporalUncertainty <dbl>, familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
 ```
 
-When you type the name of the cube object, the contents are displayed by a custom print function within the package. You can see the object structure using str().
+The data itself is stored in a tibble within the object's `data` slot, and the rest is metadata.
 
 
 ``` r
 str(denmark_cube)
 #> List of 11
-#>  $ first_year  : num 1862
+#>  $ first_year  : num 1980
 #>  $ last_year   : num 2024
 #>  $ coord_range :List of 4
-#>   ..$ xmin: num 3.38
-#>   ..$ xmax: num 15.6
-#>   ..$ ymin: num 54.4
-#>   ..$ ymax: num 58.1
+#>   ..$ xmin: num 3.25
+#>   ..$ xmax: num 15.8
+#>   ..$ ymin: num 54.2
+#>   ..$ ymax: num 58.2
 #>  $ num_cells   : int 323
-#>  $ num_species : int 106
-#>  $ num_obs     : num 207342
+#>  $ num_species : int 100
+#>  $ num_obs     : num 204664
 #>  $ kingdoms    : chr "Animalia"
 #>  $ num_families: int 31
 #>  $ grid_type   : chr "eqdgc"
 #>  $ resolutions : chr "0.25degrees"
-#>  $ data        : tibble [31,632 × 15] (S3: tbl_df/tbl/data.frame)
-#>   ..$ year                            : num [1:31632] 1862 1863 1870 1874 1879 ...
-#>   ..$ cellCode                        : chr [1:31632] "E009N57DD" "E009N57DD" "E009N57DD" "E009N57DD" ...
-#>   ..$ kingdomKey                      : num [1:31632] 1 1 1 1 1 1 1 1 1 1 ...
-#>   ..$ kingdom                         : chr [1:31632] "Animalia" "Animalia" "Animalia" "Animalia" ...
-#>   ..$ familyKey                       : num [1:31632] 5510 5510 9368 9368 9368 ...
-#>   ..$ family                          : chr [1:31632] "Muridae" "Muridae" "Vespertilionidae" "Vespertilionidae" ...
-#>   ..$ taxonKey                        : num [1:31632] 5219833 5219833 2432439 2432439 2432439 ...
-#>   ..$ scientificName                  : chr [1:31632] "Micromys minutus" "Micromys minutus" "Myotis daubentonii" "Myotis daubentonii" ...
-#>   ..$ obs                             : num [1:31632] 2 1 1 1 1 1 1 1 1 1 ...
-#>   ..$ minCoordinateUncertaintyInMeters: num [1:31632] 1000 1000 1000 1000 1000 1000 1000 1000 1000 1000 ...
-#>   ..$ minTemporalUncertainty          : num [1:31632] 86400 86400 86400 86400 86400 ...
-#>   ..$ familyCount                     : num [1:31632] 4493 4493 16848 16848 16848 ...
-#>   ..$ xcoord                          : num [1:31632] 9.88 9.88 9.88 9.88 9.88 ...
-#>   ..$ ycoord                          : num [1:31632] 57.1 57.1 57.1 57.1 57.4 ...
-#>   ..$ resolution                      : chr [1:31632] "0.25degrees" "0.25degrees" "0.25degrees" "0.25degrees" ...
+#>  $ data        : tibble [30,985 × 15] (S3: tbl_df/tbl/data.frame)
+#>   ..$ year                            : num [1:30985] 1980 1980 1980 1980 1980 1980 1980 1980 1980 1980 ...
+#>   ..$ cellCode                        : chr [1:30985] "E008N55CB" "E008N56BB" "E008N57DC" "E009N55BB" ...
+#>   ..$ kingdomKey                      : num [1:30985] 1 1 1 1 1 1 1 1 1 1 ...
+#>   ..$ kingdom                         : chr [1:30985] "Animalia" "Animalia" "Animalia" "Animalia" ...
+#>   ..$ familyKey                       : num [1:30985] 5310 5307 9361 5722 9368 ...
+#>   ..$ family                          : chr [1:30985] "Phocidae" "Mustelidae" "Phocoenidae" "Erinaceidae" ...
+#>   ..$ taxonKey                        : num [1:30985] 2434793 5218987 2440669 5219616 5218507 ...
+#>   ..$ scientificName                  : chr [1:30985] "Phoca vitulina" "Mustela nivalis" "Phocoena phocoena" "Erinaceus europaeus" ...
+#>   ..$ obs                             : num [1:30985] 1 1 27 1 1 1 1 1 1 1 ...
+#>   ..$ minCoordinateUncertaintyInMeters: num [1:30985] 3 1000 1000 50 1000 1000 3 930 3 92 ...
+#>   ..$ minTemporalUncertainty          : num [1:30985] 86400 86400 86400 86400 2678400 ...
+#>   ..$ familyCount                     : num [1:30985] 39284 23427 19402 3807 16848 ...
+#>   ..$ xcoord                          : num [1:30985] 8.38 8.88 8.62 9.88 9.88 ...
+#>   ..$ ycoord                          : num [1:30985] 55.4 56.9 57.1 55.9 56.9 ...
+#>   ..$ resolution                      : chr [1:30985] "0.25degrees" "0.25degrees" "0.25degrees" "0.25degrees" ...
 #>  - attr(*, "class")= chr "processed_cube"
 ```
 
-The cube itself is contained in a tibble (tidyverse version of data frame) called data, while other variables contain metadata.
+## Step 2: Indicator Calculation
 
-Now let's have a look at what indicators are available to calculate and plot.
+The package provides numerous wrappers to calculate indicators as either **maps** (spatial distribution) or **time series** (temporal trends).
+
+### Available Indicators
+
+Use `available_indicators` to see the full list of indicators and their associated wrapper functions (e.g., `obs_richness_map`, `total_occ_ts`). 
 
 
 ``` r
@@ -295,268 +274,112 @@ available_indicators
 #>     Additional time series function arguments: none
 ```
 
-Each available indicator is listed along with its class, and the functions used to calculate it as a map and/or time series.
+### Core Arguments for Wrapper Functions
 
-The next function we need to understand is called compute_indicator_workflow(). This is the core of the package, where the work of calculating the indicator is done.
-Each indicator comes with its own wrapper functions, and these should be used rather than directly calling compute_indicator_workflow(). The wrapper functions are given in the details of available_indicators, but are also listed below for convenience.
+All indicator wrapper functions (e.g., `obs_richness_map`, `occ_turnover_ts`) share the following key arguments:
 
+| Argument | Description | Details |
+|----------|-------------|---------|
+| `data` | The `processed_cube` object. Required. | |
+| `level` | The geographical scale ('country', 'continent', 'world'). | Automatically retrieves boundaries. |
+| `region` | The specific region name (e.g., 'Germany', 'Europe'). | Required if level is set. |
+| `ci_type` | Type of bootstrap confidence interval to calculate. Only relevant for time series. | 'norm', 'basic', 'perc', 'bca', or 'none'. Defaults to 'norm' for time series. |
+| `num_bootstrap` | Number of bootstrap runs for CI calculation. Only relevant for time series. | Defaults to 100. |
+
+⚠️ **Important Note on Confidence Intervals (CIs)**:
+
+- The `ci_type` argument is only used for calculating uncertainty in general time series indicators (e.g., `obs_richness_ts`) and is ignored for map indicators.
+- For indicators based on Hill diversity (e.g., `hill_ts()`), the `ci_type` is ignored because CIs are calculated internally using the iNEXT package. However, the `num_bootstrap` argument is still required to define the number of runs for iNEXT's internal uncertainty estimation.
+
+### Example: Observed Species Richness Map
+
+Let's calculate the observed richness spatially, covering the period from 1980 to the end of the cube's data.
 
 
 ``` r
-# Function 2: compute_indicator_workflow()
-# Description: Calculates a biodiversity indicator over time or space from a 
-# processed_cube object. Should be called by one of the wrapper functions listed below. 
-#
-# Inputs: 
-#   * Argument 1: data, a processed_cube object
-#   * Argument 2: type, the type of indicator to calculate
-#   * Argument 3: dim_type, dimension to calculate the indicator across time, 
-#                 'ts', or space, 'map'.
-#   * Argument 4: ci_type (optional), type of bootstrap confidence intervals to 
-#                 calculate (norm, basic, perc, bca, none). Uses 'norm' by 
-#                 default.
-#   * Argument 5: cell_size (optional), the length (in km) of grid cells to use
-#   * Argument 6: level (optional), the scale of region to calculate over 
-#                 (country, continent, world). Uses the whole cube by default.
-#   * Argument 7: region (optional), the name of the region to calculate over 
-#                 (e.g. Germany, Europe). Uses the whole cube by default.
-#   * Argument 8: ne_type (optional), the type of natural earth data to 
-#                 download (countries, map units, sovereignty, geounit). Uses 
-#                 'countries' by default.
-#   * Argument 9: ne_scale (optional), the scale of natural earth data to 
-#                 download (small - 110m, medium - 50m, large - 10m). Uses 
-#                 'medium' by default.
-#   * Argument 10: output_crs (optional), the projection to use for your 
-#                  calculated indicator if you don't want the default.
-#   * Argument 11: first_year (optional), use to limit the data used to 
-#                  calculate the indicator to a narrower range than the cube.
-#   * Argument 12: last_year (optional), see first_year.
-#   * Argument 13: spherical_geometry (optional), if FALSE, temporarily turn 
-#                  off spherical geometry when calculating indicator.
-#   * Argument 14: make_valid (optional), call st_make_valid from the sf 
-#                  package to fix geometry issues if you are getting errors.
-#   * Argument 15: num_bootstraps (optional), set the number of bootstraps to 
-#                  calculate for generating confidence intervals. Uses 1000 by 
-#                  default.
-#
-# Outputs:
-#   * indicator_ts or indicator_map object containing a data frame of indicator 
-#     values mapped to years or grid cells, along with various metadata.
-#
-#     metadata include: range of years (as first_year and last_year), 
-#												coordinate range (as xmin, xmax, ymin, ymax), 
-#												number of grid cells (num_cells), 
-#												number of species (num_species), 
-#												total number of observations (num_obs), 
-#												vector of kingdoms (kingdoms), 
-#												number of families (num_families),
-#												resolutions (resolution)
-#
-# Wrapper functions:
-#   * obs_richness_map(): Calculate a gridded map of observed richness
-#   * obs_richness_ts(): Calculate a time series (trend) of observed richness
-#   * cum_richness_ts(): Calculate cumulative richness over time
-#   * total_occ_map(): Calculate the total number of records over a gridded map
-#   * total_occ_ts(): Calculate the total number of records over time
-#   * occ_density_map(): Calculate the density of records over a gridded map
-#   * occ_density_ts(): Calculate the density of records over time
-#   * williams_eveness_map(): Calculate Williams' evenness over a gridded map
-#   * williams_evenness_ts(): Calculate Williams' evenness over time
-#   * pielou_evenness_map(): Calculate Pielou's evenness over a gridded map
-#   * pielou_evenness_ts(): Calculate Pielou's evenness over time
-#   * ab_rarity_map(): Calculate abundance-based rarity over a gridded map
-#   * ab_rarity_ts(): Calculate abundance-based rarity over time
-#   * area_rarity_map(): Calculate area-based rarity over a gridded map
-#   * area_rarity_ts(): Calculate area-based rarity over time
-#   * newness_map(): Calculate the mean year of occurrence over a gridded map
-#   * newness_ts(): Calculate the mean year of occurrence over time
-#   * tax_distinct_map(): Calculate taxonomic distinctness over a gridded map
-#   * tax_distinct_ts(): Calculate  taxonomic distinctness over time
-#   * occ_turnover_ts(): Calculate occupancy turnover over time
-# 
-
-					
-# Example:
-library(b3gbi)
-Denmark_observed_richness_map <- obs_richness_map(example_cube_1, 
-                                                  first_year = 1980, 
-                                                  level = "country", 
-                                                  region = "Denmark") 
-Denmark_observed_richness_map
-#> Gridded biodiversity indicator map
-#> 
-#> Name of Indicator: Observed Species Richness 
-#> 
-#> Map of Denmark 
-#> 
-#> Projected CRS: EPSG:4326 
-#> 
-#> Coordinate range:
-#>      xmin      ymin      xmax      ymax 
-#>  8.121484 54.628857 15.137109 57.736914 
-#> 
-#> Grid cell size: 0.25 degrees 
-#> Number of cells: 168 
-#> 
-#> Observation years: 1980 - 2023 
-#> Total years with observations: 44 
-#> 
-#> Number of species represented: 106 
-#> Number of families represented: 31 
-#> 
-#> Kingdoms represented: Animalia 
-#> 
-#> First 10 rows of data (use n = to show more):
+# Calculate a gridded map of observed species richness for Denmark
+# Note that ci_type is ignored for map indicators
+Denmark_observed_richness_map <- obs_richness_map(denmark_cube, 
+                                                   level = "country", 
+                                                   region = "Denmark") 
 ```
 
-When you type the name of the indicator object, you will again see that it is plotted by an internal function of the package.
-As with the cube objects, indicator objects contain a tibble called data. In the case of a mapped indicator, the tibble is also an sf object containing geometry information for each cell.
-
-Each indicator object belongs to two specialized object classes which determine how it is handled when you use the plot() command.
-First, it has either the class 'indicator_ts' or 'indicator_map'. Second, it has a class specific to the indicator type.
-You can see this using the class() command.
+The result is an `indicator_map` object (the data within it is also an `sf` object, containing geographical information).
 
 
 ``` r
 class(Denmark_observed_richness_map)
 #> [1] "indicator_map" "obs_richness"
+class(Denmark_observed_richness_map$data)
+#> [1] "indicator_data" "sf"             "data.frame"
 ```
 
-These are S3 classes (S3 being one of several objected oriented programming systems contained within R).
+### Example: Total Occurrences Time Series
 
-The final functions we will need to interface with are the plot functions. These are plot_ts() and plot_map(), but in fact they are called using plot().
-The plot functions offer quite a few arguments to customize the output, but the plotting is done using the ggplot package, so further customization is quite easy.
+Now, let's calculate the same indicator temporally for a trend analysis. We will use the default `ci_type = "norm"` and `num_bootstrap = 100`.
 
 
 ``` r
-# Function 3: plot_ts()
-# Description: Plots an indicator_ts object as a time series using ggplot. 
-# Called by plot().
-
-# Inputs: 
-#   * Argument 1: x, an indicator_ts object 
-#   * Argument 2: min_year (optional), earliest year to include in plot
-#   * Argument 3: max_year (optional), latest year to include in plot
-#   * Argument 4: title (optional), specify a title for the plot
-#   * Argument 5: auto_title (optional), specified by the calling function if 
-#                 title is set to "auto"
-#   * Argument 6: y_label_default (optional), specified by the calling function 
-#                 if no y_label is provided
-#   * Argument 7: suppress_y (optional), default is "FALSE". Set to "TRUE" to 
-#                 turn off y axis text
-#   * Argument 8: smoothed_trend (optional), default is "TRUE". Set to "FALSE" 
-#                 to avoid displaying only the time series, without a smoothed 
-#                 trend 
-#   * Argument 9: linecolour (optional), sets the colour of the indicator line 
-#                 or points. Default is darkorange. 
-#   * Argument 10: linealpha (optional), sets the transparency of the indicator 
-#                  line or points. Default is 0.8.
-#   * Argument 11: ribboncolour (optional), colour for bootstrapped confidence 
-#                  intervals. Default is goldenrod1. Set to NA if you don't 
-#                  want to plot the CIs.
-#   * Argument 12: ribbonalpha (optional), transparency for confidence interval 
-#                  ribbon (if CI type set to 'ribbon'. Default is 0.2.
-#   * Argument 13: error_alpha (optional), transparency for error bars (if CI 
-#                  type set to 'error_bar). Default is 1.
-#   * Argument 14: trendlinecolour (optional), sets the colour of the smoothed 
-#                  trend line. Default is blue.
-#   * Argument 15: trendlinealpha (optional), sets the transparency of the 
-#                  smoothed trend line. Default is 0.5.
-#   * Argument 16: envelopecolour (optional), sets the colour of the smoothed 
-#                  trend envelope. Default is lightsteelblue.
-#   * Argument 17: envelopealpha (optional), sets the transparency of the 
-#                  smoothed trend envelope. Default is 0.2.
-#   * Argument 18: smooth_cialpha (optional), sets the transparency for the 
-#                  smoothed lines forming the edges of the smoothed trend 
-#                  envelope. Default is 1.
-#   * Argument 19: point_line (optional)
-#   * Argument 20: pointsize (optional)
-#   * Argument 21: linewidth (optional)
-#   * Argument 22: ci_type (optional)
-#   * Argument 23: error_width (optional)
-#   * Argument 24: error_thickness (optional)
-#   * Argument 25: smooth_linetype (optional)
-#   * Argument 26: smooth_linewidth (optional)
-#   * Argument 27: smooth_cilinewidth (optional)
-#   * Argument 28: gridoff (optional), default is "FALSE". Set to "TRUE" to 
-#                  turn off grid lines on the plot  
-#   * Argument 29: x_label (optional), use to set a custom label for the x-axis
-#   * Argument 30: y_label (optional), use to set a custom label for the y-axis
-#   * Argument 31: x_expand (optional)
-#   * Argument 32: y_expand (optional)
-#   * Argument 33: x_breaks (optional), set number of breaks along the x-axis
-#   * Argument 34: y_breaks (optional), set number of breaks along the y-axis
-#   * Argument 35: wrap_length (optional), set maximum length of text allowed 
-#                  on a single line for the plot title
-#
-# Outputs:
-#   * Time series plot with optional smoothed trend overlay. The plot can be 
-#     further customized (beyond the provided arguments) using ggplot functions.
-#   * Plots can be saved using ggsave.
-
-# Example:
-library(b3gbi)
-Denmark_observed_richness_ts <- obs_richness_ts(example_cube_1, first_year = 1980, level = "country", region = "Denmark", ci_type = "none") 
-plot(Denmark_observed_richness_ts)
+# Calculate a time series of total occurrences for Denmark
+Denmark_total_occ_ts <- total_occ_ts(denmark_cube, 
+                                                 level = "country", 
+                                                 region = "Denmark", 
+                                                 ci_type = "norm", # Include confidence intervals
+                                                 num_bootstrap = 100) # Using the default number of runs
 ```
 
-![](/software/b3gbi/b3gbi-unnamed-chunk-7-1.png)
-
+The result is an `indicator_ts` object.
 
 
 ``` r
-# Function 4: plot_map()
-# Description: Plots an indicator_map object as a gridded map using ggplot. 
-# Called by plot().
-
-# Inputs: 
-#   * Argument 1: x, an indicator_map object 
-#   * Argument 2: title (optional), specify a title for the plot
-#   * Argument 3: auto_title (optional), specified by the calling function if 
-#                 title is set to "auto"
-#   * Argument 4: leg_label_default (optional), legend title specified by the 
-#                 calling function if no leg_label is provided
-#   * Argument 5: xlims (optional), use to set custom map limits
-#   * Argument 6: ylims (optional), use to set custom map limits 
-#   * Argument 7: trans (optional), set transformation to apply to the legend, 
-#                 e.g. "log10"
-#   * Argument 8: breaks (optional), set custom breaks for the legend
-#   * Argument 9: labels (optional), set custom labels for the legend
-#   * Argument 10: Europe_crop_EEA (optional), default is "TRUE". Crops 
-#                  outlying islands when plotting a continental map of Europe 
-#                  using the EEA grid. You can set this to "FALSE" to show the 
-#                  islands, but the output will be less pretty. Will be 
-#                  overridden if crop_to_grid set to "TRUE".
-#   * Argument 11: crop_to_grid (optional), If set to "TRUE" the grid will 
-#                  determine the edges of the map. This argument overrides 
-#                  Europe_crop_EEA. Default is "FALSE".
-#   * Argument 12: surround (optional), default is "TRUE". Shows surrounding 
-#                  countries when plotting a single country. Set to "FALSE" to 
-#                  show only the country of interest, but output will be less 
-#                  pretty.
-#   * Argument 13: panel_bg (optional), set panel background colour. Default is 
-#                  "white".
-#   * Argument 14: land_fill_colour (optional), set colour for the land area 
-#                  outside of the grid. Default is "grey85".
-#   * Argument 15: legend_title (optional), set a custom legend title
-#   * Argument 16: legend_limits (optional), set custom limits for the legend
-#   * Argument 17: legend_title_wrap_length (optional), set maximum length of 
-#                  text allowed on a single line for the legend title
-#   * Argument 18: title_wrap_length (optional), set maximum length of text 
-#                  allowed on a single line for the plot title
-#
-# Outputs:
-#   * Time series plot with optional smoothed trend overlay. The plot can be 
-#     further customized (beyond the provided arguments) using ggplot functions.
-#   * Plots can be saved using ggsave.
-
-# Example:
-library(b3gbi)
-Denmark_observed_richness_map <- obs_richness_map(example_cube_1, 
-                                                  level = "country", 
-                                                  region = "Denmark") 
-plot(Denmark_observed_richness_map)
+class(Denmark_total_occ_ts)
+#> [1] "indicator_ts" "total_occ"
 ```
 
-![](/software/b3gbi/b3gbi-unnamed-chunk-8-1.png)
+## Step 3: Visualization with `plot()`
 
+The generic `plot()` function automatically calls the appropriate helper function (`plot_map()` or `plot_ts()`) and applies smart defaults for titles, colors, and layout.
+
+### Plotting the Map
+
+| Argument | Description | Common Use |
+|----------|-------------|------------|
+| `title` | Sets the plot title. | e.g., "Observed Richness in Denmark" |
+| `legend_title` | Sets the legend title. | e.g., "Number of Species" |
+| `crop_to_grid` | If TRUE, the map edges are determined by the grid extent. | |
+| `crop_by_region` | If TRUE, map edges are determined by the map region selected during indicator calculation, rather than the data. | |
+
+
+``` r
+# Plotting the map object
+plot(Denmark_observed_richness_map, 
+     legend_title = "Mammal Species Count",
+     title = "Observed Mammal Richness (1980-Present)")
+```
+
+<img src="/software/b3gbi/b3gbi-plot-map-1.png" alt="" width="95%" />
+
+### Plotting the Time Series
+
+| Argument | Description | Common Use |
+|----------|-------------|------------|
+| `smoothed_trend` | If TRUE, displays a smoothed trend line (LOESS). | Defaults to TRUE. |
+| `linecolour` | Sets the color of the indicator line/points. | e.g., "blue" |
+| `ribboncolour` | Sets the color of the indicator confidence interval. | e.g., "skyblue" |
+| `trendlinecolour` | Sets the color of the trend line. | e.g., "darkorange" |
+| `envelopecolour` | Sets the color of the trend line confidence intervals. | e.g., "orange" |
+| `x_label` / `y_label` | Custom labels for the axes. | |
+
+
+``` r
+# Plotting the time series object
+plot(Denmark_total_occ_ts, 
+     title = "Temporal Trend of Total Mammal Occurrences in Denmark",
+     linecolour = "blue",
+     ribboncolour = "skyblue",
+     trendlinecolour = "darkorange",
+     envelopecolour = "orange",
+     smoothed_trend = TRUE)
+```
+
+<img src="/software/b3gbi/b3gbi-plot-ts-1.png" alt="" width="95%" />

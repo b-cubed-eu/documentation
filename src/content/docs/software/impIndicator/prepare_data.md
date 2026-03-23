@@ -2,7 +2,7 @@
 title: Prepare data
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Prepare data} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
-lastUpdated: 2025-07-10
+lastUpdated: 2026-03-11
 sidebar:
   order: 3
 source: https://github.com/b-cubed-eu/impIndicator/blob/main/vignettes/prepare_data.Rmd
@@ -89,6 +89,21 @@ acacia_cube
 #> Kingdoms represented: Data not present 
 #> 
 #> First 10 rows of data (use n = to show more):
+#> 
+#> # A tibble: 5,663 × 8
+#>    scientificName   taxonKey minCoordinateUncertaintyInMeters  year cellCode xcoord ycoord   obs
+#>    <chr>               <dbl>                            <dbl> <dbl> <chr>     <dbl>  <dbl> <dbl>
+#>  1 Acacia mearnsii   2979775                                8  2010 1376       30.4  -29.7     1
+#>  2 Acacia saligna    2978552                                1  2010 206        18.4  -33.9     1
+#>  3 Acacia implexa    2979232                                1  2010 206        18.4  -33.9     1
+#>  4 Acacia pycnantha  2978604                                1  2010 206        18.4  -33.9     1
+#>  5 Acacia cyclops    2980425                              122  2010 668        18.4  -32.2     1
+#>  6 Acacia mearnsii   2979775                             1100  2010 1110       29.9  -30.7     1
+#>  7 Acacia mearnsii   2979775                                1  2010 215        20.6  -33.9     1
+#>  8 Acacia mearnsii   2979775                              110  2010 215        20.6  -33.9     1
+#>  9 Acacia pycnantha  2978604                             1100  2010 143        19.1  -34.2     1
+#> 10 Acacia saligna    2978552                                1  2011 206        18.4  -33.9     1
+#> # ℹ 5,653 more rows
 ```
 
 ## Download from GBIF website
@@ -118,8 +133,8 @@ mammal_cube
 #> Number of cells: 265 
 #> Grid reference system: eqdgc 
 #> Coordinate range:
-#>   xmin   xmax   ymin   ymax 
-#>  3.375 15.125 54.375 58.125 
+#>  xmin  xmax  ymin  ymax 
+#>  3.25 15.25 54.25 58.25 
 #> 
 #> Total number of observations: 191676 
 #> Number of species represented: 97 
@@ -128,4 +143,21 @@ mammal_cube
 #> Kingdoms represented: Animalia 
 #> 
 #> First 10 rows of data (use n = to show more):
+#> 
+#> # A tibble: 28,155 × 15
+#>     year cellCode  kingdomKey kingdom  familyKey family     taxonKey scientificName       obs minCoordinateUncertainty…¹
+#>    <dbl> <chr>          <dbl> <chr>        <dbl> <chr>         <dbl> <chr>              <dbl>                      <dbl>
+#>  1  2000 E006N56DB          1 Animalia      9680 Odobenidae  5218819 Odobenus rosmarus      1                        111
+#>  2  2000 E008N54BA          1 Animalia      5310 Phocidae    2434793 Phoca vitulina         3                       1000
+#>  3  2000 E008N55AA          1 Animalia      5310 Phocidae    2434793 Phoca vitulina         1                       1000
+#>  4  2000 E008N55AB          1 Animalia      5307 Mustelidae  2433753 Lutra lutra            1                       1000
+#>  5  2000 E008N55AB          1 Animalia      5510 Muridae     7429082 Mus musculus           5                       1000
+#>  6  2000 E008N55AC          1 Animalia      5307 Mustelidae  2433753 Lutra lutra            1                       1000
+#>  7  2000 E008N55AC          1 Animalia      5310 Phocidae    2434793 Phoca vitulina         3                       1000
+#>  8  2000 E008N55AC          1 Animalia      5310 Phocidae    2434806 Halichoerus grypus     2                       1000
+#>  9  2000 E008N55AC          1 Animalia      9701 Canidae     5219243 Vulpes vulpes          1                        980
+#> 10  2000 E008N55AC          1 Animalia      9379 Leporidae   7952072 Lepus europaeus        1                       1000
+#> # ℹ 28,145 more rows
+#> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
+#> # ℹ 5 more variables: minTemporalUncertainty <dbl>, familyCount <dbl>, xcoord <dbl>, ycoord <dbl>, resolution <chr>
 ```

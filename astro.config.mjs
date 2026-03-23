@@ -8,7 +8,7 @@ import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://docs.b-cubed-eu',
+  site: 'https://docs.b-cubed.eu',
   integrations: [
     starlight({
       title: 'B-Cubed documentation',
@@ -45,6 +45,7 @@ export default defineConfig({
       ],
       components: {
         PageTitle: './src/components/PageTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       customCss: [
         './src/styles/custom.css',
