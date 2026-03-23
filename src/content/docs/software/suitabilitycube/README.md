@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'suitabilitycube: Simulating suitability cubes for species distribution models'
-lastUpdated: 2026-03-11
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -49,10 +49,6 @@ To reduce collinearity among predictors, a correlation-based variable selection 
 You can install the development version of suitabilitycube from GitHub with:
 
 
-``` r
-install.packages("remotes")
-remotes::install_github("b-cubed-eu/suitabilitycube")
-```
 
 Then load the package
 
@@ -74,25 +70,32 @@ library(sf)
 
 ``` r
 library(tidyverse)
+```
+
+```
+## ── Attaching core tidyverse packages ──────────────────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.2.0     ✔ readr     2.2.0
+## ✔ forcats   1.0.1     ✔ stringr   1.6.0
+## ✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+## ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+```
+
+```
+## ── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+```
+
+``` r
 library(terra)
 ```
 
 ```
-## terra 1.8.93
-```
-
-```
+## terra 1.9.1
 ## 
 ## Attaching package: 'terra'
-```
-
-```
-## The following object is masked from 'package:knitr':
 ## 
-##     spin
-```
-
-```
 ## The following object is masked from 'package:tidyr':
 ## 
 ##     extract
@@ -104,18 +107,10 @@ library(dismo)
 
 ```
 ## Loading required package: raster
-```
-
-```
 ## Loading required package: sp
-```
-
-```
 ## 
 ## Attaching package: 'raster'
-```
-
-```
+## 
 ## The following object is masked from 'package:dplyr':
 ## 
 ##     select
@@ -207,6 +202,12 @@ bio_future_sel  <- bio_future[[vars_keep]]
 occ_list <- gbif_occ_list(params$species, params$country_iso, params$gbif_years, params$gbif_limit)
 ```
 
+```
+## Registered S3 method overwritten by 'data.table':
+##   method           from
+##   print.data.table
+```
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/plot_zoom_png%20-%202025-11-18T122427.415.png" alt="cube" width="800"><br>
   <em> Climatic variables </em>
@@ -244,20 +245,6 @@ A set of functions was implemented to automate the computation of DI and the AOA
 * Wrapper loop: iterates over all species to compute per-species DI and AOA values for the present and future periods, skipping species with insufficient training data.
 
 
-``` r
-aoa_di_by_species <- setNames(vector("list", length(params$species)), params$species)
-
-for (sp in params$species) {
-  occ_sf <- occ_list[[sp]]
-  if (is.null(occ_sf) || nrow(occ_sf) == 0) { aoa_di_by_species[[sp]] <- NULL; next }
-  train_df <- extract_predictors_at_points(bio_present_sel, occ_sf, pred_vars_present)
-  if (nrow(train_df) < 5 || ncol(train_df) < 1) { aoa_di_by_species[[sp]] <- NULL; next }
-  aoa_di_by_species[[sp]] <- compute_aoa_pair(train_df, new_present = bio_present_sel, new_future = bio_future_sel)
-}
-
-# output of one species and one scenario
-aoa_di_by_species$`Bufo bufo`$present
-```
 
 ### Cube building
 
@@ -274,62 +261,6 @@ This phase organizes all previously computed indicators, HV, DI and AOA, into a 
 The process is made by the following steps, that aim to reduce the dimensionality and compress all the information in a single, reproducible object: 
 
 
-``` r
-# inputs & grid params
-species_vec  <- params$species
-cellsize_deg <- params$grid_cellsize_deg
-make_square  <- isTRUE(params$grid_square)
-
-# country boundary (sf)
-country_vec <- if (exists("prelim")) prelim$country_vec else geodata::gadm(params$country_name, 0, params$outdir)
-country_sf  <- sf::st_as_sf(country_vec) |> sf::st_buffer(0)
-
-# build the cell grid
-grid_cells <- sf::st_make_grid(country_sf, cellsize = cellsize_deg,
-                               what = "polygons", square = make_square) |>
-  sf::st_as_sf() |>
-  dplyr::mutate(cell = seq_len(dplyr::n()))
-sf::st_crs(grid_cells) <- 4326
-
-# keep only species that actually have AOA/DI
-species_vec <- species_vec[species_vec %in% names(aoa_di_by_species) & !vapply(aoa_di_by_species, is.null, TRUE)]
-stopifnot(length(species_vec) > 0)
-
-AOA_cube <- build_metric_cube(
-  aoa_di_by_species = aoa_di_by_species,
-  species_vec = species_vec,
-  grid_cells = grid_cells,
-  metric = "AOA"
-)
-
-DI_cube <- build_metric_cube(
-  aoa_di_by_species = aoa_di_by_species,
-  species_vec = species_vec,
-  grid_cells = grid_cells,
-  metric = "DI"
-)
-
-## build HV cube (present only; NA in future), aligned to AOA/DI
-dims  <- stars::st_dimensions(AOA_cube)   # reuse geometry + labels
-shape <- dim(AOA_cube$AOA)                # c(n_cell, n_taxa, n_time)
-
-# gather HV scalars in species order (missing species → NA)
-hv_vals <- vapply(species_vec, function(sp) as.numeric(hv_by_species[[sp]]), numeric(1))
-hv_arr  <- array(NA_real_, shape,
-                 dimnames = list(NULL, dims$taxon$values, dims$time$values))
-i_present <- match("present", dims$time$values)
-for (j in seq_along(species_vec)) hv_arr[, j, i_present] <- hv_vals[j]
-
-HV_cube <- stars::st_as_stars(list(HV = hv_arr), dimensions = dims)
-
-## merge into final multi-attribute cube
-data_cube <- c(AOA_cube, DI_cube, HV_cube)
-data_cube <- stars::st_set_dimensions(data_cube, "taxon", values = species_vec)
-data_cube <- stars::st_set_dimensions(data_cube, "time",  values = c("present","future"))
-
-# sanity check
-print(stars::st_dimensions(data_cube))
-```
 
 ### Output
 
@@ -349,8 +280,17 @@ print(data_cube)
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+## stars object with 3 dimensions and 3 attributes
+## attribute(s):
+##          Min.      1st Qu.      Median         Mean      3rd Qu.       Max.  NA's
+## AOA     0.000    0.0000000    0.000000    0.2197779    0.0000000    1.00000 11691
+## DI      0.000    0.2667322    0.430247    0.4886862    0.6315494    3.36364 11691
+## HV   1472.595 1472.5946544 1915.109350 1776.2096349 1940.9249007 1940.92490  8232
+## dimension(s):
+##       from   to refsys point                                                        values
+## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
+## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     1    2     NA    NA                                              present, future
 ```
 
 ### Basic usage
@@ -367,14 +307,6 @@ pt <- st_sf(geometry = st_sfc(st_point(c(12.5, 42.5)), crs = 4326))
 
 # Which grid cell contains the point?
 which_cell <- suppressWarnings(st_join(pt, grid_cells, join = st_intersects))
-```
-
-```
-## Error:
-## ! object 'grid_cells' not found
-```
-
-``` r
 if (is.na(which_cell$cell)) {
    message("❌ This point is NOT within the study area.")
  } else {
@@ -384,8 +316,7 @@ if (is.na(which_cell$cell)) {
 ```
 
 ```
-## Error:
-## ! object 'which_cell' not found
+## Point falls inside cell #1361
 ```
 
 #### Basic introspection and slice
@@ -398,8 +329,8 @@ print(st_bbox(data_cube))
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+##      xmin      ymin      xmax      ymax 
+##  6.362442 35.280385 18.737442 47.476909
 ```
 
 ``` r
@@ -409,8 +340,8 @@ dim(data_cube[c("AOA","DI")])
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+##  cell taxon  time 
+##  2744     3     2
 ```
 
 ``` r
@@ -419,8 +350,17 @@ data_cube[,1361, , 1]
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+## stars object with 3 dimensions and 3 attributes
+## attribute(s):
+##              Min.      1st Qu.       Median         Mean      3rd Qu.         Max.
+## AOA     0.0000000    0.0000000    0.0000000    0.3333333    0.5000000    1.0000000
+## DI      0.1114808    0.2776988    0.4439167    0.3430515    0.4588369    0.4737571
+## HV   1472.5946544 1693.8520020 1915.1093496 1776.2096349 1928.0171252 1940.9249007
+## dimension(s):
+##       from   to refsys point                                                  values
+## cell  1361 1361 WGS 84 FALSE                          POLYGON ((12.49 42.43, 12.3...
+## taxon    1    3     NA    NA Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     1    1     NA    NA                                                 present
 ```
 
 ``` r
@@ -429,8 +369,17 @@ data_cube[,1361, , 2]
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+## stars object with 3 dimensions and 3 attributes
+## attribute(s):
+##           Min.   1st Qu.    Median     Mean   3rd Qu.      Max. NA's
+## AOA  0.0000000 0.0000000 0.0000000 0.000000 0.0000000 0.0000000    0
+## DI   0.4179193 0.4913466 0.5647739 0.562302 0.6344933 0.7042127    0
+## HV          NA        NA        NA      NaN        NA        NA    3
+## dimension(s):
+##       from   to refsys point                                                  values
+## cell  1361 1361 WGS 84 FALSE                          POLYGON ((12.49 42.43, 12.3...
+## taxon    1    3     NA    NA Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     2    2     NA    NA                                                  future
 ```
 
 #### Build a pairwise DI-difference cube (cell x comparison x time)
@@ -440,20 +389,23 @@ Creates a new cube that expresses the difference in environmental dissimilarity 
 ``` r
 # Example: all pairwise differences (default)
 DI_diff_cube <- build_DI_diff_cube(data_cube)
-```
-
-```
-## Error:
-## ! object 'data_cube' not found
-```
-
-``` r
 DI_diff_cube
 ```
 
 ```
-## Error:
-## ! object 'DI_diff_cube' not found
+## stars object with 3 dimensions and 1 attribute
+## attribute(s):
+##              Min.    1st Qu.   Median       Mean     3rd Qu.     Max.  NA's
+## DI_diff  -2.35983 -0.3622762 -0.19558 -0.2231946 -0.07780134 1.792062 11691
+## dimension(s):
+##            from   to refsys point
+## cell          1 2744 WGS 84 FALSE
+## comparison    1    3     NA    NA
+## time          1    2     NA    NA
+##                                                                                                                   values
+## cell                                                       POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
+## comparison Bufo bufo - Bufotes viridis        , Bufo bufo - Bombina variegata      , Bufotes viridis - Bombina variegata
+## time                                                                                                    present, future
 ```
 
 #### Plot DI differences for a single cell 
@@ -464,29 +416,19 @@ Visualizes pairwise DI contrasts within one location, showing which species expe
 ``` r
 cell_id <- 1361
 slice_diff <- DI_diff_cube[, cell_id, , drop = FALSE]
-```
-
-```
-## Error:
-## ! object 'DI_diff_cube' not found
-```
-
-``` r
 df_diff <- as.data.frame(slice_diff) |> dplyr::select(comparison, time, DI_diff)
-```
 
-```
-## Error:
-## ! object 'slice_diff' not found
-```
-
-``` r
 df_diff
 ```
 
 ```
-## Error:
-## ! object 'df_diff' not found
+##                            comparison    time     DI_diff
+## 1         Bufo bufo - Bufotes viridis present -0.36227622
+## 2       Bufo bufo - Bombina variegata present -0.33243590
+## 3 Bufotes viridis - Bombina variegata present  0.02984032
+## 4         Bufo bufo - Bufotes viridis  future -0.14685469
+## 5       Bufo bufo - Bombina variegata  future -0.28629344
+## 6 Bufotes viridis - Bombina variegata  future -0.13943875
 ```
 
 #### Summarize AOA coverage
@@ -497,31 +439,24 @@ Calculates the proportion of the study area that falls inside or outside the Are
 aoa_df <- as.data.frame(data_cube["AOA"]) |>
   dplyr::select(taxon, time, AOA) |>
   mutate(AOA = as.integer(round(AOA)))  # ensure 0/1
-```
 
-```
-## Error:
-## ! object 'data_cube' not found
-```
-
-``` r
 aoa_counts <- aoa_df |>
   group_by(taxon, time, AOA) |>
   summarise(n_cells = n(), .groups = "drop")
-```
 
-```
-## Error:
-## ! object 'aoa_df' not found
-```
-
-``` r
 print(head(aoa_counts))
 ```
 
 ```
-## Error in `h()`:
-## ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'aoa_counts' not found
+## # A tibble: 6 × 4
+##   taxon     time      AOA n_cells
+##   <fct>     <fct>   <int>   <int>
+## 1 Bufo bufo present     0     258
+## 2 Bufo bufo present     1     517
+## 3 Bufo bufo present    NA    1969
+## 4 Bufo bufo future      0     812
+## 5 Bufo bufo future      1       4
+## 6 Bufo bufo future     NA    1928
 ```
 
 ### Application to SDMs
@@ -653,23 +588,8 @@ suit_present_grid_list <- lapply(species_vec, function(sp) {
     na.rm = TRUE
   )
 })
-```
-
-```
-## Error in `FUN()`:
-## ! object 'grid_cells' not found
-```
-
-``` r
 names(suit_present_grid_list) <- species_vec
-```
 
-```
-## Error:
-## ! object 'suit_present_grid_list' not found
-```
-
-``` r
 suit_future_grid_list <- lapply(species_vec, function(sp) {
   as_stars_on_grid(
     sr   = terra::rast(suitability_future_list[[sp]]),
@@ -679,78 +599,32 @@ suit_future_grid_list <- lapply(species_vec, function(sp) {
     na.rm = TRUE
   )
 })
-```
 
-```
-## Error in `FUN()`:
-## ! object 'grid_cells' not found
-```
-
-``` r
 # 2.4 Stack species along a new "taxon" dimension for PRESENT
 suit_present_cube <- do.call(c, suit_present_grid_list) |>
   stars::st_redimension() |>
   stars::st_set_dimensions(2, values = species_vec, names = "taxon")
-```
 
-```
-## Error:
-## ! object 'suit_present_grid_list' not found
-```
-
-``` r
 # 2.5 Stack species along "taxon" for FUTURE
 suit_future_cube <- do.call(c, suit_future_grid_list) |>
   stars::st_redimension() |>
   stars::st_set_dimensions(2, values = species_vec, names = "taxon")
-```
 
-```
-## Error:
-## ! object 'suit_future_grid_list' not found
-```
-
-``` r
 # 2.6 Stack PRESENT and FUTURE along a new "time" dimension
 suit_cube <- c(
   suit_present_cube,
   suit_future_cube,
   along = list(time = c("present", "future"))
 )
-```
 
-```
-## Error:
-## ! object 'suit_present_cube' not found
-```
-
-``` r
 # 2.7 Make sure dimension names and attribute name are clean/standard
 suit_cube <- stars::st_set_dimensions(suit_cube, 1, names = "cell")
-```
-
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 names(suit_cube) <- "suitability"
-```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 plot(suit_cube)
 ```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
+![](/software/suitabilitycube/README-unnamed-chunk-22-1.png)
 
 #### Merge suitability into the global data cube
 
@@ -782,44 +656,25 @@ suit_cube <- stars::st_set_dimensions(
   "taxon",
   values = stars::st_dimensions(data_cube)$taxon$values
 )
-```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 suit_cube <- stars::st_set_dimensions(
   suit_cube,
   "time",
   values = stars::st_dimensions(data_cube)$time$values
 )
-```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 # 3.2 Add "suitability" as a new attribute/band in data_cube
 data_cube <- c(data_cube, suit_cube)
-```
 
-```
-## Error:
-## ! object 'data_cube' not found
-```
-
-``` r
 # Check that dimensions are still what we expect
 print(stars::st_dimensions(data_cube))
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+##       from   to refsys point                                                        values
+## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
+## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     1    2     NA    NA                                              present, future
 ```
 
 ``` r
@@ -827,8 +682,23 @@ data_cube
 ```
 
 ```
-## Error:
-## ! object 'data_cube' not found
+## stars object with 3 dimensions and 4 attributes
+## attribute(s):
+##                  Min.      1st Qu.       Median         Mean      3rd Qu.         Max.
+## AOA             0.000 0.000000e+00 0.000000e+00 2.197779e-01 0.000000e+00    1.0000000
+## DI              0.000 2.667322e-01 4.302470e-01 4.886862e-01 6.315494e-01    3.3636395
+## HV           1472.595 1.472595e+03 1.915109e+03 1.776210e+03 1.940925e+03 1940.9249007
+## suitability     0.000 3.280481e-03 1.782178e-02 5.011102e-02 6.751238e-02    0.4965992
+##               NA's
+## AOA          11691
+## DI           11691
+## HV            8232
+## suitability  11691
+## dimension(s):
+##       from   to refsys point                                                        values
+## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
+## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     1    2     NA    NA                                              present, future
 ```
 
 #### Apply AOA mask to SDM
@@ -851,92 +721,46 @@ suit_cube <- stars::st_set_dimensions(
   "taxon",
   values = stars::st_dimensions(AOA_cube)$taxon$values
 )
-```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 suit_cube <- stars::st_set_dimensions(
   suit_cube,
   "time",
   values = stars::st_dimensions(AOA_cube)$time$values
 )
-```
 
-```
-## Error:
-## ! object 'suit_cube' not found
-```
 
-``` r
 # 4.2 Extract raw arrays
 suit_arr <- suit_cube$suitability   # numeric array [cell, taxon, time]
-```
-
-```
-## Error:
-## ! object 'suit_cube' not found
-```
-
-``` r
 aoa_arr  <- AOA_cube$AOA            # 0/1 or TRUE/FALSE array [cell, taxon, time]
-```
 
-```
-## Error:
-## ! object 'AOA_cube' not found
-```
-
-``` r
 # 4.3 Mask: set suitability to NA wherever AoA == 0 (or AoA is NA)
 suit_arr_masked <- suit_arr
-```
-
-```
-## Error:
-## ! object 'suit_arr' not found
-```
-
-``` r
 suit_arr_masked[ aoa_arr == 0 | is.na(aoa_arr) ] <- NA
-```
 
-```
-## Error:
-## ! object 'suit_arr_masked' not found
-```
-
-``` r
 # 4.4 Rebuild a stars object with the masked suitability
 suit_cube_masked <- stars::st_as_stars(
   list(suitability_masked = suit_arr_masked),
   dimensions = stars::st_dimensions(suit_cube)
 )
-```
 
-```
-## Error:
-## ! object 'suit_arr_masked' not found
-```
-
-``` r
 # output
 suit_cube_masked
 ```
 
 ```
-## Error:
-## ! object 'suit_cube_masked' not found
+## stars object with 3 dimensions and 1 attribute
+## attribute(s):
+##                     Min.   1st Qu.     Median      Mean   3rd Qu.      Max.  NA's
+## suitability_masked     0 0.0365757 0.08901115 0.1156223 0.1719519 0.4965992 15415
+## dimension(s):
+##       from   to refsys point                                                        values
+## cell     1 2744 WGS 84 FALSE POLYGON ((6.487442 35.496...,...,POLYGON ((18.61244 46.971...
+## taxon    1    3     NA    NA       Bufo bufo        , Bufotes viridis  , Bombina variegata
+## time     1    2     NA    NA                                              present, future
 ```
 
 ``` r
 plot(suit_cube_masked)
 ```
 
-```
-## Error:
-## ! object 'suit_cube_masked' not found
-```
+![](/software/suitabilitycube/README-unnamed-chunk-24-1.png)
