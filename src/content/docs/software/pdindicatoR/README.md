@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 title: 'pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
   on species occurrence data cubes'
-lastUpdated: 2026-02-10
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -14,7 +14,8 @@ source: https://github.com/b-cubed-eu/pdindicatoR/blob/main/README.Rmd
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-<a href="https://b-cubed-eu.github.io/pdindicatoR/"><img src="https://b-cubed-eu.github.io/pdindicatoR/logo.png" align="right" height="138" alt="pdindicatoR website" /></a>
+
+<a href="https://b-cubed-eu.github.io/pdindicatoR/"><img src="https://b-cubed-eu.github.io/pdindicatoR/logo.png" align="right" height="139" alt="pdindicatoR website" /></a>
 
 <!-- badges: start -->
 
@@ -276,6 +277,10 @@ print(plots)
 
 ![](/software/pdindicatoR/man/figures/unnamed-chunk-18-2.png)
 
+``` r
+print(paste("The percentage of high PD grid cells that fall within",
+                "protected areas is", round(indicators$Overall, digits=2), "%"))
+```
 
 ```
 ## [1] "The percentage of high PD grid cells that fall within protected areas is 23.46 %"
