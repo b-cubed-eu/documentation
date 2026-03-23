@@ -191,6 +191,25 @@ ebvcube:
   - "# ebvcube package": ""
   dependencies: BiocManager rhdf5 DelayedArray HDF5Array terra ggplot2 tidyterra
 
+pdindicatoR:
+- source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
+  title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
+    on species occurrence data cubes"
+  sidebar_label: Introduction
+  replace:
+  - "# pdindicatoR ": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
+  dependencies: sf dplyr
+
+vscube:
+- source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
+  title: "vscube: Virtual Suitability Cube"
+  sidebar_label: Introduction
+  dependencies: terra stars ggplot2 viridis
+  replace:
+  - "# Virtual Suitability Cube": ""
+  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above
+
 dissmapr:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/README.Rmd
   title: "dissmapr: Compositional Dissimilarity and Biodiversity Turnover Analysis"
@@ -226,22 +245,3 @@ dissmapr:
 - source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/9-examples.Rmd
   sidebar_label: Other 'orderwise' examples
   dependencies: dissmapr dplyr knitr ggplot2 sf terra
-
-pdindicatoR:
-- source: https://raw.githubusercontent.com/b-cubed-eu/pdindicatoR/refs/heads/main/README.Rmd
-  title: "pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
-    on species occurrence data cubes"
-  sidebar_label: Introduction
-  replace:
-  - "# pdindicatoR ": ""
-  - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
-  dependencies: sf dplyr
-
-vscube:
-- source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
-  title: "vscube: Virtual Suitability Cube"
-  sidebar_label: Introduction
-  dependencies: terra stars ggplot2 viridis
-  replace:
-  - "# Virtual Suitability Cube": ""
-  - "## Inspect species ": "\n## Inspect species " # Remove if origin has empty line above
