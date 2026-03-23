@@ -8,7 +8,7 @@ import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://docs.b-cubed-eu',
+  site: 'https://docs.b-cubed.eu',
   integrations: [
     starlight({
       title: 'B-Cubed documentation',
