@@ -171,6 +171,7 @@ trias:
   replace:
   - "# trias ": ""
   - "man/figures/logo.png": https://trias-project.github.io/trias/logo.png
+  - "width=\"120\"": "width=\"120\" data-zoom-off"
 
 rgbif:
 - source: https://raw.githubusercontent.com/ropensci/rgbif/refs/heads/master/README.md
@@ -179,6 +180,7 @@ rgbif:
   replace:
   - "# rgbif ": ""
   - "man/figures/logo.png": "https://docs.ropensci.org/rgbif/logo.png"
+  - "width=\"120\"": "width=\"120\" data-zoom-off"
 
 ebvcube:
 - source: https://raw.githubusercontent.com/EBVcube/ebvcube/refs/heads/main/README.Rmd
@@ -197,7 +199,7 @@ pdindicatoR:
   - "# pdindicatoR ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/pdindicatoR/logo.png"
   dependencies: sf dplyr
-  
+
 vscube:
 - source: https://raw.githubusercontent.com/b-cubed-eu/vscube/refs/heads/main/README.Rmd
   title: "vscube: Virtual Suitability Cube"

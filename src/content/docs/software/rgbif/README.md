@@ -1,13 +1,13 @@
 ---
 title: 'rgbif: Interface to the Global Biodiversity Information Facility API'
-lastUpdated: 2026-01-13
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
 source: https://github.com/ropensci/rgbif/blob/master/README.md
 ---
 
-<img src="https://docs.ropensci.org/rgbif/logo.png" align="right" alt="" width="120">
+<img src="https://docs.ropensci.org/rgbif/logo.png" align="right" alt="" width="120" data-zoom-off>
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran checks](https://badges.cranchecks.info/worst/rgbif.svg)](https://cran.r-project.org/web/checks/check_results_rgbif.html)

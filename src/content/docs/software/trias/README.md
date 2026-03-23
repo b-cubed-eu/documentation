@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'trias: Functionality for TrIAS and LIFE RIPARIAS'
-lastUpdated: 2026-01-12
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -12,16 +12,23 @@ source: https://github.com/trias-project/trias/blob/main/README.Rmd
 
 
 
-<img src="https://trias-project.github.io/trias/logo.png" align="right" alt="" width="120">
+<img src="https://trias-project.github.io/trias/logo.png" align="right" alt="" width="120" data-zoom-off>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/trias)](https://CRAN.R-project.org/package=trias)
+[![Release](https://img.shields.io/github/v/release/trias-project/trias.svg)](https://github.com/trias-project/trias/releases)
+[![trias status badge](https://inbo.r-universe.dev/trias/badges/version)](https://inbo.r-universe.dev/trias)
 [![R-CMD-check](https://github.com/trias-project/trias/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/trias-project/trias/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/trias-project/trias/branch/main/graph/badge.svg)](https://app.codecov.io/gh/trias-project/trias/)
 [![repo status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![name status badge](https://inbo.r-universe.dev/badges/:name?color=c04384)](https://inbo.r-universe.dev/)
 <!-- badges: end -->
 
-Trias is an R package providing functionality for the [Tracking Invasive Alien Species (TrIAS)](https://trias-project.be) and [LIFE RIPARIAS](https://www.riparias.be) projects.
+Trias is an R package originally conceived to provide functionalities for the 
+[Tracking Invasive Alien Species (TrIAS)](https://trias-project.be) project. 
+However, it has been further developed to support other similar projects, such 
+as the [LIFE RIPARIAS](https://www.riparias.be) and 
+[B-Cubed](https://docs.b-cubed.eu/) projects.
 
 To get started, see:
 
@@ -29,7 +36,16 @@ To get started, see:
 
 ## Installation
 
-You can install the development version of trias from [GitHub](https://github.com/) with:
+
+Install **trias** in R:
+
+
+``` r
+install.packages("trias", repos = "https://inbo.r-universe.dev")
+```
+
+You can install the development version from [GitHub](https://github.com/) with:
+
 
 ``` r
 # install.packages("devtools")
