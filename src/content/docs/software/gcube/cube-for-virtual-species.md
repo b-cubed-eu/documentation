@@ -2,7 +2,7 @@
 title: Create occurrence cubes for virtual species
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-19
+lastUpdated: 2026-03-23
 sidebar:
   label: Cube for virtual species
   order: 6
