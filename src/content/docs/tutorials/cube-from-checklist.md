@@ -29,78 +29,21 @@ Examples of GBIF checklists with perfect match af the moment of writing:
 - The [Red list of dragonflies in Flanders, Belgium](https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79)
 - The [List of Invasive Alien Species of Union concern](https://www.gbif.org/dataset/79d65658-526c-4c78-9d24-1870d67f8439)
 
-We submitted a feature request ([#746](https://github.com/ropensci/rgbif/issues/746)) to add a function to [rgbif](https://docs.ropensci.org/rgbif/index.html) R package to retrieve the taxa from the GBIF backbone matching the taxa of a checklist. At the moment, such functionality is on hold. We will probably add this functionality to a stand alone R package.
+We submitted a feature request ([#746](https://github.com/ropensci/rgbif/issues/746)) 
+to add a function to [rgbif](https://docs.ropensci.org/rgbif/index.html) R 
+package to retrieve the taxa from the GBIF backbone matching the taxa of a 
+checklist. At the moment, such functionality is on hold. So, we added this 
+functionality to the [trias](https://trias-project.github.io/trias/index.html) R 
+package: please use the trias function [`get_nubkeys()`](https://trias-project.github.io/trias/reference/get_nubkeys.html) 
+to retrieve the GBIF backbone taxon keys, also called _nub keys_, for all taxa in a 
+checklist dataset. In case of synonyms, you can choose to retrieve the accepted 
+taxa instead of the synonyms. It takes as input the `datasetKey` of the 
+checklist and a logical argument `allow_synonyms` to decide whether to retrieve 
+the accepted taxa instead of the synonyms (`allow_synonyms` = `FALSE`), if any. 
+The output is a vector with GBIF backbone taxon keys.
 
-Meanwhile, you can find the code in below:
-
-```r
-#' Get GBIF backbone taxon keys for taxa in a checklist dataset
-#' 
-#' This function retrieves the GBIF backbone taxon keys for all taxa in a
-#' checklist dataset. In case of synonyms, the users can choose to retrieve the
-#' accepted taxa instead of the synonyms.
-#' 
-#' @param datasetKey (character) Unique identifier of a checklist dataset.
-#' @param allow_synonyms` (logical) If `FALSE`, the accepted taxa are returned instead of the
-#'   synonyms, if any. Default: `TRUE`.
-#' @return (numeric) A vector with GBIF backbone taxon keys.
-#' @importFrom dplyr %>%
-#' @examples
-#' library(rgbif)
-#' library(purrr)
-#' 
-#' # Red list of dragonflies in Flanders, Belgium
-#' # https://www.gbif.org/dataset/72aa797d-42a4-4176-9e19-5b3ddd551b79
-#' datasetKey <- "72aa797d-42a4-4176-9e19-5b3ddd551b79"
-#' 
-#' # Allow synonyms
-#' dragon_flies <- name_backbone_gbif_checklist(datasetKey)
-#' 
-#' # Check synonyms are included
-#' purrr::map(dragon_flies, ~ rgbif::name_usage(.x)$data) %>%
-#'   purrr::list_rbind() %>%
-#'   count(taxonomicStatus)
-#' 
-#' # Get accepted taxa instead of synonyms
-#' dragon_flies_accepted <- name_backbone_gbif_checklist(
-#'   datasetKey,
-#'   allow_synonyms = FALSE
-#' )
-#' 
-#' # Check synonyms are not included
-#' purrr::map(dragon_flies_accepted, ~ rgbif::name_usage(.x)$data) %>%
-#'   purrr::list_rbind() %>%
-#'   count(taxonomicStatus)
-name_backbone_gbif_checklist <- function(datasetKey, allow_synonyms = TRUE) {
-  checklist_taxa <- rgbif::name_usage(datasetKey = datasetKey, limit = 9999)$data %>%
-    dplyr::filter(origin == "SOURCE")
-  nub_keys <- checklist_taxa %>%
-    dplyr::pull(nubKey)
-  # Remove NAs (no taxon match) and return informative message
-  if (any(is.na(nub_keys))) {
-    n_no_match <- length(nub_keys[is.na(nub_keys)])
-    message(paste0(n_no_match, " taxa have no taxon match with the GBIF Backbone."))
-    nub_keys <- nub_keys[!is.na(nub_keys)]
-  }
-  nub_keys <- nub_keys %>%
-    unique()
-  if (allow_synonyms == TRUE) {
-    return(nub_keys)
-  } else {
-    nub_keys %>%
-      purrr::map(function(x) rgbif::name_usage(x)$data) %>%
-      purrr::list_rbind() %>%
-      # Choose the accepted taxa instead of synonyms
-      mutate(accepted_taxa = dplyr::coalesce(acceptedKey, key)) %>%
-      dplyr::pull(accepted_taxa) %>%
-      unique()
-  }
-}
-```
-
-It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are published by the same researchers.
-
-The code in the [gist](https://gist.github.com/damianooldoni/104d6f30cc0755c8fcd2298d432f7c3b) allows you to get automatically all **accepted taxa** by using `name_backbone_gbif_checklist(datasetKey = your_dataset_key, allow_synonyms = FALSE)`.
+It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are 
+published by the same researchers.
 
 ## Step 2: Adapt the SQL query
 
