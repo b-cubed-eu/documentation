@@ -2,10 +2,10 @@
 title: How to build a species occurrence cube from a GBIF checklist
 sidebar:
   label: Build a cube from a checklist
-  order: 4
+  order: 2
 ---
 
-Suggestion citation:
+## How to cite
 
 > Oldoni D (2025). How to build a species occurrence cube from a GBIF checklist. <https://docs.b-cubed.eu/tutorials/cube-from-checklist/>
 

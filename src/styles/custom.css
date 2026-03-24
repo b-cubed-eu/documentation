@@ -27,3 +27,20 @@
   --sl-color-gray-7: #ecfaf9;
   --sl-color-black: #ffffff;
 }
+
+/* Markdown */
+.sl-markdown-content {
+  a {
+    img {
+      /* Display images in links inline (e.g. badges) */
+      display: inline !important;
+    }
+  }
+
+  mjx-container {
+    svg {
+      /* Display mathjax formulas inline */
+      display: inline !important;
+    }
+  }
+}

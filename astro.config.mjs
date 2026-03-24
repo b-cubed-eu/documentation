@@ -2,15 +2,50 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { remarkHeadingId } from 'remark-custom-heading-id';
+import remarkMath from 'remark-math';
+import rehypeMathJax from 'rehype-mathjax';
+import starlightImageZoom from 'starlight-image-zoom'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://docs.b-cubed-eu',
+  site: 'https://docs.b-cubed.eu',
   integrations: [
     starlight({
       title: 'B-Cubed documentation',
       logo: {
         src: './src/assets/b3-logo.svg',
+      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/b-cubed-eu/documentation/'
+        }
+      ],
+      sidebar: [
+        {
+          label: 'Guides',
+          autogenerate: { directory: 'guides' },
+        },
+        {
+          label: 'Software',
+          autogenerate: { directory: 'software' },
+          collapsed: true,
+        },
+        {
+          label: 'Infrastructure',
+          autogenerate: { directory: 'infrastructure' },
+          collapsed: true,
+        },
+        {
+          label: 'Tutorials',
+          autogenerate: { directory: 'tutorials' },
+          collapsed: true,
+        }
+      ],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       customCss: [
         './src/styles/custom.css',
@@ -26,38 +61,8 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/b-cubed-eu/documentation/edit/main/',
       },
-      social: {
-        github: 'https://github.com/b-cubed-eu/documentation/',
-      },
-      sidebar: [
-        {
-          label: 'Guides',
-          autogenerate: { directory: 'guides' },
-        },
-        {
-          label: 'Software',
-          // autogenerate: { directory: 'software' },
-          items: [
-            'software/gbif-api',
-            'software/gcube'
-          ],
-          collapsed: true,
-        },
-        {
-          label: 'Tutorials',
-          autogenerate: { directory: 'tutorials' },
-          collapsed: true,
-        },
-        // {
-        //   label: 'Training',
-        //   autogenerate: { directory: 'training' },
-        //   collapsed: true,
-        // },
-        // {
-        //   label: 'FAQ',
-        //   autogenerate: { directory: 'faq' },
-        //   collapsed: true,
-        // },
+      plugins: [
+        starlightImageZoom()
       ],
     }),
   ],
@@ -66,6 +71,13 @@ export default defineConfig({
     '/occurrence-cube/specification/': '/guides/occurrence-cube/'
   },
   markdown: {
-    remarkPlugins: [remarkHeadingId]
+    gfm: true,
+    remarkPlugins: [
+      remarkHeadingId,
+      remarkMath
+    ],
+    rehypePlugins: [
+      rehypeMathJax
+    ]
   }
 });
