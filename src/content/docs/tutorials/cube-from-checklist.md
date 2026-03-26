@@ -42,9 +42,6 @@ checklist and a logical argument `allow_synonyms` to decide whether to retrieve
 the accepted taxa instead of the synonyms (`allow_synonyms` = `FALSE`), if any. 
 The output is a vector with GBIF backbone taxon keys.
 
-It's extremely unlikely to have occurrences linked to a taxon not matched to GBIF Backbone. Most likely this occurs when both the checklist and the occurrence dataset are 
-published by the same researchers.
-
 ## Step 2: Adapt the SQL query
 
 ### Spatial dimension
