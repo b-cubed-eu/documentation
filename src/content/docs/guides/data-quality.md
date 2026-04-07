@@ -117,13 +117,13 @@ AND \"year\" <= 2023
 AND (coordinateUncertaintyInMeters <= 27000 OR coordinateUncertaintyInMeters IS NULL)
 ```
 
-3. Unknown coordinate uncertainties have been set to 27 000 m (the length of the edge of the grid cells).  
+3. Coordinates have been randomly assigned to grid cells within their uncertainty. The `coordinateUncertaintyInMeters` value is used to randomize the point within a circle. Default to randomization within a 27 000 m (the length of the edge of the grid cells) radius if the occurrence does not have a published coordinate uncertainty.
    
 ```sql
 COALESCE(coordinateUncertaintyInMeters, 27000)) 
 ```
 
-4. Coordinates have been randomly assigned to grid cells within their uncertainty.  
+4. Minimum coordinate uncertainty set to 27 000 m
 
 ```sql
 MIN(COALESCE(coordinateUncertaintyInMeters, 27000)) AS minCoordinateUncertaintyInMeters
