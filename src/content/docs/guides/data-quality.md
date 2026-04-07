@@ -9,7 +9,7 @@ sidebar:
 This guide is based on a deliverable report. For full details and analyses, consult the [original report](https://b-cubed.eu/storage/app/uploads/public/69a/943/ea1/69a943ea17e66799908588.pdf).
 :::
 
-This guide provides practical guidance for assessing the reliability of species status and trend estimates derived from aggregated occurrence cubes from the Global Biodiversity Information Facility (GBIF), building on a comparative analysis between unstructured GBIF data and structured monitoring datasets from Flanders (Belgium) and the Western Cape (South Africa). The aim of that analysis was to determine under which conditions, such as sampling effort, taxonomic consistency, spatial precision, and detectability, indicators can be considered sufficiently robust for reporting and policy use.
+This guide provides practical guidance for assessing the reliability of species status and trend estimates derived from aggregated occurrence cubes from the Global Biodiversity Information Facility (GBIF), building on a comparative analysis between occurrence cubes from unstructured GBIF data and structured monitoring datasets from Flanders (Belgium) and the Western Cape (South Africa). The aim of that analysis was to determine under which conditions, such as sampling effort, taxonomic consistency, spatial precision, and detectability, indicators can be considered sufficiently robust for reporting and policy use.
 
 ## How to cite
 
@@ -21,13 +21,13 @@ If you use this guide, please cite the deliverable report from which it was deri
 
 ### Evidence and validation approach
 
-This guidance is grounded in a comparative assessment of cube-based indicators derived from aggregated GBIF occurrence data and indicators derived from structured bird monitoring schemes in Flanders (Belgium) and the Western Cape (South Africa). Rather than assuming that large data volumes automatically produce reliable indicators, the analysis explicitly tested when and under which conditions cube-based estimates align with structured monitoring results.
+This guidance is grounded in a comparative assessment of indicators derived from occurrence cubes from unstructured GBIF data ("unstructured occurrence cubes") and indicators derived from structured bird monitoring schemes in Flanders (Belgium) and the Western Cape (South Africa). Rather than assuming that large data volumes automatically produce reliable indicators, the analysis explicitly tested when and under which conditions cube-based estimates align with structured monitoring results.
 
-The results show that unstructured occurrence data require careful quality control and explicit assessment of biases and uncertainty.
+The results show that unstructured occurrence cubes require careful quality control and explicit assessment of biases and uncertainty.
 
 ### Biases, uncertainty, and practical implications
 
-Several recurring issues directly affect the reliability of indicators derived from occurrence cubes:
+Several recurring issues directly affect the reliability of indicators derived from unstructured occurrence cubes:
 
 * **Spatial uncertainty**, where large coordinate uncertainty can blur or distort spatial patterns.
 * **Taxonomic inconsistencies**, including unresolved or unlinked names that inflate species counts or introduce artificial turnover.
@@ -74,11 +74,11 @@ AND decimalLongitude IS NOT NULL
 
 This step is descriptive and diagnostic. Its purpose is to understand how the data are distributed and structured before defining analytical constraints or exclusion rules.
 
-1. Examine the **spatial distribution** of observations to ensure the study area is well covered and that data density is sufficient for the chosen grid resolution.
+1. Examine the **spatial distribution** within the occurrence cube to ensure the study area is well covered and that data density is sufficient for the chosen grid resolution.
 
 2. Summarise **coordinate uncertainty** to quantify the proportion of missing or large uncertainties.
 
-3. Inspect the **temporal distribution** of observations to identify gaps, irregularities, or strong drop-offs in recent years.
+3. Inspect the **temporal distribution** within the occurrence cube to identify gaps, irregularities, or strong drop-offs in recent years.
 
 4. Perform **basic taxonomic checks**, including counts of species, identification of unlinked accepted names, and detection of unexpected or implausible occurrences that may indicate misidentifications or taxonomic inconsistencies.
 
@@ -102,7 +102,7 @@ This step translates the study design and diagnostic findings into explicit, rep
 
 ### Examples
 
-Below are examples from the SQL query to obtain the unstructured data used in the spatial analysis of bird data for the Western Cape of South Africa. The query followed the recommendations above. The full query can be found in Annex [2](?tab=t.0#heading=h.9uvyr9igpmbt).
+Below are examples from the SQL query to obtain the unstructured occurrence cube used in the spatial analysis of bird data for the Western Cape of South Africa. The query followed the recommendations above.
 
 1. Data used covers 2015-2023 for an analysis performed in 2025\.
 
@@ -111,7 +111,7 @@ AND \"year\" >= 2015
 AND \"year\" <= 2023
 ```
 
-2. The analysis was performed at the quarter-degree grid cell resolution, and thus occurrences with a coordinateUncertainty \> 27 000 m (27 km) have been filtered out.
+2. The analysis was performed at the quarter-degree grid cell resolution, and thus occurrences with an coordinate uncertainty \> 27 000 m (27 km) have been filtered out.
 
 ```sql
 AND (coordinateUncertaintyInMeters <= 27000 OR coordinateUncertaintyInMeters IS NULL)
