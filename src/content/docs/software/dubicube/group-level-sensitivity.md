@@ -4,10 +4,10 @@ editor_options:
   chunk_output_type: console
   markdown:
     wrap: sentence
-lastUpdated: 2026-03-23
+lastUpdated: 2026-04-07
 sidebar:
   label: Group-level sensitivity analysis
-  order: 2
+  order: 3
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/group-level-sensitivity.Rmd
 ---
 
@@ -123,14 +123,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species          family     n mincoordinateuncerta…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix    Phasi…     1                   3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturn… Phasi…     1                   3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra      Ralli…     5                   1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster  Merop…     6                   1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanell… Chara…     1                   3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus  Accip…     1                   3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncerta…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                  <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                   3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                   3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                   1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                   1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                   3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                   3536      855924
 #> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
@@ -166,22 +166,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 280,184 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>
-#>  1  2011 31UDS65   2474051 Alectoris rufa    Phasi…     1                    100      261414
-#>  2  2011 31UDS65   2474377 Fulica atra       Ralli…     6                   1000      507437
-#>  3  2011 31UDS65   2474831 Rallus aquaticus  Ralli…     1                   1000      507437
-#>  4  2011 31UDS65   2478523 Picus viridis     Picid…     5                   3536      403587
-#>  5  2011 31UDS65   2480242 Vanellus vanellus Chara…     4                   1000      294808
-#>  6  2011 31UDS65   2480332 Pluvialis aprica… Chara…     1                   1000      294808
-#>  7  2011 31UDS65   2480482 Circus aeruginos… Accip…     2                   3536      855924
-#>  8  2011 31UDS65   2480487 Circus cyaneus    Accip…     9                   3536      855924
-#>  9  2011 31UDS65   2480537 Buteo buteo       Accip…     8                   3536      855924
-#> 10  2011 31UDS65   2480637 Accipiter nisus   Accip…     9                   3536      855924
+#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2011 31UDS65   2474051 Alectoris rufa    Phasi…     1                    100      261414 460000
+#>  2  2011 31UDS65   2474377 Fulica atra       Ralli…     6                   1000      507437 460000
+#>  3  2011 31UDS65   2474831 Rallus aquaticus  Ralli…     1                   1000      507437 460000
+#>  4  2011 31UDS65   2478523 Picus viridis     Picid…     5                   3536      403587 460000
+#>  5  2011 31UDS65   2480242 Vanellus vanellus Chara…     4                   1000      294808 460000
+#>  6  2011 31UDS65   2480332 Pluvialis aprica… Chara…     1                   1000      294808 460000
+#>  7  2011 31UDS65   2480482 Circus aeruginos… Accip…     2                   3536      855924 460000
+#>  8  2011 31UDS65   2480487 Circus cyaneus    Accip…     9                   3536      855924 460000
+#>  9  2011 31UDS65   2480537 Buteo buteo       Accip…     8                   3536      855924 460000
+#> 10  2011 31UDS65   2480637 Accipiter nisus   Accip…     9                   3536      855924 460000
 #> # ℹ 280,174 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 5 more variables: xcoord <dbl>, ycoord <dbl>, utmzone <int>, hemisphere <chr>,
-#> #   resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -262,20 +261,20 @@ cv_results <- cross_validate_cube(
 
 ``` r
 head(cv_results)
-#>   id_cv year taxonkey_out   rep_cv est_original       error     sq_error  abs_error
-#> 1     1 2011      2474051 48.85551     48.83864  0.01686866 0.0002845518 0.01686866
-#> 2     2 2011      2474377 48.49272     48.83864 -0.34592150 0.1196616847 0.34592150
-#> 3     3 2011      2474831 48.91447     48.83864  0.07583503 0.0057509524 0.07583503
-#> 4     4 2011      2478523 48.66861     48.83864 -0.17002678 0.0289091060 0.17002678
-#> 5     5 2011      2480242 48.56884     48.83864 -0.26979464 0.0727891466 0.26979464
-#> 6     6 2011      2480332 48.97265     48.83864  0.13401280 0.0179594315 0.13401280
-#>      rel_error perc_error         mre        mse      rmse
-#> 1 0.0003453959 0.03453959 0.001122516 0.03544285 0.1882627
-#> 2 0.0070829473 0.70829473 0.001122516 0.03544285 0.1882627
-#> 3 0.0015527672 0.15527672 0.001122516 0.03544285 0.1882627
-#> 4 0.0034813989 0.34813989 0.001122516 0.03544285 0.1882627
-#> 5 0.0055242048 0.55242048 0.001122516 0.03544285 0.1882627
-#> 6 0.0027439914 0.27439914 0.001122516 0.03544285 0.1882627
+#>   id_cv year taxonkey_out   rep_cv est_original       error     sq_error  abs_error    rel_error
+#> 1     1 2011      2474051 48.85551     48.83864  0.01686866 0.0002845518 0.01686866 0.0003453959
+#> 2     2 2011      2474377 48.49272     48.83864 -0.34592150 0.1196616847 0.34592150 0.0070829473
+#> 3     3 2011      2474831 48.91447     48.83864  0.07583503 0.0057509524 0.07583503 0.0015527672
+#> 4     4 2011      2478523 48.66861     48.83864 -0.17002678 0.0289091060 0.17002678 0.0034813989
+#> 5     5 2011      2480242 48.56884     48.83864 -0.26979464 0.0727891466 0.26979464 0.0055242048
+#> 6     6 2011      2480332 48.97265     48.83864  0.13401280 0.0179594315 0.13401280 0.0027439914
+#>   perc_error         mre        mse      rmse
+#> 1 0.03453959 0.001122516 0.03544285 0.1882627
+#> 2 0.70829473 0.001122516 0.03544285 0.1882627
+#> 3 0.15527672 0.001122516 0.03544285 0.1882627
+#> 4 0.34813989 0.001122516 0.03544285 0.1882627
+#> 5 0.55242048 0.001122516 0.03544285 0.1882627
+#> 6 0.27439914 0.001122516 0.03544285 0.1882627
 ```
 
 The RMSE is an average error measure we obtain for each year.
