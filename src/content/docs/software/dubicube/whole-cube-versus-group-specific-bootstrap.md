@@ -2,10 +2,10 @@
 title: Whole-cube bootstrap versus group-specific bootstrap
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-03-23
+lastUpdated: 2026-04-07
 sidebar:
   label: Bootstrap methods
-  order: 5
+  order: 6
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/whole-cube-versus-group-specific-bootstrap.Rmd
 ---
 

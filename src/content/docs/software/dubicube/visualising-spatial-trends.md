@@ -2,10 +2,10 @@
 title: Visualising spatial trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-03-23
+lastUpdated: 2026-04-07
 sidebar:
   label: Visualising spatial trends
-  order: 8
+  order: 9
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/visualising-spatial-trends.Rmd
 ---
 
@@ -48,14 +48,14 @@ b3data_package <- read_package(
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
 head(bird_cube_belgium)
 #> # A tibble: 6 × 8
-#>    year mgrscode specieskey species          family     n mincoordinateuncerta…¹ familycount
-#>   <dbl> <chr>         <dbl> <chr>            <chr>  <dbl>                  <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix    Phasi…     1                   3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturn… Phasi…     1                   3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra      Ralli…     5                   1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster  Merop…     6                   1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanell… Chara…     1                   3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus  Accip…     1                   3536      855924
+#>    year mgrscode specieskey species           family           n mincoordinateuncerta…¹ familycount
+#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                  <dbl>       <dbl>
+#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                   3536      261414
+#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                   3536      261414
+#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                   1000      507437
+#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                   1000        1655
+#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                   3536      294808
+#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                   3536      855924
 #> # ℹ abbreviated name: ¹​mincoordinateuncertaintyinmeters
 ```
 
@@ -101,22 +101,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 2,391 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>
-#>  1  2000 31UES44   2481714 Tringa totanus    Scolo…     1                   3536      680179
-#>  2  2000 31UFS05   2481740 Calidris temminc… Scolo…     3                   3536      680179
-#>  3  2000 31UES43   2492943 Sylvia communis   Sylvi…     8                   1414      341890
-#>  4  2000 31UES44   5739317 Phoenicurus phoe… Musci…    10                   1000      610513
-#>  5  2000 31UFS63   2481700 Scolopax rustico… Scolo…     1                   3536      680179
-#>  6  2000 31UFS74   5845582 Chloris chloris   Fring…     3                   3536      762066
-#>  7  2000 31UFS65   2492960 Sylvia curruca    Sylvi…     7                   3536      341890
-#>  8  2000 31UFS07   2493091 Phylloscopus col… Phyll…    19                   1414      347345
-#>  9  2000 31UDS86   2489214 Delichon urbicum  Hirun…     3                   3536      200242
-#> 10  2000 31UES85   2473958 Perdix perdix     Phasi…     9                   1414      261414
+#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2000 31UES44   2481714 Tringa totanus    Scolo…     1                   3536      680179 540000
+#>  2  2000 31UFS05   2481740 Calidris temminc… Scolo…     3                   3536      680179 600000
+#>  3  2000 31UES43   2492943 Sylvia communis   Sylvi…     8                   1414      341890 540000
+#>  4  2000 31UES44   5739317 Phoenicurus phoe… Musci…    10                   1000      610513 540000
+#>  5  2000 31UFS63   2481700 Scolopax rustico… Scolo…     1                   3536      680179 660000
+#>  6  2000 31UFS74   5845582 Chloris chloris   Fring…     3                   3536      762066 670000
+#>  7  2000 31UFS65   2492960 Sylvia curruca    Sylvi…     7                   3536      341890 660000
+#>  8  2000 31UFS07   2493091 Phylloscopus col… Phyll…    19                   1414      347345 600000
+#>  9  2000 31UDS86   2489214 Delichon urbicum  Hirun…     3                   3536      200242 480000
+#> 10  2000 31UES85   2473958 Perdix perdix     Phasi…     9                   1414      261414 580000
 #> # ℹ 2,381 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 5 more variables: xcoord <dbl>, ycoord <dbl>, utmzone <int>, hemisphere <chr>,
-#> #   resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -214,7 +213,7 @@ head(ci_mean_obs)
 #> 1  31UDS65     3.285714     norm  1.553808  5.061621 0.95
 #> 2  31UDS65     3.285714    basic  1.287529  4.785714 0.95
 #> 3  31UDS65     3.285714     perc  1.785714  5.283900 0.95
-#> 4  31UDS65     3.285714      bca  2.071429  6.957425 0.95
+#> 4  31UDS65     3.285714      bca  2.000000  6.513062 0.95
 #> 5  31UDS66    10.333333     norm -1.740367 22.170101 0.95
 #> 6  31UDS66    10.333333    basic -3.064973 18.200000 0.95
 ```

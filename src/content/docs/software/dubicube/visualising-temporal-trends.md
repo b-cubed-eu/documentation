@@ -2,10 +2,10 @@
 title: Visualising temporal trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-03-23
+lastUpdated: 2026-04-07
 sidebar:
   label: Visualising temporal trends
-  order: 7
+  order: 8
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/visualising-temporal-trends.Rmd
 ---
 
@@ -94,22 +94,21 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975
+#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
+#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
+#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000
+#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000
+#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000
+#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000
+#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000
+#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000
+#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000
+#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000
+#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000
+#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 5 more variables: xcoord <dbl>, ycoord <dbl>, utmzone <int>, hemisphere <chr>,
-#> #   resolution <chr>
+#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
