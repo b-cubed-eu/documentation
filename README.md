@@ -7,7 +7,7 @@ This repository contains the source files for the [B-Cubed documentation website
 
 ## Usage
 
-The website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlights](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild the site on GitHub Pages for each commit on the `main` branch.
+The website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild the site on GitHub Pages for each commit on the `main` branch.
 
 To preview the site locally, use:
 
