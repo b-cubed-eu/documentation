@@ -2,6 +2,7 @@
 
 [![repostatus](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19632903.svg)](https://doi.org/10.5281/zenodo.19632903)
 
 This repository contains the source files for the [B-Cubed documentation website](https://docs.b-cubed.eu/).
 
