@@ -2,7 +2,7 @@
 title: Calculating bootstrap confidence intervals
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Bootstrap confidence intervals
   order: 5
@@ -65,7 +65,7 @@ $$
 
 ### 3. **Normal**
 
-Assumes the bootstrap distribution of the statistic is approximately normal:
+Assumes the bootstrap replications are normally distributed:
 
 $$
 CI_{\text{norm}} = \left[\hat{\theta} - \text{Bias}_{\text{boot}} - \text{SE}_{\text{boot}} \cdot z_{1-\alpha/2},
@@ -186,21 +186,20 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000
+#>     year cellCode taxonKey scientificName  family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>           <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus ph… Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stri… Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus gland… Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x … Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus   Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentat… Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querqu… Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -216,8 +215,8 @@ We create a function to calculate this.
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
   data %>%
-    dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
-    dplyr::summarise(diversity_val = mean(x), .by = "year") %>%
+    mutate(x = mean(obs), .by = "cellCode") %>%
+    summarise(diversity_val = mean(x), .by = "year") %>%
     as.data.frame()
 }
 ```
@@ -293,7 +292,7 @@ Now we can use the `calculate_bootstrap_ci()` function to calculate confidence l
   Only used when `type = "bca"` and no boot method is used. The input data as a processed data cube (from `b3gbi::process_cube()`).
 
 - **`fun`**:
-  Only used when `type = "bca"` and no boot method is used. A user-defined function that computes the statistic(s) of interest from `data_cube$data`. This function should return a dataframe that includes a column named `diversity_val`, containing the statistic to evaluate.
+  Only used when `type = "bca"` and no boot method is used. A user-defined function that computes the statistic(s) of interest from `data_cube$data`. This function should return a dataframe containing a column named `diversity_val` with the statistic to be evaluated.
 
 - **`progress`**:
   Logical flag to show a progress bar. Set to `TRUE` to enable progress reporting; default is `FALSE`.
@@ -386,7 +385,7 @@ See the [visualising temporal trends tutorial](https://docs.b-cubed.eu/software/
 ## Advanced usage of `calculate_bootstrap_ci()`
 ### Comparison with a reference group
 
-As discussed in the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/), we can also  compare indicator values to a reference group. In time series analyses, this often means comparing each year’s indicator to a baseline year (e.g., the first or last year in the series).
+As discussed in the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/), we can also compare indicator values to a reference group. In time series analyses, this often means comparing each year’s indicator to a baseline year (e.g., the first or last year in the series).
 To do this, we perform bootstrapping over the difference between indicator values.
 This process yields bootstrap replicate distributions of differences in indicator values.
 
@@ -477,7 +476,7 @@ ci_mean_obs_ref <- ci_mean_obs_ref %>%
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_ref %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -563,19 +562,19 @@ We create a custom function to calculate evenness:
 calc_evenness <- function(data) {
   data %>%
     # Calculate number of observations
-    dplyr::group_by(year, scientificName) %>%
-    dplyr::summarise(obs = sum(obs), .groups = "drop_last") %>%
+    group_by(year, scientificName) %>%
+    summarise(obs = sum(obs), .groups = "drop_last") %>%
     # Calculate evenness by year
-    dplyr::mutate(
+    mutate(
       tot = sum(obs),
       p = obs / tot,
       p_ln_p = p * log(p),
-      ln_S = log(dplyr::n_distinct(scientificName)),
+      ln_S = log(n_distinct(scientificName)),
       diversity_val = (-sum(p_ln_p)) / ln_S
     ) %>%
-    dplyr::ungroup() %>%
+    ungroup() %>%
     # Get distinct values
-    dplyr::distinct(year, diversity_val)
+    distinct(year, diversity_val)
 }
 ```
 
@@ -633,7 +632,7 @@ bootstrap_results_evenness_df <- boot_list_to_dataframe(
 ) %>%
   mutate(year = as.numeric(year))
 
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_evenness_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -758,9 +757,9 @@ We create a custom function to calculate richness:
 ``` r
 calc_richness <- function(data) {
   data %>%
-    dplyr::group_by(year) %>%
-    dplyr::summarise(diversity_val = n_distinct(scientificName),
-                     .groups = "drop")
+    group_by(year) %>%
+    summarise(diversity_val = n_distinct(scientificName),
+              .groups = "drop")
 }
 ```
 
@@ -794,16 +793,11 @@ ci_richness <- calculate_bootstrap_ci(
   data_cube = processed_cube_even,
   fun = calc_richness
 )
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment
-#> 'z0' is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment
-#> 'z0' is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment
-#> 'z0' is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment
-#> 'z0' is infinite.
-#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment
-#> 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
+#> Warning in bca_ci(t0 = unique(df$est_original), t = df$rep_boot, a = a, : Estimated adjustment 'z0' is infinite.
 ```
 
 We notice that none of the intervals cover the estimate. The percentile interval does not account for bias, the BCa interval cannot be calculated because the bias is too large and the normal and basic intervals have overcompensated because of the large bootstrap bias.
@@ -821,7 +815,7 @@ ci_richness <- ci_richness %>%
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_richness %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -857,7 +851,7 @@ bootstrap_results_richness %>%
 <img src="/software/dubicube/bootstrap-interval-calculation-unnamed-chunk-40-1.png" alt="Confidence intervals for richness over time."  />
 
 This issue arises because bootstrap resampling cannot introduce new species that were not present in the original sample (Dixon, [2001, p. 287](https://doi.org/10.1093/oso/9780195131871.003.0014)).
-As a result, the observed species richness — which is simply the count of unique species — tends to be negatively biased in bootstrap replicates.
+As a result, the observed species richness, which is simply the count of unique species, is negatively biased in bootstrap replicates.
 This leads to an extreme mismatch between the original estimate and the distribution of bootstrap replicates.
 In such cases, the BCa intervals may fail altogether (e.g., due to infinite bias correction factors), and other bootstrap intervals (normal, basic) may overcorrect.
 

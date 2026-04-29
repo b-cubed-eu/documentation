@@ -2,7 +2,7 @@
 title: Visualising temporal trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Visualising temporal trends
   order: 8
@@ -94,21 +94,20 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000
+#>     year cellCode taxonKey scientificName  family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>           <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus ph… Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stri… Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus gland… Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x … Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus   Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentat… Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querqu… Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -124,8 +123,8 @@ We create a function to calculate this.
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
   data %>%
-    dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
-    dplyr::summarise(diversity_val = mean(x), .by = "year") %>%
+    mutate(x = mean(obs), .by = "cellCode") %>%
+    summarise(diversity_val = mean(x), .by = "year") %>%
     as.data.frame()
 }
 ```
@@ -245,7 +244,7 @@ bootstrap_results_df <- boot_list_to_dataframe(
 ) %>%
   mutate(year = as.numeric(year))
 
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -748,26 +747,26 @@ result <- add_effect_classification(
 
 # View the result
 result
-#>   year est_original    est_boot   se_boot  bias_boot int_type conf          ll       ul
-#> 1 2012    1.0942452  0.65831911  5.475053 -0.4359261      bca 0.95 -10.7621638 11.04344
-#> 2 2013   -0.9219589 -0.07108256  6.690590  0.8508764      bca 0.95 -12.8513851 13.06589
-#> 3 2014   21.2638321 19.32958556 10.982093 -1.9342466      bca 0.95   5.8187198 57.17064
-#> 4 2015   15.0697689 14.80578656 10.723767 -0.2639823      bca 0.95   2.5039329 58.08685
-#> 5 2016   14.1628569 13.30622198 12.131657 -0.8566350      bca 0.95  -1.7552656 52.49345
-#> 6 2017   36.2442462 43.13141123 23.943155  6.8871650      bca 0.95   7.1906529 96.55713
-#> 7 2018   14.6607335 14.98367972 10.715491  0.3229462      bca 0.95   0.3961534 48.95507
-#> 8 2019   13.2901788  8.46222485 13.048145 -4.8279539      bca 0.95  -0.5622564 69.67581
-#> 9 2020    8.8263369  5.37019562 13.084703 -3.4561413      bca 0.95  -5.3273172 65.47783
-#>   effect_code effect_code_coarse             effect effect_coarse
-#> 1           ?                  ?            unknown       unknown
-#> 2           ?                  ?            unknown       unknown
-#> 3          ++                  +    strong increase      increase
-#> 4           +                  +           increase      increase
-#> 5          ?+                  ? potential increase       unknown
-#> 6          ++                  +    strong increase      increase
-#> 7           +                  +           increase      increase
-#> 8          ?+                  ? potential increase       unknown
-#> 9           ?                  ?            unknown       unknown
+#>   year est_original    est_boot   se_boot  bias_boot int_type conf          ll       ul effect_code effect_code_coarse
+#> 1 2012    1.0942452  0.65831911  5.475053 -0.4359261      bca 0.95 -10.7621638 11.04344           ?                  ?
+#> 2 2013   -0.9219589 -0.07108256  6.690590  0.8508764      bca 0.95 -12.8513851 13.06589           ?                  ?
+#> 3 2014   21.2638321 19.32958556 10.982093 -1.9342466      bca 0.95   5.8187198 57.17064          ++                  +
+#> 4 2015   15.0697689 14.80578656 10.723767 -0.2639823      bca 0.95   2.5039329 58.08685           +                  +
+#> 5 2016   14.1628569 13.30622198 12.131657 -0.8566350      bca 0.95  -1.7552656 52.49345          ?+                  ?
+#> 6 2017   36.2442462 43.13141123 23.943155  6.8871650      bca 0.95   7.1906529 96.55713          ++                  +
+#> 7 2018   14.6607335 14.98367972 10.715491  0.3229462      bca 0.95   0.3961534 48.95507           +                  +
+#> 8 2019   13.2901788  8.46222485 13.048145 -4.8279539      bca 0.95  -0.5622564 69.67581          ?+                  ?
+#> 9 2020    8.8263369  5.37019562 13.084703 -3.4561413      bca 0.95  -5.3273172 65.47783           ?                  ?
+#>               effect effect_coarse
+#> 1            unknown       unknown
+#> 2            unknown       unknown
+#> 3    strong increase      increase
+#> 4           increase      increase
+#> 5 potential increase       unknown
+#> 6    strong increase      increase
+#> 7           increase      increase
+#> 8 potential increase       unknown
+#> 9            unknown       unknown
 ```
 
 The **effectclass** package provides the `stat_effect()` function that visualises the effects with colours and symbols.

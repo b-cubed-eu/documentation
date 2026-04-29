@@ -2,7 +2,7 @@
 title: Whole-cube bootstrap versus group-specific bootstrap
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Bootstrap methods
   order: 6
@@ -109,7 +109,7 @@ head(bootstrap_mean_whole)
 
 **Advantages:**
 
-* Guarantees each replicate has rows for the group → stable CIs.
+* Guarantees each replicate has rows for each group → stable CIs.
 * Reflects within-group variability only.
 
 **Disadvantages:**
@@ -150,12 +150,9 @@ head(bootstrap_mean_group)
 
 ### Bootstrapping with the **boot** package
 
-For most use cases, **dubicube** delegates the resampling procedure to the well-established **boot** package (Canty et al., [2025](https://doi.org/10.32614/CRAN.package.boot)). This happens when:
+**dubicube** can delegate the bootstrap resampling procedure to the well-established **boot** package (Canty et al., [2025](https://doi.org/10.32614/CRAN.package.boot)). By default (`method = "smart"`), dubicube will automatically choose the bootstrapping method which is best for the given configuration. However the user can specify a specific method manually with `method = "boot_whole_cube"`, or `method = "boot_group_specific"`. In these cases, `bootstrap_cube()` returns the native objects produced by `boot::boot()`, rather than a summarised dataframe.
 
-* Automatically with `method = "smart"` (default), one grouping variable, and no reference group is specified (default)
-* Manually with `method = "boot_whole_cube"` or `method = "boot_group_specific"`
-
-In these cases, `bootstrap_cube()` returns the native objects produced by `boot::boot()`, rather than a summarised dataframe.
+The differences in performance and the smart selection of the appropriate method are discussed below.
 
 #### Whole-cube bootstrap with **boot**
 
@@ -200,7 +197,7 @@ sapply(bootstrap_mean_boot_group, class)
 ## Comparison between methods
 ### Comparing results
 
-We perform bootstrapping and confidence interval calculation for the period 2015–2018, following the same procedure as in other tutorials. The results show that the bootstrap distributions and confidence intervals are very similar, regardless of whether the **boot** package is used.
+We perform bootstrapping and confidence interval calculation for the period 2015–2018, following the same procedure as in other tutorials. The results show that the bootstrap distributions and confidence intervals are very similar, regardless of whether the **boot** package is used or the **dubicube** internal code. The label "boot" indicates that **dubicube** relies on the **boot** package for resampling and interval calculation, whereas “no boot” denotes that the same task is performed using **dubicube**'s internal code paths.
 
 
 
@@ -236,7 +233,7 @@ We benchmark execution time using the **microbenchmark** package (Mersmann et al
 Two computational steps are evaluated separately:
 
 1. Bootstrap resampling using `bootstrap_cube()` (1,000 bootstrap samples)
-2. Confidence interval calculation using `calculate_bootstrap_ci()` (all intervals (`"perc"`, `"bca"`, `"norm", `"basic"`))
+2. Confidence interval calculation using `calculate_bootstrap_ci()` (all intervals (`"perc"`, `"bca"`, `"norm"`, `"basic"`))
 
 For each step, we compare:
 
@@ -251,4 +248,4 @@ We observe that using the **boot** package results in faster performance for bot
 
 
 
-![](/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-15-1.png)
+<img src="/software/dubicube/whole-cube-versus-group-specific-bootstrap-unnamed-chunk-15-1.png" alt="Comparison of execution time between bootstrap methods."  />

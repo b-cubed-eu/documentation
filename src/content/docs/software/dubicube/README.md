@@ -1,6 +1,6 @@
 ---
 title: 'dubicube: Calculation and Interpretation of Data Cube Indicator Uncertainty'
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Introduction
   order: 1
