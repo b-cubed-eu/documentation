@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 title: 'pdindicatoR: Calculate and visualize a phylogenetic diversity indicators based
   on species occurrence data cubes'
-lastUpdated: 2026-03-23
+lastUpdated: 2026-04-29
 sidebar:
   label: Introduction
   order: 1
@@ -114,7 +114,7 @@ options(width = 1000)
 plot(tree, cex = 0.35, y.lim = 100)
 ```
 
-<img src="/software/pdindicatoR/man/figures/unnamed-chunk-9-1.png" alt="Phylogenetic tree"  />
+<img src="/software/pdindicatoR/man/figures/unnamed-chunk-16-1.png" alt="Phylogenetic tree" width="672" />
 
 ``` r
 head(cube)
@@ -233,7 +233,7 @@ pdindicator <- generate_map_and_indicator(pd_cube, grid, "Fagales")
 pdindicator
 ```
 
-<img src="/software/pdindicatoR/man/figures/unnamed-chunk-16-1.png" alt="PD map"  />
+<img src="/software/pdindicatoR/man/figures/unnamed-chunk-23-1.png" alt="PD map" width="672" />
 
 ``` r
 # Optionally specify a custom bounding box
@@ -268,14 +268,14 @@ print(plots)
 ## [[1]]
 ```
 
-![](/software/pdindicatoR/man/figures/unnamed-chunk-18-1.png)
+<img src="/software/pdindicatoR/man/figures/unnamed-chunk-25-1.png" width="672" />
 
 ```
 ## 
 ## [[2]]
 ```
 
-![](/software/pdindicatoR/man/figures/unnamed-chunk-18-2.png)
+<img src="/software/pdindicatoR/man/figures/unnamed-chunk-25-2.png" width="672" />
 
 ``` r
 print(paste("The percentage of high PD grid cells that fall within",
