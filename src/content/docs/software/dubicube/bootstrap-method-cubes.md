@@ -352,12 +352,6 @@ bootstrap_results_ref <- bootstrap_cube(
   seed = 123
 )
 #> [1] "Performing whole-cube bootstrap."
-#> Warning: Using `by = character()` to perform a cross join was deprecated in dplyr 1.1.0.
-#> ℹ Please use `cross_join()` instead.
-#> ℹ The deprecated feature was likely used in the dubicube package.
-#>   Please report the issue at <https://github.com/b-cubed-eu/dubicube/issues>.
-#> This warning is displayed once per session.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 This time, a dataframe is returned since the **boot** package cannot be used with a reference group (see Bootstrap method section).
