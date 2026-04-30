@@ -2,7 +2,7 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Bootstrapping data cubes
   order: 4
@@ -158,21 +158,20 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹ familyCount xcoord
-#>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>       <dbl>  <dbl>
-#>  1  2011 31UFS56   5231918 Cuculus canorus   Cucul…    11                   3536       67486 650000
-#>  2  2011 31UES28   5739317 Phoenicurus phoe… Musci…     6                   3536      610513 520000
-#>  3  2011 31UFS64   6065824 Chroicocephalus … Larid…   143                   1000     2612978 660000
-#>  4  2011 31UFS96   2492576 Muscicapa striata Musci…     3                   3536      610513 690000
-#>  5  2011 31UES04   5231198 Passer montanus   Passe…     1                   3536      175872 500000
-#>  6  2011 31UES85   5229493 Garrulus glandar… Corvi…    23                    707      816442 580000
-#>  7  2011 31UES88  10124612 Anser anser x Br… Anati…     1                    100     2709975 580000
-#>  8  2011 31UES22   2481172 Larus marinus     Larid…     8                   1000     2612978 520000
-#>  9  2011 31UFS43   2481139 Larus argentatus  Larid…    10                   3536     2612978 640000
-#> 10  2011 31UFT00   9274012 Spatula querqued… Anati…     8                   3536     2709975 600000
+#>     year cellCode taxonKey scientificName  family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>           <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus ph… Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stri… Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus gland… Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x … Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus   Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentat… Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querqu… Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: ycoord <dbl>, utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -188,8 +187,8 @@ We create a function to calculate this.
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
   data %>%
-    dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
-    dplyr::summarise(diversity_val = mean(x), .by = "year") %>%
+    mutate(x = mean(obs), .by = "cellCode") %>%
+    summarise(diversity_val = mean(x), .by = "year") %>%
     as.data.frame()
 }
 ```
@@ -279,7 +278,7 @@ We can visualise the bootstrap distributions using a violin plot.
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -290,7 +289,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 
-# Visualise bootrap distributions
+# Visualise bootstrap distributions
 bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
@@ -315,7 +314,7 @@ bootstrap_results_df %>%
 
 As stated in the documentation, it is also possible to bootstrap a dataframe.
 In this case, set the argument `processed_cube = FALSE`.
-This is implemented to allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
+This option is implemented to allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
 
 ```r
 bootstrap_results_df <- bootstrap_cube(
@@ -375,7 +374,7 @@ This will be further explored in the [effect classification tutorial](https://do
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_ref %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -386,7 +385,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 
-# Visualise bootrap distributions
+# Visualise bootstrap distributions
 bootstrap_results_ref %>%
   ggplot(aes(x = year)) +
   # Distribution

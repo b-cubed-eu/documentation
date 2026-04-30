@@ -2,7 +2,7 @@
 title: Data quality diagnostics and filtering for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-04-07
+lastUpdated: 2026-04-29
 sidebar:
   label: Evaluating and filtering data cubes
   order: 2
@@ -43,8 +43,9 @@ cube <- list(
   data = data.frame(
     year = c(2000, 2000, 2001, 2001, 2002, 2002, 2003, 2003, 2003),
     cellCode = c("A", "A", "B", "B", "C", "C", "D", "D", "E"),
-    taxonKey = c(1, 1, 1, 2, 2, 3, 3, 3, 3),
-    obs = c(10, 5, 1, 2, 0, 1, 2, 1, 0),
+    speciesKey = c(1, 1, 1, 2, 2, 3, 3, 3, 3),
+    scientificName = paste0("spec_", c(1, 1, 1, 2, 2, 3, 3, 3, 3)),
+    occurrences = c(10, 5, 1, 2, 0, 1, 2, 1, 0),
     minCoordinateUncertaintyInMeters = c(
       50, 100, 2000, 70, 5000, 2000, 10, 20, 300
     )
@@ -62,7 +63,7 @@ diag <- diagnose_cube(cube)
 #> 
 #> Data cube diagnostics
 #> ----------------------
-#> 🟡 NOTE - temporal_min_points 
+#> 🟡 NOTE - temporal_min_years 
 #>    Cube contains observations across 4 years. 
 #> 
 #> 🟢 OK - temporal_missing_years 
@@ -106,7 +107,7 @@ print(diag, sort_summary = "asc")
 #> 🟢 OK - spatial_miss_uncertainty 
 #>    Cube contains 0 records with missing coordinate uncertainty. 
 #> 
-#> 🟡 NOTE - temporal_min_points 
+#> 🟡 NOTE - temporal_min_years 
 #>    Cube contains observations across 4 years. 
 #> 
 #> 🟡 NOTE - taxon_min_taxa 
@@ -130,7 +131,7 @@ print(diag, sort_summary = "asc", filter_summary = "note")
 #> 
 #> Data cube diagnostics
 #> ----------------------
-#> 🟡 NOTE - temporal_min_points 
+#> 🟡 NOTE - temporal_min_years 
 #>    Cube contains observations across 4 years. 
 #> 
 #> 🟡 NOTE - taxon_min_taxa 
@@ -148,7 +149,7 @@ print(diag, sort_summary = "asc", filter_summary = "note")
 
 ### Understanding the output
 
-The output object of is an object of class `cube_diagnostics`, containing one row per metric with the following columns:
+The output object is an object of class `cube_diagnostics`, containing one row per metric with the following columns:
 
 - dimension: Dimension of the cube being evaluated (e.g. `"spatial"`, `"temporal"`, `"taxonomical"`).
 - metric: The diagnostic rule that was evaluated.
@@ -159,16 +160,14 @@ The output object of is an object of class `cube_diagnostics`, containing one ro
 
 ``` r
 diag$dimension
-#> [1] "temporal"    "temporal"    "spatial"     "spatial"     "spatial"     "taxonomic"  
-#> [7] "observation" "observation"
+#> [1] "temporal"    "temporal"    "spatial"     "spatial"     "spatial"     "taxonomic"   "observation" "observation"
 ```
 
 
 ``` r
 diag$metric
-#> [1] "temporal_min_points"      "temporal_missing_years"   "spatial_min_cells"       
-#> [4] "spatial_max_uncertainty"  "spatial_miss_uncertainty" "taxon_min_taxa"          
-#> [7] "obs_min_records"          "obs_min_total"
+#> [1] "temporal_min_years"       "temporal_missing_years"   "spatial_min_cells"        "spatial_max_uncertainty" 
+#> [5] "spatial_miss_uncertainty" "taxon_min_taxa"           "obs_min_records"          "obs_min_total"
 ```
 
 The rule objects are attached as an attribute of the diagnostics object.
@@ -203,7 +202,7 @@ summary(diag)
 #> 
 #> Data cube diagnostics
 #> ----------------------
-#> 🟡 NOTE - temporal_min_points 
+#> 🟡 NOTE - temporal_min_years 
 #>    Cube contains observations across 4 years. 
 #> 
 #> 🟡 NOTE - taxon_min_taxa 
@@ -242,7 +241,7 @@ plot(diag, type = "dimension")
 
 
 ``` r
-plot(diag, type = "heatmap")
+plot(diag, type = "rule")
 ```
 
 ![](/software/dubicube/diagnostics-and-filtering-unnamed-chunk-12-1.png)
@@ -257,7 +256,7 @@ basic_cube_rules()
 #> <cube_rule_list>
 #>   rules: 8 
 #> 
-#>   - temporal_min_points ( temporal )
+#>   - temporal_min_years ( temporal )
 #>   - temporal_missing_years ( temporal )
 #>   - spatial_min_cells ( spatial )
 #>   - spatial_max_uncertainty ( spatial )
@@ -267,7 +266,24 @@ basic_cube_rules()
 #>   - obs_min_total ( observation )
 ```
 
-You can refer to built-in rule sets with a string, you can provide a list of `cube_rule` object or combine both.
+You can consult the default rule thresholds by printing the rule functions.
+
+
+``` r
+rule_spatial_max_uncertainty()
+#> <cube_rule>
+#>   id:        spatial_max_uncertainty
+#>   dimension: spatial
+#>   thresholds: ok = 0, note = 1, important = 3, very_important = 5
+#> 
+#> Functions:
+#>   compute()     metric calculation
+#>   severity()    severity assignment
+#>   message()     diagnostic message
+#>   filter_fn()   filter rows
+```
+
+You can refer to built-in rule sets using a string, you can provide a list of `cube_rule` object or combine both.
 
 
 ``` r
@@ -275,7 +291,7 @@ diagnose_cube(cube, rules = "basic")
 #> 
 #> Data cube diagnostics
 #> ----------------------
-#> 🟡 NOTE - temporal_min_points 
+#> 🟡 NOTE - temporal_min_years 
 #>    Cube contains observations across 4 years. 
 #> 
 #> 🟢 OK - temporal_missing_years 
@@ -334,20 +350,22 @@ diagnose_cube(
 
 After the diagnostic evaluation we might want to generate a new data cube, or we might want to filter the data.
 Some `cube_rule` objects have `filter_fn()` functions that return a logical vector indicating which rows should be removed.
-For the basic rule set, `rule_spatial_max_uncertainty()` and `rule_spatial_miss_uncertainty()`.
-They will filter out respectively rows with minimal coordinate uncertainty larger than the grid cell resolution, and rows with missing minimal coordinate uncertainty.
+For the basic rule set, `rule_spatial_max_uncertainty()` and `rule_spatial_miss_uncertainty()` will filter out respectively rows with minimal coordinate uncertainty larger than the grid cell resolution, and rows with missing minimal coordinate uncertainty.
 
-We can pass the `"cube_diagnostics"` object.
-Only rules that implement a `filter_fn()` will be applied.
-Rules without a filtering function are ignored.
-**dubicube** will try to process the cube again with **b3gbi**.
-This will not work in our case since we never started with a processed cube to begin with (for illustrative reasons only).
+We can pass the full `"cube_diagnostics"` object.
+Only rules with a `filter_fn()` function will be applied, while rules without a filtering function are ignored.
+
+After filtering, **dubicube** attempts to rebuild the cube using **b3gbi** to ensure that all metadata remain consistent. In this example, that step initially fails because our toy data were not created with `b3gbi::process_cube()` (this was done for illustrative purposes only).
+However, we can still force a successful rebuild by explicitly passing additional arguments to `process_cube()`. For example, setting `grid_type = "none"` allows the cube to be processed again without requiring a spatial grid.
+This ensures that the filtered cube is properly reconstructed, including updated metadata.
 
 
 ``` r
-filtered_cube <- filter_cube(cube, diagnostics = diag)
-#> Warning: Filtered data replaced the cube data but metadata was not recomputed.
-#> Install and use `b3gbi::process_cube()` to rebuild cube metadata.
+filtered_cube <- filter_cube(
+  cube,
+  diagnostics = diag,
+  process_cube_args = list(grid_type = "none")
+)
 ```
 
 We see that the data with minimal coordinate uncertainty larger than the grid cell resolution (= 1000 m) are removed.
@@ -355,28 +373,30 @@ We see that the data with minimal coordinate uncertainty larger than the grid ce
 
 ``` r
 cube$data
-#>   year cellCode taxonKey obs minCoordinateUncertaintyInMeters
-#> 1 2000        A        1  10                               50
-#> 2 2000        A        1   5                              100
-#> 3 2001        B        1   1                             2000
-#> 4 2001        B        2   2                               70
-#> 5 2002        C        2   0                             5000
-#> 6 2002        C        3   1                             2000
-#> 7 2003        D        3   2                               10
-#> 8 2003        D        3   1                               20
-#> 9 2003        E        3   0                              300
+#>   year cellCode speciesKey scientificName occurrences minCoordinateUncertaintyInMeters
+#> 1 2000        A          1         spec_1          10                               50
+#> 2 2000        A          1         spec_1           5                              100
+#> 3 2001        B          1         spec_1           1                             2000
+#> 4 2001        B          2         spec_2           2                               70
+#> 5 2002        C          2         spec_2           0                             5000
+#> 6 2002        C          3         spec_3           1                             2000
+#> 7 2003        D          3         spec_3           2                               10
+#> 8 2003        D          3         spec_3           1                               20
+#> 9 2003        E          3         spec_3           0                              300
 ```
 
 
 ``` r
 filtered_cube$data
-#>   year cellCode taxonKey obs minCoordinateUncertaintyInMeters
-#> 1 2000        A        1  10                               50
-#> 2 2000        A        1   5                              100
-#> 4 2001        B        2   2                               70
-#> 7 2003        D        3   2                               10
-#> 8 2003        D        3   1                               20
-#> 9 2003        E        3   0                              300
+#> # A tibble: 6 × 6
+#>    year cellCode taxonKey scientificName   obs minCoordinateUncertaintyInMeters
+#>   <dbl> <chr>       <dbl> <chr>          <dbl>                            <dbl>
+#> 1  2000 A               1 spec_1            10                               50
+#> 2  2000 A               1 spec_1             5                              100
+#> 3  2001 B               2 spec_2             2                               70
+#> 4  2003 D               3 spec_3             2                               10
+#> 5  2003 D               3 spec_3             1                               20
+#> 6  2003 E               3 spec_3             0                              300
 ```
 
 You can also use the rules directly for filtering.
@@ -385,10 +405,9 @@ You can also use the rules directly for filtering.
 ``` r
 filtered_cube2 <- filter_cube(
   cube,
-  rules = list(rule_spatial_max_uncertainty())
+  rules = list(rule_spatial_max_uncertainty()),
+  process_cube_args = list(grid_type = "none")
 )
-#> Warning: Filtered data replaced the cube data but metadata was not recomputed.
-#> Install and use `b3gbi::process_cube()` to rebuild cube metadata.
 ```
 
 
