@@ -3,7 +3,7 @@ output: github_document
 editor_options:
   chunk_output_type: console
 title: 'gcube: Simulating Biodiversity Data Cubes'
-lastUpdated: 2026-01-19
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1

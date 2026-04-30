@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'EBVcube: Working with netCDF for Essential Biodiversity Variables'
-lastUpdated: 2026-01-14
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -65,6 +65,7 @@ install.packages("ebvcube", repos = c("https://b-cubed-eu.r-universe.dev", "http
 #troubleshooting in case the BioConductor packages are missing
 #if one of the following packages is not loaded: rhdf5, DelayedArray, HDF5Array
 install.packages("BiocManager")
+BiocManager::install(version = "3.22")
 BiocManager::install('rhdf5')
 BiocManager::install('DelayedArray')
 BiocManager::install('HDF5Array')
@@ -81,6 +82,7 @@ With the following two functions you get the metadata of a specific EBV netCDF f
 
 ``` r
 library(ebvcube)
+#> ebvcube 0.5.2
 
 #set the path to the file
 file <- system.file(file.path("extdata", "martins_comcom_subset.nc"), package="ebvcube")
@@ -108,6 +110,9 @@ Now let's get the paths to all possible datacubes. The resulting data.frame incl
 ``` r
 datacubes <- ebv_datacubepaths(file, verbose=FALSE)
 datacubes
+#>       datacubepaths                                 metric_names
+#> 1 metric_1/ebv_cube Relative change in the number of species (%)
+#> 2 metric_2/ebv_cube     Absolute change in the number of species
 ```
 
 In the next step we will get the properties of one specific datacube - fyi: the result also holds the general file properties from above.
@@ -136,6 +141,9 @@ To discover the spatial distribution of the data, you can plot a map of the data
 dc <- datacubes[2, 1]
 ebv_map(file, dc, entity=1, timestep = 1, classes = 9,
         verbose=FALSE, col_rev = TRUE)
+#> Registered S3 method overwritten by 'data.table':
+#>   method           from
+#>   print.data.table
 ```
 
 <img src="/software/ebvcube/man/figures/README-unnamed-chunk-11-1.png" alt="" width="100%" />
@@ -152,8 +160,8 @@ averages <- ebv_trend(file, dc, entity=1, verbose=FALSE)
 
 ``` r
 averages
-#>  [1]  0.6140731  1.2972444  2.2045310  3.6016083  6.4691830  8.8957375  9.7711291
-#>  [8] 10.3299345 10.9822654 11.5685090 11.9421034 12.3869482
+#>  [1]  0.6140731  1.2972444  2.2045310  3.6016083  6.4691830  8.8957375  9.7711291 10.3299345
+#>  [9] 10.9822654 11.5685090 11.9421034 12.3869482
 ```
 
 It would be cool to have that for other indicators as well? Check out the different options for 'method'.
@@ -247,6 +255,9 @@ print(ebv_properties(new_nc, verbose=FALSE)@general$entity_names)
 #check out the (still empty) datacubes that are available
 dc_new <- ebv_datacubepaths(new_nc, verbose=FALSE)
 print(dc_new)
+#>       datacubepaths                                 metric_names
+#> 1 metric_1/ebv_cube Relative change in the number of species (%)
+#> 2 metric_2/ebv_cube     Absolute change in the number of species
 ```
 
 Hint: You can always take a look at your netCDF in [Panoply](https://www.giss.nasa.gov/tools/panoply/) provided by NASA. That's very helpful to understand the structure.
@@ -299,8 +310,8 @@ citation('ebvcube')
 #> 
 #>   Quoss L, Fernandez N, Langer C, Valdez J, Pereira H (2024). _ebvcube: Working
 #>   with netCDF for Essential Biodiversity Variables_. German Centre for
-#>   Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Germany. R
-#>   package version 0.5.2, <https://github.com/EBVcube/ebvcube>.
+#>   Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Germany. R package
+#>   version 0.5.2, <https://github.com/EBVcube/ebvcube>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 

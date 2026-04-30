@@ -2,7 +2,7 @@
 title: Specifying the grid designation process
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-01-19
+lastUpdated: 2026-03-23
 sidebar:
   label: Grid designation process
   order: 4
@@ -368,12 +368,12 @@ head(occurrence_cube_df %>% st_drop_geometry())
 #> # A tibble: 6 × 4
 #>   time_point cell_code     n min_coord_uncertainty
 #>        <int> <chr>     <int>                 <dbl>
-#> 1          1 107           2                    25
-#> 2          1 109           1                    25
-#> 3          1 113           2                    25
-#> 4          1 119           2                    25
-#> 5          1 124           1                    25
-#> 6          1 130           1                    25
+#> 1          1 100           1                    25
+#> 2          1 106           1                    25
+#> 3          1 108           1                    25
+#> 4          1 114           1                    25
+#> 5          1 116           4                    25
+#> 6          1 130           3                    25
 ```
 
 Get sampled points within uncertainty circle by setting `aggregate = FALSE`.

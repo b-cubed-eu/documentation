@@ -2,10 +2,10 @@
 title: Bootstrap method for data cubes
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-04-29
 sidebar:
   label: Bootstrapping data cubes
-  order: 3
+  order: 4
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/bootstrap-method-cubes.Rmd
 ---
 
@@ -102,8 +102,7 @@ library(dubicube)     # Analysis of data quality & indicator uncertainty
 We load the bird cube data from the **b3data** data package using **frictionless** (see also [here](https://github.com/b-cubed-eu/b3data-scripts)).
 It is an occurrence cube for birds in Belgium between 2000 en 2024 using the MGRS grid at 10 km scale.
 
-
-``` r
+```r
 # Read data package
 b3data_package <- read_package(
   "https://zenodo.org/records/15211029/files/datapackage.json"
@@ -111,16 +110,6 @@ b3data_package <- read_package(
 
 # Load bird cube data
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
-head(bird_cube_belgium)
-#> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -128,8 +117,7 @@ First, we select 2000 random rows to make the dataset smaller.
 This is to reduce the computation time for this tutorial.
 We select the data from 2011 - 2020.
 
-
-``` r
+```r
 set.seed(123)
 
 # Make dataset smaller
@@ -144,6 +132,12 @@ processed_cube <- process_cube(
   cols_occurrences = "n"
 )
 processed_cube
+```
+
+
+
+
+```
 #> 
 #> Processed data cube for calculating biodiversity indicators
 #> 
@@ -164,21 +158,20 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
-#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
-#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
-#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
-#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
-#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
-#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
-#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
-#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
-#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
-#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
-#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
+#>     year cellCode taxonKey scientificName  family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>           <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus ph… Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stri… Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus gland… Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x … Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus   Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentat… Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querqu… Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -187,18 +180,20 @@ Let's say we are interested in the mean number of observations per grid cell per
 We create a function to calculate this.
 
 
+
+
 ``` r
 # Function to calculate the statistic of interest
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
-  obs <- x <- NULL
-
   data %>%
-    dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
-    dplyr::summarise(diversity_val = mean(x), .by = "year") %>%
+    mutate(x = mean(obs), .by = "cellCode") %>%
+    summarise(diversity_val = mean(x), .by = "year") %>%
     as.data.frame()
 }
 ```
+
+
 
 We get the following results:
 
@@ -242,8 +237,7 @@ We use the `bootstrap_cube()` function to do this. It relies on the following ar
 - **`progress`**:  
   Logical flag to show a progress bar. Set to `TRUE` to enable progress reporting; default is `FALSE`.
 
-
-``` r
+```r
 bootstrap_results <- bootstrap_cube(
   data_cube = processed_cube,
   fun = mean_obs,
@@ -251,6 +245,12 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+```
+
+
+
+
+```
 #> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
 
@@ -278,7 +278,7 @@ We can visualise the bootstrap distributions using a violin plot.
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -289,7 +289,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 
-# Visualise bootrap distributions
+# Visualise bootstrap distributions
 bootstrap_results_df %>%
   ggplot(aes(x = year)) +
   # Distribution
@@ -307,14 +307,14 @@ bootstrap_results_df %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-method-cubes-unnamed-chunk-9-1.png" alt="Bootstrap distributions for mean number of occurrences over time."  />
+<img src="/software/dubicube/bootstrap-method-cubes-unnamed-chunk-12-1.png" alt="Bootstrap distributions for mean number of occurrences over time."  />
 
 ## Advanced usage of `bootstrap_cube()`
 ### Bootstrap simple dataframes
 
 As stated in the documentation, it is also possible to bootstrap a dataframe.
 In this case, set the argument `processed_cube = FALSE`.
-This is implemented to allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
+This option is implemented to allow for flexible use of simple dataframes, while still encouraging the use of `b3gbi::process_cube()` as default functionality.
 
 ```r
 bootstrap_results_df <- bootstrap_cube(
@@ -374,7 +374,7 @@ This will be further explored in the [effect classification tutorial](https://do
 
 
 ``` r
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_ref %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -385,7 +385,7 @@ estimate_mean_obs <- bias_mean_obs %>%
   mutate(Legend = factor(Legend, levels = c("estimate", "bootstrap estimate"),
                          ordered = TRUE))
 
-# Visualise bootrap distributions
+# Visualise bootstrap distributions
 bootstrap_results_ref %>%
   ggplot(aes(x = year)) +
   # Distribution
@@ -403,7 +403,7 @@ bootstrap_results_ref %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/bootstrap-method-cubes-unnamed-chunk-12-1.png" alt="Bootstrap distributions for mean number of occurrences over time (ref)."  />
+<img src="/software/dubicube/bootstrap-method-cubes-unnamed-chunk-15-1.png" alt="Bootstrap distributions for mean number of occurrences over time (ref)."  />
 
 Note that the choice of the reference year should be well considered.
 Keep in mind which comparisons should be made, and what the motivation is behind the reference period.

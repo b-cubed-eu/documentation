@@ -2,10 +2,10 @@
 title: Visualising temporal trends
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-04-29
 sidebar:
   label: Visualising temporal trends
-  order: 7
+  order: 8
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/visualising-temporal-trends.Rmd
 ---
 
@@ -38,8 +38,7 @@ library(dubicube)     # Analysis of data quality & indicator uncertainty
 
 We load the bird cube data from the **b3data** data package using **frictionless** (see also [here](https://github.com/b-cubed-eu/b3data-scripts)).
 
-
-``` r
+```r
 # Read data package
 b3data_package <- read_package(
   "https://zenodo.org/records/15211029/files/datapackage.json"
@@ -47,16 +46,6 @@ b3data_package <- read_package(
 
 # Load bird cube data
 bird_cube_belgium <- read_resource(b3data_package, "bird_cube_belgium_mgrs10")
-head(bird_cube_belgium)
-#> # A tibble: 6 × 8
-#>    year mgrscode specieskey species           family           n mincoordinateuncertaintyinmeters familycount
-#>   <dbl> <chr>         <dbl> <chr>             <chr>        <dbl>                            <dbl>       <dbl>
-#> 1  2000 31UDS65     2473958 Perdix perdix     Phasianidae      1                             3536      261414
-#> 2  2000 31UDS65     2474156 Coturnix coturnix Phasianidae      1                             3536      261414
-#> 3  2000 31UDS65     2474377 Fulica atra       Rallidae         5                             1000      507437
-#> 4  2000 31UDS65     2475443 Merops apiaster   Meropidae        6                             1000        1655
-#> 5  2000 31UDS65     2480242 Vanellus vanellus Charadriidae     1                             3536      294808
-#> 6  2000 31UDS65     2480637 Accipiter nisus   Accipitridae     1                             3536      855924
 ```
 
 We process the cube with **b3gbi**.
@@ -64,8 +53,7 @@ First, we select 2000 random rows to make the dataset smaller.
 This is to reduce the computation time for this tutorial.
 We select the data from 2011 - 2020.
 
-
-``` r
+```r
 set.seed(123)
 
 # Make dataset smaller
@@ -80,6 +68,12 @@ processed_cube <- process_cube(
   cols_occurrences = "n"
 )
 processed_cube
+```
+
+
+
+
+```
 #> 
 #> Processed data cube for calculating biodiversity indicators
 #> 
@@ -100,21 +94,20 @@ processed_cube
 #> First 10 rows of data (use n = to show more):
 #> 
 #> # A tibble: 957 × 13
-#>     year cellCode taxonKey scientificName       family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone
-#>    <dbl> <chr>       <dbl> <chr>                <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int>
-#>  1  2011 31UFS56   5231918 Cuculus canorus      Cucul…    11                   3536       67486 650000 5.66e6      31
-#>  2  2011 31UES28   5739317 Phoenicurus phoenic… Musci…     6                   3536      610513 520000 5.68e6      31
-#>  3  2011 31UFS64   6065824 Chroicocephalus rid… Larid…   143                   1000     2612978 660000 5.64e6      31
-#>  4  2011 31UFS96   2492576 Muscicapa striata    Musci…     3                   3536      610513 690000 5.66e6      31
-#>  5  2011 31UES04   5231198 Passer montanus      Passe…     1                   3536      175872 500000 5.64e6      31
-#>  6  2011 31UES85   5229493 Garrulus glandarius  Corvi…    23                    707      816442 580000 5.65e6      31
-#>  7  2011 31UES88  10124612 Anser anser x Brant… Anati…     1                    100     2709975 580000 5.68e6      31
-#>  8  2011 31UES22   2481172 Larus marinus        Larid…     8                   1000     2612978 520000 5.62e6      31
-#>  9  2011 31UFS43   2481139 Larus argentatus     Larid…    10                   3536     2612978 640000 5.63e6      31
-#> 10  2011 31UFT00   9274012 Spatula querquedula  Anati…     8                   3536     2709975 600000 5.7 e6      31
+#>     year cellCode taxonKey scientificName  family   obs minCoordinateUncerta…¹ familyCount xcoord ycoord utmzone hemisphere resolution
+#>    <dbl> <chr>       <dbl> <chr>           <chr>  <dbl>                  <dbl>       <dbl>  <dbl>  <dbl>   <int> <chr>      <chr>     
+#>  1  2011 31UFS56   5231918 Cuculus canorus Cucul…    11                   3536       67486 650000 5.66e6      31 N          10km      
+#>  2  2011 31UES28   5739317 Phoenicurus ph… Musci…     6                   3536      610513 520000 5.68e6      31 N          10km      
+#>  3  2011 31UFS64   6065824 Chroicocephalu… Larid…   143                   1000     2612978 660000 5.64e6      31 N          10km      
+#>  4  2011 31UFS96   2492576 Muscicapa stri… Musci…     3                   3536      610513 690000 5.66e6      31 N          10km      
+#>  5  2011 31UES04   5231198 Passer montanus Passe…     1                   3536      175872 500000 5.64e6      31 N          10km      
+#>  6  2011 31UES85   5229493 Garrulus gland… Corvi…    23                    707      816442 580000 5.65e6      31 N          10km      
+#>  7  2011 31UES88  10124612 Anser anser x … Anati…     1                    100     2709975 580000 5.68e6      31 N          10km      
+#>  8  2011 31UES22   2481172 Larus marinus   Larid…     8                   1000     2612978 520000 5.62e6      31 N          10km      
+#>  9  2011 31UFS43   2481139 Larus argentat… Larid…    10                   3536     2612978 640000 5.63e6      31 N          10km      
+#> 10  2011 31UFT00   9274012 Spatula querqu… Anati…     8                   3536     2709975 600000 5.7 e6      31 N          10km      
 #> # ℹ 947 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 2 more variables: hemisphere <chr>, resolution <chr>
 ```
 
 ### Analysis of the data
@@ -130,8 +123,8 @@ We create a function to calculate this.
 # Mean observations per grid cell per year
 mean_obs <- function(data) {
   data %>%
-    dplyr::mutate(x = mean(obs), .by = "cellCode") %>%
-    dplyr::summarise(diversity_val = mean(x), .by = "year") %>%
+    mutate(x = mean(obs), .by = "cellCode") %>%
+    summarise(diversity_val = mean(x), .by = "year") %>%
     as.data.frame()
 }
 ```
@@ -162,8 +155,7 @@ On their own, these values don’t reveal how much uncertainty surrounds them. T
 
 We use the `bootstrap_cube()` function to perform bootstrapping (see also the [bootstrap tutorial](https://docs.b-cubed.eu/software/dubicube/bootstrap-method-cubes/)).
 
-
-``` r
+```r
 bootstrap_results <- bootstrap_cube(
   data_cube = processed_cube,
   fun = mean_obs,
@@ -171,6 +163,12 @@ bootstrap_results <- bootstrap_cube(
   samples = 1000,
   seed = 123
 )
+```
+
+
+
+
+```
 #> [1] "Performing whole-cube bootstrap with `boot::boot()`."
 ```
 
@@ -232,7 +230,7 @@ ci_mean_obs %>%
   facet_wrap(~int_type)
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-12-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-13-1.png" alt="Confidence intervals for mean number of occurrences over time."  />
 
 However, the question remains which interval types should be calculated and/or reported.
 A good idea is to compare different interval types next to each other together with the bootstrap distribution and the bootstrap bias (the difference between the estimate and the bootstrap estimate).
@@ -246,7 +244,7 @@ bootstrap_results_df <- boot_list_to_dataframe(
 ) %>%
   mutate(year = as.numeric(year))
 
-# Get bias vales
+# Get bias values
 bias_mean_obs <- bootstrap_results_df %>%
   distinct(year, estimate = est_original, `bootstrap estimate` = est_boot)
 
@@ -279,7 +277,7 @@ bootstrap_results_df %>%
 #> Warning: Using shapes for an ordinal variable is not advised
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-13-1.png" alt="Confidence intervals with bootstrap distribution for mean number of occurrences over time."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-14-1.png" alt="Confidence intervals with bootstrap distribution for mean number of occurrences over time."  />
 
 This informs us about the shape of the bootstrap distribution and the amount of bootstrap bias.
 In combination with bootstrap interval theory, it can be decided which interval type(s) should be reported.
@@ -449,7 +447,7 @@ ci_mean_obs %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-14-1.png" alt="Confidence intervals with loess smoother."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-15-1.png" alt="Confidence intervals with loess smoother."  />
 
 ### Fan plots
 
@@ -476,7 +474,7 @@ ggplot(bootstrap_results_df, aes(sample = rep_boot)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-16-1.png" alt="Q-Q plot of bootstrap replications."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-17-1.png" alt="Q-Q plot of bootstrap replications."  />
 
 As expected, it looks like the bootstrap distributions are not normally distributed in most years.
 If we log-transform the bootstrap replications, the Q-Q plots look better.
@@ -494,7 +492,7 @@ ggplot(bootstrap_results_df, aes(sample = log(rep_boot))) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-17-1.png" alt="Q-Q plot of log-transformed bootstrap replications."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-18-1.png" alt="Q-Q plot of log-transformed bootstrap replications."  />
 
 We therefore calculate the log-transformed normal intervals and compare them with the BCa and normal intervals.
 
@@ -545,7 +543,7 @@ bootstrap_results_df %>%
         legend.title = element_text(face = "bold"))
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-19-1.png" alt="Compare log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-20-1.png" alt="Compare log-normal intervals."  />
 
 Finally, we can create a fan plot assuming the log-normal distribution.
 Note that for `stat_fan()`, the `link_sd` is the standard error on the link scale, while `y` is on the natural scale.
@@ -578,7 +576,7 @@ bootstrap_results_df %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-20-1.png" alt="Categorical fan plot of log-normal interval with effectclass."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-21-1.png" alt="Categorical fan plot of log-normal interval with effectclass."  />
 
 We can make use of this concept to make fan plots for other interval types ourselves.
 We calculate BCA and log-normal intervals  for five coverages using a for loop.
@@ -658,7 +656,7 @@ ggplot(out_ci, aes()) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-22-1.png" alt="Categorical fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-23-1.png" alt="Categorical fan plot of BCa and log-normal intervals."  />
 
 We can visualise this in a continuous way with `geom_ribbon()` from **ggplot2**.
 Linear (like the default of `stat_fan()`):
@@ -678,7 +676,7 @@ ggplot(out_ci, aes(x = year)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-23-1.png" alt="Linear fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-24-1.png" alt="Linear fan plot of BCa and log-normal intervals."  />
 
 Smooth (like in the previous paragraph):
 
@@ -706,7 +704,7 @@ out_ci %>%
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-24-1.png" alt="Smooth fan plot of BCa and log-normal intervals."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-25-1.png" alt="Smooth fan plot of BCa and log-normal intervals."  />
 
 ## Visualising temporal effects
 
@@ -749,26 +747,26 @@ result <- add_effect_classification(
 
 # View the result
 result
-#>   year est_original    est_boot   se_boot  bias_boot int_type conf          ll       ul effect_code
-#> 1 2012    1.0942452  0.65831911  5.475053 -0.4359261      bca 0.95 -10.7621638 11.04344           ?
-#> 2 2013   -0.9219589 -0.07108256  6.690590  0.8508764      bca 0.95 -12.8513851 13.06589           ?
-#> 3 2014   21.2638321 19.32958556 10.982093 -1.9342466      bca 0.95   5.8187198 57.17064          ++
-#> 4 2015   15.0697689 14.80578656 10.723767 -0.2639823      bca 0.95   2.5039329 58.08685           +
-#> 5 2016   14.1628569 13.30622198 12.131657 -0.8566350      bca 0.95  -1.7552656 52.49345          ?+
-#> 6 2017   36.2442462 43.13141123 23.943155  6.8871650      bca 0.95   7.1906529 96.55713          ++
-#> 7 2018   14.6607335 14.98367972 10.715491  0.3229462      bca 0.95   0.3961534 48.95507           +
-#> 8 2019   13.2901788  8.46222485 13.048145 -4.8279539      bca 0.95  -0.5622564 69.67581          ?+
-#> 9 2020    8.8263369  5.37019562 13.084703 -3.4561413      bca 0.95  -5.3273172 65.47783           ?
-#>   effect_code_coarse             effect effect_coarse
-#> 1                  ?            unknown       unknown
-#> 2                  ?            unknown       unknown
-#> 3                  +    strong increase      increase
-#> 4                  +           increase      increase
-#> 5                  ? potential increase       unknown
-#> 6                  +    strong increase      increase
-#> 7                  +           increase      increase
-#> 8                  ? potential increase       unknown
-#> 9                  ?            unknown       unknown
+#>   year est_original    est_boot   se_boot  bias_boot int_type conf          ll       ul effect_code effect_code_coarse
+#> 1 2012    1.0942452  0.65831911  5.475053 -0.4359261      bca 0.95 -10.7621638 11.04344           ?                  ?
+#> 2 2013   -0.9219589 -0.07108256  6.690590  0.8508764      bca 0.95 -12.8513851 13.06589           ?                  ?
+#> 3 2014   21.2638321 19.32958556 10.982093 -1.9342466      bca 0.95   5.8187198 57.17064          ++                  +
+#> 4 2015   15.0697689 14.80578656 10.723767 -0.2639823      bca 0.95   2.5039329 58.08685           +                  +
+#> 5 2016   14.1628569 13.30622198 12.131657 -0.8566350      bca 0.95  -1.7552656 52.49345          ?+                  ?
+#> 6 2017   36.2442462 43.13141123 23.943155  6.8871650      bca 0.95   7.1906529 96.55713          ++                  +
+#> 7 2018   14.6607335 14.98367972 10.715491  0.3229462      bca 0.95   0.3961534 48.95507           +                  +
+#> 8 2019   13.2901788  8.46222485 13.048145 -4.8279539      bca 0.95  -0.5622564 69.67581          ?+                  ?
+#> 9 2020    8.8263369  5.37019562 13.084703 -3.4561413      bca 0.95  -5.3273172 65.47783           ?                  ?
+#>               effect effect_coarse
+#> 1            unknown       unknown
+#> 2            unknown       unknown
+#> 3    strong increase      increase
+#> 4           increase      increase
+#> 5 potential increase       unknown
+#> 6    strong increase      increase
+#> 7           increase      increase
+#> 8 potential increase       unknown
+#> 9            unknown       unknown
 ```
 
 The **effectclass** package provides the `stat_effect()` function that visualises the effects with colours and symbols.
@@ -784,7 +782,7 @@ ggplot(data = result, aes(x = year, y = est_original, ymin = ll, ymax = ul)) +
   theme_minimal()
 ```
 
-<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-26-1.png" alt="Effect visualisation for mean number of occurrences over per year compared to 2011."  />
+<img src="/software/dubicube/visualising-temporal-trends-unnamed-chunk-27-1.png" alt="Effect visualisation for mean number of occurrences over per year compared to 2011."  />
 
 With this function, you can also add symbols to `stat_fan()`.
 

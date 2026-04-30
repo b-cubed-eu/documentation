@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'vscube: Virtual Suitability Cube'
-lastUpdated: 2026-02-10
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -297,7 +297,7 @@ pred_bel # stars object with attribute "suit"
 #> stars object with 3 dimensions and 1 attribute
 #> attribute(s):
 #>               Min.    1st Qu.    Median      Mean   3rd Qu.      Max.  NA's
-#> suit  8.314893e-11 0.05599219 0.1969696 0.2659458 0.4346556 0.9994182 67380
+#> suit  6.182086e-10 0.05560188 0.1902957 0.2611484 0.4240361 0.9996012 67380
 #> dimension(s):
 #>         from  to offset     delta refsys                                       values x/y
 #> x          1 480    2.5  0.008333 WGS 84                                         NULL [x]
@@ -346,16 +346,22 @@ agg_bel <- aggregate_suitability(pred_bel, grid_bel, fun = mean)
 agg_bel
 #> stars object with 2 dimensions and 1 attribute
 #> attribute(s):
-#>                   Min.   1st Qu.    Median     Mean   3rd Qu.     Max.
-#> suitability  0.1285719 0.2660415 0.3329749 0.414431 0.5659087 0.823852
+#>                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max.
+#> suitability  0.1219109 0.2703462 0.3399906 0.4100135 0.5544951 0.8361634
 #> dimension(s):
-#>          from   to refsys point                                                        values
-#> geometry    1 1200 WGS 84 FALSE POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
-#> species     1    5     NA    NA                  Anemone nemorosa L.,...,Paris quadrifolia L.
+#>          from   to refsys point
+#> geometry    1 1200 WGS 84 FALSE
+#> species     1    5     NA    NA
+#>                                                                 values
+#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
 st_dimensions(agg_bel) 
-#>          from   to refsys point                                                        values
-#> geometry    1 1200 WGS 84 FALSE POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
-#> species     1    5     NA    NA                  Anemone nemorosa L.,...,Paris quadrifolia L.
+#>          from   to refsys point
+#> geometry    1 1200 WGS 84 FALSE
+#> species     1    5     NA    NA
+#>                                                                 values
+#> geometry POLYGON ((2.5 49, 2.6 49,...,...,POLYGON ((6.4 51.9, 6.5 5...
+#> species                   Anemone nemorosa L.,...,Paris quadrifolia L.
 names(agg_bel)
 #> [1] "suitability"
 
@@ -391,11 +397,11 @@ cell_id <- vsc_cell_id_for_point(grid_bel, lon = 4.3517, lat = 50.8503)
 df_long <- vsc_cell_suitability_long(agg_bel, cell_id)
 head(df_long)
 #>   cell                         species suitability
-#> 1  739             Anemone nemorosa L.   0.7447716
-#> 2  739 Chrysosplenium alternifolium L.   0.2984657
-#> 3  739                 Galium verum L.   0.3281477
-#> 4  739            Ophrys apifera Huds.   0.5573615
-#> 5  739            Paris quadrifolia L.   0.1596800
+#> 1  739             Anemone nemorosa L.   0.7686433
+#> 2  739 Chrysosplenium alternifolium L.   0.3072809
+#> 3  739                 Galium verum L.   0.3142103
+#> 4  739            Ophrys apifera Huds.   0.5531120
+#> 5  739            Paris quadrifolia L.   0.1534397
 
 # Quick plot of species profile for this cell
 p_cell <- vsc_plot_cell_suitability(df_long)

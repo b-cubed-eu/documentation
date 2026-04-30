@@ -2,10 +2,10 @@
 title: Classifying effects using confidence limits
 editor_options:
   chunk_output_type: console
-lastUpdated: 2026-02-05
+lastUpdated: 2026-04-29
 sidebar:
   label: Effect classification
-  order: 6
+  order: 7
 source: https://github.com/b-cubed-eu/dubicube/blob/main/vignettes/articles/effect-classification.Rmd
 ---
 

@@ -1,7 +1,7 @@
 ---
 output: github_document
 title: 'b3gbi: General Biodiversity Indicators for Biodiversity Data Cubes'
-lastUpdated: 2026-03-11
+lastUpdated: 2026-03-23
 sidebar:
   label: Introduction
   order: 1
@@ -44,7 +44,7 @@ Biodiversity researchers need robust and standardized tools to analyze the vast 
 b3gbi empowers biodiversity analysis with:
 
 * **Standardized Workflows:**  Simplify the process of calculating common biodiversity indicators from GBIF data cubes.
-* **Flexibility:**  Calculate richness, evenness, rarity, taxonomic distinctness, Shannon-Hill diversity, Simpson-Hill diversity, and more.
+* **Flexibility:**  Calculate richness, evenness, rarity, taxonomic distinctness, Shannon-Hill diversity, Simpson-Hill diversity, completeness, and more.
 * **Analysis Options:** Explore temporal trends or create spatial maps.
 * **Visualization Tools:** Generate publication-ready plots of your biodiversity metrics.
 
