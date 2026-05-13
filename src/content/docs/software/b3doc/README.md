@@ -70,7 +70,7 @@ unlink("output", recursive = TRUE)
 ```
 
 
-In production, this code is run as part of a [script](https://github.com/b-cubed-eu/documentation/blob/main/src/rmd_to_md/rmd_to_md.Rmd) to update the [B-Cubed documentation website](https://docs.b-cubed.eu). Its static website generator then builds the site, using the metadata we provided (such as `sidebar_label`).
+In production, this code is run as part of a [script](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rmd_to_md.Rmd) to update the [B-Cubed documentation website](https://docs.b-cubed.eu). Its static website generator then builds the site, using the metadata we provided (such as `sidebar_label`).
 
 ## Meta
 
