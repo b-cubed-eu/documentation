@@ -233,25 +233,10 @@ suitabilitycube:
   sidebar_label: Introduction
   replace:
   - "# b3alien: a Python package to calculate the Global Biodiversity Framework Target 6 Headline Indicator": ""
-  - "![png](docs/_static/images/architecture_b3alien.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/architecture_b3alien.png"/>
-  - "![png](docs/_static/images/species_richness.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/species_richness.png"/>
-  - "![png](docs/_static/images/exemplar_workflow_28_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_28_0.png"/>
-  - "![png](docs/_static/images/exemplar_workflow_32_1.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_32_1.png"/>
-  - "![png](docs/_static/images/exemplar_workflow_42_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_42_0.png"/>
-  - "![png](docs/_static/images/exemplar_workflow_47_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_47_0.png"/>
-  - "![png](docs/_static/images/distinct_observers.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/distinct_observers.png"/>
-  - "![png](docs/_static/images/observations.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/observations.png"/>
-- source: src/rmd_to_md/interim/b3alien/usage.md
+  - "docs/_static/images/": "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/"
+- source: src/rmd_to_md/interim/b3alien/usage.md # Create with rst_to_md.Rmd
   title: "Exemplar workflow to determine the Rate of Establishment"
   sidebar_label: "Exemplar workflow"
   replace:
   - "# Exemplar workflow to determine the Rate of Establishment": ""
-  - "![image1](_static/images/species_richness.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/species_richness.png"/>
-  - "![image2](_static/images/exemplar_workflow_28_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_28_0.png"/>
-  - "![image3](_static/images/exemplar_workflow_32_1.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_32_1.png"/>
-  - "![image4](_static/images/exemplar_workflow_42_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_42_0.png"/>
-  - "![image5](_static/images/exemplar_workflow_47_0.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_47_0.png"/>
-  - "![image6](_static/images/distinct_observers.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/distinct_observers.png"/>
-  - "![image7](_static/images/observations.png)": <img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/observations.png"/>
-
-
+  - "_static/images/": "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/"

@@ -136,7 +136,7 @@ observed speciies richness on a Folium map.
 b3cube.plot_richness(cube)
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/species_richness.png"/>
+![image1](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/species_richness.png)
 
 ## Step 4: Calculate the Rate of Establishment from the CheckList and OccurrenceCube
 
@@ -182,7 +182,7 @@ introduction:
 _, vec1 = simulation.simulate_solow_costello_scipy(time, rate, vis=True)
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_28_0.png"/>
+![image2](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_28_0.png)
 
 The vector 'vec1' contains the parameters of the fitting of the
 Solow-Costello model. The most important parameter in this case is the
@@ -209,7 +209,7 @@ simulation.plot_with_confidence(time, rate, results)
 
     Bootstrapping: 100%|██████████| 200/200 [00:28<00:00,  6.90it/s]
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_32_1.png"/>
+![image3](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_32_1.png)
 
 ## Step 6: Determine the survey effort
 
@@ -284,7 +284,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_42_0.png"/>
+![image4](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_42_0.png)
 
 ### Survey effort by determining the number of distinct observers
 
@@ -353,7 +353,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_47_0.png"/>
+![image5](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_47_0.png)
 
 To get an idea on the geographical distribution of the survey effort, we
 can also plot this on a map. For example for the aggregates counts at
@@ -388,7 +388,7 @@ folium.LayerControl().add_to(m)
 display(m)
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/distinct_observers.png"/>
+![image6](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/distinct_observers.png)
 
 ### Additional example: plotting of the number of distinct observers per grid cell
 
@@ -430,4 +430,4 @@ folium.LayerControl().add_to(m)
 display(m)
 ```
 
-<img src="https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/observations.png"/>
+![image7](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/observations.png)
