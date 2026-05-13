@@ -22,4 +22,4 @@ pnpm-debug.log*
 # R
 .Rproj.user
 .Rhistory
-src/rmd_to_md/interim/*
+src/external/interim/*
