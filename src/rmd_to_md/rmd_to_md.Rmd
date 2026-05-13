@@ -66,14 +66,25 @@ purrr::map(unique(dependencies), ~ rlang::check_installed(.x))
 ### Convert vignettes
 
 ```{r}
+# Set paths
 md_dir <- here::here("src", "content", "docs", "software", package)
 fig_dir <- here::here("public", "software", package)
 fig_url_dir <- paste0("/software/", package, "/")
 
+# Function to create absolute path for local files and keep URLs unchanged
+resolve_source <- function(source) {
+  if (grepl("^https?://", source)) {
+    source
+  } else {
+    file.path(here::here(), source)
+  }
+}
+
+# Convert (R)md to md for each source of the package
 purrr::walk(
   yaml_package,
   ~ b3doc::rmd_to_md(
-    .x$source,
+    resolve_source(.x$source),
     md_dir,
     fig_dir,
     fig_url_dir,
