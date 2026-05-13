@@ -36,7 +36,7 @@ if (overwrite_b3verse) {
 ### Read yaml
 
 ```{r}
-yaml <- yaml::read_yaml(here::here("src", "rmd_to_md", "vignettes.yml"))
+yaml <- yaml::read_yaml(here::here("src", "external", "vignettes.yml"))
 ```
 
 ## Create documentation

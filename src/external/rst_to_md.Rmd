@@ -31,7 +31,7 @@ library(rmarkdown)
 For now, only `b3alien` package has documentation in .rst format, so the directory and file paths are hardcoded.
 
 ```{r}
-dir <- here::here("src", "rmd_to_md", "interim", "b3alien")
+dir <- here::here("src", "external", "interim", "b3alien")
 dir.create(dir, recursive = TRUE, showWarnings = FALSE)
 rst_file <- file.path(dir, "usage.rst")
 md_file <- file.path(dir, "usage.md")
