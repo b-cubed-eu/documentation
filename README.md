@@ -41,16 +41,25 @@ Source pages are licensed under a [Creative Commons Attribution 4.0 Internationa
 
 ### External pages
 
-External pages are maintained elsewhere. We currently only consider **vignettes**, which are tutorials maintained with the source code for an R package ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)). We use a script to include these in the website (and its search functionality). Follow these steps to update a vignette:
+External pages are maintained elsewhere. This workflow supports:
+
+1. `README.md` files.
+2. `README.Rmd` files.
+3. Vignettes (i.e. tutorials maintained with the source code for an R package, like [this one](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd).
+4. `rst` files.
+
+Follow these steps to update an external page:
 
 1. Clone this repository.
 2. Check if vignette is listed in [`vignettes.yml`](src/external/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
-3. Open `documentation.Rproj` in R Studio and open [`rmd_to_md.Rmd`](src/external/rmd_to_md.Rmd).
-4. Select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
+3. Open `documentation.Rproj` in R Studio.
+4. Pull external files and create pages for the website:
+  - For `rst`-files only: Open [`rst_to_md.Rmd`](src/external/rst_to_md.Rmd) and run all code. This will create markdown files in `interim`.
+  - For all files: Open [`rmd_to_md.Rmd`](src/external/rmd_to_md.Rmd), select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
 5. Check if you encountered any errors. If yes, fix and rebuild again.
 6. Commit your changes to a new branch (and push).
 7. Create a pull request and assign a reviewer.
-6. Once accepted and merged, your changes will go live on the site.
+8. Once accepted and merged, your changes will go live on the site.
 
 Do you want to include an external page that is not a vignette? [Create an issue](https://github.com/b-cubed-eu/documentation/issues).
 
@@ -62,7 +71,7 @@ The repository structure is that of an Astro + Starlight project, with the follo
 ├── src/
 │   ├── content/
 │   │   └── docs/          : Source markdown files
-│   ├── external//         : Script to create markdown files from external tutorials
+│   ├── external/          : Scripts to create markdown files from external tutorials
 │   │
 │   ├── assets/            : Theme assets
 │   ├── layouts/           : Theme layouts
