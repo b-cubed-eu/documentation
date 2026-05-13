@@ -239,4 +239,4 @@ suitabilitycube:
   sidebar_label: "Exemplar workflow"
   replace:
   - "# Exemplar workflow to determine the Rate of Establishment": ""
-  - "_static/images/": "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/"
+  - "_static/images/": "https://b3alien.readthedocs.io/en/latest/_images/"
