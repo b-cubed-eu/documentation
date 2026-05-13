@@ -227,7 +227,7 @@ suitabilitycube:
   - "# Suitability Cube ": ""
   - "images/": "https://raw.githubusercontent.com/b-cubed-eu/suitabilitycube/refs/heads/main/images/"
 
-"b3alien (Python)":
+b3alien:
 - source: https://raw.githubusercontent.com/mtrekels/b3alien/refs/heads/main/README.md
   title: "b3alien: a Python package to calculate the Global Biodiversity Framework Target 6 Headline Indicator"
   sidebar_label: Introduction
