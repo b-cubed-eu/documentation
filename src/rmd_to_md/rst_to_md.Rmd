@@ -1,0 +1,56 @@
+---
+title: "rst_to_md"
+author: "Sanne Govaert"
+date: "2026-05-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+
+### Select file to convert
+
+```{r}
+url <- "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/usage.rst"
+```
+
+### Load libraries
+
+```{r}
+library(here)
+library(rmarkdown)
+```
+
+## Create documentation
+
+### Create interim directory and define file paths
+
+For now, only `b3alien` package has documentation in .rst format, so the directory and file paths are hardcoded.
+
+```{r}
+dir <- here::here("src", "rmd_to_md", "interim", "b3alien")
+dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+rst_file <- file.path(dir, "usage.rst")
+md_file <- file.path(dir, "usage.md")
+```
+
+### Download the .rst file
+
+```{r}
+download.file(url, rst_file, mode = "wb")
+```
+
+### Convert .rst to .md using pandoc
+
+```{r}
+pandoc <- rmarkdown::find_pandoc()$dir
+pandoc_bin <- file.path(pandoc, "pandoc")
+
+system2(
+  pandoc_bin,
+  c(rst_file, "-f", "rst", "-t", "gfm", "-o", md_file)
+)
+```
