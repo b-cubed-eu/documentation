@@ -240,3 +240,10 @@ b3alien:
   replace:
   - "# Exemplar workflow to determine the Rate of Establishment": ""
   - "_static/images/": "https://b3alien.readthedocs.io/en/latest/_images/"
+
+pygbif:
+- source: src/external/interim/pygbif/README.md # Create with rst_to_md.Rmd
+  title: "pygbif"
+  sidebar_label: "Introduction"
+  replace:
+  - "# pygbif": ""

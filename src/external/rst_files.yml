@@ -1,0 +1,5 @@
+b3alien:
+- source: "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/usage.rst"
+
+pygbif:
+- source: "https://raw.githubusercontent.com/gbif/pygbif/refs/heads/master/README.rst"

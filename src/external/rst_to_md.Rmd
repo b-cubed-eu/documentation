@@ -13,8 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Select file to convert
 
+### Select package
+
+For what package do you want to (re)generate the documentation? See `rst_files.yml` for settings:
+
 ```{r}
-url <- "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/usage.rst"
+package <- "b3alien"
 ```
 
 ### Load libraries
@@ -22,19 +26,38 @@ url <- "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca425
 ```{r}
 library(here)
 library(rmarkdown)
+library(fs)
+library(purrr)
+```
+
+### Read yaml
+
+```{r}
+rst_yaml <- yaml::read_yaml(here::here("src", "external", "rst_files.yml"))
 ```
 
 ## Create documentation
 
-### Create interim directory and define file paths
-
-For now, only `b3alien` package has documentation in .rst format, so the directory and file paths are hardcoded.
+### Select yaml
 
 ```{r}
-dir <- here::here("src", "external", "interim", "b3alien")
+yaml_package <- rst_yaml[[package]]
+```
+
+### Create interim directory and define file paths
+
+This code works for as long as each package has only one .rst file. If there are multiple .rst files, the code needs to be adapted to loop through all urls.
+
+```{r}
+dir <- here::here("src", "external", "interim", package)
 dir.create(dir, recursive = TRUE, showWarnings = FALSE)
-rst_file <- file.path(dir, "usage.rst")
-md_file <- file.path(dir, "usage.md")
+
+# Get the basename of the input rmd_file without extension.
+url <- purrr::pluck(yaml_package, 1, "source")
+file_name <- fs::path_file(fs::path_ext_remove(url))
+  
+rst_file <- file.path(dir, paste0(file_name, ".rst"))
+md_file <- file.path(dir, paste0(file_name, ".md"))
 ```
 
 ### Download the .rst file
