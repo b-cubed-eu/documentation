@@ -54,7 +54,7 @@ Follow these steps to update an external page:
 2. Check if vignette is listed in [`vignettes.yml`](src/external/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
 3. Open `documentation.Rproj` in R Studio.
 4. Pull external files and create pages for the website:
-  - For `rst`-files only: Open [`rst_to_md.Rmd`](src/external/rst_to_md.Rmd) and run all code. This will create markdown files in `interim`.
+  - For `rst` files only: Open [`rst_to_md.Rmd`](src/external/rst_to_md.Rmd) and run all code. This will create markdown files in `interim`.
   - For all files: Open [`rmd_to_md.Rmd`](src/external/rmd_to_md.Rmd), select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
 5. Check if you encountered any errors. If yes, fix and rebuild again.
 6. Commit your changes to a new branch (and push).

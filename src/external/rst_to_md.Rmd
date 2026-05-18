@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Select package
 
-For what package do you want to (re)generate the documentation? See `rst-files`.yml` for settings:
+For what package do you want to (re)generate the documentation? See `rst_files.yml` for settings:
 
 ```{r}
 package <- "b3alien"
@@ -33,7 +33,7 @@ library(purrr)
 ### Read yaml
 
 ```{r}
-rst_yaml <- yaml::read_yaml(here::here("src", "external", "rst-files.yml"))
+rst_yaml <- yaml::read_yaml(here::here("src", "external", "rst_files.yml"))
 ```
 
 ## Create documentation
