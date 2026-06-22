@@ -247,3 +247,17 @@ pygbif:
   sidebar_label: "Introduction"
   replace:
   - "# pygbif": ""
+
+dissmapr:
+- source: https://raw.githubusercontent.com/macSands/dissmapr-dev/refs/heads/main/README.md
+  title: "dissmapr: Compositional Dissimilarity and Biodiversity Turnover Analysis"
+  sidebar_label: Introduction
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+
+invasimapr:
+- source: https://raw.githubusercontent.com/macSands/invasimapr-dev/refs/heads/main/README.Rmd
+  title: "invasimapr: A Novel Framework to visualise trait dispersion and assess species invasiveness or site invasibility"
+  sidebar_label: Introduction
+  replace:
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
