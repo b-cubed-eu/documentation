@@ -249,11 +249,76 @@ pygbif:
   - "# pygbif": ""
 
 dissmapr:
-- source: https://raw.githubusercontent.com/macSands/dissmapr-dev/refs/heads/main/README.md
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/README.Rmd
   title: "dissmapr: Compositional Dissimilarity and Biodiversity Turnover Analysis"
   sidebar_label: Introduction
   replace:
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+  - "man/figures/": "https://raw.githubusercontent.com/b-cubed-eu/dissmapr/6c632bac424fa4340571394bb773e6b60f6e3d4f/man/figures/"
+  - "# dissmapr ": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/1-setup.Rmd
+  title: Getting started
+  sidebar_label: Get started
+  dependencies: httr geodata data.table dplyr tidyr zoo sf terra tidyterra zetadiv ggplot2 viridis patchwork mclust
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/2-grid.Rmd
+  title: User-defined grid
+  sidebar_label: User-defined grid
+  dependencies: ggplot2
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/3-enviro.Rmd
+  title: Environmental data for sites
+  sidebar_label: Environmental data
+  dependencies: ggplot2 dplyr
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/4-zeta.Rmd
+  title: Zeta diversity
+  sidebar_label: Zeta diversity
+  dependencies: zetadiv
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/5-zeta-workflow.Rmd
+  title: Zeta-MSGDM with dissmapr
+  sidebar_label: Zeta-MSGDM
+  dependencies: patchwork
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/6-predict.Rmd
+  title: Predict community turnover
+  sidebar_label: Community turnover
+  dependencies: ggplot2 dplyr purrr
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/7-bioregion.Rmd
+  title: Map bioregions
+  sidebar_label: Map bioregions
+  dependencies: terra RColorBrewer
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/8-change.Rmd
+  title: Map bioregion change
+  sidebar_label: Map bioregion change
+  dependencies: viridis terra
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/9-examples.Rmd
+  title: Compute orderwise examples
+  sidebar_label: Compute orderwise examples
+  dependencies: ggplot2 dplyr viridis
+  replace:
+  - "# `dissmapr`": ""
+  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
 
 invasimapr:
 - source: https://raw.githubusercontent.com/macSands/invasimapr-dev/refs/heads/main/README.Rmd
