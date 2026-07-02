@@ -250,10 +250,17 @@ pygbif:
 
 invasimapr:
 - source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd
-  title: "Invasimapr"
-  sidebar_label: Introduction
+  title: "Invasimapr: A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility"
+  sidebar_label: Introduction, part 1
   replace:
   - "# invasimapr": ""
   - "man/figures/logo.png": https://b-cubed-eu.github.io/invasimapr/logo.png
   - "https://github.com/b-cubed-eu/dissmapr": https://docs.b-cubed.eu/software/dissmapr/readme/
   - "man/figures/": https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/vignettes/articles/introduction.Rmd
+  title: "Introduction"
+  sidebar_label: Introduction, part 2
+  replace:
+  - "../man/figures/": https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/
+  - "# `invasimapr`": ""
+  - "## A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility": ""

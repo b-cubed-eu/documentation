@@ -1,9 +1,10 @@
 ---
 output: github_document
-title: Invasimapr
+title: 'Invasimapr: A novel framework to visualise trait dispersion and assess species
+  invasiveness and site invasibility'
 lastUpdated: 2026-07-02
 sidebar:
-  label: Introduction
+  label: Introduction, part 1
   order: 1
 source: https://github.com/b-cubed-eu/invasimapr/blob/main/README.Rmd
 ---
