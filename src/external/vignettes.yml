@@ -319,10 +319,3 @@ dissmapr:
   replace:
   - "# `dissmapr`": ""
   - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
-
-invasimapr:
-- source: https://raw.githubusercontent.com/macSands/invasimapr-dev/refs/heads/main/README.Rmd
-  title: "invasimapr: A Novel Framework to visualise trait dispersion and assess species invasiveness or site invasibility"
-  sidebar_label: Introduction
-  replace:
-  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
