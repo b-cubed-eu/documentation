@@ -247,3 +247,13 @@ pygbif:
   sidebar_label: "Introduction"
   replace:
   - "# pygbif": ""
+
+invasimapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd
+  title: "Invasimapr"
+  sidebar_label: Introduction
+  replace:
+  - "# invasimapr": ""
+  - "man/figures/logo.png": https://b-cubed-eu.github.io/invasimapr/logo.png
+  - "https://github.com/b-cubed-eu/dissmapr": https://docs.b-cubed.eu/software/dissmapr/readme/
+  - "man/figures/": https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/
