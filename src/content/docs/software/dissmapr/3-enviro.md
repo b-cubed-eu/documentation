@@ -1,9 +1,9 @@
 ---
-title: Environmental data for sites
+title: Extracting Environmental Predictors for Biodiversity Modelling
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Environmental data for sites} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-06-26
+lastUpdated: 2026-07-07
 sidebar:
   label: Environmental data
   order: 4
@@ -14,26 +14,34 @@ source: https://github.com/b-cubed-eu/dissmapr/blob/master/vignettes/articles/3-
 
 
 
+
+
+
+This vignette shows how to attach environmental predictor data to the analysis grid. These predictors provide the environmental context needed for modelling spatial patterns in biodiversity, compositional turnover, and species richness.
+
+To keep the example reproducible and quick to run, we use a small set of example objects bundled with `dissmapr`. The setup chunk below loads the required packages, reads the bundled data snapshot, and unpacks the spatial, species, and raster objects needed for the environmental-data workflow.
+
+
 ``` r
-# Load libraries
+# Load the packages used in this vignette.
 library(dissmapr)
 library(ggplot2)
 library(dplyr)
 
-# Load the objects this article needs from the single bundled snapshot.
+# Load the bundled example data snapshot.
+# This keeps the vignette reproducible and avoids requiring external downloads.
 inputs = readRDS(system.file("extdata", "dissmapr_vignettes.rds", package = "dissmapr"))
 
-rsa = inputs$rsa
-grid_sf = inputs$grid_sf
-grid_spp = inputs$grid_spp
-effRich_r = terra::unwrap(inputs$effRich_r)
-grid_spp_pa = inputs$grid_spp_pa
-sp_cols = inputs$sp_cols
-grid_r = terra::rast(system.file("extdata", "grid_r.tif", package = "dissmapr"))
+# Unpack the example objects used throughout this vignette:
+# Unpack the bundled example data into named objects used below.
+rsa = inputs$rsa                         # South Africa boundary
+grid_sf = inputs$grid_sf                 # Analysis grid as an sf object
+grid_spp = inputs$grid_spp               # Grid-level species data
+effRich_r = terra::unwrap(inputs$effRich_r) # Effective richness raster
+grid_spp_pa = inputs$grid_spp_pa         # Presence-absence species data
+sp_cols = inputs$sp_cols                 # Species column names
+grid_r = terra::rast(system.file("extdata", "grid_r.tif", package = "dissmapr")) # Raster template
 ```
-
-
-
 
 
 ### 1. Generate site by environment matrix using `get_enviro_data()`
@@ -109,14 +117,16 @@ env_r
 dim(env_df); head(env_df)
 #> [1] 415  24
 #> # A tibble: 6 × 24
-#>   grid_id centroid_lon centroid_lat bio01 bio02 bio03 bio04 bio05 bio06 bio07 bio08 bio09 bio10 bio11 bio12 bio13 bio14 bio15 bio16 bio17 bio18 bio19 obs_sum spp_rich
-#>   <chr>          <dbl>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>    <dbl>
-#> 1 1026            28.8        -22.3  21.9  14.5  55.7  427.  32.4  6.44  26.0  26.1  16.1  26.1  16.1   334    68     1  88.3   185     5   185     5       3        2
-#> 2 1027            29.2        -22.3  21.8  14.6  53.9  453.  33.0  5.87  27.1  26.5  15.6  26.5  15.6   354    74     1  85.6   191     6   191     6      41       31
-#> 3 1028            29.7        -22.3  21.5  14.0  56.3  393.  31.7  6.80  24.9  25.5  16.1  25.5  16.1   429    90     2  87.0   236     9   236     9      10       10
-#> 4 1029            30.3        -22.3  23.0  13.7  57.8  358.  32.8  9.14  23.7  26.6  18.1  26.6  18.1   425    88     1  90.6   245     8   245     8       7        7
-#> 5 1030            30.8        -22.3  23.6  13.8  59.6  334.  33.5 10.3   23.2  27.0  19.0  27.0  19.0   456    98     2  93.4   274     8   274     8       6        6
-#> 6 1031            31.3        -22.3  24.6  14.6  61.7  332.  34.8 11.0   23.8  27.9  20.0  27.9  20.0   463    97     2  94.2   281    10   281    10     107       76
+#>   grid_id centroid_lon centroid_lat bio01 bio02 bio03 bio04 bio05 bio06 bio07 bio08 bio09 bio10
+#>   <chr>          <dbl>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 1026            28.8        -22.3  21.9  14.5  55.7  427.  32.4  6.44  26.0  26.1  16.1  26.1
+#> 2 1027            29.2        -22.3  21.8  14.6  53.9  453.  33.0  5.87  27.1  26.5  15.6  26.5
+#> 3 1028            29.7        -22.3  21.5  14.0  56.3  393.  31.7  6.80  24.9  25.5  16.1  25.5
+#> 4 1029            30.3        -22.3  23.0  13.7  57.8  358.  32.8  9.14  23.7  26.6  18.1  26.6
+#> 5 1030            30.8        -22.3  23.6  13.8  59.6  334.  33.5 10.3   23.2  27.0  19.0  27.0
+#> 6 1031            31.3        -22.3  24.6  14.6  61.7  332.  34.8 11.0   23.8  27.9  20.0  27.9
+#> # ℹ 11 more variables: bio11 <dbl>, bio12 <dbl>, bio13 <dbl>, bio14 <dbl>, bio15 <dbl>,
+#> #   bio16 <dbl>, bio17 <dbl>, bio18 <dbl>, bio19 <dbl>, obs_sum <dbl>, spp_rich <dbl>
 ```
 
 *`get_enviro_data()` buffered the grid centroids by 10 km, fetched the requested rasters, cropped them, extracted values at each centroid, filled isolated NAs, and merged the results with `obs_sum` and `spp_rich`.*
@@ -160,7 +170,7 @@ for (i in 1:4) {
   terra::plot(
     env_effRich_r[[i]],
     col    = viridisLite::turbo(100),
-    breaks = 100,
+    type   = "continuous",
     colNA  = NA_character_,
     axes   = FALSE,
     main   = titles[i],
@@ -231,14 +241,16 @@ str(grid_env, max.level = 1)
 #> tibble [415 × 24] (S3: tbl_df/tbl/data.frame)
 head(grid_env)
 #> # A tibble: 6 × 24
-#>   grid_id centroid_lon centroid_lat obs_sum spp_rich bio01 bio02 bio03 bio04 bio05 bio06 bio07 bio08 bio09 bio10 bio11 bio12 bio13 bio14 bio15 bio16 bio17 bio18 bio19
-#>   <chr>          <dbl>        <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1 1026            28.8        -22.3       3        2  21.9  14.5  55.7  427.  32.4  6.44  26.0  26.1  16.1  26.1  16.1   334    68     1  88.3   185     5   185     5
-#> 2 1027            29.2        -22.3      41       31  21.8  14.6  53.9  453.  33.0  5.87  27.1  26.5  15.6  26.5  15.6   354    74     1  85.6   191     6   191     6
-#> 3 1028            29.7        -22.3      10       10  21.5  14.0  56.3  393.  31.7  6.80  24.9  25.5  16.1  25.5  16.1   429    90     2  87.0   236     9   236     9
-#> 4 1029            30.3        -22.3       7        7  23.0  13.7  57.8  358.  32.8  9.14  23.7  26.6  18.1  26.6  18.1   425    88     1  90.6   245     8   245     8
-#> 5 1030            30.8        -22.3       6        6  23.6  13.8  59.6  334.  33.5 10.3   23.2  27.0  19.0  27.0  19.0   456    98     2  93.4   274     8   274     8
-#> 6 1031            31.3        -22.3     107       76  24.6  14.6  61.7  332.  34.8 11.0   23.8  27.9  20.0  27.9  20.0   463    97     2  94.2   281    10   281    10
+#>   grid_id centroid_lon centroid_lat obs_sum spp_rich bio01 bio02 bio03 bio04 bio05 bio06 bio07
+#>   <chr>          <dbl>        <dbl>   <dbl>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1 1026            28.8        -22.3       3        2  21.9  14.5  55.7  427.  32.4  6.44  26.0
+#> 2 1027            29.2        -22.3      41       31  21.8  14.6  53.9  453.  33.0  5.87  27.1
+#> 3 1028            29.7        -22.3      10       10  21.5  14.0  56.3  393.  31.7  6.80  24.9
+#> 4 1029            30.3        -22.3       7        7  23.0  13.7  57.8  358.  32.8  9.14  23.7
+#> 5 1030            30.8        -22.3       6        6  23.6  13.8  59.6  334.  33.5 10.3   23.2
+#> 6 1031            31.3        -22.3     107       76  24.6  14.6  61.7  332.  34.8 11.0   23.8
+#> # ℹ 12 more variables: bio08 <dbl>, bio09 <dbl>, bio10 <dbl>, bio11 <dbl>, bio12 <dbl>,
+#> #   bio13 <dbl>, bio14 <dbl>, bio15 <dbl>, bio16 <dbl>, bio17 <dbl>, bio18 <dbl>, bio19 <dbl>
 ```
 
 ### 5. Reproject centroids for metric-space analyses** using `sf::st_transform()`[OPTIONAL]
@@ -267,9 +279,11 @@ grid_env = cbind(
     setNames(c("x_aea", "y_aea"))   # rename within the pipeline
 )
 names(grid_env)
-#>  [1] "grid_id"      "centroid_lon" "centroid_lat" "obs_sum"      "spp_rich"     "bio01"        "bio02"        "bio03"        "bio04"        "bio05"        "bio06"       
-#> [12] "bio07"        "bio08"        "bio09"        "bio10"        "bio11"        "bio12"        "bio13"        "bio14"        "bio15"        "bio16"        "bio17"       
-#> [23] "bio18"        "bio19"        "x_aea"        "y_aea"
+#>  [1] "grid_id"      "centroid_lon" "centroid_lat" "obs_sum"      "spp_rich"     "bio01"       
+#>  [7] "bio02"        "bio03"        "bio04"        "bio05"        "bio06"        "bio07"       
+#> [13] "bio08"        "bio09"        "bio10"        "bio11"        "bio12"        "bio13"       
+#> [19] "bio14"        "bio15"        "bio16"        "bio17"        "bio18"        "bio19"       
+#> [25] "x_aea"        "y_aea"
 head(grid_env[, c("grid_id","centroid_lon","centroid_lat","x_aea","y_aea")])
 #>   grid_id centroid_lon centroid_lat   x_aea    y_aea
 #> 1    1026        28.75    -22.25004 6392274 -6836200
@@ -311,12 +325,7 @@ env_vars_reduced = dissmapr::rm_correlated(
 
 <img src="/software/dissmapr/figures/3-var-vif-1.png" alt="Environmental pairwise correlations" width="100%" />
 
-```
-#> Variables removed due to high correlation:
-#>  [1] "temp_range" "temp_sea"   "temp_max"   "rain_mean"  "rain_dryQ"  "temp_min"   "temp_warmQ" "temp_coldQ" "rain_wetQ"  "rain_wet"   "rain_coldQ" "rain_sea"   "spp_rich"  
-#> 
-#> Variables retained:
-#> [1] "temp_mean"  "iso"        "temp_wetQ"  "temp_dryQ"  "rain_dry"   "rain_warmQ" "obs_sum"
+``` r
 
 # Before vs after
 c(original = ncol(env_df[, c(4, 6:24)]),
@@ -348,23 +357,39 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] future.apply_1.20.2 future_1.70.0       cluster_2.1.8.2     pbapply_1.7-4       RColorBrewer_1.1-3  geosphere_1.6-8     corrplot_0.95       caret_7.0-1        
-#>  [9] lattice_0.22-9      mclust_6.1.2        patchwork_1.3.2     viridis_0.6.5       viridisLite_0.4.3   ggplot2_4.0.3       zetadiv_1.3.0       scam_1.2-22        
-#> [17] tidyterra_1.2.0     sf_1.1-1            zoo_1.8-15          tidyr_1.3.2         dplyr_1.2.1         data.table_1.18.4   geodata_0.6-9       terra_1.9-34       
-#> [25] httr_1.4.8          dissmapr_0.2.0      here_1.0.2          purrr_1.2.2         yaml_2.3.12        
+#>  [1] RColorBrewer_1.1-3 mclust_6.1.2       patchwork_1.3.2    viridis_0.6.5     
+#>  [5] viridisLite_0.4.3  ggplot2_4.0.3      zetadiv_1.3.0      scam_1.2-22       
+#>  [9] tidyterra_1.2.0    sf_1.1-1           zoo_1.8-15         tidyr_1.3.2       
+#> [13] dplyr_1.2.1        data.table_1.18.4  geodata_0.6-9      terra_1.9-34      
+#> [17] httr_1.4.8         dissmapr_0.2.0     here_1.0.2         purrr_1.2.2       
+#> [21] yaml_2.3.12       
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_1.5.1   farver_2.1.2         rmarkdown_2.31       fs_2.1.0             fields_17.3         
-#>   [9] vctrs_0.7.3          htmltools_0.5.9      curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        parallelly_1.47.0    glm2_1.2.1           KernSmooth_2.23-26  
-#>  [17] desc_1.4.3           plyr_1.8.9           emmeans_2.0.3        lubridate_1.9.5      lifecycle_1.0.5      iterators_1.0.14     pkgconfig_2.0.3      Matrix_1.7-4        
-#>  [25] R6_2.6.1             fastmap_1.2.0        digest_0.6.39        rprojroot_2.1.1      vegan_2.7-5          labeling_0.4.3       b3doc_0.3.0.9000     nnls_1.6            
-#>  [33] timechange_0.4.0     mgcv_1.9-4           compiler_4.5.2       proxy_0.4-29         remotes_2.5.0        withr_3.0.3          S7_0.2.2             DBI_1.3.0           
-#>  [41] pkgbuild_1.4.8       R.utils_2.13.0       maps_3.4.3           MASS_7.3-65          lava_1.9.1           rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10      
-#>  [49] ModelMetrics_1.2.2.2 tools_4.5.2          units_1.0-1          otel_0.2.0           nnet_7.3-20          R.oo_1.27.1          glue_1.8.1           callr_3.8.0         
-#>  [57] nlme_3.1-168         grid_4.5.2           reshape2_1.4.5       generics_0.1.4       recipes_1.3.3        gtable_0.3.6         R.methodsS3_1.8.2    class_7.3-23        
-#>  [65] utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1        stringr_1.6.0        spam_2.11-4          clValid_0.7          splines_4.5.2       
-#>  [73] survival_3.8-6       tidyselect_1.2.1     knitr_1.51           gridExtra_2.3        stats4_4.5.2         xfun_0.59            hardhat_1.4.3        factoextra_2.0.0    
-#>  [81] timeDate_4052.112    stringi_1.8.7        evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1        entropy_1.3.2        tibble_3.3.1         cli_3.6.6           
-#>  [89] rpart_4.1.24         xtable_1.8-8         processx_3.9.0       Rcpp_1.1.1-1.1       globals_0.19.1       parallel_4.5.2       gower_1.0.2          dotCall64_1.2       
-#>  [97] listenv_0.10.1       mvtnorm_1.4-1        ipred_0.9-15         scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17         rlang_1.2.0
+#>   [1] DBI_1.3.0            pbapply_1.7-4        pROC_1.19.0.1        gridExtra_2.3       
+#>   [5] s2_1.1.11            glm2_1.2.1           permute_0.9-10       rlang_1.2.0         
+#>   [9] magrittr_2.0.5       otel_0.2.0           e1071_1.7-17         compiler_4.5.2      
+#>  [13] mgcv_1.9-4           b3doc_0.3.0.9000     maps_3.4.3           vctrs_0.7.3         
+#>  [17] reshape2_1.4.5       stringr_1.6.0        wk_0.9.5             pkgconfig_2.0.3     
+#>  [21] fastmap_1.2.0        labeling_0.4.3       utf8_1.2.6           rmarkdown_2.31      
+#>  [25] prodlim_2026.03.11   xfun_0.59            recipes_1.3.3        cluster_2.1.8.2     
+#>  [29] parallel_4.5.2       R6_2.6.1             stringi_1.8.7        parallelly_1.47.0   
+#>  [33] rpart_4.1.24         lubridate_1.9.5      estimability_1.5.1   Rcpp_1.1.1-1.1      
+#>  [37] iterators_1.0.14     knitr_1.51           fields_17.3          future.apply_1.20.2 
+#>  [41] R.utils_2.13.0       nnls_1.6             Matrix_1.7-4         splines_4.5.2       
+#>  [45] nnet_7.3-20          timechange_0.4.0     tidyselect_1.2.1     rstudioapi_0.18.0   
+#>  [49] vegan_2.7-5          timeDate_4052.112    codetools_0.2-20     listenv_0.10.1      
+#>  [53] lattice_0.22-9       tibble_3.3.1         plyr_1.8.9           withr_3.0.3         
+#>  [57] S7_0.2.2             geosphere_1.6-8      evaluate_1.0.5       future_1.70.0       
+#>  [61] survival_3.8-6       units_1.0-1          proxy_0.4-29         pillar_1.11.1       
+#>  [65] corrplot_0.95        KernSmooth_2.23-26   foreach_1.5.2        stats4_4.5.2        
+#>  [69] generics_0.1.4       rprojroot_2.1.1      scales_1.4.0         globals_0.19.1      
+#>  [73] xtable_1.8-8         class_7.3-23         glue_1.8.1           clValid_0.7         
+#>  [77] emmeans_2.0.3        tools_4.5.2          ModelMetrics_1.2.2.2 gower_1.0.2         
+#>  [81] dotCall64_1.2        fs_2.1.0             mvtnorm_1.4-1        grid_4.5.2          
+#>  [85] ipred_0.9-15         nlme_3.1-168         cli_3.6.6            rappdirs_0.3.4      
+#>  [89] NbClust_3.0.1        spam_2.11-4          lava_1.9.1           gtable_0.3.6        
+#>  [93] R.methodsS3_1.8.2    digest_0.6.39        classInt_0.4-11      caret_7.0-1         
+#>  [97] ggrepel_0.9.8        farver_2.1.2         factoextra_2.0.0     entropy_1.3.2       
+#> [101] htmltools_0.5.9      R.oo_1.27.1          lifecycle_1.0.5      hardhat_1.4.3       
+#> [105] MASS_7.3-65
 ```

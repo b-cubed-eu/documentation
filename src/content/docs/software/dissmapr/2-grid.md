@@ -1,9 +1,9 @@
 ---
-title: User-defined grid
+title: Building the Spatial Analysis Grid
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{User-defined grid} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-06-26
+lastUpdated: 2026-07-07
 sidebar:
   label: User-defined grid
   order: 3
@@ -14,6 +14,14 @@ source: https://github.com/b-cubed-eu/dissmapr/blob/master/vignettes/articles/2-
 
 
 
+
+
+
+This vignette introduces the spatial foundation of the `dissmapr` workflow: defining an area of interest and creating a consistent analysis grid. These steps ensure that later biodiversity, environmental, and prediction analyses all use the same spatial extent and resolution.
+
+To keep the example reproducible and quick to run, we use a small set of example objects bundled with `dissmapr`. The setup chunk below loads the required packages, reads the bundled data snapshot, and unpacks the objects needed to build and work with the example grid.
+
+
 ``` r
 # Load libraries
 library(dissmapr)
@@ -22,14 +30,12 @@ library(ggplot2)
 # Load the objects this article needs from the single bundled snapshot.
 inputs = readRDS(system.file("extdata", "dissmapr_vignettes.rds", package = "dissmapr"))
 
-site_obs = inputs$site_obs
-site_spp = inputs$site_spp
-n_sp = inputs$n_sp
-sp_cols = inputs$sp_cols
+# Unpack the bundled example data into the objects used below.
+site_obs = inputs$site_obs   # Site-level observation data
+site_spp = inputs$site_spp   # Site-by-species matrix/data frame
+n_sp = inputs$n_sp           # Number of species
+sp_cols = inputs$sp_cols     # Species column names
 ```
-
-
-
 
 
 ### 1. User-defined area of interest and grid resolution
@@ -48,7 +54,9 @@ Defining the geographic extent and an analysis grid early ensures that all subse
 # 1. Load the national boundary 
 # The shapefile is shipped with the package for full reproducibility.
 rsa = sf::st_read(system.file("extdata", "rsa.shp", package = "dissmapr"))
-#> Reading layer `rsa' from data source `/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/dissmapr/extdata/rsa.shp' using driver `ESRI Shapefile'
+#> Reading layer `rsa' from data source 
+#>   `/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/dissmapr/extdata/rsa.shp' 
+#>   using driver `ESRI Shapefile'
 #> Simple feature collection with 1 feature and 1 field
 #> Geometry type: POLYGON
 #> Dimension:     XY
@@ -142,35 +150,46 @@ dim(grid_sf); head(grid_sf)
 #> Dimension:     XY
 #> Bounding box:  xmin: 15.5 ymin: -36 xmax: 18.5 ymax: -35.5
 #> Geodetic CRS:  WGS 84
-#>   centroid_lon centroid_lat grid_id  mapsheet obs_sum spp_rich                       geometry             centroid
-#> 1        15.75       -35.75       1 E015S36BB      NA       NA POLYGON ((15.5 -36, 16 -36,... POINT (15.75 -35.75)
-#> 2        16.25       -35.75       2 E016S36BB      NA       NA POLYGON ((16 -36, 16.5 -36,... POINT (16.25 -35.75)
-#> 3        16.75       -35.75       3 E016S36BB      NA       NA POLYGON ((16.5 -36, 17 -36,... POINT (16.75 -35.75)
-#> 4        17.25       -35.75       4 E017S36BB      NA       NA POLYGON ((17 -36, 17.5 -36,... POINT (17.25 -35.75)
-#> 5        17.75       -35.75       5 E017S36BB      NA       NA POLYGON ((17.5 -36, 18 -36,... POINT (17.75 -35.75)
-#> 6        18.25       -35.75       6 E018S36BB      NA       NA POLYGON ((18 -36, 18.5 -36,... POINT (18.25 -35.75)
+#>   centroid_lon centroid_lat grid_id  mapsheet obs_sum spp_rich                       geometry
+#> 1        15.75       -35.75       1 E015S36BB      NA       NA POLYGON ((15.5 -36, 16 -36,...
+#> 2        16.25       -35.75       2 E016S36BB      NA       NA POLYGON ((16 -36, 16.5 -36,...
+#> 3        16.75       -35.75       3 E016S36BB      NA       NA POLYGON ((16.5 -36, 17 -36,...
+#> 4        17.25       -35.75       4 E017S36BB      NA       NA POLYGON ((17 -36, 17.5 -36,...
+#> 5        17.75       -35.75       5 E017S36BB      NA       NA POLYGON ((17.5 -36, 18 -36,...
+#> 6        18.25       -35.75       6 E018S36BB      NA       NA POLYGON ((18 -36, 18.5 -36,...
+#>               centroid
+#> 1 POINT (15.75 -35.75)
+#> 2 POINT (16.25 -35.75)
+#> 3 POINT (16.75 -35.75)
+#> 4 POINT (17.25 -35.75)
+#> 5 POINT (17.75 -35.75)
+#> 6 POINT (18.25 -35.75)
 dim(grid_spp); head(grid_spp[, 1:8])
 #> [1]  415 2874
 #> # A tibble: 6 × 8
-#>   grid_id centroid_lon centroid_lat mapsheet  obs_sum spp_rich `Mylothris agathina subsp. agathina` `Pieris brassicae`
-#>   <chr>          <dbl>        <dbl> <chr>       <dbl>    <dbl>                                <dbl>              <dbl>
-#> 1 1026            28.8        -22.3 E028S23BB       3        2                                    0                  0
-#> 2 1027            29.2        -22.3 E029S23BB      41       31                                    0                  0
-#> 3 1028            29.7        -22.3 E029S23BB      10       10                                    0                  0
-#> 4 1029            30.3        -22.3 E030S23BB       7        7                                    0                  0
-#> 5 1030            30.8        -22.3 E030S23BB       6        6                                    0                  0
-#> 6 1031            31.2        -22.3 E031S23BB     107       76                                    0                  0
+#>   grid_id centroid_lon centroid_lat mapsheet  obs_sum spp_rich Mylothris agathina subsp. agathin…¹
+#>   <chr>          <dbl>        <dbl> <chr>       <dbl>    <dbl>                               <dbl>
+#> 1 1026            28.8        -22.3 E028S23BB       3        2                                   0
+#> 2 1027            29.2        -22.3 E029S23BB      41       31                                   0
+#> 3 1028            29.7        -22.3 E029S23BB      10       10                                   0
+#> 4 1029            30.3        -22.3 E030S23BB       7        7                                   0
+#> 5 1030            30.8        -22.3 E030S23BB       6        6                                   0
+#> 6 1031            31.2        -22.3 E031S23BB     107       76                                   0
+#> # ℹ abbreviated name: ¹​`Mylothris agathina subsp. agathina`
+#> # ℹ 1 more variable: `Pieris brassicae` <dbl>
 dim(grid_spp_pa); head(grid_spp_pa[, 1:8])
 #> [1]  415 2874
 #> # A tibble: 6 × 8
-#>   grid_id centroid_lon centroid_lat mapsheet  obs_sum spp_rich `Mylothris agathina subsp. agathina` `Pieris brassicae`
-#>   <chr>          <dbl>        <dbl> <chr>       <dbl>    <dbl>                                <dbl>              <dbl>
-#> 1 1026            28.8        -22.3 E028S23BB       3        2                                    0                  0
-#> 2 1027            29.2        -22.3 E029S23BB      41       31                                    0                  0
-#> 3 1028            29.7        -22.3 E029S23BB      10       10                                    0                  0
-#> 4 1029            30.3        -22.3 E030S23BB       7        7                                    0                  0
-#> 5 1030            30.8        -22.3 E030S23BB       6        6                                    0                  0
-#> 6 1031            31.2        -22.3 E031S23BB     107       76                                    0                  0
+#>   grid_id centroid_lon centroid_lat mapsheet  obs_sum spp_rich Mylothris agathina subsp. agathin…¹
+#>   <chr>          <dbl>        <dbl> <chr>       <dbl>    <dbl>                               <dbl>
+#> 1 1026            28.8        -22.3 E028S23BB       3        2                                   0
+#> 2 1027            29.2        -22.3 E029S23BB      41       31                                   0
+#> 3 1028            29.7        -22.3 E029S23BB      10       10                                   0
+#> 4 1029            30.3        -22.3 E030S23BB       7        7                                   0
+#> 5 1030            30.8        -22.3 E030S23BB       6        6                                   0
+#> 6 1031            31.2        -22.3 E031S23BB     107       76                                   0
+#> # ℹ abbreviated name: ¹​`Mylothris agathina subsp. agathina`
+#> # ℹ 1 more variable: `Pieris brassicae` <dbl>
 ```
 
 `grid_spp` now serves as the **site‑level backbone** for modelling (e.g. spatial GLMs) or visualisation (e.g. dot plots), whereas `grid_spp_pa` slots directly into Jaccard- or Sørensen-based beta-diversity workflows. `site_spp` retains the raw observation detail for drill‑down analyses.
@@ -247,7 +266,7 @@ for (i in 1:2) {
   terra::plot(
     effRich_r[[i]],
     col    = viridisLite::turbo(100),
-    breaks = 100,
+    type   = "continuous",
     colNA  = NA_character_,
     axes   = FALSE,
     main   = titles[i],
@@ -282,23 +301,39 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] future.apply_1.20.2 future_1.70.0       cluster_2.1.8.2     pbapply_1.7-4       RColorBrewer_1.1-3  geosphere_1.6-8     corrplot_0.95       caret_7.0-1        
-#>  [9] lattice_0.22-9      mclust_6.1.2        patchwork_1.3.2     viridis_0.6.5       viridisLite_0.4.3   ggplot2_4.0.3       zetadiv_1.3.0       scam_1.2-22        
-#> [17] tidyterra_1.2.0     sf_1.1-1            zoo_1.8-15          tidyr_1.3.2         dplyr_1.2.1         data.table_1.18.4   geodata_0.6-9       terra_1.9-34       
-#> [25] httr_1.4.8          dissmapr_0.2.0      here_1.0.2          purrr_1.2.2         yaml_2.3.12        
+#>  [1] RColorBrewer_1.1-3 mclust_6.1.2       patchwork_1.3.2    viridis_0.6.5     
+#>  [5] viridisLite_0.4.3  ggplot2_4.0.3      zetadiv_1.3.0      scam_1.2-22       
+#>  [9] tidyterra_1.2.0    sf_1.1-1           zoo_1.8-15         tidyr_1.3.2       
+#> [13] dplyr_1.2.1        data.table_1.18.4  geodata_0.6-9      terra_1.9-34      
+#> [17] httr_1.4.8         dissmapr_0.2.0     here_1.0.2         purrr_1.2.2       
+#> [21] yaml_2.3.12       
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_1.5.1   farver_2.1.2         rmarkdown_2.31       fs_2.1.0             fields_17.3         
-#>   [9] vctrs_0.7.3          htmltools_0.5.9      curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        parallelly_1.47.0    glm2_1.2.1           KernSmooth_2.23-26  
-#>  [17] desc_1.4.3           plyr_1.8.9           emmeans_2.0.3        lubridate_1.9.5      lifecycle_1.0.5      iterators_1.0.14     pkgconfig_2.0.3      Matrix_1.7-4        
-#>  [25] R6_2.6.1             fastmap_1.2.0        digest_0.6.39        rprojroot_2.1.1      vegan_2.7-5          labeling_0.4.3       b3doc_0.3.0.9000     nnls_1.6            
-#>  [33] timechange_0.4.0     mgcv_1.9-4           compiler_4.5.2       proxy_0.4-29         remotes_2.5.0        withr_3.0.3          S7_0.2.2             DBI_1.3.0           
-#>  [41] pkgbuild_1.4.8       R.utils_2.13.0       maps_3.4.3           MASS_7.3-65          lava_1.9.1           rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10      
-#>  [49] ModelMetrics_1.2.2.2 tools_4.5.2          units_1.0-1          otel_0.2.0           nnet_7.3-20          R.oo_1.27.1          glue_1.8.1           callr_3.8.0         
-#>  [57] nlme_3.1-168         grid_4.5.2           reshape2_1.4.5       generics_0.1.4       recipes_1.3.3        gtable_0.3.6         R.methodsS3_1.8.2    class_7.3-23        
-#>  [65] utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1        stringr_1.6.0        spam_2.11-4          clValid_0.7          splines_4.5.2       
-#>  [73] survival_3.8-6       tidyselect_1.2.1     knitr_1.51           gridExtra_2.3        stats4_4.5.2         xfun_0.59            hardhat_1.4.3        factoextra_2.0.0    
-#>  [81] timeDate_4052.112    stringi_1.8.7        evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1        entropy_1.3.2        tibble_3.3.1         cli_3.6.6           
-#>  [89] rpart_4.1.24         xtable_1.8-8         processx_3.9.0       Rcpp_1.1.1-1.1       globals_0.19.1       parallel_4.5.2       gower_1.0.2          dotCall64_1.2       
-#>  [97] listenv_0.10.1       mvtnorm_1.4-1        ipred_0.9-15         scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17         rlang_1.2.0
+#>   [1] DBI_1.3.0            pbapply_1.7-4        pROC_1.19.0.1        gridExtra_2.3       
+#>   [5] s2_1.1.11            glm2_1.2.1           permute_0.9-10       rlang_1.2.0         
+#>   [9] magrittr_2.0.5       otel_0.2.0           e1071_1.7-17         compiler_4.5.2      
+#>  [13] mgcv_1.9-4           b3doc_0.3.0.9000     maps_3.4.3           vctrs_0.7.3         
+#>  [17] reshape2_1.4.5       stringr_1.6.0        wk_0.9.5             pkgconfig_2.0.3     
+#>  [21] fastmap_1.2.0        labeling_0.4.3       utf8_1.2.6           rmarkdown_2.31      
+#>  [25] prodlim_2026.03.11   xfun_0.59            recipes_1.3.3        cluster_2.1.8.2     
+#>  [29] parallel_4.5.2       R6_2.6.1             stringi_1.8.7        parallelly_1.47.0   
+#>  [33] rpart_4.1.24         lubridate_1.9.5      estimability_1.5.1   Rcpp_1.1.1-1.1      
+#>  [37] iterators_1.0.14     knitr_1.51           fields_17.3          future.apply_1.20.2 
+#>  [41] R.utils_2.13.0       nnls_1.6             Matrix_1.7-4         splines_4.5.2       
+#>  [45] nnet_7.3-20          timechange_0.4.0     tidyselect_1.2.1     rstudioapi_0.18.0   
+#>  [49] vegan_2.7-5          timeDate_4052.112    codetools_0.2-20     listenv_0.10.1      
+#>  [53] lattice_0.22-9       tibble_3.3.1         plyr_1.8.9           withr_3.0.3         
+#>  [57] S7_0.2.2             geosphere_1.6-8      evaluate_1.0.5       future_1.70.0       
+#>  [61] survival_3.8-6       units_1.0-1          proxy_0.4-29         pillar_1.11.1       
+#>  [65] corrplot_0.95        KernSmooth_2.23-26   foreach_1.5.2        stats4_4.5.2        
+#>  [69] generics_0.1.4       rprojroot_2.1.1      scales_1.4.0         globals_0.19.1      
+#>  [73] xtable_1.8-8         class_7.3-23         glue_1.8.1           clValid_0.7         
+#>  [77] emmeans_2.0.3        tools_4.5.2          ModelMetrics_1.2.2.2 gower_1.0.2         
+#>  [81] dotCall64_1.2        fs_2.1.0             mvtnorm_1.4-1        grid_4.5.2          
+#>  [85] ipred_0.9-15         nlme_3.1-168         cli_3.6.6            rappdirs_0.3.4      
+#>  [89] NbClust_3.0.1        spam_2.11-4          lava_1.9.1           gtable_0.3.6        
+#>  [93] R.methodsS3_1.8.2    digest_0.6.39        classInt_0.4-11      caret_7.0-1         
+#>  [97] ggrepel_0.9.8        farver_2.1.2         factoextra_2.0.0     entropy_1.3.2       
+#> [101] htmltools_0.5.9      R.oo_1.27.1          lifecycle_1.0.5      hardhat_1.4.3       
+#> [105] MASS_7.3-65
 ```

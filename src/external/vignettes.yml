@@ -279,19 +279,19 @@ dissmapr:
   - "# `dissmapr`": ""
   - "## Extracting Environmental Predictors for Biodiversity Modelling": ""
 - source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/4-zeta.Rmd
-  title: Modelling Zeta Diversity Across Environmental Gradients
+  title: Measuring Multi-Site Compositional Turnover with Zeta Diversity
   sidebar_label: Zeta diversity
   dependencies: zetadiv
   replace:
   - "# `dissmapr`": ""
-  - "## Modelling Zeta Diversity Across Environmental Gradients": ""
+  - "## Measuring Multi-Site Compositional Turnover with Zeta Diversity": ""
 - source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/5-zeta-workflow.Rmd
-  title: Zeta-MSGDM with dissmapr
+  title: Modelling Zeta Diversity Across Environmental Gradients
   sidebar_label: Zeta-MSGDM
   dependencies: patchwork
   replace:
   - "# `dissmapr`": ""
-  - "## A Novel Framework for Automated Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+  - "## Modelling Zeta Diversity Across Environmental Gradients": ""
 - source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/6-predict.Rmd
   title: Predicting Spatial Patterns of Biodiversity Turnover
   sidebar_label: Predict community turnover

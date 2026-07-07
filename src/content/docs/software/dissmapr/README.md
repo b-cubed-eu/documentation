@@ -2,8 +2,9 @@
 output:
   github_document:
     html_preview: no
-title: 'dissmapr: Compositional Dissimilarity and Biodiversity Turnover Analysis'
-lastUpdated: 2026-06-26
+title: 'dissmapr: A Workflow for Compositional Dissimilarity and Biodiversity Turnover
+  Analysis'
+lastUpdated: 2026-07-07
 sidebar:
   label: Introduction
   order: 1
@@ -21,8 +22,7 @@ source: https://github.com/b-cubed-eu/dissmapr/blob/master/README.Rmd
 [![R-universe version](https://b-cubed-eu.r-universe.dev/dissmapr/badges/version)](https://b-cubed-eu.r-universe.dev/dissmapr)
 [![R-CMD-check](https://github.com/b-cubed-eu/dissmapr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/b-cubed-eu/dissmapr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/b-cubed-eu/dissmapr/graph/badge.svg)](https://app.codecov.io/gh/b-cubed-eu/dissmapr)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20842434.svg)](https://doi.org/10.5281/zenodo.20842434)
-[![R-universe](https://img.shields.io/badge/R--universe-b--cubed--eu-6CDDB4)](https://b-cubed-eu.r-universe.dev/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20842434-blue.svg)](https://doi.org/10.5281/zenodo.20842434)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 [![funder](https://badgen.net/static/funder/European%20Union/f2a)](https://doi.org/10.3030/101059592)
 
@@ -30,7 +30,7 @@ source: https://github.com/b-cubed-eu/dissmapr/blob/master/README.Rmd
 
 <a href="https://b-cubed-eu.github.io/dissmapr/"><img src="https://b-cubed-eu.github.io/dissmapr/logo.png" align="right" height="139" alt="dissmapr website" /></a>
 
-## A Workflow for Compositional Dissimilarity and Biodiversity Turnover Analysis
+
 
 `dissmapr` is an open-source R package that provides a complete, reproducible
 workflow for analysing how biological communities change across space and time.
@@ -285,4 +285,4 @@ the current entry — together with the methods it builds on:
 `dissmapr` was developed within the [B-Cubed](https://b-cubed.eu/) project
 (Biodiversity Building Blocks for policy), funded by the European Union's Horizon
 Europe Research and Innovation Programme
-([grant 101059592](https://doi.org/10.3030/101059592)).
+([grant 101059592](https://doi.org/10.3030/101
