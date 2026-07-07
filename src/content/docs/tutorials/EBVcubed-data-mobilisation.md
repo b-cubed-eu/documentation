@@ -23,7 +23,7 @@ The specifications for the generation of the occurence cubes (JSON format) can b
 The code is available in Rmarkdown and rendered as HTML and PDF notebooks. The notebooks are listed in Table 1 for Annex I of the Birds Directive and in Table 2 for IAS of Union concern.
 
 
-Table 1. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for the Birds Directive Annex I (path: scripts/Rmd/birds). _*Preprocessing notebook_.
+**Table 1. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for the Birds Directive Annex I (path: scripts/Rmd/birds).** _*Preprocessing notebook_.
 
 Title/Subtitle | File name
 -- | --
@@ -35,7 +35,7 @@ Notebook 04 - Calculation of Metrics for the Birds Directive Annex I Using Occur
 Notebook 05 - Creation of the EBV NetCDF for the Birds Directive occurrences cube metrics | [05_birds_metrics2ebvcube.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/05_birds_metrics2ebvcube.Rmd)
 
 
-Table 2. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for IAS of Union Concern (path: scripts/Rmd/ias). _*Preprocessing notebook._
+**Table 2. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for IAS of Union Concern (path: scripts/Rmd/ias).** _*Preprocessing notebook._
 
 Title/Subtitle | File name
 -- | --
