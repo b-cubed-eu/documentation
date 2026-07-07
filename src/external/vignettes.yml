@@ -153,7 +153,7 @@ b3gbi:
   replace:
   - "# b3gbi ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/b3gbi/logo.png"
-  - "the tutorial: "https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html": "[this tutorial](/software/b3gbi/b3gbi/)""
+  - "the tutorial: https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html": "[this tutorial](/software/b3gbi/b3gbi/)"
 - source: "https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd"
   title: Get started
   sidebar_label: Get started
@@ -249,7 +249,7 @@ pygbif:
   - "# pygbif": ""
 
 DeepMaxent:
-- source: src/external/interim/deepmaxent/deepmaxent.md # Create with ipynb_to_md.Rmd
+- source: "src/external/interim/deepmaxent/deepmaxent.md" # Create with ipynb_to_md.Rmd
   title: "🌿 DeepMaxent Tutorial: Species Distribution Modeling"
   sidebar_label: "Introduction"
   replace:
@@ -258,22 +258,30 @@ DeepMaxent:
   - ".png)": '.png"/>'
 
 invasimapr:
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd"
   title: "Invasimapr: A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility"
   sidebar_label: Introduction
   replace:
   - "# invasimapr": ""
-  - "man/figures/logo.png": https://b-cubed-eu.github.io/invasimapr/logo.png
-  - "man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
-  - "https://github.com/b-cubed-eu/dissmapr": https://docs.b-cubed.eu/software/dissmapr/readme/
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/introduction.Rmd
-  title: "Introduction"
-  sidebar_label: Introduction (overview)
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/invasimapr/logo.png"
+  - "man/figures/": "https://b-cubed-eu.github.io/invasimapr/reference/figures/"
+  - "https://github.com/b-cubed-eu/dissmapr": "https://docs.b-cubed.eu/software/dissmapr/readme/"
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/invasimapr.Rmd"
+  title: Introduction to invasimapr
+  sidebar_label: Introduction to invasimapr
   replace:
-  - "# `invasimapr`": ""
-  - "## A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility": ""
-  - "../man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/step-by-step-workflow.Rmd
-  title: "Step-by-step Workflow"
+  - "../man/figures/": "https://b-cubed-eu.github.io/invasimapr/reference/figures/"
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/step-by-step-workflow.Rmd"
+  title: Step-by-step workflow
   sidebar_label: Step-by-step workflow
-
+  replace:
+  - "# Step-by-step Workflow": ""
+# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/clustering-and-risk-scenarios.Rmd"
+#   title: Clustering and risk scenarios
+#   sidebar_label: Clustering and risk scenarios
+# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/invasion-fitness-synthesis.Rmd"
+#   title: Invasion fitness synthesis
+#   sidebar_label: Invasion fitness synthesis
+# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/computing-invasion-fitness.Rmd"
+#   title: Tutorial on computing invasion fitness
+#   sidebar_label: Computing invasion fitness
