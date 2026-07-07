@@ -257,15 +257,13 @@ invasimapr:
   - "man/figures/logo.png": https://b-cubed-eu.github.io/invasimapr/logo.png
   - "man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
   - "https://github.com/b-cubed-eu/dissmapr": https://docs.b-cubed.eu/software/dissmapr/readme/
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/vignettes/articles/introduction.Rmd
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/introduction.Rmd
   title: "Introduction"
   sidebar_label: Introduction (overview)
   replace:
   - "# `invasimapr`": ""
   - "## A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility": ""
-- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/vignettes/articles/step-by-step-workflow.Rmd
   - "../man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/step-by-step-workflow.Rmd
   title: "Step-by-step Workflow"
   sidebar_label: Step-by-step workflow
-
-
