@@ -247,3 +247,12 @@ pygbif:
   sidebar_label: "Introduction"
   replace:
   - "# pygbif": ""
+
+DeepMaxent:
+- source: src/external/interim/deepmaxent/deepmaxent.md # Create with jupyter_to_markdown.Rmd
+  title: "🌿 DeepMaxent Tutorial: Species Distribution Modeling"
+  sidebar_label: "Introduction"
+  replace:
+  - "# 🌿 DeepMaxent Tutorial: Species Distribution Modeling": ""
+  - "![](deepmaxent_files/figure-commonmark/": '<img src="/software/deepmaxent/deepmaxent_files/figure-commonmark/'
+  - ".png)": '.png"/>'
