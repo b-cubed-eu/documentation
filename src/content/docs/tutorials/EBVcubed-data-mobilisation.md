@@ -7,7 +7,8 @@ sidebar:
 source: https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/README.md
 ---
 
-# B-Cubed_data_mobilisation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13798783.svg)](https://doi.org/10.5281/zenodo.13798783)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13798783.svg)](https://doi.org/10.5281/zenodo.13798783)
+
 This repository documents the development of the first B-Cubed data mobilisation. Data has been mobilised from GBIF to the EBV Portal using both the B-Cubed software developed by GBIF and the ebvcube package.
 
 We have started by mobilising the occurrence of species listed in:
