@@ -249,10 +249,31 @@ pygbif:
   - "# pygbif": ""
 
 DeepMaxent:
-- source: src/external/interim/deepmaxent/deepmaxent.md # Create with jupyter_to_markdown.Rmd
+- source: src/external/interim/deepmaxent/deepmaxent.md # Create with ipynb_to_md.Rmd
   title: "🌿 DeepMaxent Tutorial: Species Distribution Modeling"
   sidebar_label: "Introduction"
   replace:
   - "# 🌿 DeepMaxent Tutorial: Species Distribution Modeling": ""
   - "![](deepmaxent_files/figure-commonmark/": '<img src="/software/deepmaxent/deepmaxent_files/figure-commonmark/'
   - ".png)": '.png"/>'
+
+invasimapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/README.Rmd
+  title: "Invasimapr: A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility"
+  sidebar_label: Introduction
+  replace:
+  - "# invasimapr": ""
+  - "man/figures/logo.png": https://b-cubed-eu.github.io/invasimapr/logo.png
+  - "man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
+  - "https://github.com/b-cubed-eu/dissmapr": https://docs.b-cubed.eu/software/dissmapr/readme/
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/introduction.Rmd
+  title: "Introduction"
+  sidebar_label: Introduction (overview)
+  replace:
+  - "# `invasimapr`": ""
+  - "## A novel framework to visualise trait dispersion and assess species invasiveness and site invasibility": ""
+  - "../man/figures/": https://b-cubed-eu.github.io/invasimapr/reference/figures/
+- source: https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/step-by-step-workflow.Rmd
+  title: "Step-by-step Workflow"
+  sidebar_label: Step-by-step workflow
+
