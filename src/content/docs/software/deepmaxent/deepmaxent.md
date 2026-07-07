@@ -27,16 +27,6 @@ This tutorial focuses on plant species observations from **Costa Rica**
 
 ------------------------------------------------------------------------
 
-## 📋 Table of Contents
-
-1.  [Import Libraries](#1-import-libraries)
-2.  [Load Biodiversity Data](#2-load-biodiversity-data)
-3.  [Data Exploration & Visualization](#3-data-exploration)
-4.  [Crop Environmental Rasters](#4-crop-rasters)
-5.  [Visualize Environmental Variables](#5-visualize-environment)
-6.  [Prepare Training Data](#6-prepare-data)
-7.  [Summary Statistics](#7-summary)
-
 <a id="1-import-libraries"></a> \## 1. 📦 Import Libraries
 
 We need several libraries for this tutorial: - **pandas/numpy**: Data
