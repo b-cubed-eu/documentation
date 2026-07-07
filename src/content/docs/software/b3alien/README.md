@@ -52,7 +52,7 @@ accurately the rate of introduction of alien species..
 
 ## Architecture
 
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/architecture_b3alien.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/architecture_b3alien.png)
 
 ## Exemplar workflow to determine the Rate of Establishment
 
@@ -157,7 +157,7 @@ With the built in plotting functions, it is possible to plot the observed specii
 b3cube.plot_richness(cube)
 ```
 
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/species_richness.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/species_richness.png)
 
 ### Step 4: Calculate the Rate of Establishment from the CheckList and OccurrenceCube
 
@@ -199,7 +199,7 @@ _, vec1 = simulation.simulate_solow_costello_scipy(time, rate, vis=True)
 
 
     
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_28_0.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/exemplar_workflow_28_0.png)
     
 
 
@@ -229,7 +229,7 @@ simulation.plot_with_confidence(time, rate, results)
 
 
     
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_32_1.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/exemplar_workflow_32_1.png)
     
 
 
@@ -309,7 +309,7 @@ plt.show()
 
 
     
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_42_0.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/exemplar_workflow_42_0.png)
     
 
 
@@ -379,7 +379,7 @@ plt.show()
 
 
     
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/exemplar_workflow_47_0.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/exemplar_workflow_47_0.png)
     
 
 
@@ -417,7 +417,7 @@ folium.LayerControl().add_to(m)
 display(m)
 ```
 
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/distinct_observers.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/distinct_observers.png)
 
 #### Additional example: plotting of the number of distinct observers per grid cell
 
@@ -463,4 +463,4 @@ folium.LayerControl().add_to(m)
 display(m)
 ```
 
-![png](https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/observations.png)
+![png](https://b3alien.readthedocs.io/en/latest/_images/observations.png)
