@@ -27,7 +27,7 @@ This tutorial focuses on plant species observations from **Costa Rica**
 
 ------------------------------------------------------------------------
 
-<a id="1-import-libraries"></a> \## 1. 📦 Import Libraries
+## 1. 📦 Import Libraries
 
 We need several libraries for this tutorial: - **pandas/numpy**: Data
 manipulation - **rasterio**: Reading and processing raster files -
@@ -81,7 +81,7 @@ print("✅ All libraries loaded successfully!")
 
     ✅ All libraries loaded successfully!
 
-<a id="2-load-biodiversity-data"></a> \## 2. 🦜 Load Biodiversity Data
+## 2. 🦜 Load Biodiversity Data
 
 We’ll load occurrence data from the **Global Biodiversity Information
 Facility (GBIF)**. This dataset contains species observations with their
@@ -125,8 +125,7 @@ df.head(3)
 <p>3 rows × 50 columns</p>
 </div>
 
-<a id="3-data-exploration"></a> \## 3. 🔍 Data Exploration &
-Visualization
+## 3. 🔍 Data Exploration & Visualization
 
 Let’s explore the dataset to understand what kind of data we have:
 
@@ -399,7 +398,7 @@ plt.show()
 
 <img src="/software/deepmaxent/deepmaxent_files/figure-commonmark/cell-10-output-1.png"/>
 
-<a id="4-crop-rasters"></a> \## 4. 🗺️ Crop Environmental Rasters
+## 4. 🗺️ Crop Environmental Rasters
 
 Now we need to prepare our environmental data. We’re using **WorldClim
 bioclimatic variables** at 10 arc-minutes resolution (~18.5 km at the
@@ -506,8 +505,7 @@ with rasterio.open(os.path.join(output_folder, raster_files[0])) as src:
     📐 Cropped raster dimensions: 418 × 378 pixels
        Resolution: 0.0083° (~0.9 km)
 
-<a id="5-visualize-environment"></a> \## 5. 🌡️ Visualize Environmental
-Variables
+## 5. 🌡️ Visualize Environmental Variables
 
 Let’s visualize some key bioclimatic variables along with our occurrence
 data:
@@ -572,7 +570,7 @@ plt.show()
 
 <img src="/software/deepmaxent/deepmaxent_files/figure-commonmark/cell-13-output-1.png"/>
 
-<a id="6-prepare-data"></a> \## 6. 📊 Prepare Training Data
+## 6. 📊 Prepare Training Data
 
 Now we’ll prepare the data for DeepMaxent by:
 
@@ -715,7 +713,7 @@ print(f"   y (occurrence counts):      {y_tensor.shape}")
        X (environmental features): torch.Size([1040, 19])
        y (occurrence counts):      torch.Size([1040, 102])
 
-<a id="7-summary"></a> \## 7. 📈 Summary Statistics & Data Quality Check
+## 7. 📈 Summary Statistics & Data Quality Check
 
 Let’s examine the quality of our prepared data:
 
