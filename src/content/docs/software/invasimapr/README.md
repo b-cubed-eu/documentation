@@ -2,9 +2,9 @@
 output: github_document
 title: 'Invasimapr: A novel framework to visualise trait dispersion and assess species
   invasiveness and site invasibility'
-lastUpdated: 2026-07-02
+lastUpdated: 2026-07-07
 sidebar:
-  label: Introduction, part 1
+  label: Introduction
   order: 1
 source: https://github.com/b-cubed-eu/invasimapr/blob/main/README.Rmd
 ---
@@ -49,7 +49,7 @@ candidate invader and site. Trait combinations are projected into a
 principal-component trait space, where the convex hull of the resident community
 defines the competitive arena an invader must enter.
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/fig1.png" width="100%" alt="Trait-space modelling framework: a three-dimensional species x environment x trait cube is projected into principal-component trait space, where the convex hull defines the resident community." />
+<img src="https://b-cubed-eu.github.io/invasimapr/reference/figures/fig1.png" width="100%" alt="Trait-space modelling framework: a three-dimensional species x environment x trait cube is projected into principal-component trait space, where the convex hull defines the resident community." />
 
 At its core, invasimapr estimates **invasion fitness**: the per-capita growth
 rate of a rare invader introduced into a resident community at ecological
@@ -70,7 +70,7 @@ invaders near the centroid of the resident trait cloud face strong competition
 from look-alike residents, while those toward the margins (or outside the hull)
 find less crowded niche space and weaker biotic resistance.
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/fig2.png" width="100%" alt="Trait-space density heatmap showing where competitive pressure concentrates across the shared trait-environment space, with marginal diagnostics for individual trait axes. Warm colours mark trait combinations shared by many residents; cool regions are underexploited niche space." />
+<img src="https://b-cubed-eu.github.io/invasimapr/reference/figures/fig2.png" width="100%" alt="Trait-space density heatmap showing where competitive pressure concentrates across the shared trait-environment space, with marginal diagnostics for individual trait axes. Warm colours mark trait combinations shared by many residents; cool regions are underexploited niche space." />
 
 ## Installation
 
@@ -89,7 +89,7 @@ phases: **inputs and setup**, **from data to invasion fitness**, and **predictio
 and indicators**. It is built around eight wrapper functions that run end-to-end
 with minimal intervention, each returning an updated `invasimapr_fit` container:
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/invasimapr_workflow.png" width="100%" alt="The invasimapr workflow, from data acquisition through invasion-fitness computation to derived indicators, organised into inputs, modelling and prediction phases." />
+<img src="https://b-cubed-eu.github.io/invasimapr/reference/figures/invasimapr_workflow.png" width="100%" alt="The invasimapr workflow, from data acquisition through invasion-fitness computation to derived indicators, organised into inputs, modelling and prediction phases." />
 
 1. **`prepare_inputs()`** – assemble and align community, trait and
    environmental matrices.
@@ -136,12 +136,11 @@ fit <- prepare_inputs(
   trait_prefix = "^trait",
   make_plots   = FALSE
 )
-#> Error in `prepare_inputs()`:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 fit
-#> Error:
-#> ! object 'fit' not found
+#> <invasimapr_fit>
+#>  stages: inputs 
+#>  sites: 415 | residents: 27 | invaders: NA
 ```
 
 The remaining steps extend the same `fit` object. They involve model fitting and
@@ -180,13 +179,13 @@ traits, invasimapr produces three complementary families of indicators:
 - **Trait invasiveness** – which functional attributes most strongly drive
   establishment (reveals the mechanistic basis of risk).
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/invasibility-map.png" width="100%" alt="Invasibility map: spatial variation in community openness to invasion." />
+<img src="https://b-cubed-eu.github.io/invasimapr/reference/figures/invasibility-map.png" width="100%" alt="Invasibility map: spatial variation in community openness to invasion." />
 
 Applied to South African butterflies, for example, invasimapr maps binary
 establishment for each candidate invader on a common grid, making spatial
 patterns directly comparable across species:
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/fig4.png" width="100%" alt="Per-invader maps of binary establishment across South Africa. Each panel is one invader; red cells indicate predicted establishment and dark grey non-establishment, on a common grid and coastline for direct comparison." />
+<img src="https://b-cubed-eu.github.io/invasimapr/reference/figures/fig4.png" width="100%" alt="Per-invader maps of binary establishment across South Africa. Each panel is one invader; red cells indicate predicted establishment and dark grey non-establishment, on a common grid and coastline for direct comparison." />
 
 ## Documentation
 

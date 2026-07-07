@@ -3,11 +3,11 @@ title: Step-by-step Workflow
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Step-by-step Workflow} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-02
+lastUpdated: 2026-07-07
 sidebar:
   label: Step-by-step workflow
   order: 3
-source: https://github.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/vignettes/articles/step-by-step-workflow.Rmd
+source: https://github.com/b-cubed-eu/invasimapr/blob/main/vignettes/articles/step-by-step-workflow.Rmd
 ---
 
 
@@ -482,20 +482,21 @@ spp_traits = purrr::map_dfr(
     max_dist = 1
   )
 )
-#> Error in `map()`:
-#> ℹ In index: 1.
-#> Caused by error in `.f()`:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 # The final output combines trait data, taxonomic info, Wikipedia summary, images, and color palette for each species.
 # This integrated dataset supports multi-faceted biodiversity, trait, and visualization analyses.
 
 # Check output
 str(spp_traits, 1)
-#> Error:
-#> ! object 'spp_traits' not found
+#> tibble [27 × 30] (S3: tbl_df/tbl/data.frame)
 head(spp_traits[1:5,1:5])
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'spp_traits' not found
+#> # A tibble: 5 × 5
+#>   species                    summary                                                                          Kingdom Phylum Class
+#>   <chr>                      <chr>                                                                            <chr>   <chr>  <chr>
+#> 1 Utetheisa pulchella        ""                                                                               Animal… Arthr… Inse…
+#> 2 Danaus chrysippus orientis  <NA>                                                                            <NA>    <NA>   <NA> 
+#> 3 Telchinia serena           "Acraea serena, the dancing acraea, is a butterfly of the family Nymphalidae. I… Animal… Arthr… Inse…
+#> 4 Vanessa cardui             "Vanessa cardui is the most widespread of all butterfly species. It is commonly… Animal… Arthr… Inse…
+#> 5 Hypolimnas misippus        "Hypolimnas misippus, the Danaid eggfly, mimic, or diadem, is a widespread spec… Animal… Arthr… Inse…
 ```
 
 ---
@@ -595,8 +596,6 @@ fit = prepare_inputs(
   return_diversity   = TRUE,
   make_plots         = FALSE
 )
-#> Error in `prepare_inputs()`:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 # # ---- Option B: already have separate tables ----------------------------------
 # fit = prepare_inputs(
@@ -619,11 +618,24 @@ fit = prepare_inputs(
 # )
 
 print(fit)
-#> Error:
-#> ! object 'fit' not found
+#> <invasimapr_fit>
+#>  stages: inputs 
+#>  sites: 415 | residents: 27 | invaders: NA
 str(fit$inputs, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 13
+#>  $ site_df    :'data.frame':	415 obs. of  3 variables:
+#>  $ env_df     :'data.frame':	415 obs. of  10 variables:
+#>  $ comm_res   :'data.frame':	415 obs. of  27 variables:
+#>  $ pa_res     :'data.frame':	415 obs. of  27 variables:
+#>  $ traits_res :'data.frame':	27 obs. of  20 variables:
+#>  $ diversity  : tibble [415 × 6] (S3: tbl_df/tbl/data.frame)
+#>  $ sites      : chr [1:415] "82" "83" "84" "117" ...
+#>  $ residents  : chr [1:27] "Acraea horta" "Amata cerbera" "Bicyclus safitza safitza" "Cacyreus lingeus" ...
+#>  $ n_sites    : int 415
+#>  $ n_env      : int 10
+#>  $ n_residents: int 27
+#>  $ n_traits   : int 20
+#>  $ plots      : list()
 ```
 
 
@@ -632,20 +644,10 @@ str(fit$inputs, 1)
 
 ``` r
 site_df    = fit$inputs$site_df
-#> Error:
-#> ! object 'fit' not found
 env_df     = fit$inputs$env_df
-#> Error:
-#> ! object 'fit' not found
 comm_res   = fit$inputs$comm_res
-#> Error:
-#> ! object 'fit' not found
 pa_res     = fit$inputs$pa_res
-#> Error:
-#> ! object 'fit' not found
 traits_res = fit$inputs$traits_res
-#> Error:
-#> ! object 'fit' not found
 
 stopifnot(
   identical(rownames(site_df), rownames(env_df)),
@@ -653,14 +655,11 @@ stopifnot(
   identical(rownames(site_df), rownames(pa_res)),
   setequal(colnames(comm_res), rownames(traits_res))
 )
-#> Error:
-#> ! object 'site_df' not found
 
 cat("#sites:", nrow(site_df), " | #env:", ncol(env_df),
     " | #residents:", ncol(comm_res),
     " | #traits:", ncol(traits_res), "\n")
-#> Error:
-#> ! object 'site_df' not found
+#> #sites: 415  | #env: 10  | #residents: 27  | #traits: 20
 ```
 
 
@@ -669,12 +668,9 @@ cat("#sites:", nrow(site_df), " | #env:", ncol(env_df),
 
 ``` r
 spp_rich_obs = fit$inputs$diversity 
-#> Error:
-#> ! object 'fit' not found
 rsa = sf::st_read(system.file("extdata", "rsa.shp", package = "invasimapr"))
 #> Reading layer `rsa' from data source 
-#>   `/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/extdata/rsa.shp' 
-#>   using driver `ESRI Shapefile'
+#>   `/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/extdata/rsa.shp' using driver `ESRI Shapefile'
 #> Simple feature collection with 11 features and 8 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
@@ -689,9 +685,9 @@ ggplot2::ggplot(spp_rich_obs, ggplot2::aes(x = x, y = y, fill = spp_rich)) +
   ggplot2::geom_sf(data = rsa, inherit.aes = FALSE, fill = NA, color = "black", size = 0.4) +
   ggplot2::labs(x = "Longitude", y = "Latitude", title = "Spatial Distribution of Species Richness") +
   ggplot2::theme(panel.grid = ggplot2::element_blank())
-#> Error:
-#> ! object 'spp_rich_obs' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-rich-1.png" alt="Spatial distribution of species richness" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 4: Spatial distribution of species richness across the study area.** Each grid cell shows the number of unique species (species richness) in each grid-cell.
 
@@ -727,22 +723,25 @@ traits_inv = simulate_invaders(
   keep_species_column = TRUE,
   seed                = 42
 )
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 traits_all = rbind(traits_res, traits_inv)
-#> Error:
-#> ! object 'traits_res' not found
 head(traits_all[1:4,1:4]); tail(traits_all[1:4,1:4])
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'traits_all' not found
+#>                          trait_cont1 trait_cont2 trait_cont3 trait_cont4
+#> Acraea horta               0.8296121   0.8114763  -0.9221270  -0.6841896
+#> Amata cerbera              0.8741508  -0.1060607   0.4975908  -0.2819434
+#> Bicyclus safitza safitza  -0.4277209   0.6720085   0.3545537   0.2912638
+#> Cacyreus lingeus           0.6608953   0.4751912  -0.6574713   0.5516467
+#>                          trait_cont1 trait_cont2 trait_cont3 trait_cont4
+#> Acraea horta               0.8296121   0.8114763  -0.9221270  -0.6841896
+#> Amata cerbera              0.8741508  -0.1060607   0.4975908  -0.2819434
+#> Bicyclus safitza safitza  -0.4277209   0.6720085   0.3545537   0.2912638
+#> Cacyreus lingeus           0.6608953   0.4751912  -0.6574713   0.5516467
 
 cat("Simulated invaders:", nrow(traits_inv),
     "| invader traits:", ncol(traits_inv),
     "| total species:", nrow(traits_all),
     "| total traits:", ncol(traits_all), "\n")
-#> Error:
-#> ! object 'traits_inv' not found
+#> Simulated invaders: 10 | invader traits: 20 | total species: 37 | total traits: 20
 ```
 
 :sparkles: **Overall importance**: This closes the data layer: residents, environment, and invaders are harmonised and ready for trait-space construction.
@@ -816,11 +815,7 @@ stopifnot(inherits(fit, "invasimapr_fit"),
           !is.null(fit$inputs$traits_res),
           !is.null(fit$inputs$comm_res),
           !is.null(fit$inputs$site_df))
-#> Error:
-#> ! object 'fit' not found
 stopifnot(exists("traits_inv"))
-#> Error in `b3doc::rmd_to_md()`:
-#> ! exists("traits_inv") is not TRUE
 
 # try(source("D:/Methods/R/myR_Packages/b-cubed-versions/invasimapr/R/prepare_trait_space.R"), silent = TRUE)
 # if (!exists("prepare_trait_space")) stop("prepare_trait_space() not found.")
@@ -833,17 +828,39 @@ fit = prepare_trait_space(
   row_z          = FALSE,
   show_plots     = FALSE
 )
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 # print(fit)
 # str(fit, 1)
 str(fit$traits, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 10
+#>  $ gower     : 'dissimilarity' Named num [1:666] 0.56 0.36 0.424 0.304 0.358 ...
+#>   ..- attr(*, "Labels")= chr [1:37] "Acraea horta" "Amata cerbera" "Bicyclus safitza safitza" "Cacyreus lingeus" ...
+#>   ..- attr(*, "Size")= int 37
+#>   ..- attr(*, "Metric")= chr "mixed"
+#>   ..- attr(*, "Types")= chr [1:20] "I" "I" "I" "I" ...
+#>  $ Q_res     :'data.frame':	27 obs. of  2 variables:
+#>  $ Q_inv     :'data.frame':	10 obs. of  2 variables:
+#>  $ hull      :'data.frame':	11 obs. of  2 variables:
+#>  $ centroid  : Named num [1:2] -4.88e-18 -2.25e-18
+#>   ..- attr(*, "names")= chr [1:2] "tr1" "tr2"
+#>  $ density   :List of 3
+#>  $ plots_ts  :List of 2
+#>  $ centrality: tibble [37 × 8] (S3: tbl_df/tbl/data.frame)
+#>  $ hull_df   :'data.frame':	11 obs. of  2 variables:
+#>  $ plots_ch  :List of 3
 str(fit$crowding, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 5
+#>  $ W_site     : num [1:415, 1:27] 0 0 0 0.238 0 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>   ..- attr(*, "parameters")=List of 2
+#>   ..- attr(*, "decostand")= chr "hellinger"
+#>  $ D_res      : num [1:27, 1:27] 0 0.56 0.36 0.424 0.304 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ sigma_alpha: num 0.463
+#>  $ K_res_res  : num [1:27, 1:27] 0 0.482 0.739 0.658 0.806 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ C_js       : num [1:415, 1:27] 2.14 1.63 1.84 2.21 1.88 ...
+#>   ..- attr(*, "dimnames")=List of 2
 ```
 
 
@@ -853,57 +870,25 @@ str(fit$crowding, 1)
 ``` r
 # Trait space & diagnostics
 Q_res      = fit$traits$Q_res
-#> Error:
-#> ! object 'fit' not found
 Q_inv      = fit$traits$Q_inv
-#> Error:
-#> ! object 'fit' not found
 gower_all  = fit$traits$gower
-#> Error:
-#> ! object 'fit' not found
 hull_res   = fit$traits$hull
-#> Error:
-#> ! object 'fit' not found
 centroid   = fit$traits$centroid
-#> Error:
-#> ! object 'fit' not found
 central_df = fit$traits$centrality
-#> Error:
-#> ! object 'fit' not found
 
 # Resident crowding
 C_js        = fit$crowding$C_js
-#> Error:
-#> ! object 'fit' not found
 C_js_z      = fit$crowding$C_js_z
-#> Error:
-#> ! object 'fit' not found
 C_mu_s      = fit$crowding$C_mu_s
-#> Error:
-#> ! object 'fit' not found
 C_sd_s      = fit$crowding$C_sd_s
-#> Error:
-#> ! object 'fit' not found
 W_site      = fit$crowding$W_site
-#> Error:
-#> ! object 'fit' not found
 D_res       = fit$crowding$D_res
-#> Error:
-#> ! object 'fit' not found
 K_res_res   = fit$crowding$K_res_res
-#> Error:
-#> ! object 'fit' not found
 sigma_alpha = fit$crowding$sigma_alpha
-#> Error:
-#> ! object 'fit' not found
 
 # If standardisation ran
 traits_res_glmm = fit$inputs_std$traits_res_glmm
-#> Error:
-#> ! object 'fit' not found
 traits_inv_glmm = fit$inputs_std$traits_inv_glmm
-#> Error:
-#> ! object 'fit' not found
 ```
 
 
@@ -917,9 +902,9 @@ Visualise different plots showing how invaders differ markedly in how much they 
 # Heatmap plot
 # fit$traits$plots_ts$dens_plot
 fit$traits$plots_ts$dens_plot()  # draws to any current device (screen or file)
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-traitspace-1.png" alt="Heatmap shared species trait space" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 5**: Heatmap plot showing how all species are mapped into a shared trait space (PCoA on Gower distances). Coloured contours show kernel-density "hotspots" of resident strategies, the white polygon is the resident convex hull (realised niche region), and the white square marks the cloud centroid. Residents (black points) form a clearly **multimodal** structure with two dense modes (upper-right and lower-centre), separated by a lower-density corridor. Invaders (red points) are mostly **inside the hull** and often fall near the dense resident cores, positions that imply **strong niche crowding** penalties. A few invaders sit near the hull boundary or in sparser regions of trait space, indicating **greater novelty** and potentially weaker crowding if local abiotic suitability is high.
 
@@ -928,9 +913,9 @@ fit$traits$plots_ts$dens_plot()  # draws to any current device (screen or file)
 ``` r
 # Dendogram plot
 fit$traits$plots_ts$dend_plot
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-dendo-1.png" alt="Dendogram of hierarchical clustering of species" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 6**: Dendogram plot shows hierarchical clustering species using Gower distances. The large splits (branch heights) and coloured/dashed groups reveal **distinct functional syndromes** that align with the density modes in the trait map: a leftmost (purple) clade is well separated, while central clades (blue/green) encompass the dense core, and smaller rightmost clades (yellow) capture peripheral strategies. Together, the panels show a resident community with strong trait structure; invaders overlapping core clusters should experience higher $C^{(z)}$ (crowding), whereas those on the periphery or near gaps in the hull may face weaker biotic resistance and thus higher establishment potential if $r^{(z)}$ is favourable.
 
@@ -948,9 +933,9 @@ fit$traits$plots_ts$dend_plot
 if (!is.null(fit$traits$plots_ch)) {
   print(fit$traits$plots_ch$p_trait)
 }
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-p_trait-1.png" alt="Centrality and hull status" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 7**: Centrality and hull status shows **residents (circles)** and **invaders (triangles)** embedded in a **two-dimensional trait space**. The **convex hull (solid polygon)** marks the **realised resident niche**, while the **dashed ellipse** indicates the **central core region**. Colour shading reflects **centrality** (values closer to 1 are deeper within the resident cloud). Many invaders fall inside the hull but with relatively **low centrality**, placing them nearer the trait-space **periphery**. A few invaders lie **outside the hull**, representing **novel strategies** not currently expressed by residents.
 
@@ -959,9 +944,9 @@ if (!is.null(fit$traits$plots_ch)) {
 ``` r
 # Plot Mahalanobis distance distribution
 fit$traits$plots_ch$p_dist
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-p_dist-1.png" alt="Mahalanobis distance distribution comparisons" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 8**: Mahalanobis distance distribution comparisons from the resident centroid. **Residents (grey)** cluster close to the centre, with most distances below 2-3 units. **Invaders (red)** show a broader distribution, with some overlapping resident values but others displaced further into the tails. This highlights greater heterogeneity among invaders, with several occupying marginal or novel positions.
 
@@ -970,9 +955,9 @@ fit$traits$plots_ch$p_dist
 ``` r
 # Plot Invader ranking by centrality
 fit$traits$plots_ch$p_rank
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-p_rank-1.png" alt="Invader ranking by centrality" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 9**: Invader ranking by centrality (from peripheral to core). **Peripheral invaders (low centrality)** are often those falling **outside the hull (red bars)**. These species represent the most novel introductions and are expected to experience **weaker crowding**, though their establishment will depend on abiotic suitability. Invaders with **higher centrality (grey bars)** overlap strongly with residents, implying **greater competition** and reduced establishment potential.
 
@@ -1057,15 +1042,243 @@ fit = model_residents(
   reduce_strategy = 'none',
   robust_r = TRUE
 )
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 # print(fit)
 # str(fit$model, 1)
 # str(fit$residents, 1)
 summary(fit$residents$fit_r)
-#> Error:
-#> ! object 'fit' not found
+#>  Family: tweedie  ( log )
+#> Formula:          abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 +  
+#>     env8 + env9 + env10 + trait_cont1 + trait_cont2 + trait_cont3 +  
+#>     trait_cont4 + trait_cont5 + trait_cont6 + trait_cont7 + trait_cont8 +  
+#>     trait_cont9 + trait_cont10 + trait_cat11 + trait_cat12 +  
+#>     trait_cat13 + trait_cat14 + trait_cat15 + trait_ord16 + trait_ord17 +  
+#>     trait_bin18 + trait_bin19 + trait_ord20 + (env1 + env2 +  
+#>     env3 + env4 + env5 + env6 + env7 + env8 + env9 + env10):(trait_cont1 +  
+#>     trait_cont2 + trait_cont3 + trait_cont4 + trait_cont5 + trait_cont6 +  
+#>     trait_cont7 + trait_cont8 + trait_cont9 + trait_cont10 +  
+#>     trait_cat11 + trait_cat12 + trait_cat13 + trait_cat14 + trait_cat15 +  
+#>     trait_ord16 + trait_ord17 + trait_bin18 + trait_bin19 + trait_ord20) +      (1 | site) + (1 | species)
+#> Data: attempt$rg$dat_r
+#> 
+#>       AIC       BIC    logLik -2*log(L)  df.resid 
+#>   38197.5   40241.0  -18819.8   37639.5     10926 
+#> 
+#> Random effects:
+#> 
+#> Conditional model:
+#>  Groups  Name        Variance Std.Dev.
+#>  site    (Intercept) 0.006301 0.07938 
+#>  species (Intercept) 0.001645 0.04056 
+#> Number of obs: 11205, groups:  site, 415; species, 27
+#> 
+#> Dispersion parameter for tweedie family (): 7.98 
+#> 
+#> Conditional model:
+#>                                 Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)                    1.2833901  0.1361082   9.429  < 2e-16 ***
+#> env1                           0.4238189  0.2730032   1.552 0.120559    
+#> env2                          -0.4629570  0.2814522  -1.645 0.099993 .  
+#> env3                          -0.1523661  0.3976060  -0.383 0.701565    
+#> env4                           0.2574086  0.3011752   0.855 0.392728    
+#> env5                           0.2883784  0.3298333   0.874 0.381946    
+#> env6                           0.0920454  0.3380372   0.272 0.785396    
+#> env7                           0.1802530  0.4869892   0.370 0.711280    
+#> env8                          -0.1178539  0.4933806  -0.239 0.811206    
+#> env9                          -0.1477103  0.4607070  -0.321 0.748501    
+#> env10                         -0.2388646  0.5557325  -0.430 0.667327    
+#> trait_cont1                   -0.2879529  0.0995748  -2.892 0.003830 ** 
+#> trait_cont2                   -0.1468610  0.0429340  -3.421 0.000625 ***
+#> trait_cont3                   -0.0183904  0.0671736  -0.274 0.784258    
+#> trait_cont4                    0.0057871  0.0526189   0.110 0.912425    
+#> trait_cont5                    0.0329278  0.0538160   0.612 0.540631    
+#> trait_cont6                    0.0446251  0.0734411   0.608 0.543432    
+#> trait_cont7                   -0.0332561  0.0488246  -0.681 0.495787    
+#> trait_cont8                    0.0582392  0.0701413   0.830 0.406362    
+#> trait_cont9                   -0.0030572  0.0521304  -0.059 0.953235    
+#> trait_cont10                   0.0757443  0.0495473   1.529 0.126332    
+#> trait_cat11grassland           0.0384514  0.1842370   0.209 0.834678    
+#> trait_cat11wetland            -0.1194091  0.2430696  -0.491 0.623246    
+#> trait_cat12nocturnal          -0.2214629  0.1160278  -1.909 0.056300 .  
+#> trait_cat13multivoltine        0.0069169  0.0965116   0.072 0.942866    
+#> trait_cat13univoltine         -0.1972040  0.1309296  -1.506 0.132020    
+#> trait_cat14generalist          0.0380147  0.2600996   0.146 0.883799    
+#> trait_cat14nectarivore         0.2441572  0.1720548   1.419 0.155880    
+#> trait_cat15resident           -0.0448762  0.1352528  -0.332 0.740044    
+#> trait_ord16                    0.0155845  0.0581019   0.268 0.788525    
+#> trait_ord17                   -0.0457999  0.0426140  -1.075 0.282481    
+#> trait_bin18                    0.0384106  0.0484466   0.793 0.427869    
+#> trait_bin19                    0.0104646  0.0576802   0.181 0.856035    
+#> trait_ord20medium              0.0838120  0.2635444   0.318 0.750471    
+#> trait_ord20small              -0.1652942  0.1540706  -1.073 0.283340    
+#> env1:trait_cont1               0.2590543  0.2018959   1.283 0.199454    
+#> env1:trait_cont2               0.0511837  0.0872490   0.587 0.557446    
+#> env1:trait_cont3               0.0419782  0.1365365   0.307 0.758500    
+#> env1:trait_cont4               0.0569235  0.1068453   0.533 0.594196    
+#> env1:trait_cont5              -0.1396320  0.1099753  -1.270 0.204203    
+#> env1:trait_cont6              -0.1149766  0.1490549  -0.771 0.440487    
+#> env1:trait_cont7               0.0247308  0.1007236   0.246 0.806045    
+#> env1:trait_cont8              -0.0832165  0.1424527  -0.584 0.559107    
+#> env1:trait_cont9               0.0193295  0.1069047   0.181 0.856516    
+#> env1:trait_cont10             -0.0166879  0.1012074  -0.165 0.869032    
+#> env1:trait_cat11grassland     -0.2495010  0.3716669  -0.671 0.502028    
+#> env1:trait_cat11wetland       -0.2737927  0.4937667  -0.554 0.579238    
+#> env1:trait_cat12nocturnal     -0.0896390  0.2365215  -0.379 0.704696    
+#> env1:trait_cat13multivoltine   0.1300371  0.1954317   0.665 0.505805    
+#> env1:trait_cat13univoltine     0.2479814  0.2637601   0.940 0.347126    
+#> env1:trait_cat14generalist     0.1803710  0.5286677   0.341 0.732968    
+#> env1:trait_cat14nectarivore   -0.2256056  0.3489209  -0.647 0.517903    
+#> env1:trait_cat15resident      -0.1195242  0.2759828  -0.433 0.664952    
+#> env1:trait_ord16               0.0164264  0.1176699   0.140 0.888978    
+#> env1:trait_ord17              -0.0983943  0.0860021  -1.144 0.252585    
+#> env1:trait_bin18              -0.0447998  0.0978090  -0.458 0.646928    
+#> env1:trait_bin19              -0.0989036  0.1160240  -0.852 0.393970    
+#> env1:trait_ord20medium        -0.1203885  0.5353213  -0.225 0.822065    
+#> env1:trait_ord20small          0.2076244  0.3127982   0.664 0.506841    
+#> env2:trait_cont1              -0.1073236  0.2099272  -0.511 0.609182    
+#> env2:trait_cont2               0.0998720  0.0909106   1.099 0.271954    
+#> env2:trait_cont3              -0.0302382  0.1432439  -0.211 0.832812    
+#> env2:trait_cont4               0.0062584  0.1123871   0.056 0.955592    
+#> env2:trait_cont5              -0.0215891  0.1145595  -0.188 0.850522    
+#> env2:trait_cont6               0.0958735  0.1549708   0.619 0.536143    
+#> env2:trait_cont7              -0.1614124  0.1051725  -1.535 0.124848    
+#> env2:trait_cont8              -0.1579836  0.1475678  -1.071 0.284357    
+#> env2:trait_cont9              -0.0824353  0.1116071  -0.739 0.460137    
+#> env2:trait_cont10              0.0042922  0.1059621   0.041 0.967689    
+#> env2:trait_cat11grassland      0.3465967  0.3880252   0.893 0.371733    
+#> env2:trait_cat11wetland       -0.1429870  0.5138745  -0.278 0.780818    
+#> env2:trait_cat12nocturnal     -0.0109025  0.2464091  -0.044 0.964709    
+#> env2:trait_cat13multivoltine   0.0772089  0.2022998   0.382 0.702717    
+#> env2:trait_cat13univoltine    -0.0152930  0.2723597  -0.056 0.955222    
+#> env2:trait_cat14generalist     0.0938038  0.5469770   0.171 0.863835    
+#> env2:trait_cat14nectarivore    0.0034584  0.3626978   0.010 0.992392    
+#> env2:trait_cat15resident       0.0934440  0.2852982   0.328 0.743266    
+#> env2:trait_ord16               0.1898966  0.1219071   1.558 0.119301    
+#> env2:trait_ord17               0.1206038  0.0899711   1.340 0.180092    
+#> env2:trait_bin18               0.0037917  0.1020570   0.037 0.970363    
+#> env2:trait_bin19               0.0436744  0.1229657   0.355 0.722458    
+#> env2:trait_ord20medium        -0.1337030  0.5551158  -0.241 0.809667    
+#> env2:trait_ord20small          0.1591382  0.3209528   0.496 0.620014    
+#> env3:trait_cont1              -0.0372629  0.2951912  -0.126 0.899548    
+#> env3:trait_cont2               0.0420001  0.1284998   0.327 0.743782    
+#> env3:trait_cont3               0.0621160  0.1991385   0.312 0.755099    
+#> env3:trait_cont4               0.0263516  0.1563270   0.169 0.866137    
+#> env3:trait_cont5              -0.0431644  0.1605220  -0.269 0.788006    
+#> env3:trait_cont6               0.1030986  0.2177213   0.474 0.635832    
+#> env3:trait_cont7              -0.1336400  0.1481034  -0.902 0.366875    
+#> env3:trait_cont8              -0.0871097  0.2080141  -0.419 0.675385    
+#> env3:trait_cont9               0.0312030  0.1557542   0.200 0.841219    
+#> env3:trait_cont10             -0.0836775  0.1486914  -0.563 0.573599    
+#> env3:trait_cat11grassland      0.0530339  0.5416079   0.098 0.921996    
+#> env3:trait_cat11wetland        0.0004273  0.7215614   0.001 0.999527    
+#> env3:trait_cat12nocturnal      0.0338567  0.3435294   0.099 0.921491    
+#> env3:trait_cat13multivoltine  -0.0355021  0.2866598  -0.124 0.901436    
+#> env3:trait_cat13univoltine    -0.0267714  0.3821760  -0.070 0.944154    
+#> env3:trait_cat14generalist    -0.0064808  0.7741574  -0.008 0.993321    
+#> env3:trait_cat14nectarivore    0.1040584  0.5059753   0.206 0.837057    
+#> env3:trait_cat15resident       0.1061745  0.4041305   0.263 0.792764    
+#> env3:trait_ord16               0.0159803  0.1718122   0.093 0.925895    
+#> env3:trait_ord17               0.1282873  0.1257695   1.020 0.307719    
+#> env3:trait_bin18              -0.1023514  0.1429024  -0.716 0.473848    
+#> env3:trait_bin19               0.0989221  0.1715115   0.577 0.564097    
+#> env3:trait_ord20medium        -0.0583839  0.7834286  -0.075 0.940594    
+#> env3:trait_ord20small          0.0076437  0.4583593   0.017 0.986695    
+#> env4:trait_cont1               0.1871081  0.2217728   0.844 0.398841    
+#> env4:trait_cont2              -0.0448973  0.0951791  -0.472 0.637131    
+#> env4:trait_cont3               0.1660386  0.1507123   1.102 0.270595    
+#> env4:trait_cont4               0.0513924  0.1184007   0.434 0.664248    
+#> env4:trait_cont5               0.0259057  0.1226941   0.211 0.832777    
+#> env4:trait_cont6              -0.0927677  0.1635505  -0.567 0.570570    
+#> env4:trait_cont7               0.1163699  0.1121210   1.038 0.299319    
+#> env4:trait_cont8              -0.0180249  0.1561764  -0.115 0.908117    
+#> env4:trait_cont9               0.0772283  0.1170715   0.660 0.509467    
+#> env4:trait_cont10             -0.0208430  0.1107179  -0.188 0.850678    
+#> env4:trait_cat11grassland     -0.1799181  0.4028088  -0.447 0.655122    
+#> env4:trait_cat11wetland        0.3953166  0.5415347   0.730 0.465394    
+#> env4:trait_cat12nocturnal     -0.0130807  0.2587156  -0.051 0.959676    
+#> env4:trait_cat13multivoltine  -0.0585961  0.2173298  -0.270 0.787454    
+#> env4:trait_cat13univoltine     0.0947713  0.2903156   0.326 0.744090    
+#> env4:trait_cat14generalist     0.0786553  0.5813832   0.135 0.892383    
+#> env4:trait_cat14nectarivore    0.0233595  0.3815324   0.061 0.951180    
+#> env4:trait_cat15resident      -0.1226286  0.3045990  -0.403 0.687250    
+#> env4:trait_ord16              -0.1742459  0.1306910  -1.333 0.182444    
+#> env4:trait_ord17              -0.0095848  0.0936071  -0.102 0.918444    
+#> env4:trait_bin18               0.1460148  0.1070335   1.364 0.172505    
+#> env4:trait_bin19              -0.1382084  0.1268928  -1.089 0.276077    
+#> env4:trait_ord20medium        -0.1994732  0.5888167  -0.339 0.734783    
+#> env4:trait_ord20small         -0.2580449  0.3457473  -0.746 0.455462    
+#> env5:trait_cont1               0.0123702  0.2456663   0.050 0.959841    
+#> env5:trait_cont2              -0.0609928  0.1066625  -0.572 0.567438    
+#> env5:trait_cont3               0.0756810  0.1652044   0.458 0.646877    
+#> env5:trait_cont4               0.0216662  0.1288836   0.168 0.866499    
+#> env5:trait_cont5               0.0346696  0.1318799   0.263 0.792637    
+#> env5:trait_cont6              -0.0602581  0.1811538  -0.333 0.739410    
+#> env5:trait_cont7               0.0551824  0.1224985   0.450 0.652368    
+#> env5:trait_cont8               0.0679692  0.1728442   0.393 0.694142    
+#> env5:trait_cont9               0.0678823  0.1291918   0.525 0.599278    
+#> env5:trait_cont10             -0.0582309  0.1233393  -0.472 0.636841    
+#> env5:trait_cat11grassland     -0.1218774  0.4491573  -0.271 0.786124    
+#> env5:trait_cat11wetland        0.0071179  0.6004955   0.012 0.990543    
+#> env5:trait_cat12nocturnal     -0.1119143  0.2868002  -0.390 0.696376    
+#> env5:trait_cat13multivoltine  -0.1107300  0.2358441  -0.470 0.638709    
+#> env5:trait_cat13univoltine    -0.2036733  0.3176916  -0.641 0.521455    
+#> env5:trait_cat14generalist    -0.2461068  0.6403223  -0.384 0.700720    
+#> env5:trait_cat14nectarivore   -0.0526845  0.4223282  -0.125 0.900723    
+#> env5:trait_cat15resident       0.0484835  0.3353476   0.145 0.885045    
+#> env5:trait_ord16              -0.0811707  0.1411523  -0.575 0.565252    
+#> env5:trait_ord17              -0.0972289  0.1035414  -0.939 0.347713    
+#> env5:trait_bin18               0.1027040  0.1188081   0.864 0.387339    
+#> env5:trait_bin19              -0.0636271  0.1419014  -0.448 0.653872    
+#> env5:trait_ord20medium         0.0120206  0.6490946   0.019 0.985225    
+#> env5:trait_ord20small         -0.2150638  0.3789890  -0.567 0.570397    
+#> env6:trait_cont1              -0.0246898  0.2480779  -0.100 0.920722    
+#> env6:trait_cont2              -0.0004339  0.1071391  -0.004 0.996769    
+#> env6:trait_cont3               0.0226814  0.1673397   0.136 0.892184    
+#> env6:trait_cont4               0.0534481  0.1317414   0.406 0.684960    
+#> env6:trait_cont5               0.1094548  0.1359880   0.805 0.420886    
+#> env6:trait_cont6               0.1142859  0.1832831   0.624 0.532924    
+#> env6:trait_cont7               0.1214664  0.1249329   0.972 0.330925    
+#> env6:trait_cont8               0.1004448  0.1755440   0.572 0.567192    
+#> env6:trait_cont9               0.0738422  0.1303336   0.567 0.571011    
+#> env6:trait_cont10              0.0337164  0.1243256   0.271 0.786241    
+#> env6:trait_cat11grassland     -0.3415737  0.4513362  -0.757 0.449166    
+#> env6:trait_cat11wetland       -0.1465829  0.6027141  -0.243 0.807847    
+#> env6:trait_cat12nocturnal      0.2060312  0.2883638   0.714 0.474928    
+#> env6:trait_cat13multivoltine  -0.2666277  0.2412991  -1.105 0.269174    
+#> env6:trait_cat13univoltine     0.2117171  0.3250485   0.651 0.514827    
+#> env6:trait_cat14generalist    -0.3044428  0.6501297  -0.468 0.639584    
+#> env6:trait_cat14nectarivore   -0.0652948  0.4260207  -0.153 0.878188    
+#> env6:trait_cat15resident       0.0024190  0.3407272   0.007 0.994335    
+#> env6:trait_ord16              -0.1436754  0.1453234  -0.989 0.322830    
+#> env6:trait_ord17               0.0901250  0.1052978   0.856 0.392050    
+#> env6:trait_bin18              -0.0602324  0.1202303  -0.501 0.616388    
+#> env6:trait_bin19               0.0404023  0.1420808   0.284 0.776133    
+#> env6:trait_ord20medium         0.3375212  0.6570004   0.514 0.607440    
+#> env6:trait_ord20small          0.0095392  0.3848254   0.025 0.980224    
+#> env7:trait_cont1              -0.1730178  0.3627418  -0.477 0.633382    
+#> env7:trait_cont2              -0.0316228  0.1574463  -0.201 0.840817    
+#> env7:trait_cont3              -0.1838059  0.2450052  -0.750 0.453127    
+#> env7:trait_cont4               0.0300894  0.1917809   0.157 0.875328    
+#> env7:trait_cont5              -0.1932804  0.1958736  -0.987 0.323760    
+#> env7:trait_cont6              -0.0130956  0.2664564  -0.049 0.960802    
+#> env7:trait_cont7              -0.0292479  0.1810542  -0.162 0.871666    
+#> env7:trait_cont8               0.0192467  0.2547439   0.076 0.939775    
+#> env7:trait_cont9               0.0404890  0.1916159   0.211 0.832651    
+#> env7:trait_cont10              0.0584509  0.1818610   0.321 0.747904    
+#> env7:trait_cat11grassland     -0.1630086  0.6679496  -0.244 0.807197    
+#> env7:trait_cat11wetland        0.0845999  0.8871659   0.095 0.924029    
+#> env7:trait_cat12nocturnal     -0.3929308  0.4254169  -0.924 0.355675    
+#> env7:trait_cat13multivoltine  -0.0399157  0.3498784  -0.114 0.909171    
+#> env7:trait_cat13univoltine     0.0647597  0.4663271   0.139 0.889551    
+#> env7:trait_cat14generalist     0.2251639  0.9501766   0.237 0.812680    
+#> env7:trait_cat14nectarivore    0.1571325  0.6249955   0.251 0.801494    
+#> env7:trait_cat15resident      -0.1963711  0.4947895  -0.397 0.691457    
+#> env7:trait_ord16               0.0412175  0.2100704   0.196 0.844447    
+#> env7:trait_ord17              -0.1892053  0.1544197  -1.225 0.220475    
+#> env7:trait_bin18              -0.0525759  0.1748677  -0.301 0.763673    
+#>  [ reached 'max' / getOption("max.print") -- omitted 75 rows ]
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 
@@ -1074,30 +1287,44 @@ summary(fit$residents$fit_r)
 
 ``` r
 str(fit$residents, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 16
+#>  $ fit_r   :List of 7
+#>   ..- attr(*, "class")= chr "glmmTMB"
+#>  $ dat_r   :'data.frame':	11205 obs. of  33 variables:
+#>  $ grid_res:'data.frame':	11205 obs. of  33 variables:
+#>  $ fml     :Class 'formula'  language abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 + env8 + env9 + env10 + trait_cont1 + trait_cont2 + tr| __truncated__ ...
+#>   .. ..- attr(*, ".Environment")=<environment: 0x8aecf3380> 
+#>  $ r_js    : num [1:415, 1:27] 1.061 0.957 1.218 1.247 1.415 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ mu_js   : num [1:415, 1:27] 2.89 2.6 3.38 3.48 4.12 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ r_js_z  : num [1:415, 1:27] -0.1157 -0.2056 0.0858 -0.1993 0.1854 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ r_mu_s  : Named num [1:415] 1.17 1.14 1.14 1.39 1.25 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ r_sd_s  : Named num [1:415] 0.906 0.909 0.884 0.703 0.898 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ C_js_z  : num [1:415, 1:27] 1.028 -1.057 1.46 0.881 1.484 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ C_mu_s  : Named num [1:415] 1.98 1.74 1.61 2.06 1.61 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ C_sd_s  : Named num [1:415] 0.154 0.101 0.159 0.177 0.176 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ S_s     : Named num [1:415] 0.0798 0.025 0.1327 0.1478 0.226 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ S_s_z   : Named num [1:415] 0.172 -1.104 1.406 1.758 3.579 ...
+#>   ..- attr(*, "names")= chr [1:415] "82" "83" "84" "117" ...
+#>  $ S_js_z  : num [1:415, 1:27] 0.172 -1.104 1.406 1.758 3.579 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ messages: chr [1:2] "preflight_gb=0.02" "path=original"
 r_js    = fit$residents$r_js
-#> Error:
-#> ! object 'fit' not found
 r_js_z  = fit$residents$r_js_z
-#> Error:
-#> ! object 'fit' not found
 C_js_z  = fit$residents$C_js_z
-#> Error:
-#> ! object 'fit' not found
 S_s_z   = fit$residents$S_s_z
-#> Error:
-#> ! object 'fit' not found
 S_js_z  = fit$residents$S_js_z
-#> Error:
-#> ! object 'fit' not found
 
 r_mu_s  = fit$residents$r_mu_s
-#> Error:
-#> ! object 'fit' not found
 r_sd_s  = fit$residents$r_sd_s
-#> Error:
-#> ! object 'fit' not found
 ```
 
 
@@ -1108,16 +1335,17 @@ r_sd_s  = fit$residents$r_sd_s
 ``` r
 # str(fit$residents,1)
 head(fit$residents$S_js_z[1:4,1:4])
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'fit' not found
+#>     Acraea horta Amata cerbera Bicyclus safitza safitza Cacyreus lingeus
+#> 82     0.1720317     0.1720317                0.1720317        0.1720317
+#> 83    -1.1043100    -1.1043100               -1.1043100       -1.1043100
+#> 84     1.4055746     1.4055746                1.4055746        1.4055746
+#> 117    1.7579032     1.7579032                1.7579032        1.7579032
 
 site_sat_df = data.frame(
   site  = names(fit$residents$S_s_z),
   S_s_z = as.numeric(fit$residents$S_s_z),
   row.names = NULL, check.names = FALSE) |>
   dplyr::left_join(site_df, by = "site")
-#> Error:
-#> ! object 'fit' not found
 
 ggplot2::ggplot(site_sat_df, ggplot2::aes(x, y, fill = S_s_z)) +
   ggplot2::geom_tile() +
@@ -1125,9 +1353,9 @@ ggplot2::ggplot(site_sat_df, ggplot2::aes(x, y, fill = S_s_z)) +
   ggplot2::geom_sf(data = rsa, inherit.aes = FALSE, fill = NA, color = "black", size = 0.3) +
   ggplot2::labs(title = expression("Mean saturation (" * S^z * ") across sites"), x = "Longitude", y = "Latitude") +
   ggplot2::theme_minimal()
-#> Error:
-#> ! object 'site_sat_df' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-saturation-1.png" alt="Mean site saturation" width="100%" />
 
 > :chart_with_upwards_trend: **Figures 10**: The map shows the mean saturation term ($S^{(z)}$) across sites in South Africa, calculated from the relative abundance structure of resident communities. Warmer colours (yellow) indicate sites with low saturation values, suggesting lower levels of resident dominance, whereas cooler colours (green to purple) highlight sites with higher saturation, where resident communities are dense and strongly filled. The pattern is heterogeneous: several regions, including the south-western Cape and parts of the interior plateau, show pronounced hotspots of high saturation, while coastal and northern areas are more lightly saturated. This map is an important diagnostic for the **site saturation predictor** in the invasion fitness framework. Areas of high $S^{(z)}$ reflect environments where invaders are expected to experience stronger suppression from resident dominance, regardless of their trait alignment. Conversely, low-saturation sites highlight potential windows of opportunity where invaders may establish more easily if abiotic suitability and trait differences align.
 
@@ -1197,47 +1425,68 @@ fit = learn_sensitivities(
   use_site_random_slopes = TRUE,
   lrt = TRUE
 )
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 str(fit$sensitivities, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 26
+#>  $ fit_coeffs           :List of 7
+#>   ..- attr(*, "class")= chr "glmmTMB"
+#>  $ data_used            : tibble [11,205 × 8] (S3: tbl_df/tbl/data.frame)
+#>  $ formula              :Class 'formula'  language log1p(abundance) ~ (r_z + C_z + S_z) * (tr1 + tr2) + (1 | species) + (1 | site) + (0 + r_z || site) + (0 + C_z || site)
+#>   .. ..- attr(*, ".Environment")=<environment: 0x8bde54388> 
+#>  $ alpha_i              : Named num [1:10] 0.982 0.964 0.973 0.981 0.937 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ alpha_signed_i       : Named num [1:10] 0.982 0.964 0.973 0.981 0.937 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ beta_i               : Named num [1:10] 0.0883 0.0695 0.0833 0.0925 0.045 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ beta_signed_i        : Named num [1:10] -0.0883 -0.0695 -0.0833 -0.0925 -0.045 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ theta0               : num 0.213
+#>  $ theta_i              : Named num [1:10] 0.231 0.21 0.233 0.245 0.192 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ gamma_i              : Named num [1:10] 0.213 0.213 0.213 0.213 0.213 ...
+#>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
+#>  $ wald_lrt             :'data.frame':	1 obs. of  4 variables:
+#>  $ sens_df              :'data.frame':	10 obs. of  13 variables:
+#>  $ clamp_summary        :List of 5
+#>  $ prior_note           : chr "Biotic effects are modelled as nonnegative penalties; positive learned slopes are reported but not used to increase lambda."
+#>  $ site_alpha_beta_gamma:List of 12
+#>  $ alpha_is             : num [1:415, 1:10] 1.123 0.715 0.941 0.609 1.015 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ Gamma_is             : num [1:415, 1:10] 0.33 -0.126 0.512 0.752 0.382 ...
+#>   ..- attr(*, "dimnames")=List of 2
+#>  $ site_alpha           :List of 4
+#>  $ site_gamma           :List of 4
+#>  $ a0                   : num -0.96
+#>  $ a1                   : num -0.0226
+#>  $ a2                   : num 0.11
+#>  $ b0                   : num -0.0675
+#>  $ b1                   : num -0.0447
+#>  $ b2                   : num 0.108
+#>  $ abg_df               :'data.frame':	4150 obs. of  12 variables:
 
 alpha_i        = fit$sensitivities$alpha_i
-#> Error:
-#> ! object 'fit' not found
 beta_i         = fit$sensitivities$beta_i
-#> Error:
-#> ! object 'fit' not found
 beta_signed_i  = fit$sensitivities$beta_signed_i
-#> Error:
-#> ! object 'fit' not found
 theta0         = fit$sensitivities$theta0
-#> Error:
-#> ! object 'fit' not found
 theta_i        = fit$sensitivities$theta_i
-#> Error:
-#> ! object 'fit' not found
 gamma_i        = fit$sensitivities$gamma_i
-#> Error:
-#> ! object 'fit' not found
 alpha_is       = fit$sensitivities$alpha_is
-#> Error:
-#> ! object 'fit' not found
 Gamma_is       = fit$sensitivities$Gamma_is
-#> Error:
-#> ! object 'fit' not found
 sens_df        = fit$sensitivities$sens_df
-#> Error:
-#> ! object 'fit' not found
 abg_df         = fit$sensitivities$abg_df
-#> Error:
-#> ! object 'fit' not found
 
 head(sens_df[1:4,1:4]); head(abg_df[1:4,1:4])
-#> Error in `h()`:
-#> ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'sens_df' not found
+#>   invader         tr1         tr2  slope_C_i
+#> 1    inv1 -0.03366963 -0.20651611 -0.9815948
+#> 2    inv2 -0.09911835 -0.05940586 -0.9639289
+#> 3    inv3  0.11449719 -0.09846095 -0.9730468
+#> 4    inv4  0.19113440 -0.15252673 -0.9807258
+#>   site invader  alpha_is SLOPE_C_is
+#> 1   82    inv1 1.1226958 -1.1226958
+#> 2   83    inv1 0.7148899 -0.7148899
+#> 3   84    inv1 0.9412440 -0.9412440
+#> 4  117    inv1 0.6092374 -0.6092374
 ```
 
 
@@ -1250,9 +1499,9 @@ ggplot2::ggplot(abg_df, ggplot2::aes(invader, site, fill = alpha_is)) +
     ggplot2::labs(title = expression("Site-varying " * alpha[is]),
          x = "Invader", y = "Site") + ggplot2::theme_minimal(base_size = 11) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5))
-#> Error:
-#> ! object 'abg_df' not found
 ```
+
+<img src="/software/invasimapr/figures/2-alpha-plot-1.png" alt="Sensitivity to crowding" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 11**: The heatmaps show how sensitivity to crowding ($\alpha_{is}$) varies across sites and invaders. Each column corresponds to an invader, each row to a site, and the colour scale represents the parameter value. Here, $\alpha_{is}$ values are consistently positive but display subtle gradients across sites, indicating that some environments impose stronger penalties from trait overlap than others. This heterogeneity reflects local differences in how resident communities constrain invaders: higher $\alpha_{is}$ (yellow-green) means stronger crowding effects, while lower values (blue-purple) suggest weaker suppression.
 
@@ -1265,9 +1514,9 @@ ggplot2::ggplot(abg_df, ggplot2::aes(invader, site, fill = Gamma_is)) +
     ggplot2::labs(title = expression("Site-varying " * Gamma[is]),
          x = "Invader", y = "Site") + ggplot2::theme_minimal(base_size = 11) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5))
-#> Error:
-#> ! object 'abg_df' not found
 ```
+
+<img src="/software/invasimapr/figures/2-gamma-plot-1.png" alt="Sensitivity to abiotic scaling" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 12**: The heatmaps show how sensitivity to abiotic scaling ($\Gamma_{is}$, second) varies across sites and invaders.Each column corresponds to an invader, each row to a site, and the colour scale represents the parameter value. Here, $\Gamma_{is}$ values describe how abiotic suitability scales for each invader--site combination. Most values fall near zero to moderate positive ranges, but some sites show locally elevated $\Gamma_{is}$, highlighting environments where abiotic alignment disproportionately boosts invasion fitness.
 
@@ -1300,33 +1549,25 @@ ggplot2::ggplot(abg_df, ggplot2::aes(invader, site, fill = Gamma_is)) +
 # if (!exists("predict_invaders")) stop("predict_invaders() not found.")
 
 fit = predict_invaders(fit, traits_inv)
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 # str(fit$invaders, 1)
 
 r_is   = fit$invaders$r_is
-#> Error:
-#> ! object 'fit' not found
 r_is_z = fit$invaders$r_is_z
-#> Error:
-#> ! object 'fit' not found
 C_is   = fit$invaders$C_is
-#> Error:
-#> ! object 'fit' not found
 C_is_z = fit$invaders$C_is_z
-#> Error:
-#> ! object 'fit' not found
 S_is_z = fit$invaders$S_is_z
-#> Error:
-#> ! object 'fit' not found
 
 inv_predict_df = fit$invaders$df
-#> Error:
-#> ! object 'fit' not found
 summary(inv_predict_df)
-#> Error:
-#> ! object 'inv_predict_df' not found
+#>       site        invader              r_link             r_z                 C_z               S_z         
+#>  82     :  10   Length:4150        Min.   :-1.9422   Min.   :-8.447911   Min.   :-1.0035   Min.   :-1.5449  
+#>  83     :  10   Class :character   1st Qu.: 0.6978   1st Qu.:-0.830539   1st Qu.: 0.5128   1st Qu.:-0.7173  
+#>  84     :  10   Mode  :character   Median : 1.2211   Median : 0.136880   Median : 0.9441   Median :-0.1541  
+#>  117    :  10                      Mean   : 1.1506   Mean   :-0.008854   Mean   : 0.9597   Mean   : 0.0000  
+#>  118    :  10                      3rd Qu.: 1.6929   3rd Qu.: 0.993591   3rd Qu.: 1.3796   3rd Qu.: 0.4529  
+#>  119    :  10                      Max.   : 3.6457   Max.   : 6.559607   Max.   : 3.3913   Max.   : 5.6963  
+#>  (Other):4090
 ```
 
 
@@ -1335,15 +1576,11 @@ summary(inv_predict_df)
 
 ``` r
 stopifnot(exists("site_df"))
-#> Error in `b3doc::rmd_to_md()`:
-#> ! exists("site_df") is not TRUE
 
 df_r_site = inv_predict_df |>
   dplyr::group_by(site) |>
   dplyr::mutate(mean_r_z = mean(r_z)) |>
   dplyr::left_join(site_df, by = "site")
-#> Error:
-#> ! object 'inv_predict_df' not found
 
 ggplot2::ggplot(df_r_site, ggplot2::aes(x, y, fill = mean_r_z)) +
   ggplot2::geom_tile() +
@@ -1352,9 +1589,9 @@ ggplot2::ggplot(df_r_site, ggplot2::aes(x, y, fill = mean_r_z)) +
                 x = "x", y = "y") +
   ggplot2::theme_minimal() + 
   ggplot2::geom_sf(data = rsa, inherit.aes = FALSE, fill = NA, color = "black", size = 0.3)
-#> Error:
-#> ! object 'df_r_site' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-abiotic-1.png" alt="Abiotic suitability" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 13**: This map summarises how **Abiotic Suitability** ($r^{(z)}$) co-varies across space, averaged over all invaders. Here, the colours reflect the mean abiotic suitability that invaders experience per site. Warmer red tones indicate lower or even negative suitability, while cooler blue tones show higher suitability. The spatial gradients capture regions where abiotic conditions consistently favour or hinder invasion potential.
 
@@ -1362,15 +1599,11 @@ ggplot2::ggplot(df_r_site, ggplot2::aes(x, y, fill = mean_r_z)) +
 
 ``` r
 stopifnot(exists("site_df"))
-#> Error in `b3doc::rmd_to_md()`:
-#> ! exists("site_df") is not TRUE
 
 df_C_site = inv_predict_df |>
   dplyr::group_by(site) |>
   dplyr::mutate(mean_C_z = mean(C_z)) |>
   dplyr::left_join(site_df, by = "site")
-#> Error:
-#> ! object 'inv_predict_df' not found
 
 ggplot2::ggplot(df_C_site, ggplot2::aes(x, y, fill = mean_C_z)) +
   ggplot2::geom_tile() +
@@ -1381,9 +1614,9 @@ ggplot2::ggplot(df_C_site, ggplot2::aes(x, y, fill = mean_C_z)) +
   ) +
   ggplot2::theme_minimal() +
   ggplot2::geom_sf(data = rsa, inherit.aes = FALSE, fill = NA, color = "black", size = 0.3)
-#> Error:
-#> ! object 'df_C_site' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-invaders-1.png" alt="Trait-similar crowding" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 14**: This map summarises how **Trait-similar Crowding** ($C^{(z)}$) or biotic pressure co-varies across space, averaged over all invaders. Here, the colours represent the average intensity of biotic pressure from resident communities, scaled by trait similarity. Higher values (yellow-green) highlight areas where residents are more functionally similar to potential invaders, thus exerting stronger competitive exclusion. Lower values (blue-purple) identify sites where invaders may face less trait-overlap pressure.
 
@@ -1424,21 +1657,26 @@ fit = predict_establishment(
   calibrate_kappa = TRUE,
   boundary_sf    = rsa
 )
-#> Error:
-#> ! lazy-load database '/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb' is corrupt
 
 str(fit,1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 11
+#>  $ inputs       :List of 13
+#>  $ meta         :List of 7
+#>  $ inputs_std   :List of 2
+#>  $ traits       :List of 10
+#>  $ crowding     :List of 5
+#>  $ model        :List of 7
+#>  $ residents    :List of 16
+#>  $ sensitivities:List of 26
+#>  $ invaders     :List of 6
+#>  $ fitness      :List of 7
+#>  $ prob         :List of 7
+#>  - attr(*, "class")= chr [1:2] "invasimapr_fit" "list"
 # str(fit$fitness, 1)
 # str(fit$prob, 1)
 
 lambda_is = fit$fitness$lambda_is
-#> Error:
-#> ! object 'fit' not found
 p_is      = fit$prob$p_is
-#> Error:
-#> ! object 'fit' not found
 # fit_lambda = fit$fitness$lambda_long
 ```
 
@@ -1448,9 +1686,9 @@ p_is      = fit$prob$p_is
 
 ``` r
 if (!is.null(fit$prob$plots$heatmap))     fit$prob$plots$heatmap
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-fitness-est-1.png" alt="Invader establishment likelihood" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 15**: This figure illustrates the spatial and invader-specific structure of establishment likelihood. Rows correspond to sites and columns to invaders, with cells showing binary establishment outcomes. The sparse but structured pattern of yellow cells (successful establishment) indicates that invasion is not uniform but instead constrained by both species identity and site context.
 
@@ -1459,9 +1697,9 @@ if (!is.null(fit$prob$plots$heatmap))     fit$prob$plots$heatmap
 ``` r
 # str(fit$prob$plots, 1)
 if (!is.null(fit$prob$plots$site_mean))     fit$prob$plots$site_mean
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-fitness-noEst-1.png" alt="Spatial pattern of invader establishment" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 16**: Spatial pattern of establishment under Option A ($\gamma$ = 1). Tiles show the number/proportion of species establishing per grid cell (“# establishing”), from low (brown) to high (blue), over South Africa’s boundaries.
 
@@ -1470,9 +1708,9 @@ if (!is.null(fit$prob$plots$site_mean))     fit$prob$plots$site_mean
 ``` r
 # str(fit$prob$plots, 1)
 if (!is.null(fit$prob$plots$invader_mean))     fit$prob$plots$invader_mean
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-fitness-invader-1.png" alt="Invasiveness ranking by invader" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 17**: Invasiveness ranking by invader. Bars show the mean fraction of sites where intrinsic growth is positive ($\lambda$ > 0) for each invader, averaged across all sites and ordered from highest (more invasive; e.g., inv7, inv9) to lowest (e.g., inv10).
 
@@ -1481,8 +1719,6 @@ if (!is.null(fit$prob$plots$invader_mean))     fit$prob$plots$invader_mean
 fitness_df = fit$fitness$lambda_long |>
   dplyr::group_by(site, x, y, option) |>
   dplyr::summarise(lambda_mean = mean(lambda, na.rm = TRUE), .groups = "drop")
-#> Error:
-#> ! object 'fit' not found
 ```
 
 
@@ -1494,9 +1730,9 @@ ggplot2::ggplot(fitness_df, ggplot2::aes(x, y, fill = lambda_mean)) +
   ggplot2::geom_sf(data = rsa, inherit.aes = FALSE, fill = NA, color = "black", size = 0.3) +
   ggplot2::labs(title = fitness_df$option, x = "x", y = "y") +
   ggplot2::theme_minimal()
-#> Error:
-#> ! object 'fitness_df' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-fitness-mean-1.png" alt="Spatial and invader-specific establishment likelihood" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 18**: This figures illustrates the spatial and invader-specific structure of establishment likelihood. **Mean $\lambda$** is mapped with colours reflecting the site-level mean fitness ($\lambda$) of invaders under option A ($\gamma=1$), summarising overall openness to establishment. Negative values (brown) dominate, showing that most sites are generally resistant, while scattered blue patches identify hotspots where conditions are sufficiently favourable for invader persistence.
 
@@ -1534,15 +1770,30 @@ fit = summarise_results(
   make_plots        = TRUE,
   boundary_sf       = rsa
 )
-#> Error:
-#> ! read failed on /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/invasimapr/R/invasimapr.rdb
 
 str(fit, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 12
+#>  $ inputs       :List of 13
+#>  $ meta         :List of 7
+#>  $ inputs_std   :List of 2
+#>  $ traits       :List of 10
+#>  $ crowding     :List of 5
+#>  $ model        :List of 7
+#>  $ residents    :List of 16
+#>  $ sensitivities:List of 26
+#>  $ invaders     :List of 6
+#>  $ fitness      :List of 7
+#>  $ prob         :List of 7
+#>  $ summary      :List of 6
+#>  - attr(*, "class")= chr [1:2] "invasimapr_fit" "list"
 str(fit$summary, 1)
-#> Error:
-#> ! object 'fit' not found
+#> List of 6
+#>  $ species       : tibble [10 × 5] (S3: tbl_df/tbl/data.frame)
+#>  $ site          : tibble [415 × 9] (S3: tbl_df/tbl/data.frame)
+#>  $ trait_effects : tibble [20 × 7] (S3: tbl_df/tbl/data.frame)
+#>  $ establish_long: tibble [4,150 × 8] (S3: tbl_df/tbl/data.frame)
+#>  $ plots         :List of 4
+#>  $ meta          :List of 3
 # head(dplyr::arrange(fit$summary$species, dplyr::desc(V_i)), 10)
 # head(dplyr::arrange(fit$summary$site,    dplyr::desc(total_expected %||% n_est)), 10)
 # fit$summary$trait_effects
@@ -1555,9 +1806,9 @@ str(fit$summary, 1)
 
 ``` r
 if (!is.null(fit$summary$plots$invader_rank))  fit$summary$plots$invader_rank
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-invader_rank-1.png" alt="Species invasiveness" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 19**: **Invasiveness - probabilistic** view where bars show the mean probability of establishment across sites for each invader. A steep drop from the top few taxa to the remainder indicates a short "high-risk list": a small subset of invaders (e.g., inv6--inv7) are consistently more likely to establish, while others rarely exceed low single-digit probabilities. This ranking is useful for triage and horizon scanning.
 
@@ -1565,9 +1816,9 @@ if (!is.null(fit$summary$plots$invader_rank))  fit$summary$plots$invader_rank
 
 ``` r
 if (!is.null(fit$summary$plots$site_map))      fit$summary$plots$site_map
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-site_map-1.png" alt="Site invasibility" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 20**: **Invasibility map - probabilistic** view where colours map the **expected number of establishing invaders** per site (sum of probabilities), highlighting geographic hotspots of openness. Most of the country remains resistant (dark tones), but clusters of higher expected establishment emerge along specific regions and borders, suggesting where surveillance or rapid response capacity would yield the greatest return.
 
@@ -1575,9 +1826,9 @@ if (!is.null(fit$summary$plots$site_map))      fit$summary$plots$site_map
 
 ``` r
 if (!is.null(fit$summary$plots$heatmap))       fit$summary$plots$heatmap
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-heatmap-1.png" alt="Invader establishment matrix" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 21**: **Establishment matrix** with binary establishment outcomes from the probabilistic model shown across sites and invaders. Rows are sites, columns are invaders; tiles show establishment (1, red) vs non-establishment (0, grey), illustrating heterogeneity among invaders and among sites.
 
@@ -1585,9 +1836,9 @@ if (!is.null(fit$summary$plots$heatmap))       fit$summary$plots$heatmap
 
 ``` r
 if (!is.null(fit$summary$plots$trait_effects)) fit$summary$plots$trait_effects
-#> Error:
-#> ! object 'fit' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-trait_effects-1.png" alt="Trait invasiveness" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 22**: **Trait invasiveness effects** view with a lollipop plot ranks traits by their association with mean establishment probability (\|β\| for continuous traits; ANOVA $R^2$ for categorical/ordinal). A small set of continuous traits dominate the signal (right side, several with $p<0.05$), implying that functional axes captured by those traits systematically raise or lower invasion success. Categorical/ordinal traits contribute more modestly, pointing to ecologically relevant but weaker thresholds or syndromes.
 
@@ -1630,8 +1881,6 @@ if (!is.null(fit$summary$plots$trait_effects)) fit$summary$plots$trait_effects
 # 2) Separate maps per invader: val=1 red, val=0 dark grey
 df_inv = fit$summary$establish_long |>
   dplyr::mutate(val_f = factor(val, levels = c(0, 1)))
-#> Error:
-#> ! object 'fit' not found
 
 p_facets = ggplot2::ggplot(df_inv, ggplot2::aes(x, y, fill = val_f)) +
   ggplot2::geom_tile() +
@@ -1648,12 +1897,10 @@ p_facets = ggplot2::ggplot(df_inv, ggplot2::aes(x, y, fill = val_f)) +
   ggplot2::theme_minimal(base_size = 12) +
   ggplot2::theme(axis.text.x = ggplot2::element_blank(),
         axis.text.y = ggplot2::element_blank())
-#> Error:
-#> ! object 'df_inv' not found
 print(p_facets)
-#> Error:
-#> ! object 'p_facets' not found
 ```
+
+<img src="/software/invasimapr/figures/2-plot-est-1.png" alt="Invader establishment maps" width="100%" />
 
 > :chart_with_upwards_trend: **Figure 23**: Per-invader maps of binary establishment across South Africa. Each panel is one invader; red cells indicate establishment (1) and dark grey non-establishment (0). Common grid and coastline enable direct comparison of spatial patterns among invaders.
 
@@ -1678,9 +1925,9 @@ Final guardrails for robust runs and reproducibility.
 
 ``` r
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
+#> R version 4.5.3 (2026-03-11)
 #> Platform: aarch64-apple-darwin20
-#> Running under: macOS Tahoe 26.5.1
+#> Running under: macOS Tahoe 26.5
 #> 
 #> Matrix products: default
 #> BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
@@ -1696,41 +1943,40 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] invasimapr_0.2.0    future.apply_1.20.2 future_1.70.0       cluster_2.1.8.2     pbapply_1.7-4      
-#>  [6] RColorBrewer_1.1-3  geosphere_1.6-8     corrplot_0.95       caret_7.0-1         lattice_0.22-9     
-#> [11] mclust_6.1.2        patchwork_1.3.2     viridis_0.6.5       viridisLite_0.4.3   ggplot2_4.0.3      
-#> [16] zetadiv_1.3.0       scam_1.2-22         tidyterra_1.2.0     sf_1.1-1            zoo_1.8-15         
-#> [21] tidyr_1.3.2         dplyr_1.2.1         data.table_1.18.4   geodata_0.6-9       terra_1.9-34       
-#> [26] httr_1.4.8          dissmapr_0.2.0      here_1.0.2          purrr_1.2.2         yaml_2.3.12        
+#> [1] ggplot2_4.0.3    invasimapr_0.2.0 b3doc_0.3.0.9000 here_1.0.2       purrr_1.2.2      yaml_2.3.12     
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_1.5.1  
-#>   [5] nloptr_2.2.1         farver_2.1.2         rmarkdown_2.31       fs_2.1.0            
-#>   [9] fields_17.3          vctrs_0.7.3          minqa_1.2.8          htmltools_0.5.9     
-#>  [13] curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        parallelly_1.47.0   
-#>  [17] glm2_1.2.1           KernSmooth_2.23-26   desc_1.4.3           sandwich_3.1-1      
-#>  [21] plyr_1.8.9           emmeans_2.0.3        lubridate_1.9.5      TMB_1.9.19          
-#>  [25] lifecycle_1.0.5      iterators_1.0.14     pkgconfig_2.0.3      fuzzyjoin_0.1.8     
-#>  [29] Matrix_1.7-4         R6_2.6.1             fastmap_1.2.0        rbibutils_2.4.1     
-#>  [33] numDeriv_2016.8-1.1  digest_0.6.39        rprojroot_2.1.1      vegan_2.7-5         
-#>  [37] labeling_0.4.3       b3doc_0.3.0.9000     nnls_1.6             timechange_0.4.0    
-#>  [41] mgcv_1.9-4           compiler_4.5.2       proxy_0.4-29         remotes_2.5.0       
-#>  [45] withr_3.0.3          S7_0.2.2             DBI_1.3.0            pkgbuild_1.4.8      
-#>  [49] R.utils_2.13.0       maps_3.4.3           MASS_7.3-65          lava_1.9.1          
-#>  [53] rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10       ModelMetrics_1.2.2.2
-#>  [57] tools_4.5.2          units_1.0-1          otel_0.2.0           nnet_7.3-20         
-#>  [61] R.oo_1.27.1          glue_1.8.1           callr_3.8.0          nlme_3.1-168        
-#>  [65] grid_4.5.2           reshape2_1.4.5       generics_0.1.4       recipes_1.3.3       
-#>  [69] glmmTMB_1.1.14       gtable_0.3.6         R.methodsS3_1.8.2    class_7.3-23        
-#>  [73] utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1       
-#>  [77] stringr_1.6.0        spam_2.11-4          clValid_0.7          splines_4.5.2       
-#>  [81] survival_3.8-6       tidyselect_1.2.1     knitr_1.51           reformulas_0.4.4    
-#>  [85] gridExtra_2.3        stats4_4.5.2         xfun_0.59            hardhat_1.4.3       
-#>  [89] matrixStats_1.5.0    factoextra_2.0.0     timeDate_4052.112    stringi_1.8.7       
-#>  [93] boot_1.3-32          evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1       
-#>  [97] entropy_1.3.2        tibble_3.3.1         cli_3.6.6            rpart_4.1.24        
-#> [101] Rdpack_2.6.6         xtable_1.8-8         processx_3.9.0       Rcpp_1.1.1-1.1      
-#> [105] globals_0.19.1       parallel_4.5.2       gower_1.0.2          dotCall64_1.2       
-#> [109] lme4_2.0-1           listenv_0.10.1       mvtnorm_1.4-1        ipred_0.9-15        
-#> [113] scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17         rlang_1.2.0
+#>   [1] splines_4.5.3        later_1.4.8          fields_17.3          tibble_3.3.1         R.oo_1.27.1         
+#>   [6] hardhat_1.4.3        pROC_1.19.0.1        rpart_4.1.24         factoextra_2.0.0     lifecycle_1.0.5     
+#>  [11] rstatix_0.7.2        Rdpack_2.6.4         sf_1.1-1             rprojroot_2.1.1      globals_0.19.1      
+#>  [16] processx_3.9.0       lattice_0.22-9       MASS_7.3-65          backports_1.5.1      dendextend_1.19.1   
+#>  [21] NbClust_3.0.1        magrittr_2.0.5       rmarkdown_2.31       otel_0.2.0           spam_2.11-1         
+#>  [26] sp_2.2-1             pbapply_1.7-4        chromote_0.5.1       DBI_1.3.0            minqa_1.2.8         
+#>  [31] RColorBrewer_1.1-3   lubridate_1.9.5      abind_1.4-8          multcomp_1.4-30      maps_3.4.3          
+#>  [36] rvest_1.0.4          glmmTMB_1.1.14       R.utils_2.13.0       nnet_7.3-20          TH.data_1.1-3       
+#>  [41] rappdirs_0.3.4       sandwich_3.1-1       ipred_0.9-15         lava_1.9.1           ggrepel_0.9.8       
+#>  [46] listenv_0.10.1       terra_1.9-34         pheatmap_1.0.13      vegan_2.7-1          units_1.0-1         
+#>  [51] parallelly_1.47.0    permute_0.9-10       codetools_0.2-20     xml2_1.6.0           tidyselect_1.2.1    
+#>  [56] dissmapr_0.2.0       clValid_0.7          farver_2.1.2         lme4_2.0-1           viridis_0.6.5       
+#>  [61] matrixStats_1.5.0    stats4_4.5.3         jsonlite_2.0.0       caret_7.0-1          e1071_1.7-17        
+#>  [66] Formula_1.2-5        survival_3.8-6       iterators_1.0.14     emmeans_2.0.3        foreach_1.5.2       
+#>  [71] geodata_0.6-9        tools_4.5.3          stringdist_0.9.15    pak_0.10.0           Rcpp_1.1.1-1.1      
+#>  [76] glue_1.8.1           prodlim_2026.03.11   gridExtra_2.3        xfun_0.59            mgcv_1.9-4          
+#>  [81] websocket_1.4.4      dplyr_1.2.1          scam_1.2-22          withr_3.0.3          numDeriv_2016.8-1.1 
+#>  [86] fastmap_1.2.0        boot_1.3-32          entropy_1.3.2        callr_3.8.0          digest_0.6.39       
+#>  [91] timechange_0.4.0     R6_2.6.1             estimability_1.5.1   wk_0.9.5             fuzzyjoin_0.1.8     
+#>  [96] dichromat_2.0-0.1    R.methodsS3_1.8.2    utf8_1.2.6           tidyr_1.3.2          generics_0.1.4      
+#> [101] data.table_1.18.4    recipes_1.3.1        class_7.3-23         httr_1.4.8           ModelMetrics_1.2.2.2
+#> [106] pkgconfig_2.0.3      gtable_0.3.6         timeDate_4041.110    rsconnect_1.5.0      S7_0.2.2            
+#> [111] selectr_0.5-1        htmltools_0.5.9      carData_3.0-6        dotCall64_1.2        TMB_1.9.17          
+#> [116] scales_1.4.0         gower_1.0.2          reformulas_0.4.4     corrplot_0.95        knitr_1.51          
+#> [121] rstudioapi_0.17.1    geosphere_1.6-8      reshape2_1.4.5       coda_0.19-4.1        nlme_3.1-169        
+#> [126] curl_7.1.0           nloptr_2.2.1         zetadiv_1.3.0        proxy_0.4-29         zoo_1.8-15          
+#> [131] stringr_1.6.0        KernSmooth_2.23-26   parallel_4.5.3       s2_1.1.11            pillar_1.11.1       
+#> [136] grid_4.5.3           vctrs_0.7.3          ggpubr_0.6.3         promises_1.5.0       car_3.1-5           
+#> [141] xtable_1.8-8         cluster_2.1.8.2      evaluate_1.0.5       magick_2.9.1         mvtnorm_1.4-1       
+#> [146] cli_3.6.6            compiler_4.5.3       rlang_1.2.0          ggsignif_0.6.4       future.apply_1.20.2 
+#> [151] labeling_0.4.3       mclust_6.1.2         classInt_0.4-11      ps_1.9.3             forcats_1.0.1       
+#> [156] plyr_1.8.9           fs_2.1.0             stringi_1.8.7        viridisLite_0.4.3    Matrix_1.7-5        
+#> [161] patchwork_1.3.2      future_1.70.0        rbibutils_2.3        broom_1.0.13
 ```

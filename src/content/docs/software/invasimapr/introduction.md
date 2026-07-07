@@ -2,11 +2,11 @@
 title: Introduction
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-02
+lastUpdated: 2026-07-07
 sidebar:
-  label: Introduction, part 2
+  label: Introduction (overview)
   order: 2
-source: https://github.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/vignettes/articles/introduction.Rmd
+source: https://github.com/b-cubed-eu/invasimapr/blob/main/vignettes/articles/introduction.Rmd
 ---
 
 
@@ -37,7 +37,7 @@ The network invasibility cube unifies **functional traits**, **environmental sui
 -   **Community matrix**: $\mathbf{N} = [N_{sj}] \in \mathbb{R}^{S \times J}$, giving site × species abundances or occurrences.  
 -   **Trait matrix**: $\mathbf{T} = [T_{jp}] \in \mathbb{R}^{J \times P}$, representing species × traits.  
 
-![Invasibility Cube data structure](https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/figure1_v5.png){width="80%"}
+![Invasibility Cube data structure](https://b-cubed-eu.github.io/invasimapr/reference/figures/figure1_v5.png){width="80%"}
 
 > **Figure 1**: Data-cube schematic showing the three core matrices that are integrated into a unified multidimensional structure: 
 > - **Environment** $\mathbf{E}\in\mathbb{R}^{S\times Q}$ where for each site $s$, columns **EVI1** to **EVI5** are environmental variables (e.g., climate, soils) attached to that site's location $(x_s,y_s)$
@@ -68,7 +68,7 @@ Within this framework, **invasion fitness** can be estimated using the geometry 
 
 **Invasion fitness** $(\lambda_{is})$ is a central concept in adaptive dynamics and eco-evolutionary theory, providing a predictor of coexistence, competitive exclusion, and adaptive evolutionary outcomes. It predicts whether species $i$ can take hold at site $s$ i.e. positive values suggest establishment, negative values suggest failure. More specifically, $\lambda_{is}$ is defined as the per capita growth rate of a rare species introduced into a resident community at ecological equilibrium. It combines the effects of **abiotic suitability**, **niche crowding**, and **resident competition**, to determine whether an invader $i$ with traits $\mathbf{t_i} \in \mathbb{R}^p$ can establish and persist at site $s$ with environmental conditions $\mathbf{e_s} \in \mathbb{R}^q$ and resident community composition $\mathbf{n_s} \in \mathbb{R}^j$. Mathematically, invasion fitness is expressed as: 
 
-![Invasion fitness formula](https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/formula1_v5.png){width="100%"}
+![Invasion fitness formula](https://b-cubed-eu.github.io/invasimapr/reference/figures/formula1_v5.png){width="100%"}
 
 -   where $r^{(z)}_{is}$ is the invader's **environmental fit** at the site (standardised so values are comparable across sites and species). ➜ The coefficient $\Gamma_{is}$ tells how strongly that fit translates into potential growth.
 -   The term $C^{(z)}_{is}$ measures **niche crowding** i.e. how much look-alike residents already occupy the same niche. ➜ $\alpha_{is}$ is how severely that overlap reduces the invader's success.
@@ -155,7 +155,7 @@ allowing global or site-varying slopes, signed vs unsigned saturation effects, a
 Finally, **`summarise_results`** calls **`summarise_invasiveness_invasibility()`** to collapse site × invader surfaces into species invasiveness (mean breadth of establishment across sites), site invasibility (mean probability or fraction of invaders establishing), and trait-level associations (continuous slopes or ANOVA $R^2$ for categorical traits). Outputs include tidy species- and site-level tables, trait-effect summaries, and a suite of plots (e.g. maps, rankings, heatmaps, trait-effect diagrams), providing management-ready summaries and ecological insight.
 
 
-![invasimapr Workflow](https://raw.githubusercontent.com/b-cubed-eu/invasimapr/31a107a0e5c75b38626a99521575cf163ee10737/man/figures/figure2_v5.png){width="100%"}
+![invasimapr Workflow](https://b-cubed-eu.github.io/invasimapr/reference/figures/figure2_v5.png){width="100%"}
 
 **Figure 2**: `invasimapr` workflow linking data access, preparation, trait-space modelling, resident predictors, and slope estimation to the invasion fitness equation - The invasion fitness formula decomposes into four components: **abiotic suitability** $\Gamma_{is} r^{(z)}_{is}$ (green), **niche crowding penalty** $-\alpha_{is} C^{(z)}_{is}$ (blue), **resident saturation penalty** $-\beta_i S^{(z)}_{is}$ (red), and a **calibration offset** $\kappa$ (grey). Each component is derived from specific workflow modules, converging on predicted invader establishment and summarised results, which provide actionable **outputs to policy**.
  
