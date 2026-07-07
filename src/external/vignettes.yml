@@ -233,7 +233,7 @@ b3alien:
   sidebar_label: Introduction
   replace:
   - "# b3alien: a Python package to calculate the Global Biodiversity Framework Target 6 Headline Indicator": ""
-  - "docs/_static/images/": "https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/_static/images/"
+  - "docs/_static/images/": "https://b3alien.readthedocs.io/en/latest/_images/"
 - source: src/external/interim/b3alien/usage.md # Create with rst_to_md.Rmd
   title: "Exemplar workflow to determine the Rate of Establishment"
   sidebar_label: "Exemplar workflow"
