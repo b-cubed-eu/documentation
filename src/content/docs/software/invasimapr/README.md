@@ -13,7 +13,7 @@ source: https://github.com/b-cubed-eu/invasimapr/blob/main/README.Rmd
 
 
 
- <img src="https://b-cubed-eu.github.io/invasimapr/logo.png" align="right" height="139" alt="invasimapr logo" />
+ <a href="https://b-cubed-eu.github.io/invasimapr/"><img src="https://b-cubed-eu.github.io/invasimapr/logo.png" align="right" height="139" alt="invasimapr website" /></a>
 
 <!-- badges: start -->
 [![repo status: WIP](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
