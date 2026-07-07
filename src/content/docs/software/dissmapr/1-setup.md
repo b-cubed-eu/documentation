@@ -1,0 +1,257 @@
+---
+title: Getting started
+output: rmarkdown::html_vignette
+vignette: '%\VignetteIndexEntry{Getting started} %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}'
+lastUpdated: 2026-07-07
+sidebar:
+  label: Get started
+  order: 2
+source: https://github.com/b-cubed-eu/dissmapr/blob/master/vignettes/articles/1-setup.Rmd
+---
+
+
+
+
+
+
+
+### Introduction
+
+`dissmapr` is an R package for analysing compositional dissimilarity and biodiversity turnover across spatial gradients.
+It provides scalable, modular workflows that integrate species occurrence, environmental data, and multi-site compositional turnover metrics to quantify and predict biodiversity patterns.
+A core feature is the use of zeta diversity, which extends beyond pairwise comparisons to capture shared species across multiple sites - offering deeper insight into community assembly, turnover, and connectivity, for both rare and common species.
+By incorporating different regression methods within the framework of Multi-Site Generalised Dissimilarity Modelling (MS-GDM), `dissmapr` enables robust mapping, bioregional classification, and scenario-based forecasting.
+Designed for flexibility and reproducibility, it supports biodiversity monitoring and conservation planning at landscape to regional scales.
+
+---
+
+### 1. Install and load `dissmapr`
+
+Install and load the `dissmapr` package from GitHub, ensuring all functions are available for use in the workflow.
+
+
+``` r
+# install remotes if needed
+# install.packages("remotes")
+# remotes::install_github("macSands/dissmapr")
+```
+
+
+``` r
+# Ensure the package is loaded when knitting
+library(dissmapr)
+
+# Make sure all the functions are loaded
+# devtools::load_all()
+```
+
+### 2. Load other R libraries
+
+Load core libraries for spatial processing, biodiversity modelling, and visualization required across the `dissmapr` analysis pipeline.
+
+
+``` r
+# Load necessary libraries
+library(httr)       # HTTP client  
+library(geodata)    # Download geographic data  
+library(data.table) # Fast large-table operations  
+library(dplyr)      # Data manipulation verbs  
+library(tidyr)      # Tidy data reshaping  
+library(zoo)        # Time series utilities  
+library(sf)         # Vector spatial data  
+library(terra)      # Raster spatial operations  
+library(tidyterra)  # supplies geom_spatraster()
+library(zetadiv)    # Multi-site dissimilarity modelling
+library(ggplot2)    # Grammar of graphics  
+library(viridis)    # Perceptual color scales  
+library(patchwork)  # Sequentially build up plots on one page
+library(mclust)     # Clustering, Classification, and Density Estimation
+```
+
+### 3. Get species occurrence records using `get_occurrence_data()`
+
+To contextualise the following steps of the workflow, we use South African butterfly data accessed from GBIF ([DOI: 10.15468/dl.jh6maj](https://www.gbif.org/occurrence/download/0006880-241024112534372)), as a demonstration case. Ultimately, the choice for the Area of Interest (AoI) and taxa is user-specific. 
+This section demonstrates how to automate the retrieval and pre-processing of biodiversity occurrence data from a GBIF query (stored locally as a `.csv` file), however the same workflow can ingest other sources as well (see the `get_occurrence_data()` documentation for details). Data inputs currently supported include:
+
+*  **Local** databases or `.csv` files
+*  **URLs** or `.zip` files from the Global Biodiversity Information Facility (GBIF)
+*  Future inclusion of **GBIF species occurrence cubes**. Read the [species occurrence cubes in GBIF](https://www.gbif.org/occurrence-cubes) documentation for full details on creating, customizing and submitting queries for occurrence cubes. Read the [b-cubed](https://b-cubed.eu/) documentation on [specification for species occurrence cubes and their production](https://docs.b-cubed.eu/guides/occurrence-cube/).
+
+`get_occurrence_data()` then organises the records by the chosen taxonomic scope and region, returning presence–absence and/or abundance matrices that summarise species co-occurrence records with latitude and longitude coordinates.
+
+
+``` r
+load(system.file("extdata", "gbif_butterflies_csv.RData", package = "dissmapr"), envir = knitr::knit_global())
+
+bfly_data = get_occurrence_data(
+  data        = gbif_butterflies_csv,
+  source_type = 'data_frame'
+)
+
+# bfly_data = get_occurrence_data(
+#   data        = system.file("extdata", "gbif_butterflies.csv", package = "dissmapr"),
+#   source_type = 'local_csv',
+#   sep         = '\t'
+# )
+
+# Check results but only a subset of columns to fit in console
+dim(bfly_data)
+#> [1] 81825    52
+str(bfly_data[,c(51,52,22,23,1,14,16,17,30)]) 
+#> 'data.frame':	81825 obs. of  9 variables:
+#>  $ site_id               : int  1 2 3 1 4 5 5 5 5 5 ...
+#>  $ pa                    : num  1 1 1 1 1 1 1 1 1 1 ...
+#>  $ y                     : num  -34.4 -34 -33.9 -34.4 -34.4 ...
+#>  $ x                     : num  19.2 18.8 18.4 19.2 18.5 ...
+#>  $ gbifID                : num  9.23e+08 9.23e+08 9.23e+08 9.22e+08 9.22e+08 ...
+#>  $ verbatimScientificName: chr  "Pieris brassicae" "Pieris brassicae" "Papilio demodocus subsp. demodocus" "Mylothris agathina subsp. agathina" ...
+#>  $ countryCode           : chr  "ZA" "ZA" "ZA" "ZA" ...
+#>  $ locality              : chr  "Hermanus" "Polkadraai Road" "Signal Hill" "Hermanus" ...
+#>  $ eventDate             : chr  "2012-10-13T00:00" "2012-11-01T00:00" "2012-10-31T00:00" "2012-10-13T00:00" ...
+head(bfly_data[,c(51,52,22,23,1,14,16,17,30)])
+#>   site_id pa         y        x    gbifID             verbatimScientificName countryCode
+#> 1       1  1 -34.42086 19.24410 923051749                   Pieris brassicae          ZA
+#> 2       2  1 -33.96044 18.75564 922985630                   Pieris brassicae          ZA
+#> 3       3  1 -33.91651 18.40321 922619348 Papilio demodocus subsp. demodocus          ZA
+#> 4       1  1 -34.42086 19.24410 922426210 Mylothris agathina subsp. agathina          ZA
+#> 5       4  1 -34.35024 18.47488 921650584                  Eutricha capensis          ZA
+#> 6       5  1 -33.58570 25.65097 921485695            Drepanogynis bifasciata          ZA
+#>                                            locality        eventDate
+#> 1                                          Hermanus 2012-10-13T00:00
+#> 2                                   Polkadraai Road 2012-11-01T00:00
+#> 3                                       Signal Hill 2012-10-31T00:00
+#> 4                                          Hermanus 2012-10-13T00:00
+#> 5 Cape of Good Hope / Cape Point Area, South Africa 2012-10-30T00:00
+#> 6                             Kudu Ridge Game Lodge 2012-10-23T00:00
+```
+
+### 4. Format data using `format_df()`
+
+Use `format_df()` to *standardise and reshape* raw biodiversity tables into the *long* or *wide* format required by later `dissmapr` steps.
+Importantly, this function does not alter the spatial resolution of the original observations - it simply tidies the data by automatically identifying key columns (e.g., coordinates, species, and values), assigning unique site IDs (`site_id`), renaming or removing columns, and reformatting the data for analysis.
+Outputs include a cleaned `site_obs` dataset and `site_spp` matrix for further processing:
+
+*  **site_obs**: Simplified table with unique `site_id`, `x`, `y`, `species` and `value` records (long format).
+*  **site_spp**: Site-by-species matrix for biodiversity assessments (wide format).
+
+**Format data into long (`site_obs`) and wide (`site_spp`) formats**
+
+
+``` r
+bfly_result = format_df(
+  data        = bfly_data, # A `data.frame` of biodiversity records
+  species_col = 'verbatimScientificName', # Name of species column (required for `"long"`)
+  value_col   = 'pa', # Name of value column (e.g. presence/abundance; for `"long"`)
+  extra_cols  = NULL, # Character vector of other columns to keep
+  format      = 'long' # Either`"long"` or `"wide"`. If `NULL`, inferred from `species_col` & `value_col`
+)
+
+# Check `bfly_result` structure
+str(bfly_result, max.level = 1)
+#> List of 2
+#>  $ site_obs:'data.frame':	79953 obs. of  5 variables:
+#>  $ site_spp:'data.frame':	56090 obs. of  2871 variables:
+
+# Optional: Create new objects from list items
+site_obs = bfly_result$site_obs
+site_spp = bfly_result$site_spp
+
+# Check results
+dim(site_obs)
+#> [1] 79953     5
+head(site_obs)
+#>   site_id        x         y                            species value
+#> 1       1 19.24410 -34.42086                   Pieris brassicae     1
+#> 2       2 18.75564 -33.96044                   Pieris brassicae     1
+#> 3       3 18.40321 -33.91651 Papilio demodocus subsp. demodocus     1
+#> 4       1 19.24410 -34.42086 Mylothris agathina subsp. agathina     1
+#> 5       4 18.47488 -34.35024                  Eutricha capensis     1
+#> 6       5 25.65097 -33.58570            Drepanogynis bifasciata     1
+
+dim(site_spp)
+#> [1] 56090  2871
+head(site_spp[,1:6])
+#>   site_id        x         y Mylothris agathina subsp. agathina Pieris brassicae Tarucus thespis
+#> 1       1 19.24410 -34.42086                                  1                1               1
+#> 2       2 18.75564 -33.96044                                  0                1               0
+#> 3       3 18.40321 -33.91651                                  0                0               0
+#> 4       4 18.47488 -34.35024                                  0                0               0
+#> 5       5 25.65097 -33.58570                                  0                0               0
+#> 6       6 22.20197 -33.59240                                  0                0               0
+
+#### Get parameters from processed data to use later
+# Number of species
+(n_sp = dim(site_spp)[2] - 3)
+#> [1] 2868
+
+# Species names
+sp_cols = names(site_spp)[-c(1:3)]
+sp_cols[1:10]
+#>  [1] "Mylothris agathina subsp. agathina" "Pieris brassicae"                  
+#>  [3] "Tarucus thespis"                    "Acraea horta"                      
+#>  [5] "Danaus chrysippus"                  "Papilio demodocus subsp. demodocus"
+#>  [7] "Eutricha capensis"                  "Mesocelis monticola"               
+#>  [9] "Vanessa cardui"                     "Cuneisigna obstans"
+```
+
+
+``` r
+# Each article in this series is self-contained: it loads the objects it needs
+# from the single bundled snapshot `_data/dissmapr_vignettes.rds`, so the
+# articles no longer have to be knitted in sequence.
+sessionInfo()
+#> R version 4.5.2 (2025-10-31)
+#> Platform: aarch64-apple-darwin20
+#> Running under: macOS Tahoe 26.5.1
+#> 
+#> Matrix products: default
+#> BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+#> LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+#> 
+#> locale:
+#> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#> 
+#> time zone: Europe/Brussels
+#> tzcode source: internal
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> other attached packages:
+#>  [1] RColorBrewer_1.1-3 mclust_6.1.2       patchwork_1.3.2    viridis_0.6.5     
+#>  [5] viridisLite_0.4.3  ggplot2_4.0.3      zetadiv_1.3.0      scam_1.2-22       
+#>  [9] tidyterra_1.2.0    sf_1.1-1           zoo_1.8-15         tidyr_1.3.2       
+#> [13] dplyr_1.2.1        data.table_1.18.4  geodata_0.6-9      terra_1.9-34      
+#> [17] httr_1.4.8         dissmapr_0.2.0     here_1.0.2         purrr_1.2.2       
+#> [21] yaml_2.3.12       
+#> 
+#> loaded via a namespace (and not attached):
+#>   [1] DBI_1.3.0            pbapply_1.7-4        pROC_1.19.0.1        gridExtra_2.3       
+#>   [5] s2_1.1.11            glm2_1.2.1           permute_0.9-10       rlang_1.2.0         
+#>   [9] magrittr_2.0.5       otel_0.2.0           e1071_1.7-17         compiler_4.5.2      
+#>  [13] mgcv_1.9-4           b3doc_0.3.0.9000     maps_3.4.3           vctrs_0.7.3         
+#>  [17] reshape2_1.4.5       stringr_1.6.0        wk_0.9.5             pkgconfig_2.0.3     
+#>  [21] fastmap_1.2.0        labeling_0.4.3       utf8_1.2.6           rmarkdown_2.31      
+#>  [25] prodlim_2026.03.11   xfun_0.59            recipes_1.3.3        cluster_2.1.8.2     
+#>  [29] parallel_4.5.2       R6_2.6.1             stringi_1.8.7        parallelly_1.47.0   
+#>  [33] rpart_4.1.24         lubridate_1.9.5      estimability_1.5.1   Rcpp_1.1.1-1.1      
+#>  [37] iterators_1.0.14     knitr_1.51           fields_17.3          future.apply_1.20.2 
+#>  [41] R.utils_2.13.0       nnls_1.6             Matrix_1.7-4         splines_4.5.2       
+#>  [45] nnet_7.3-20          timechange_0.4.0     tidyselect_1.2.1     rstudioapi_0.18.0   
+#>  [49] vegan_2.7-5          timeDate_4052.112    codetools_0.2-20     listenv_0.10.1      
+#>  [53] lattice_0.22-9       tibble_3.3.1         plyr_1.8.9           withr_3.0.3         
+#>  [57] S7_0.2.2             geosphere_1.6-8      evaluate_1.0.5       future_1.70.0       
+#>  [61] survival_3.8-6       units_1.0-1          proxy_0.4-29         pillar_1.11.1       
+#>  [65] corrplot_0.95        KernSmooth_2.23-26   foreach_1.5.2        stats4_4.5.2        
+#>  [69] generics_0.1.4       rprojroot_2.1.1      scales_1.4.0         globals_0.19.1      
+#>  [73] xtable_1.8-8         class_7.3-23         glue_1.8.1           clValid_0.7         
+#>  [77] emmeans_2.0.3        tools_4.5.2          ModelMetrics_1.2.2.2 gower_1.0.2         
+#>  [81] dotCall64_1.2        fs_2.1.0             mvtnorm_1.4-1        grid_4.5.2          
+#>  [85] ipred_0.9-15         nlme_3.1-168         cli_3.6.6            rappdirs_0.3.4      
+#>  [89] NbClust_3.0.1        spam_2.11-4          lava_1.9.1           gtable_0.3.6        
+#>  [93] R.methodsS3_1.8.2    digest_0.6.39        classInt_0.4-11      caret_7.0-1         
+#>  [97] ggrepel_0.9.8        farver_2.1.2         factoextra_2.0.0     entropy_1.3.2       
+#> [101] htmltools_0.5.9      R.oo_1.27.1          lifecycle_1.0.5      hardhat_1.4.3       
+#> [105] MASS_7.3-65
+```

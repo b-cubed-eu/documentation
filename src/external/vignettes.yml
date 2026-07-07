@@ -248,6 +248,79 @@ pygbif:
   replace:
   - "# pygbif": ""
 
+dissmapr:
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/README.Rmd
+  title: "dissmapr: A Workflow for Compositional Dissimilarity and Biodiversity Turnover Analysis"
+  sidebar_label: Introduction
+  replace:
+  - "# dissmapr ": ""
+  - "## A Workflow for Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+  - "man/figures/logo.png": "https://b-cubed-eu.github.io/dissmapr/logo.png"
+  - "man/figures/": "https://raw.githubusercontent.com/b-cubed-eu/dissmapr/6c632bac424fa4340571394bb773e6b60f6e3d4f/man/figures/"
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/1-setup.Rmd
+  title: Getting started
+  sidebar_label: Get started
+  dependencies: httr geodata data.table dplyr tidyr zoo sf terra tidyterra zetadiv ggplot2 viridis patchwork mclust
+  replace:
+  - "# `dissmapr`": ""
+  - "##  Framework for Compositional Dissimilarity and Biodiversity Turnover Analysis": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/2-grid.Rmd
+  title: Building the Spatial Analysis Grid
+  sidebar_label: User-defined grid
+  dependencies: ggplot2
+  replace:
+  - "# `dissmapr`": ""
+  - "## Building the Spatial Analysis Grid": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/3-enviro.Rmd
+  title: Extracting Environmental Predictors for Biodiversity Modelling
+  sidebar_label: Environmental data
+  dependencies: ggplot2 dplyr
+  replace:
+  - "# `dissmapr`": ""
+  - "## Extracting Environmental Predictors for Biodiversity Modelling": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/4-zeta.Rmd
+  title: Measuring Multi-Site Compositional Turnover with Zeta Diversity
+  sidebar_label: Zeta diversity
+  dependencies: zetadiv
+  replace:
+  - "# `dissmapr`": ""
+  - "## Measuring Multi-Site Compositional Turnover with Zeta Diversity": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/5-zeta-workflow.Rmd
+  title: Modelling Zeta Diversity Across Environmental Gradients
+  sidebar_label: Zeta-MSGDM
+  dependencies: patchwork
+  replace:
+  - "# `dissmapr`": ""
+  - "## Modelling Zeta Diversity Across Environmental Gradients": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/6-predict.Rmd
+  title: Predicting Spatial Patterns of Biodiversity Turnover
+  sidebar_label: Predict community turnover
+  dependencies: ggplot2 dplyr purrr
+  replace:
+  - "# `dissmapr`": ""
+  - "## Predicting Spatial Patterns of Biodiversity Turnover": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/7-bioregion.Rmd
+  title: Delineating Bioregions from Predicted Community Composition
+  sidebar_label: Map bioregions
+  dependencies: terra RColorBrewer
+  replace:
+  - "# `dissmapr`": ""
+  - "## Delineating Bioregions from Predicted Community Composition": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/8-change.Rmd
+  title: Assessing Current-to-Future Biodiversity Change
+  sidebar_label: Map bioregion change
+  dependencies: viridis terra
+  replace:
+  - "# `dissmapr`": ""
+  - "## Assessing Current-to-Future Biodiversity Change": ""
+- source: https://raw.githubusercontent.com/b-cubed-eu/dissmapr/refs/heads/master/vignettes/articles/9-examples.Rmd
+  title: Additional Mapping and Visualisation Examples
+  sidebar_label: Examples
+  dependencies: ggplot2 dplyr viridis
+  replace:
+  - "# `dissmapr`": ""
+  - "## Additional Mapping and Visualisation Examples": ""
+
 DeepMaxent:
 - source: "src/external/interim/deepmaxent/deepmaxent.md" # Create with ipynb_to_md.Rmd
   title: "🌿 DeepMaxent Tutorial: Species Distribution Modeling"
