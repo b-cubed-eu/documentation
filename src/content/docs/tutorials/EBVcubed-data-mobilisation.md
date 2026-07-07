@@ -45,4 +45,4 @@ Notebook 02 - Data exploration of the IAS occurrence cube |  [02_ias_data_explor
 Notebook 03 - Metrics computation for the IAS occurrences cube | [03_ias_computing_metrics_cubes.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/03_ias_computing_metrics_cubes.Rmd)
 Notebook 04 - Creation of the EBV NetCDF for the IAS occurrences cube metrics0 | [04_ias_metrics2ebvcube.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/04_ias_metrics2ebvcube.Rmd)
 
-The resulting datasets can be visualised and accessed through the [EBV Data Portal](https://portal.geobon.org/home) [DOI 10.25829/mbw554](https://doi.org/10.25829/mbw554) and [DOI 10.25829/w0vf54](https://doi.org/10.25829/w0vf54).
+The resulting datasets can be visualised and accessed through the [EBV Data Portal](https://portal.geobon.org/home), [DOI 10.25829/mbw554](https://doi.org/10.25829/mbw554) and [DOI 10.25829/w0vf54](https://doi.org/10.25829/w0vf54).
