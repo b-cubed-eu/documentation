@@ -36,12 +36,13 @@ Notebook 05 - Creation of the EBV NetCDF for the Birds Directive occurrences cub
 
 
 Table 2. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for IAS of Union Concern (path: scripts/Rmd/ias). _*Preprocessing notebook._
-| Title/Subtitle                                                                      | File name                          |
-|-------------------------------------------------------------------------------------|------------------------------------|
-| Inputs for occurrence cubes rasterisation using the 10 Km EEA vector grid*          | 00_eeagrid10km_to_centroids.Rmd    |
-| Notebook 01 - Prototype for creating a occurrence cube of IAS                       | 01_ias_create_occurrence_cubes.Rmd |
-| Notebook 02 - Data exploration of the IAS occurrence cube                           |  02_ias_data_exploration.Rmd       |
-|  Notebook 03 - Metrics computation for the IAS occurrences cube                     | 03_ias_computing_metrics_cubes.Rmd |
-| Notebook 04 - Creation of the EBV NetCDF for the IAS occurrences cube metrics0      | 04_ias_metrics2ebvcube.Rmd         |
+
+Title/Subtitle | File name
+-- | --
+Inputs for occurrence cubes rasterisation using the 10 Km EEA vector grid* | [00_eeagrid10km_to_centroids.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/00_eeagrid10km_to_centroids.Rmd)
+Notebook 01 - Prototype for creating a occurrence cube of IAS | [01_ias_create_occurrence_cubes.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/01_ias_create_occurrence_cubes.Rmd)
+Notebook 02 - Data exploration of the IAS occurrence cube |  [02_ias_data_exploration.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/02_ias_data_exploration.Rmd)
+Notebook 03 - Metrics computation for the IAS occurrences cube | [03_ias_computing_metrics_cubes.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/03_ias_computing_metrics_cubes.Rmd)
+Notebook 04 - Creation of the EBV NetCDF for the IAS occurrences cube metrics0 | [04_ias_metrics2ebvcube.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/ias/04_ias_metrics2ebvcube.Rmd)
 
 The resulting datasets can be visualised and accessed through the [EBV Data Portal](https://portal.geobon.org/home) [DOI 10.25829/mbw554](https://doi.org/10.25829/mbw554) and [DOI 10.25829/w0vf54](https://doi.org/10.25829/w0vf54).
