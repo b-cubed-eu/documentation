@@ -4,7 +4,7 @@ lastUpdated: 2026-05-13
 sidebar:
   label: Exemplar workflow
   order: 2
-source: https://raw.githubusercontent.com/mtrekels/b3alien/efdf24c5f9f6f5b1ca42556ae046abd865a01ca6/docs/usage.rst
+source: https://github.com/mtrekels/b3alien/blob/main/docs/usage.rst
 ---
 
 
