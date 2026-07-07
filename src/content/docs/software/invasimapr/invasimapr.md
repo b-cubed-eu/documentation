@@ -1,21 +1,16 @@
 ---
-title: Introduction
+title: Introduction to invasimapr
 output: rmarkdown::html_vignette
-vignette: '%\VignetteIndexEntry{Introduction} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}'
+vignette: '%\VignetteIndexEntry{Introduction to invasimapr} %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}'
 lastUpdated: 2026-07-07
 sidebar:
-  label: Introduction (overview)
+  label: Introduction to invasimapr
   order: 2
-source: https://github.com/b-cubed-eu/invasimapr/blob/main/vignettes/articles/introduction.Rmd
+source: https://github.com/b-cubed-eu/invasimapr/blob/main/vignettes/invasimapr.Rmd
 ---
 
 
-
-
-
-
-
----
 
 ## Introduction
 
