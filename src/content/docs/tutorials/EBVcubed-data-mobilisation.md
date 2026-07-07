@@ -24,14 +24,15 @@ The code is available in Rmarkdown and rendered as HTML and PDF notebooks. The n
 
 
 Table 1. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for the Birds Directive Annex I (path: scripts/Rmd/birds). _*Preprocessing notebook_.
-| Title/Subtitle                                                                                                                      | File name                                   |
-|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| Pre-processing notebook - Harmonisation of species keys for the JSON query of species listed in the Annex I of the Birds Directive* | 00_preparing_specieskey.Rmd                 |
-| Notebook 01 - Prototype for creating a occurrence cube of birds listed in the Annex I of the Birds Directive                        | 01_birds_create_occurrence_cubes.Rmd        |
-| Notebook 02 - Data exploration of species listed in the Birds Directive Annex I                                                     | 02_birds_annex1_data_exploration            |
-| Notebook 03 - Calculation of Metrics for the Birds Directive Annex I Using Occurrence Cubes (Part I)                                | 03_birds_annex1_computing_metrics_1_2_3.Rmd |
-| Notebook 04 - Calculation of Metrics for the Birds Directive Annex I Using Occurrence Cubes (Part II)                               | 04_birds_annex1_computing_metrics_4_5_6.Rmd |
-| Notebook 05 - Creation of the EBV NetCDF for the Birds Directive occurrences cube metrics                                           | 05_birds_metrics2ebvcube.Rmd                |
+
+Title/Subtitle | File name
+-- | --
+Pre-processing notebook - Harmonisation of species keys for the JSON query of species listed in the Annex I of the Birds Directive* | [00_preparing_specieskey.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/00_preparing_specieskey.Rmd)
+Notebook 01 - Prototype for creating a occurrence cube of birds listed in the Annex I of the Birds Directive | [01_birds_create_occurrence_cubes.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/01_birds_annex1_create_occurrence_cubes.Rmd)
+Notebook 02 - Data exploration of species listed in the Birds Directive Annex I | [02_birds_annex1_data_exploration](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/02_birds_annex1_data_exploration.Rmd)
+Notebook 03 - Calculation of Metrics for the Birds Directive Annex I Using Occurrence Cubes (Part I) | [03_birds_annex1_computing_metrics_1_2_3.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/03_birds_annex1_computing_metrics_1_2_3.Rmd)
+Notebook 04 - Calculation of Metrics for the Birds Directive Annex I Using Occurrence Cubes (Part II) | [04_birds_annex1_computing_metrics_4_5_6.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/04_birds_annex1_computing_metrics_4_5_6.Rmd)
+Notebook 05 - Creation of the EBV NetCDF for the Birds Directive occurrences cube metrics | [05_birds_metrics2ebvcube.Rmd](https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/scripts/Rmd/birds/05_birds_metrics2ebvcube.Rmd)
 
 
 Table 2. Data Mobilisation Notebooks from GBIF to the EBV Data Portal for IAS of Union Concern (path: scripts/Rmd/ias). _*Preprocessing notebook._
