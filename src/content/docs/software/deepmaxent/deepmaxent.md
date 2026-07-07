@@ -4,6 +4,7 @@ lastUpdated: 2026-07-07
 sidebar:
   label: Introduction
   order: 1
+source: https://github.com/RYCKEWAERT/deepmaxent/blob/main/tutorial_deepmaxent.ipynb
 ---
 
 
