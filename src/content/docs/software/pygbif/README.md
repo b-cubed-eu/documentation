@@ -4,6 +4,7 @@ lastUpdated: 2026-05-13
 sidebar:
   label: Introduction
   order: 1
+source: https://raw.githubusercontent.com/gbif/pygbif/refs/heads/master/README.rst
 ---
 
 
