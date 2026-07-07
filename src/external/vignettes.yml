@@ -153,7 +153,7 @@ b3gbi:
   replace:
   - "# b3gbi ": ""
   - "man/figures/logo.png": "https://b-cubed-eu.github.io/b3gbi/logo.png"
-  - "the tutorial: "https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html": "[this tutorial](/software/b3gbi/b3gbi/)""
+  - "the tutorial: https://b-cubed-eu.github.io/b3gbi/articles/b3gbi.html": "[this tutorial](/software/b3gbi/b3gbi/)"
 - source: "https://raw.githubusercontent.com/b-cubed-eu/b3gbi/refs/heads/main/vignettes/b3gbi.Rmd"
   title: Get started
   sidebar_label: Get started
