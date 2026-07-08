@@ -2,7 +2,7 @@
 title: Guide to Invasibility Cubes
 sidebar:
   label: Invasibility cube
-  order: 5
+  order: 6
 ---
 
 :::tip[Learn by doing]
