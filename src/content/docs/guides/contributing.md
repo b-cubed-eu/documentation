@@ -2,7 +2,7 @@
 title: "Contributing"
 sidebar:
   label: Contributing
-  order: 9
+  order: 1
 ---
 
 ## Usage

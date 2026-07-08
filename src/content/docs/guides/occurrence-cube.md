@@ -2,7 +2,7 @@
 title: Specification for species occurrence cubes and their production
 sidebar:
   label: Occurrence cube
-  order: 1
+  order: 2
 tableOfContents:
   maxHeadingLevel: 4
 ---
