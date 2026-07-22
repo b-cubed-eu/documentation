@@ -3,7 +3,7 @@ title: Additional Mapping and Visualisation Examples
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Compute orderwise examples} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-07-22
 sidebar:
   label: Examples
   order: 10

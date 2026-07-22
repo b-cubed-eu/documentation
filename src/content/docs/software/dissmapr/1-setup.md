@@ -3,7 +3,7 @@ title: Getting started
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Getting started} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-07-22
 sidebar:
   label: Get started
   order: 2
@@ -110,20 +110,20 @@ str(bfly_data[,c(51,52,22,23,1,14,16,17,30)])
 #>  $ locality              : chr  "Hermanus" "Polkadraai Road" "Signal Hill" "Hermanus" ...
 #>  $ eventDate             : chr  "2012-10-13T00:00" "2012-11-01T00:00" "2012-10-31T00:00" "2012-10-13T00:00" ...
 head(bfly_data[,c(51,52,22,23,1,14,16,17,30)])
-#>   site_id pa         y        x    gbifID             verbatimScientificName countryCode
-#> 1       1  1 -34.42086 19.24410 923051749                   Pieris brassicae          ZA
-#> 2       2  1 -33.96044 18.75564 922985630                   Pieris brassicae          ZA
-#> 3       3  1 -33.91651 18.40321 922619348 Papilio demodocus subsp. demodocus          ZA
-#> 4       1  1 -34.42086 19.24410 922426210 Mylothris agathina subsp. agathina          ZA
-#> 5       4  1 -34.35024 18.47488 921650584                  Eutricha capensis          ZA
-#> 6       5  1 -33.58570 25.65097 921485695            Drepanogynis bifasciata          ZA
-#>                                            locality        eventDate
-#> 1                                          Hermanus 2012-10-13T00:00
-#> 2                                   Polkadraai Road 2012-11-01T00:00
-#> 3                                       Signal Hill 2012-10-31T00:00
-#> 4                                          Hermanus 2012-10-13T00:00
-#> 5 Cape of Good Hope / Cape Point Area, South Africa 2012-10-30T00:00
-#> 6                             Kudu Ridge Game Lodge 2012-10-23T00:00
+#>   site_id pa         y        x    gbifID             verbatimScientificName countryCode                                          locality
+#> 1       1  1 -34.42086 19.24410 923051749                   Pieris brassicae          ZA                                          Hermanus
+#> 2       2  1 -33.96044 18.75564 922985630                   Pieris brassicae          ZA                                   Polkadraai Road
+#> 3       3  1 -33.91651 18.40321 922619348 Papilio demodocus subsp. demodocus          ZA                                       Signal Hill
+#> 4       1  1 -34.42086 19.24410 922426210 Mylothris agathina subsp. agathina          ZA                                          Hermanus
+#> 5       4  1 -34.35024 18.47488 921650584                  Eutricha capensis          ZA Cape of Good Hope / Cape Point Area, South Africa
+#> 6       5  1 -33.58570 25.65097 921485695            Drepanogynis bifasciata          ZA                             Kudu Ridge Game Lodge
+#>          eventDate
+#> 1 2012-10-13T00:00
+#> 2 2012-11-01T00:00
+#> 3 2012-10-31T00:00
+#> 4 2012-10-13T00:00
+#> 5 2012-10-30T00:00
+#> 6 2012-10-23T00:00
 ```
 
 ### 4. Format data using `format_df()`
@@ -188,11 +188,10 @@ head(site_spp[,1:6])
 # Species names
 sp_cols = names(site_spp)[-c(1:3)]
 sp_cols[1:10]
-#>  [1] "Mylothris agathina subsp. agathina" "Pieris brassicae"                  
-#>  [3] "Tarucus thespis"                    "Acraea horta"                      
-#>  [5] "Danaus chrysippus"                  "Papilio demodocus subsp. demodocus"
-#>  [7] "Eutricha capensis"                  "Mesocelis monticola"               
-#>  [9] "Vanessa cardui"                     "Cuneisigna obstans"
+#>  [1] "Mylothris agathina subsp. agathina" "Pieris brassicae"                   "Tarucus thespis"                   
+#>  [4] "Acraea horta"                       "Danaus chrysippus"                  "Papilio demodocus subsp. demodocus"
+#>  [7] "Eutricha capensis"                  "Mesocelis monticola"                "Vanessa cardui"                    
+#> [10] "Cuneisigna obstans"
 ```
 
 
@@ -219,39 +218,29 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] RColorBrewer_1.1-3 mclust_6.1.2       patchwork_1.3.2    viridis_0.6.5     
-#>  [5] viridisLite_0.4.3  ggplot2_4.0.3      zetadiv_1.3.0      scam_1.2-22       
-#>  [9] tidyterra_1.2.0    sf_1.1-1           zoo_1.8-15         tidyr_1.3.2       
-#> [13] dplyr_1.2.1        data.table_1.18.4  geodata_0.6-9      terra_1.9-34      
-#> [17] httr_1.4.8         dissmapr_0.2.0     here_1.0.2         purrr_1.2.2       
-#> [21] yaml_2.3.12       
+#>  [1] dissmapr_0.2.0          frictionless_1.2.1.9000 mclust_6.1.3            patchwork_1.3.2         zetadiv_1.3.0           scam_1.2-22            
+#>  [7] tidyterra_1.2.0         sf_1.1-1                zoo_1.8-15              tidyr_1.3.2             data.table_1.18.4       geodata_0.6-9          
+#> [13] httr_1.4.8              viridis_0.6.5           viridisLite_0.4.3       RColorBrewer_1.1-3      terra_1.9-34            dplyr_1.2.1            
+#> [19] ggplot2_4.0.3           here_1.0.2              purrr_1.2.2             yaml_2.3.12            
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] DBI_1.3.0            pbapply_1.7-4        pROC_1.19.0.1        gridExtra_2.3       
-#>   [5] s2_1.1.11            glm2_1.2.1           permute_0.9-10       rlang_1.2.0         
-#>   [9] magrittr_2.0.5       otel_0.2.0           e1071_1.7-17         compiler_4.5.2      
-#>  [13] mgcv_1.9-4           b3doc_0.3.0.9000     maps_3.4.3           vctrs_0.7.3         
-#>  [17] reshape2_1.4.5       stringr_1.6.0        wk_0.9.5             pkgconfig_2.0.3     
-#>  [21] fastmap_1.2.0        labeling_0.4.3       utf8_1.2.6           rmarkdown_2.31      
-#>  [25] prodlim_2026.03.11   xfun_0.59            recipes_1.3.3        cluster_2.1.8.2     
-#>  [29] parallel_4.5.2       R6_2.6.1             stringi_1.8.7        parallelly_1.47.0   
-#>  [33] rpart_4.1.24         lubridate_1.9.5      estimability_1.5.1   Rcpp_1.1.1-1.1      
-#>  [37] iterators_1.0.14     knitr_1.51           fields_17.3          future.apply_1.20.2 
-#>  [41] R.utils_2.13.0       nnls_1.6             Matrix_1.7-4         splines_4.5.2       
-#>  [45] nnet_7.3-20          timechange_0.4.0     tidyselect_1.2.1     rstudioapi_0.18.0   
-#>  [49] vegan_2.7-5          timeDate_4052.112    codetools_0.2-20     listenv_0.10.1      
-#>  [53] lattice_0.22-9       tibble_3.3.1         plyr_1.8.9           withr_3.0.3         
-#>  [57] S7_0.2.2             geosphere_1.6-8      evaluate_1.0.5       future_1.70.0       
-#>  [61] survival_3.8-6       units_1.0-1          proxy_0.4-29         pillar_1.11.1       
-#>  [65] corrplot_0.95        KernSmooth_2.23-26   foreach_1.5.2        stats4_4.5.2        
-#>  [69] generics_0.1.4       rprojroot_2.1.1      scales_1.4.0         globals_0.19.1      
-#>  [73] xtable_1.8-8         class_7.3-23         glue_1.8.1           clValid_0.7         
-#>  [77] emmeans_2.0.3        tools_4.5.2          ModelMetrics_1.2.2.2 gower_1.0.2         
-#>  [81] dotCall64_1.2        fs_2.1.0             mvtnorm_1.4-1        grid_4.5.2          
-#>  [85] ipred_0.9-15         nlme_3.1-168         cli_3.6.6            rappdirs_0.3.4      
-#>  [89] NbClust_3.0.1        spam_2.11-4          lava_1.9.1           gtable_0.3.6        
-#>  [93] R.methodsS3_1.8.2    digest_0.6.39        classInt_0.4-11      caret_7.0-1         
-#>  [97] ggrepel_0.9.8        farver_2.1.2         factoextra_2.0.0     entropy_1.3.2       
-#> [101] htmltools_0.5.9      R.oo_1.27.1          lifecycle_1.0.5      hardhat_1.4.3       
-#> [105] MASS_7.3-65
+#>   [1] jsonlite_2.0.0       rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_2.0.0   farver_2.1.2        
+#>   [7] corrplot_0.95        rmarkdown_2.31       fs_2.1.0             fields_17.3          vctrs_0.7.3          htmltools_0.5.9     
+#>  [13] curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        caret_7.0-1          parallelly_1.48.0    KernSmooth_2.23-26  
+#>  [19] desc_1.4.3           plyr_1.8.9           emmeans_2.0.4        lubridate_1.9.5      lifecycle_1.0.5      iterators_1.0.14    
+#>  [25] pkgconfig_2.0.3      Matrix_1.7-4         R6_2.6.1             fastmap_1.2.0        future_1.75.0        digest_0.6.39       
+#>  [31] rprojroot_2.1.1      vegan_2.7-5          labeling_0.4.3       b3doc_0.3.0.9000     timechange_0.4.0     mgcv_1.9-4          
+#>  [37] compiler_4.5.2       remotes_2.5.0        proxy_0.4-29         withr_3.0.3          S7_0.2.2             DBI_1.3.0           
+#>  [43] pkgbuild_1.4.8       highr_0.12           R.utils_2.13.0       maps_3.4.3           MASS_7.3-65          lava_1.9.2          
+#>  [49] rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10       ModelMetrics_1.2.2.2 tools_4.5.2          units_1.0-1         
+#>  [55] otel_0.2.0           future.apply_1.20.2  nnet_7.3-20          R.oo_1.27.1          glue_1.8.1           callr_3.8.0         
+#>  [61] nlme_3.1-168         grid_4.5.2           cluster_2.1.8.2      reshape2_1.4.5       generics_0.1.4       recipes_1.3.3       
+#>  [67] gtable_0.3.6         tzdb_0.5.0           R.methodsS3_1.8.2    class_7.3-23         hms_1.1.4            utf8_1.2.6          
+#>  [73] ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1        stringr_1.6.0        spam_2.11-4          clValid_0.7         
+#>  [79] splines_4.5.2        lattice_0.22-9       survival_3.8-6       tidyselect_1.2.1     pbapply_1.7-4        knitr_1.51          
+#>  [85] gridExtra_2.3.1      stats4_4.5.2         xfun_0.60            hardhat_1.4.3        factoextra_2.1.0     timeDate_4052.112   
+#>  [91] stringi_1.8.7        evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1        entropy_1.3.2        tibble_3.3.1        
+#>  [97] cli_3.6.6            rpart_4.1.24         xtable_1.8-8         processx_3.9.0       Rcpp_1.1.2           globals_0.19.1      
+#> [103] parallel_4.5.2       gower_1.0.2          readr_2.2.0          dotCall64_1.2        listenv_1.0.0        mvtnorm_1.4-2       
+#> [109] ipred_0.9-15         scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17         geosphere_1.6-8      rlang_1.3.0
 ```
