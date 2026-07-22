@@ -261,7 +261,7 @@ Then, in the configuration panel, you need to define a file name for the output 
 Finally, to merge cubes you need to upload both cubes, even if you just created one in the same session. 
 You also need to define a file name for the output merged cube, which, again, will be created with this name in the same directory as the input file and you don't need to download.
 
-To use the local version, you need to download the [repository](https://github.com/b-cubed-eu/Local-Cubit) from Github, either by cloning the repository or downloading as a zip file and then extracting the files. Then you need to download the portable version of R from (link to be added). Choose the version that fits your operating system. Place it in your local repository (the folder with the app you downloaded from GitHub) and extract its contents.
+To use the local version, you need to download the [repository](https://github.com/b-cubed-eu/Local-Cubit) from Github, either by cloning the repository or downloading as a zip file and then extracting the files. Then you need to download the portable version of R for [Windows](https://bio-shiny.ua.pt/Cubit/portable-r-4.6.0-win-x64.zip) or for [MacOS](https://bio-shiny.ua.pt/Cubit/portable-r-4.6.1-macos-arm64.zip). Choose the version that fits your operating system. Place it in your local repository (the folder with the app you downloaded from GitHub) and extract its contents.
 
 To use the app, you can click on Cubit.bat. A terminal will appear and after a while a link will appear. Ctrl + click on that link or copy that link to your browser to use Cubit. You can also try to execute this file as admin and it should open immediately in the browser (mind you that this does not always work).
 
