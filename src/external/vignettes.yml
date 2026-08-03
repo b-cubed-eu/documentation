@@ -360,8 +360,8 @@ invasimapr:
 #   sidebar_label: Computing invasion fitness
 
 cubit:
-- source: "https://raw.githubusercontent.com/b-cubed-eu/Local-Cubit/refs/heads/main/README.md"
+- source: "https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/docs/vignette.Rmd"
   title: "Cubit - Integrating open and private data sources into Species Occurrence Cubes"
   sidebar_label: Introduction
   replace:
-  - "img/": "https://raw.githubusercontent.com/b-cubed-eu/Local-Cubit/01f7594a9c6da4867fc91d19f897209fb6240fa9/img/"
+  - "../img/": "https://raw.githubusercontent.com/b-cubed-eu/web-cubit/img/"
