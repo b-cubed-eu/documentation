@@ -198,7 +198,7 @@ among other variables.
 
 We upload the file, select **comma** as separator, select **No quote** (this file does not contain quoted strings) and click **Load file**.
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/img/File_upload.gif" alt="" width="80%" />
+<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/img/File_upload.gif" alt="" width="80%" />
 
 ### Configure
 
@@ -212,7 +212,7 @@ Now we want to create a cube from this data that contains the following informat
 Grid cell will be based on the grid and coordinates so it does not need to be present in the original dataset.
 The other three variables are the ones the data will be aggregated by.
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/img/Cube_configuration.gif" alt="" width="80%" />
+<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/img/Cube_configuration.gif" alt="" width="80%" />
 
 The cube can now be downloaded at the bottom of the page.
 
@@ -231,7 +231,7 @@ Here, we want the final cube to have all the columns of both cubes (**speciesKey
 
 After configuring the mapping, we execute the merge.
 
-<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/img/Cube_merging.gif" alt="" width="80%" />
+<img src="https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/img/Cube_merging.gif" alt="" width="80%" />
 
 The resulting cube combines observations from both cubes into a single standardized dataset that can be directly used by downstream B-Cubed workflows.
 

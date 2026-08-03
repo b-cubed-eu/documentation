@@ -364,4 +364,4 @@ cubit:
   title: "Cubit - Integrating open and private data sources into Species Occurrence Cubes"
   sidebar_label: Introduction
   replace:
-  - "../img/": "https://raw.githubusercontent.com/b-cubed-eu/web-cubit/img/"
+  - "../img/": "https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/img/"
