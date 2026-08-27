@@ -2,7 +2,7 @@
 title: Guidelines for reliable indicator and trend calculations from occurrence cubes
 sidebar:
   label: Data quality
-  order: 6
+  order: 7
 ---
 
 :::tip[Read more]

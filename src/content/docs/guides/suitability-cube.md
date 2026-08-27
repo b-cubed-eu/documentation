@@ -2,7 +2,7 @@
 title: Specification for suitability cubes and their production
 sidebar:
   label: Suitability cube
-  order: 3
+  order: 4
 ---
 
 :::tip[Learn by doing]

@@ -2,7 +2,7 @@
 title: "b3data: Data resources for the b3verse"
 sidebar:
   label: b3data
-  order: 8
+  order: 9
 knit: (function(inputFile, ...) {
   knitr::knit(
     input = inputFile,

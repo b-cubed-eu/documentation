@@ -2,7 +2,7 @@
 title: "b3verse: A collection of R packages to work with occurrence cubes"
 sidebar:
   label: b3verse
-  order: 7
+  order: 8
 knit: (function(inputFile, ...) {
   knitr::knit(
     input = inputFile,
