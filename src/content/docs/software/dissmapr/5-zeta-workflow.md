@@ -3,7 +3,7 @@ title: Modelling Zeta Diversity Across Environmental Gradients
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Zeta-MSGDM with dissmapr} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-07-22
 sidebar:
   label: Zeta-MSGDM
   order: 6
@@ -83,20 +83,20 @@ str(ispline_gdm_tab, max.level=1)
 
 ispline_tabs_all = ispline_gdm_tab$ispline_table
 head(ispline_tabs_all)
-#>   temp_mean        iso  temp_wetQ temp_dryQ   rain_dry rain_warmQ obs_sum   distance temp_mean_is
-#> 1 0.0000000 0.00000000 0.00000000 0.0000000 0.00000000 0.00000000       0 0.03214127            0
-#> 2 0.2896355 0.09884044 0.01960870 0.1041687 0.00000000 0.00877193       0 0.03214127            0
-#> 3 0.3842598 0.15863757 0.03114836 0.1160104 0.00000000 0.01096491       0 0.04545457            0
-#> 4 0.3874364 0.16800387 0.06060482 0.1609354 0.00000000 0.02412281       0 0.09642380            0
-#> 5 0.3927655 0.17380612 0.09836887 0.1903078 0.00000000 0.02631579       0 0.09642380            0
-#> 6 0.3973209 0.18186992 0.11965861 0.2000578 0.02272727 0.03070175       0 0.10163911            0
-#>   iso_is temp_wetQ_is temp_dryQ_is rain_dry_is rain_warmQ_is obs_sum_is distance_is zOrder
-#> 1      0            0   0.02831627   0.1529665             0          0   0.2105816 Order2
-#> 2      0            0   0.04242732   0.1529665             0          0   0.2105816 Order2
-#> 3      0            0   0.04380618   0.1529665             0          0   0.2935477 Order2
-#> 4      0            0   0.04861907   0.1529665             0          0   0.5881165 Order2
-#> 5      0            0   0.05140793   0.1529665             0          0   0.5881165 Order2
-#> 6      0            0   0.05227112   0.2890950             0          0   0.6161951 Order2
+#>   temp_mean        iso  temp_wetQ temp_dryQ   rain_dry rain_warmQ obs_sum   distance temp_mean_is iso_is temp_wetQ_is temp_dryQ_is rain_dry_is
+#> 1 0.0000000 0.00000000 0.00000000 0.0000000 0.00000000 0.00000000       0 0.03214127            0      0            0   0.02831627   0.1529665
+#> 2 0.2896355 0.09884044 0.01960870 0.1041687 0.00000000 0.00877193       0 0.03214127            0      0            0   0.04242732   0.1529665
+#> 3 0.3842598 0.15863757 0.03114836 0.1160104 0.00000000 0.01096491       0 0.04545457            0      0            0   0.04380618   0.1529665
+#> 4 0.3874364 0.16800387 0.06060482 0.1609354 0.00000000 0.02412281       0 0.09642380            0      0            0   0.04861907   0.1529665
+#> 5 0.3927655 0.17380612 0.09836887 0.1903078 0.00000000 0.02631579       0 0.09642380            0      0            0   0.05140793   0.1529665
+#> 6 0.3973209 0.18186992 0.11965861 0.2000578 0.02272727 0.03070175       0 0.10163911            0      0            0   0.05227112   0.2890950
+#>   rain_warmQ_is obs_sum_is distance_is zOrder
+#> 1             0          0   0.2105816 Order2
+#> 2             0          0   0.2105816 Order2
+#> 3             0          0   0.2935477 Order2
+#> 4             0          0   0.5881165 Order2
+#> 5             0          0   0.5881165 Order2
+#> 6             0          0   0.6161951 Order2
 ```
 
 ### 3. Plot Partial‐Dependence Curves for All Covariates
@@ -215,39 +215,30 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] RColorBrewer_1.1-3 mclust_6.1.2       patchwork_1.3.2    viridis_0.6.5     
-#>  [5] viridisLite_0.4.3  ggplot2_4.0.3      zetadiv_1.3.0      scam_1.2-22       
-#>  [9] tidyterra_1.2.0    sf_1.1-1           zoo_1.8-15         tidyr_1.3.2       
-#> [13] dplyr_1.2.1        data.table_1.18.4  geodata_0.6-9      terra_1.9-34      
-#> [17] httr_1.4.8         dissmapr_0.2.0     here_1.0.2         purrr_1.2.2       
-#> [21] yaml_2.3.12       
+#>  [1] dissmapr_0.2.0          frictionless_1.2.1.9000 mclust_6.1.3            patchwork_1.3.2         zetadiv_1.3.0           scam_1.2-22            
+#>  [7] tidyterra_1.2.0         sf_1.1-1                zoo_1.8-15              tidyr_1.3.2             data.table_1.18.4       geodata_0.6-9          
+#> [13] httr_1.4.8              viridis_0.6.5           viridisLite_0.4.3       RColorBrewer_1.1-3      terra_1.9-34            dplyr_1.2.1            
+#> [19] ggplot2_4.0.3           here_1.0.2              purrr_1.2.2             yaml_2.3.12            
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] DBI_1.3.0            pbapply_1.7-4        pROC_1.19.0.1        gridExtra_2.3       
-#>   [5] s2_1.1.11            glm2_1.2.1           permute_0.9-10       rlang_1.2.0         
-#>   [9] magrittr_2.0.5       otel_0.2.0           e1071_1.7-17         compiler_4.5.2      
-#>  [13] mgcv_1.9-4           b3doc_0.3.0.9000     maps_3.4.3           vctrs_0.7.3         
-#>  [17] reshape2_1.4.5       stringr_1.6.0        wk_0.9.5             pkgconfig_2.0.3     
-#>  [21] fastmap_1.2.0        labeling_0.4.3       utf8_1.2.6           rmarkdown_2.31      
-#>  [25] prodlim_2026.03.11   xfun_0.59            recipes_1.3.3        cluster_2.1.8.2     
-#>  [29] parallel_4.5.2       R6_2.6.1             stringi_1.8.7        parallelly_1.47.0   
-#>  [33] rpart_4.1.24         lubridate_1.9.5      estimability_1.5.1   Rcpp_1.1.1-1.1      
-#>  [37] iterators_1.0.14     knitr_1.51           fields_17.3          future.apply_1.20.2 
-#>  [41] R.utils_2.13.0       nnls_1.6             Matrix_1.7-4         splines_4.5.2       
-#>  [45] nnet_7.3-20          timechange_0.4.0     tidyselect_1.2.1     rstudioapi_0.18.0   
-#>  [49] vegan_2.7-5          timeDate_4052.112    codetools_0.2-20     listenv_0.10.1      
-#>  [53] lattice_0.22-9       tibble_3.3.1         plyr_1.8.9           withr_3.0.3         
-#>  [57] S7_0.2.2             geosphere_1.6-8      evaluate_1.0.5       future_1.70.0       
-#>  [61] survival_3.8-6       units_1.0-1          proxy_0.4-29         pillar_1.11.1       
-#>  [65] corrplot_0.95        KernSmooth_2.23-26   foreach_1.5.2        stats4_4.5.2        
-#>  [69] generics_0.1.4       rprojroot_2.1.1      scales_1.4.0         globals_0.19.1      
-#>  [73] xtable_1.8-8         class_7.3-23         glue_1.8.1           clValid_0.7         
-#>  [77] emmeans_2.0.3        tools_4.5.2          ModelMetrics_1.2.2.2 gower_1.0.2         
-#>  [81] dotCall64_1.2        fs_2.1.0             mvtnorm_1.4-1        grid_4.5.2          
-#>  [85] ipred_0.9-15         nlme_3.1-168         cli_3.6.6            rappdirs_0.3.4      
-#>  [89] NbClust_3.0.1        spam_2.11-4          lava_1.9.1           gtable_0.3.6        
-#>  [93] R.methodsS3_1.8.2    digest_0.6.39        classInt_0.4-11      caret_7.0-1         
-#>  [97] ggrepel_0.9.8        farver_2.1.2         factoextra_2.0.0     entropy_1.3.2       
-#> [101] htmltools_0.5.9      R.oo_1.27.1          lifecycle_1.0.5      hardhat_1.4.3       
-#> [105] MASS_7.3-65
+#>   [1] jsonlite_2.0.0       rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_2.0.0   farver_2.1.2        
+#>   [7] corrplot_0.95        rmarkdown_2.31       fs_2.1.0             fields_17.3          vctrs_0.7.3          htmltools_0.5.9     
+#>  [13] curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        caret_7.0-1          parallelly_1.48.0    glm2_1.2.1          
+#>  [19] KernSmooth_2.23-26   desc_1.4.3           plyr_1.8.9           emmeans_2.0.4        lubridate_1.9.5      lifecycle_1.0.5     
+#>  [25] iterators_1.0.14     pkgconfig_2.0.3      Matrix_1.7-4         R6_2.6.1             fastmap_1.2.0        future_1.75.0       
+#>  [31] digest_0.6.39        rprojroot_2.1.1      vegan_2.7-5          labeling_0.4.3       b3doc_0.3.0.9000     nnls_1.6            
+#>  [37] timechange_0.4.0     mgcv_1.9-4           compiler_4.5.2       remotes_2.5.0        proxy_0.4-29         withr_3.0.3         
+#>  [43] S7_0.2.2             DBI_1.3.0            pkgbuild_1.4.8       highr_0.12           R.utils_2.13.0       maps_3.4.3          
+#>  [49] MASS_7.3-65          lava_1.9.2           rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10       ModelMetrics_1.2.2.2
+#>  [55] tools_4.5.2          units_1.0-1          otel_0.2.0           future.apply_1.20.2  nnet_7.3-20          R.oo_1.27.1         
+#>  [61] glue_1.8.1           callr_3.8.0          nlme_3.1-168         grid_4.5.2           cluster_2.1.8.2      reshape2_1.4.5      
+#>  [67] generics_0.1.4       recipes_1.3.3        gtable_0.3.6         tzdb_0.5.0           R.methodsS3_1.8.2    class_7.3-23        
+#>  [73] hms_1.1.4            utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1        stringr_1.6.0       
+#>  [79] spam_2.11-4          clValid_0.7          splines_4.5.2        lattice_0.22-9       survival_3.8-6       tidyselect_1.2.1    
+#>  [85] pbapply_1.7-4        knitr_1.51           gridExtra_2.3.1      stats4_4.5.2         xfun_0.60            hardhat_1.4.3       
+#>  [91] factoextra_2.1.0     timeDate_4052.112    stringi_1.8.7        evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1       
+#>  [97] entropy_1.3.2        tibble_3.3.1         cli_3.6.6            rpart_4.1.24         xtable_1.8-8         processx_3.9.0      
+#> [103] Rcpp_1.1.2           globals_0.19.1       parallel_4.5.2       gower_1.0.2          readr_2.2.0          dotCall64_1.2       
+#> [109] listenv_1.0.0        mvtnorm_1.4-2        ipred_0.9-15         scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17        
+#> [115] geosphere_1.6-8      rlang_1.3.0
 ```

@@ -4,7 +4,7 @@ output:
     html_preview: no
 title: 'dissmapr: A Workflow for Compositional Dissimilarity and Biodiversity Turnover
   Analysis'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-07-22
 sidebar:
   label: Introduction
   order: 1
