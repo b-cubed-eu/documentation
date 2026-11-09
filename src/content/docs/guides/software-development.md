@@ -15,7 +15,7 @@ You can cite this guide as a published paper in Research Ideas and Outcomes as:
 
 Alternativly you can cite this webpage as:
 
-> Huybrechts P, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
+> Huybrechts P, Langeraert W, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
 
 ## Introduction
 
