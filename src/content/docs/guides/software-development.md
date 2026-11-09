@@ -5,11 +5,19 @@ sidebar:
   order: 2
 ---
 
+[![DOI](https://img.shields.io/badge/doi-10.3897/rio.12.e216899-green)](https://doi.org/10.3897/rio.12.e216899)
+
 This guide specifies high-level requirements for software, computational tools and resources developed for B-Cubed (referred to in the sections as "software") to ensure that the produced software meets the intended quality, openness, portability and reusability.
 
 ## How to cite
 
-> Huybrechts P, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
+You can cite this guide as a published paper in Research Ideas and Outcomes:
+
+> Huybrechts P, Langeraert W, Desmet P (2026) B-Cubed software development guide. Research Ideas and Outcomes 12: e216899. <https://doi.org/10.3897/rio.12.e216899>
+
+Or as this web page:
+
+> Huybrechts P, Langeraert W, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
 
 ## Introduction
 
