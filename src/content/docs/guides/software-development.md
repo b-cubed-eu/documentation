@@ -13,6 +13,8 @@ You can cite this guide as a published paper in Research Ideas and Outcomes as:
 
 > Huybrechts P, Langeraert W, Desmet P (2026) B-Cubed software development guide. Research Ideas and Outcomes 12: e216899. https://doi.org/10.3897/rio.12.e216899
 
+[![doi-badge](https://img.shields.io/badge/doi-10.3897/rio.12.e216899-green)](https://doi.org/10.3897/rio.12.e216899)
+
 Alternativly you can cite this webpage as:
 
 > Huybrechts P, Langeraert W, Trekels M, Abraham L, Desmet P (2024). B-Cubed software development guide. <https://docs.b-cubed.eu/guides/software-development/>
