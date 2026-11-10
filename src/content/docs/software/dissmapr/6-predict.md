@@ -3,7 +3,7 @@ title: Predicting Spatial Patterns of Biodiversity Turnover
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Predict community turnover} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-22
+lastUpdated: 2026-11-10
 sidebar:
   label: Predict community turnover
   order: 7
@@ -82,8 +82,10 @@ predictors_df   = dissmapr::predict_dissim(
 dim(predictors_df)
 #> [1] 415  14
 names(predictors_df)
-#>  [1] "temp_mean"        "iso"              "temp_wetQ"        "temp_dryQ"        "rain_dry"         "rain_warmQ"       "obs_sum"         
-#>  [8] "distance"         "richness"         "pred_zeta"        "pred_zetaExp"     "log_pred_zetaExp" "centroid_lon"     "centroid_lat"
+#>  [1] "temp_mean"        "iso"              "temp_wetQ"        "temp_dryQ"       
+#>  [5] "rain_dry"         "rain_warmQ"       "obs_sum"          "distance"        
+#>  [9] "richness"         "pred_zeta"        "pred_zetaExp"     "log_pred_zetaExp"
+#> [13] "centroid_lon"     "centroid_lat"
 head(predictors_df[,5:11])
 #>    rain_dry rain_warmQ    obs_sum distance richness   pred_zeta pred_zetaExp
 #> 1 -1.171906 -0.2222718 -0.2926985 903.0437        2 0.013475636    0.5033689
@@ -268,20 +270,20 @@ all_preds = dplyr::bind_rows(scenario_dfs)
 #> Error:
 #> ! object 'scenario_dfs' not found
 head(all_preds)
-#>   temp_mean         iso temp_wetQ temp_dryQ  rain_dry rain_warmQ    obs_sum distance richness   pred_zeta pred_zetaExp log_pred_zetaExp centroid_lon
-#> 1  1.730095  0.01726121  1.386855 0.5441361 -1.171906 -0.2222718 -0.2926985 903.0437        3 0.013475636    0.5033689       -0.6864321        28.75
-#> 2  1.683898 -0.53540287  1.471251 0.4496825 -1.171906 -0.1743223 -0.2340532 915.4655       41 0.025543916    0.5063856       -0.6804568        29.25
-#> 3  1.589813  0.21693689  1.234714 0.5570195 -1.051673  0.1852987 -0.2818954 931.1100       10 0.012838967    0.5032097       -0.6867483        29.75
-#> 4  2.185359  0.69302984  1.511219 0.9937463 -1.171906  0.2572229 -0.2865253 949.9390        7 0.011283704    0.5028209       -0.6875212        30.25
-#> 5  2.418605  1.23977219  1.589519 1.2042260 -1.051673  0.4889786 -0.2880686 971.8672        6 0.010089501    0.5025224       -0.6881152        30.75
-#> 6  2.810088  1.89130325  1.817424 1.4313345 -1.051673  0.5449196 -0.1321955 996.7561      107 0.009101051    0.5022752       -0.6886070        31.25
-#>   centroid_lat scenario
-#> 1    -22.25004  current
-#> 2    -22.25004  current
-#> 3    -22.25004  current
-#> 4    -22.25004  current
-#> 5    -22.25004  current
-#> 6    -22.25004  current
+#>   temp_mean         iso temp_wetQ temp_dryQ  rain_dry rain_warmQ    obs_sum distance richness
+#> 1  1.730095  0.01726121  1.386855 0.5441361 -1.171906 -0.2222718 -0.2926985 903.0437        3
+#> 2  1.683898 -0.53540287  1.471251 0.4496825 -1.171906 -0.1743223 -0.2340532 915.4655       41
+#> 3  1.589813  0.21693689  1.234714 0.5570195 -1.051673  0.1852987 -0.2818954 931.1100       10
+#> 4  2.185359  0.69302984  1.511219 0.9937463 -1.171906  0.2572229 -0.2865253 949.9390        7
+#> 5  2.418605  1.23977219  1.589519 1.2042260 -1.051673  0.4889786 -0.2880686 971.8672        6
+#> 6  2.810088  1.89130325  1.817424 1.4313345 -1.051673  0.5449196 -0.1321955 996.7561      107
+#>     pred_zeta pred_zetaExp log_pred_zetaExp centroid_lon centroid_lat scenario
+#> 1 0.013475636    0.5033689       -0.6864321        28.75    -22.25004  current
+#> 2 0.025543916    0.5063856       -0.6804568        29.25    -22.25004  current
+#> 3 0.012838967    0.5032097       -0.6867483        29.75    -22.25004  current
+#> 4 0.011283704    0.5028209       -0.6875212        30.25    -22.25004  current
+#> 5 0.010089501    0.5025224       -0.6881152        30.75    -22.25004  current
+#> 6 0.009101051    0.5022752       -0.6886070        31.25    -22.25004  current
 ```
 
 We can then quickly compare the spatial ζ₂ surfaces under each future:
@@ -307,9 +309,9 @@ ggplot(all_preds,
 
 ``` r
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
+#> R version 4.5.3 (2026-03-11)
 #> Platform: aarch64-apple-darwin20
-#> Running under: macOS Tahoe 26.5.1
+#> Running under: macOS Tahoe 26.6.2
 #> 
 #> Matrix products: default
 #> BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
@@ -325,30 +327,44 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] dissmapr_0.2.0          frictionless_1.2.1.9000 mclust_6.1.3            patchwork_1.3.2         zetadiv_1.3.0           scam_1.2-22            
-#>  [7] tidyterra_1.2.0         sf_1.1-1                zoo_1.8-15              tidyr_1.3.2             data.table_1.18.4       geodata_0.6-9          
-#> [13] httr_1.4.8              viridis_0.6.5           viridisLite_0.4.3       RColorBrewer_1.1-3      terra_1.9-34            dplyr_1.2.1            
-#> [19] ggplot2_4.0.3           here_1.0.2              purrr_1.2.2             yaml_2.3.12            
+#>  [1] mclust_6.1.3        patchwork_1.3.2     viridis_0.6.5       viridisLite_0.4.3  
+#>  [5] ggplot2_4.0.3       zetadiv_1.3.0       scam_1.2-23         tidyterra_0.7.2    
+#>  [9] sf_1.1-3            zoo_1.9-1           tidyr_1.3.2         dplyr_1.2.1        
+#> [13] data.table_1.18.6.1 geodata_0.6-9       terra_1.9-50        httr_1.4.9         
+#> [17] dissmapr_0.2.0      here_1.0.2          purrr_1.2.2         yaml_2.3.12        
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] jsonlite_2.0.0       rstudioapi_0.18.0    wk_0.9.5             magrittr_2.0.5       estimability_2.0.0   farver_2.1.2        
-#>   [7] corrplot_0.95        rmarkdown_2.31       fs_2.1.0             fields_17.3          vctrs_0.7.3          htmltools_0.5.9     
-#>  [13] curl_7.1.0           s2_1.1.11            pROC_1.19.0.1        caret_7.0-1          parallelly_1.48.0    glm2_1.2.1          
-#>  [19] KernSmooth_2.23-26   desc_1.4.3           plyr_1.8.9           emmeans_2.0.4        lubridate_1.9.5      lifecycle_1.0.5     
-#>  [25] iterators_1.0.14     pkgconfig_2.0.3      Matrix_1.7-4         R6_2.6.1             fastmap_1.2.0        future_1.75.0       
-#>  [31] digest_0.6.39        rprojroot_2.1.1      vegan_2.7-5          labeling_0.4.3       b3doc_0.3.0.9000     nnls_1.6            
-#>  [37] timechange_0.4.0     mgcv_1.9-4           compiler_4.5.2       remotes_2.5.0        proxy_0.4-29         withr_3.0.3         
-#>  [43] S7_0.2.2             DBI_1.3.0            pkgbuild_1.4.8       highr_0.12           R.utils_2.13.0       maps_3.4.3          
-#>  [49] MASS_7.3-65          lava_1.9.2           rappdirs_0.3.4       classInt_0.4-11      permute_0.9-10       ModelMetrics_1.2.2.2
-#>  [55] tools_4.5.2          units_1.0-1          otel_0.2.0           future.apply_1.20.2  nnet_7.3-20          R.oo_1.27.1         
-#>  [61] glue_1.8.1           callr_3.8.0          nlme_3.1-168         grid_4.5.2           cluster_2.1.8.2      reshape2_1.4.5      
-#>  [67] generics_0.1.4       recipes_1.3.3        gtable_0.3.6         tzdb_0.5.0           R.methodsS3_1.8.2    class_7.3-23        
-#>  [73] hms_1.1.4            utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2        pillar_1.11.1        stringr_1.6.0       
-#>  [79] spam_2.11-4          clValid_0.7          splines_4.5.2        lattice_0.22-9       survival_3.8-6       tidyselect_1.2.1    
-#>  [85] pbapply_1.7-4        knitr_1.51           gridExtra_2.3.1      stats4_4.5.2         xfun_0.60            hardhat_1.4.3       
-#>  [91] factoextra_2.1.0     timeDate_4052.112    stringi_1.8.7        evaluate_1.0.5       codetools_0.2-20     NbClust_3.0.1       
-#>  [97] entropy_1.3.2        tibble_3.3.1         cli_3.6.6            rpart_4.1.24         xtable_1.8-8         processx_3.9.0      
-#> [103] Rcpp_1.1.2           globals_0.19.1       parallel_4.5.2       gower_1.0.2          readr_2.2.0          dotCall64_1.2       
-#> [109] listenv_1.0.0        mvtnorm_1.4-2        ipred_0.9-15         scales_1.4.0         prodlim_2026.03.11   e1071_1.7-17        
-#> [115] geosphere_1.6-8      rlang_1.3.0
+#>   [1] RColorBrewer_1.1-3   wk_0.9.5             rstudioapi_0.17.1    magrittr_2.0.5      
+#>   [5] TH.data_1.1-3        estimability_2.0.0   corrplot_0.95        farver_2.1.2        
+#>   [9] rmarkdown_2.32       fields_18.0          fs_2.1.0             vctrs_0.7.3         
+#>  [13] memoise_2.0.1        htmltools_0.5.9      curl_8.1.0           s2_1.1.13           
+#>  [17] pROC_1.19.1          caret_7.0-1          parallelly_1.50.0    glm2_1.2.1          
+#>  [21] KernSmooth_2.23-26   desc_1.4.3           plyr_1.8.9           sandwich_3.1-1      
+#>  [25] emmeans_2.0.4        lubridate_1.9.5      cachem_1.1.0         lifecycle_1.0.5     
+#>  [29] iterators_1.0.14     pkgconfig_2.0.3      Matrix_1.7-5         R6_2.6.1            
+#>  [33] fastmap_1.2.0        future_1.82.0        digest_0.6.39        rematch2_2.1.2      
+#>  [37] rprojroot_2.1.1      RSQLite_3.53.3       vegan_2.7-6          labeling_0.4.3      
+#>  [41] b3doc_0.3.0.9000     nnls_1.6             timechange_0.4.0     mgcv_1.9-4          
+#>  [45] compiler_4.5.3       proxy_0.4-29         remotes_2.5.0.9000   withr_3.0.3         
+#>  [49] bit64_4.8.6          S7_0.2.2             crancache_0.0.0.9001 DBI_1.3.0           
+#>  [53] cranlike_1.0.3       pkgbuild_1.4.8       maps_3.4.4           R.utils_2.13.0      
+#>  [57] MASS_7.3-66          lava_1.10            rappdirs_0.3.4       classInt_0.4-11     
+#>  [61] permute_0.10-0       ModelMetrics_1.2.2.2 tools_4.5.3          units_1.0-1         
+#>  [65] otel_0.3.0           future.apply_1.21.0  nnet_7.3-20          R.oo_1.27.1         
+#>  [69] glue_1.8.1           debugme_1.2.0        callr_3.8.0          nlme_3.1-169        
+#>  [73] grid_4.5.3           rsconnect_1.5.0      cluster_2.1.8.2      reshape2_1.4.5      
+#>  [77] generics_0.1.4       recipes_1.4.0        gtable_0.3.6         R.methodsS3_1.8.2   
+#>  [81] class_7.3-23         utf8_1.2.6           ggrepel_0.9.8        foreach_1.5.2       
+#>  [85] pillar_1.11.1        stringr_1.6.0        spam_2.11-4          clValid_0.7         
+#>  [89] splines_4.5.3        lattice_0.22-9       survival_3.8-6       bit_4.6.0           
+#>  [93] tidyselect_1.2.1     pbapply_1.7-5        knitr_1.52           gridExtra_2.3.1     
+#>  [97] stats4_4.5.3         xfun_0.62            hardhat_1.4.3        factoextra_2.2.0    
+#> [101] timeDate_4052.112    stringi_1.8.9        evaluate_1.0.5       codetools_0.2-20    
+#> [105] NbClust_3.0.1        entropy_1.3.2        tibble_3.3.1         cli_3.6.6           
+#> [109] rpart_4.1.24         xtable_1.8-8         processx_3.9.0       dichromat_2.0-0.1   
+#> [113] Rcpp_1.1.2           globals_0.20.0       coda_0.19-4.1        parallel_4.5.3      
+#> [117] gower_1.0.2          blob_1.3.0           parsedate_1.3.2      dotCall64_1.2       
+#> [121] listenv_1.1.0        mvtnorm_1.4-2        ipred_0.9-16         scales_1.4.0        
+#> [125] prodlim_2026.03.11   e1071_1.7-17         crayon_1.5.3         geosphere_1.6-8     
+#> [129] rlang_1.3.0          multcomp_1.4-30
 ```
