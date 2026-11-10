@@ -168,7 +168,7 @@ bird_cube_belgium_clean %>%
     theme_minimal()
 ```
 
-![plot of chunk joined-map](../../../../public/guides/b3data//joined-map-1.png)
+![plot of chunk joined-map](../../../../public/guides/b3data/joined-map-1.png)
 
 We now process the cleaned data cube using the **b3gbi** package (v0.4.0), which prepares the data for indicator calculations.
 
@@ -225,7 +225,7 @@ bird_cube_richness_map <- obs_richness_map(bird_cube_processed)
 plot(bird_cube_richness_map)
 ```
 
-![plot of chunk unnamed-chunk-9](../../../../public/guides/b3data//unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](../../../../public/guides/b3data/unnamed-chunk-9-1.png)
 
 We can also calculate other biodiversity indicators. In the example below, we generate a time series of observed species richness. Confidence intervals are omitted here to reduce computation time.
 
@@ -235,7 +235,7 @@ bird_cube_richness_ts <- obs_richness_ts(bird_cube_processed, ci_type = "none")
 plot(bird_cube_richness_ts)
 ```
 
-![plot of chunk unnamed-chunk-10](../../../../public/guides/b3data//unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10](../../../../public/guides/b3data/unnamed-chunk-10-1.png)
 
 > **Note:** The example demonstrates the use of the b3data resources, and is not intended as an example of rigorous ecological analysis. The spatial and temporal patterns shown in the outputs below primarily reflect the data coverage in GBIF, and may not reflect actual biodiversity patterns.
 
