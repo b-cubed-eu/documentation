@@ -2,7 +2,7 @@
 title: Guide to Dissimilarity Cubes
 sidebar:
   label: Dissimilarity cube
-  order: 5
+  order: 4
 ---
 
 :::tip[Learn by doing]
