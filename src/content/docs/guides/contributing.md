@@ -1,11 +1,13 @@
 ---
-title: "Contributing"
+title: Contributing guide
 sidebar:
   label: Contributing
   order: 9
 ---
 
 ## Usage
+This guide outlines how to make contributions to this website.
+
 
 This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
 
