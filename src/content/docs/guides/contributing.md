@@ -22,23 +22,29 @@ To preview this site locally, use:
 
 See the file [astro.config.mjs](https://github.com/b-cubed-eu/documentation/blob/main/astro.config.mjs) for site-wide configuration.
 
-## Updating a page
+## Editing pages
 
 The site contains two types of pages/tutorials: **source pages** and **external pages**. They differ in the way they are updated.
 
 ### Source pages
 
-Source pages are **maintained in the [GitHub repository](https://github.com/b-cubed-eu/documentation/)** of this website.
+Source pages are maintained in the [GitHub repository](https://github.com/b-cubed-eu/documentation/) of this site. The **homepage** and pages listed under **Guides**, **Infrastructure** and **Tutorials** are source pages.
 
-Follow these steps to update a source page:
+To update a source page:
 
-1. Browse to the markdown file for the page (in [`src/content/docs/<page-type>/`](https://github.com/b-cubed-eu/documentation/tree/main/src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on this website.
+1. On this site, click `Edit page` at the bottom of the page. This will open the underlying Markdown file in GitHub.
 2. Make changes in the Markdown file (either in your browser or locally).
 3. Commit your changes to a new branch (and push).
 4. Create a pull request and assign a reviewer.
 5. Once accepted and merged, your changes will go live on this site.
 
-Does your page contain images or data? Place them in `public/<page-type>/<name-of-page>/`. It's best to do this locally on your new branch. To refer to images in markdown, use:
+To add a source page:
+
+1. Browse to [`src/content/docs/`](https://github.com/b-cubed-eu/documentation/tree/main/src/content/docs) and select the appropriate directory for your page (typically `guides` or `tutorials`).
+2. Look at the existing Markdown files for inspiration and syntax, then choose `Add file > Create new file` to add a new page.
+3. Follow steps 2-5 above.
+
+Does your page contain images or data? Place them in `public/<page-type>/<name-of-page>/`. It's best to do this locally on your new branch. To refer to images in Markdown, use:
 
 ```
 ![Short description](/<page-type>/<name-of-page>/<name-of-image>.png)
@@ -48,14 +54,16 @@ Source pages are licensed under a [Creative Commons Attribution 4.0 Internationa
 
 ### External pages
 
-External pages are **maintained elsewhere**. They are added to the website to centralize B-Cubed documentation, with a semi-automated workflow that supports:
+External pages are maintained elsewhere. To centralize documentation on this site, they are copied (and executed) from their source using a semi-automated workflow. The pages listed under **Software** are external pages. 
+
+The workflow supports:
 
 1. `README.md` files.
 2. `README.Rmd` files.
 3. Vignettes, i.e. R package tutorials maintained with their source code ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)).
 4. `rst` files.
 
-Follow these steps to update an external page:
+To update or add an external page:
 
 1. Clone this repository.
 2. Check if vignette is listed in [`vignettes.yml`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
