@@ -5,26 +5,28 @@ sidebar:
   order: 9
 ---
 
-## Usage
 This guide outlines how to make contributions to this website.
 
+## Technology
 
 This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
 
 To preview this site locally, use:
 
-- `npm install`: install dependencies.
-- `npm run dev`: start a local development server at `localhost:4321` to preview this site.
+- `npm install` to install dependencies.
+- `npm run dev` to start a local development server at `localhost:4321` where you can preview the site.
 
 See the file [astro.config.mjs](https://github.com/b-cubed-eu/documentation/blob/main/astro.config.mjs) for site-wide configuration.
 
 ## Updating a page
 
-This site contains two types of pages/tutorials: **source pages** and **external pages**. The way they are updated differs.
+The site contains two types of pages/tutorials: **source pages** and **external pages**. They differ in the way they are updated.
 
 ### Source pages
 
-Source pages are maintained in this repository. Follow these steps to update:
+Source pages are **maintained in the [GitHub repository](https://github.com/b-cubed-eu/documentation/)** of this website.
+
+Follow these steps to update a source page:
 
 1. Browse to the markdown file for the page (in [`src/content/docs/<page-type>/`](https://github.com/b-cubed-eu/documentation/tree/main/src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on this website.
 2. Make changes in the markdown file (either in your browser or locally).
@@ -42,11 +44,11 @@ Source pages are licensed under a [Creative Commons Attribution 4.0 Internationa
 
 ### External pages
 
-External pages are maintained elsewhere. This workflow supports:
+External pages are **maintained elsewhere**. They are added to the website to centralize B-Cubed documentation, with a semi-automated workflow that supports:
 
 1. `README.md` files.
 2. `README.Rmd` files.
-3. Vignettes (i.e. tutorials maintained with the source code for an R package, like [this one](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd).
+3. Vignettes, i.e. R package tutorials maintained with their source code ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)).
 4. `rst` files.
 
 Follow these steps to update an external page:
