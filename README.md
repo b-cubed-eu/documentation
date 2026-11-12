@@ -16,12 +16,11 @@ The repository structure is that of an Astro + Starlight project, with the follo
 
 ```
 ├── src/
-│   ├── content/
-│   │   └── docs/          : Source markdown files
-│   ├── external/          : Scripts to create markdown files from external tutorials
-│   │
 │   ├── assets/            : Theme assets
-│   ├── layouts/           : Theme layouts
+│   ├── assets/            : Theme components
+│   ├── content/
+│   │   └── docs/          : Source pages (except in the software directory)
+│   ├── external/          : R scripts to retrieve external pages
 │   └── styles/            : Theme style
 │
 └── public/                : Static files referenced in the markdown files (figures, data)
