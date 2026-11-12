@@ -7,6 +7,10 @@ sidebar:
 
 This guide outlines how to make contributions to this website.
 
+## Code of conduct
+
+Please note that this website is released with a [Contributor Code of Conduct](https://github.com/b-cubed-eu/documentation/blob/main/.github/CODE_OF_CONDUCT.md). By contributing, you agree to abide by its terms.
+
 ## Technology
 
 This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
