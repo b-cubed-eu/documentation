@@ -69,3 +69,9 @@ Follow these steps to update an external page:
 8. Once accepted and merged, your changes will go live on this site.
 
 Do you want to include an external page that is not a vignette? [Create an issue](https://github.com/b-cubed-eu/documentation/issues).
+
+:::tip[For site maintainers]
+To keep the site up to date, it is recommended to periodically (e.g. yearly):
+1. Check if there are new vignettes and add them to `vignettes.yml`.
+2. Run the above workflow for each package in `vignettes.yml`. This pulls in the latest changes and tests if code still works.
+:::
