@@ -13,7 +13,7 @@ Please note that this website is released with a [Contributor Code of Conduct](h
 
 ## Technology
 
-This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
+This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform Markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
 
 To preview this site locally, use:
 
@@ -33,7 +33,7 @@ Source pages are **maintained in the [GitHub repository](https://github.com/b-cu
 Follow these steps to update a source page:
 
 1. Browse to the markdown file for the page (in [`src/content/docs/<page-type>/`](https://github.com/b-cubed-eu/documentation/tree/main/src/content/docs)). You can reach the markdown file directly by clicking the `Edit page` link at the bottom of every page on this website.
-2. Make changes in the markdown file (either in your browser or locally).
+2. Make changes in the Markdown file (either in your browser or locally).
 3. Commit your changes to a new branch (and push).
 4. Create a pull request and assign a reviewer.
 5. Once accepted and merged, your changes will go live on this site.
@@ -62,7 +62,7 @@ Follow these steps to update an external page:
 3. Open `documentation.Rproj` in R Studio.
 4. Pull external files and create pages for this website:
     - For `rst` files only: Open [`rst_to_md.Rmd`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rst_to_md.Rmd) and run all code. This will create markdown files in `interim`.
-    - For all files: Open [`rmd_to_md.Rmd`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rmd_to_md.Rmd), select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the markdown and images files in the appropriate folders.
+    - For all files: Open [`rmd_to_md.Rmd`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rmd_to_md.Rmd), select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the Markdown and images files in the appropriate folders.
 5. Check if you encountered any errors. If yes, fix and rebuild again.
 6. Commit your changes to a new branch (and push).
 7. Create a pull request and assign a reviewer.
