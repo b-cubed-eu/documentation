@@ -109,9 +109,11 @@ Repositories MUST contain a `CITATION.cff` file so users know how to cite the so
 6. Remove the lines `doi` and `date-released`.
 7. Commit the changes.
 
-Note: this file can be updated later (manually or through functions).
+The file can be updated later (manually or through functions).
 
-Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](#r-pkg-citation)).
+:::note
+A `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](#r-pkg-citation)).
+:::
 
 ### Add topics {#repo-topics}
 
