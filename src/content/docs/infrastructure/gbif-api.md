@@ -11,6 +11,7 @@ The GBIF SQL download API is a service to aggregate species occurrence data, inc
 - [API documentation](https://techdocs.gbif.org/en/data-use/api-sql-downloads)
 - [Custom functions](https://techdocs.gbif.org/en/data-use/api-sql-download-functions)
 - [Species occurrence cubes](https://techdocs.gbif.org/en/data-use/data-cubes)
+- [GBIF data blog posts on SQL downloads](https://data-blog.gbif.org/tags/sql/)
 
 ## Access
 
