@@ -117,9 +117,11 @@ Repositories MUST contain a `CITATION.cff` file so users know how to cite the so
 6. Remove the lines `doi` and `date-released`.
 7. Commit the changes.
 
-Note: this file can be updated later (manually or through functions).
+The file can be updated later (manually or through functions).
 
-Note: a `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](#r-pkg-citation)).
+:::note
+A `CITATION.cff` is different from the R-specific `CITATION` file ([without an extension](#r-pkg-citation)).
+:::
 
 ### Add topics {#repo-topics}
 
@@ -1141,58 +1143,16 @@ GitHub Actions SHOULD be used to test, build and release your Python packages. A
 
 ## Tutorials {#tutorial}
 
-<!-- Author: Laura Abraham -->
+<!-- Author: Peter Desmet, Laura Abraham -->
 
 :::tip[B-Cubed software requirements]
 - Each package and analysis MUST have at least one tutorial.
+- Tutorials MUST be written in English using literate programming documents.
 - Tutorials MUST be included in the B-Cubed documentation website.
-- Tutorials MUST be written in English using literate programming documents. 
 :::
 
-To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. These tutorials MUST be included (copied or referenced) in the [B-Cubed documentation website](https://docs.b-cubed.eu/).
+To make software more welcoming to users, each package and analysis MUST have at least one tutorial guiding users through its main functionality. This MAY be a Usage section in the `README.md` of your software.
 
-### Documenting software and code in B-Cubed {#tutorial-documentating}
+Tutorials MUST be written in English and presented as literate programming documents (e.g. Jupyter notebooks, RMarkdown or Quarto) to provide both narrative context and executable code snippets. Make sure users can execute your tutorial without errors (for vignettes this can be done by running `devtools::check()`).
 
-Tutorials MUST be written in English and presented as literate programming documents (e.g. Jupyter notebooks, RMarkdown or Quarto) to provide both narrative context and executable code snippets. The documentation website will be versioned and an automated testing mechanism will be set up to guarantee that provided documentation works for a specific release of the B-Cubed toolbox. Ensure that your tutorial passes automated tests.
-
-### Creating a new tutorial {#tutorial-create}
-
-1. Create a new branch in <https://github.com/b-cubed-eu/documentation> following the [Github flow](#collaboration-github-flow). 
-2. Browse to the `pages` directory or use [this link](https://github.com/b-cubed-eu/documentation/tree/main/pages).
-3. Click `Add file` and then `Create new file`.
-4. Name your file. Use lowercase and dashes (e.g. `create-occurrence-cube.md`).
-5. Start your Markdown file with the following metadata, expressed in front matter, between two `---` lines:
-
-    ```
-    ---
-    title: Your tutorial title
-    description: Short description of your tutorial (will appear below title)
-    author: Your name (if there are co-authors, use "authors:" and comma-separate them)
-    citation: >
-      A full citation for your tutorial if useful (this will be used instead of author or authors)
-    permalink: /name-of-your-tutorial/
-    ---
-
-    Start of tutorial text ...
-    ```
-
-6. Commit the changes.
-
-You now have a template for writing your tutorial. It might be easier to continue locally, using [GitHub Desktop](#collaboration-local).
-
-### Writing your tutorial {#tutorial-write}
-
-You can write your tutorial directly in the Markdown file, but if it includes code snippets, it is RECOMMENDED to write it as a reproducible R Markdown, Quarto or Jupyter Notebook. This makes it easier to run and test (cf. a [README.Rmd over a README.md](#r-pkg-readme)). Such files can then be rendered to HTML/Markdown, and will not only include the text and the code snippets, but also the results of running the code ([example](https://docs.ropensci.org/frictionless/articles/frictionless.html)). That rendered HTML/Markdown can be copied to the Markdown file, under the front matter. The original R Markdown, Quarto or Jupyter Notebook should be maintained in a separate repository, not in the documentation repository.
-
-Place any images in the [assets/images](https://github.com/b-cubed-eu/documentation/tree/main/assets/images) directory. Start their file name with the name of your tutorial or place them in a subdirectory. Link to the images from your tutorial as `![image description](/tutorials/name-of-your-tutorial/name-of-your-image.png)`.
-
-As for the content of your tutorial:
-
-- Clearly state the purpose of the tutorial.
-- Include step-by-step instructions on how to install the software. 
-- Specify dependencies and system requirements if applicable.
-- Detail how to use the software.
-- Include at least one example and explain key features.
-- Write in a clear and concise manner for a diverse audience.
-
-Once your tutorial is ready, submit your branch as a pull request for review.
+Once finished, tutorials MUST be included in the [B-Cubed documentation website](https://docs.b-cubed.eu/). See the [contributing guide](../contributing/) for details on how to do that.

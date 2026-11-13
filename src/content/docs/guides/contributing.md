@@ -1,0 +1,85 @@
+---
+title: Contributing guide
+sidebar:
+  label: Contributing
+  order: 9
+---
+
+This guide outlines how to make contributions to this website.
+
+## Code of conduct
+
+Please note that this website is released with a [Contributor Code of Conduct](https://github.com/b-cubed-eu/documentation/blob/main/.github/CODE_OF_CONDUCT.md). By contributing, you agree to abide by its terms.
+
+## Technology
+
+This website makes use of [Astro](https://docs.astro.build/) (a web framework) and [Starlight](https://starlight.astro.build/) (a documentation theme for Astro) to transform Markdown and configuration files to a **static website**. A [GitHub action](.github/workflows/deploy.yml) will automatically rebuild this site on GitHub Pages for each commit on the `main` branch.
+
+To preview this site locally, use:
+
+- `npm install` to install dependencies.
+- `npm run dev` to start a local development server at `localhost:4321` where you can preview the site.
+
+See the file [astro.config.mjs](https://github.com/b-cubed-eu/documentation/blob/main/astro.config.mjs) for site-wide configuration.
+
+## Editing pages
+
+The site contains two types of pages/tutorials: **source pages** and **external pages**. They differ in the way they are updated.
+
+### Source pages
+
+Source pages are maintained in the [GitHub repository](https://github.com/b-cubed-eu/documentation/) of this site. The **homepage** and pages listed under **Guides**, **Infrastructure** and **Tutorials** are source pages.
+
+To update a source page:
+
+1. On this site, click `Edit page` at the bottom of the page. This will open the underlying Markdown file in GitHub.
+2. Make changes in the Markdown file (either in your browser or locally).
+3. Commit your changes to a new branch (and push).
+4. Create a pull request and assign a reviewer.
+5. Once accepted and merged, your changes will go live on this site.
+
+To add a source page:
+
+1. Browse to [`src/content/docs/`](https://github.com/b-cubed-eu/documentation/tree/main/src/content/docs) and select the appropriate directory for your page (typically `guides` or `tutorials`).
+2. Look at the existing Markdown files for inspiration and syntax, then choose `Add file > Create new file` to add a new page.
+3. Follow steps 2-5 above.
+
+Does your page contain images or data? Place them in `public/<page-type>/<name-of-page>/`. It's best to do this locally on your new branch. To refer to images in Markdown, use:
+
+```
+![Short description](/<page-type>/<name-of-page>/<name-of-image>.png)
+```
+
+Source pages are licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+### External pages
+
+External pages are maintained elsewhere. To centralize documentation on this site, they are copied (and executed) from their source using a semi-automated workflow. The pages listed under **Software** are external pages. 
+
+The workflow supports:
+
+1. `README.md` files.
+2. `README.Rmd` files.
+3. Vignettes, i.e. R package tutorials maintained with their source code ([example](https://github.com/b-cubed-eu/gcube/blob/main/vignettes/articles/occurrence-process.Rmd)).
+4. `rst` files.
+
+To update or add an external page:
+
+1. Clone this repository.
+2. Check if vignette is listed in [`vignettes.yml`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/vignettes.yml) (organized by R package). If not, add it (use the other vignettes as examples).
+3. Open `documentation.Rproj` in R Studio.
+4. Pull external files and create pages for this website:
+    - For `rst` files only: Open [`rst_to_md.Rmd`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rst_to_md.Rmd) and run all code. This will create markdown files in `interim`.
+    - For all files: Open [`rmd_to_md.Rmd`](https://github.com/b-cubed-eu/documentation/blob/main/src/external/rmd_to_md.Rmd), select the package and run all code. Thanks to [b3doc](https://b-cubed-eu.github.io/b3doc/), this will rebuild all vignettes and put the Markdown and images files in the appropriate folders.
+5. Check if you encountered any errors. If yes, fix and rebuild again.
+6. Commit your changes to a new branch (and push).
+7. Create a pull request and assign a reviewer.
+8. Once accepted and merged, your changes will go live on this site.
+
+Do you want to include an external page that is not a vignette? [Create an issue](https://github.com/b-cubed-eu/documentation/issues).
+
+:::tip[For site maintainers]
+To keep the site up to date, it is recommended to periodically (e.g. yearly):
+1. Check if there are new vignettes and add them to `vignettes.yml`.
+2. Run the above workflow for each package in `vignettes.yml`. This pulls in the latest changes and tests if code still works.
+:::
