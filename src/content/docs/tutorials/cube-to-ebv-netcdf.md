@@ -2,8 +2,8 @@
 title: B-Cubed data mobilisation for species listed in EU regulations
 lastUpdated: 2026-07-07
 sidebar: 
-  label: Create an EBV NetCDF cube
-  order: 7
+  label: Publish an EBV NetCDF cube
+  order: 4
 source: https://github.com/EBVcube/B-Cubed_data_mobilisation/blob/main/README.md
 ---
 
