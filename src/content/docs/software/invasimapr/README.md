@@ -2,7 +2,7 @@
 output: github_document
 title: 'Invasimapr: A novel framework to visualise trait dispersion and assess species
   invasiveness and site invasibility'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-11-16
 sidebar:
   label: Introduction
   order: 1
@@ -13,7 +13,7 @@ source: https://github.com/b-cubed-eu/invasimapr/blob/main/README.Rmd
 
 
 
- <img src="https://b-cubed-eu.github.io/invasimapr/logo.png" align="right" height="139" alt="invasimapr logo" />
+ <a href="https://b-cubed-eu.github.io/invasimapr/"><img src="https://b-cubed-eu.github.io/invasimapr/logo.png" align="right" height="139" alt="invasimapr website" /></a>
 
 <!-- badges: start -->
 [![repo status: WIP](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -199,7 +199,7 @@ To cite invasimapr, run `citation("invasimapr")` in R, or use:
 
 > MacFadyen, S., Yahaya, M.M., Trekels, M., Kumschick, S., Landi, P. & Hui, C.
 > (2025). *invasimapr: Workflow to Visualise Trait Dispersion and Assess
-> Invasibility.* R package version 0.2.0.
+> Invasibility.* R package version 0.2.1.
 > <https://doi.org/10.5281/zenodo.20842472>
 
 ## Meta

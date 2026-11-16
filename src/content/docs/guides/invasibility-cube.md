@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::tip[Learn by doing]
-Want to visualise trait dispersion and assess species invasiveness and site invasibility? See [this tutorial](https://b-cubed-eu.github.io/invasimapr/).
+Want to visualise trait dispersion and assess species invasiveness and site invasibility? See [this tutorial](/software/invasimapr/readme/).
 :::
 
 This guide introduces **Invasibility Cubes**—a transparent, reproducible framework for quantifying **invasion fitness**, **species invasiveness**, and **site invasibility** by integrating species occurrences, Invasive Alien Species (IAS) lists, functional traits, and community interaction structure. The Invasibility Cube is designed for applications where invasion risk cannot be inferred from abiotic suitability alone, because establishment depends on the joint action of **trait–environment matching**, **trait-mediated competition**, and **resident community saturation**.

@@ -183,12 +183,12 @@ bird_cube_processed
 #> Processed data cube for calculating biodiversity indicators
 #> 
 #> Date Range: 2000 - 2024 
-#> Single-resolution cube with cell size 10km ^2
+#> Single-resolution cube with cell size 10km ^2 
 #> Number of cells: 379 
 #> Grid reference system: mgrs 
 #> Coordinate range:
-#>      xmin      xmax      ymin      ymax 
-#>  2.428844  6.334746 49.445981 51.444030 
+#>    xmin    xmax    ymin    ymax 
+#>  280000  710000 5480000 5700000 
 #> 
 #> Total number of observations: 17609047 
 #> Number of species represented: 733 
@@ -198,7 +198,7 @@ bird_cube_processed
 #> 
 #> First 10 rows of data (use n = to show more):
 #> 
-#> # A tibble: 557,608 × 11
+#> # A tibble: 557,608 × 13
 #>     year cellCode taxonKey scientificName    family   obs minCoordinateUncerta…¹
 #>    <dbl> <chr>       <dbl> <chr>             <chr>  <dbl>                  <dbl>
 #>  1  2000 31UDS65   2473958 Perdix perdix     Phasi…     1                   3536
@@ -213,8 +213,8 @@ bird_cube_processed
 #> 10  2000 31UDS65   2482054 Podiceps cristat… Podic…     5                   1000
 #> # ℹ 557,598 more rows
 #> # ℹ abbreviated name: ¹​minCoordinateUncertaintyInMeters
-#> # ℹ 4 more variables: familyCount <dbl>, xcoord <dbl>, ycoord <dbl>,
-#> #   resolution <chr>
+#> # ℹ 6 more variables: familyCount <dbl>, xcoord <dbl>, ycoord <dbl>,
+#> #   utmzone <int>, hemisphere <chr>, resolution <chr>
 ```
 
 With the processed cube, we can reproduce a species richness map similar to the one created earlier.
