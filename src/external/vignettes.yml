@@ -349,15 +349,21 @@ invasimapr:
   sidebar_label: Step-by-step workflow
   replace:
   - "# Step-by-step Workflow": ""
-# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/clustering-and-risk-scenarios.Rmd"
-#   title: Clustering and risk scenarios
-#   sidebar_label: Clustering and risk scenarios
-# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/invasion-fitness-synthesis.Rmd"
-#   title: Invasion fitness synthesis
-#   sidebar_label: Invasion fitness synthesis
-# - source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/computing-invasion-fitness.Rmd"
-#   title: Tutorial on computing invasion fitness
-#   sidebar_label: Computing invasion fitness
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/clustering-and-risk-scenarios.Rmd"
+  title: Clustering and risk scenarios
+  sidebar_label: Clustering and risk scenarios
+  replace:
+  - "../man/figures/": "https://b-cubed-eu.github.io/invasimapr/reference/figures/"
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/invasion-fitness-synthesis.Rmd"
+  title: Invasion fitness synthesis
+  sidebar_label: Invasion fitness synthesis
+  replace:
+- source: "https://raw.githubusercontent.com/b-cubed-eu/invasimapr/refs/heads/main/vignettes/articles/computing-invasion-fitness.Rmd"
+  title: Tutorial on computing invasion fitness
+  sidebar_label: Computing invasion fitness
+  replace:
+  - "# Tutorial: Computing different invasion fitness options and predicting establishment methods": ""
+  - "../man/figures/": "https://b-cubed-eu.github.io/invasimapr/reference/figures/"
 
 cubit:
 - source: "https://raw.githubusercontent.com/b-cubed-eu/web-cubit/refs/heads/main/docs/vignette.Rmd"
