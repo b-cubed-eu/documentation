@@ -3,7 +3,7 @@ title: Step-by-step workflow
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Step-by-step Workflow} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-11-16
 sidebar:
   label: Step-by-step workflow
   order: 3
@@ -45,7 +45,7 @@ if (!requireNamespace("invasimapr", quietly = TRUE)) {
 
 # Optional: report package version
 packageVersion("invasimapr")
-#> [1] '0.2.0'
+#> [1] '0.2.1'
 
 # Make sure all the functions are loaded
 # devtools::load_all() # alternative during local development
@@ -131,7 +131,7 @@ if (!ok) {
 }
 # Optional: report package version
 packageVersion("dissmapr")
-#> [1] '0.2.0'
+#> [1] '0.2.2'
 ```
 
 #### Import and harmonise biodiversity-occurrence data
@@ -490,13 +490,13 @@ str(spp_traits, 1)
 #> tibble [27 × 30] (S3: tbl_df/tbl/data.frame)
 head(spp_traits[1:5,1:5])
 #> # A tibble: 5 × 5
-#>   species                    summary                                               Kingdom Phylum Class
-#>   <chr>                      <chr>                                                 <chr>   <chr>  <chr>
-#> 1 Utetheisa pulchella        ""                                                    Animal… Arthr… Inse…
-#> 2 Danaus chrysippus orientis  <NA>                                                 <NA>    <NA>   <NA> 
-#> 3 Telchinia serena           "Acraea serena, the dancing acraea, is a butterfly o… Animal… Arthr… Inse…
-#> 4 Vanessa cardui             "Vanessa cardui is the most widespread of all butter… Animal… Arthr… Inse…
-#> 5 Hypolimnas misippus        "Hypolimnas misippus, the Danaid eggfly, mimic, or d… Animal… Arthr… Inse…
+#>   species                    summary                       Kingdom Phylum Class
+#>   <chr>                      <chr>                         <chr>   <chr>  <chr>
+#> 1 Utetheisa pulchella        ""                            Animal… Arthr… Inse…
+#> 2 Danaus chrysippus orientis  <NA>                         <NA>    <NA>   <NA> 
+#> 3 Telchinia serena           "Acraea serena, the dancing … Animal… Arthr… Inse…
+#> 4 Vanessa cardui             "Vanessa cardui is the most … Animal… Arthr… Inse…
+#> 5 Hypolimnas misippus        "Hypolimnas misippus, the Da… Animal… Arthr… Inse…
 ```
 
 ---
@@ -1049,7 +1049,8 @@ fit = model_residents(
 # str(fit$residents, 1)
 summary(fit$residents$fit_r)
 #>  Family: tweedie  ( log )
-#> Formula:          abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 +  
+#> Formula:          
+#> abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 +  
 #>     env8 + env9 + env10 + trait_cont1 + trait_cont2 + trait_cont3 +  
 #>     trait_cont4 + trait_cont5 + trait_cont6 + trait_cont7 + trait_cont8 +  
 #>     trait_cont9 + trait_cont10 + trait_cat11 + trait_cat12 +  
@@ -1294,8 +1295,8 @@ str(fit$residents, 1)
 #>   ..- attr(*, "class")= chr "glmmTMB"
 #>  $ dat_r   :'data.frame':	11205 obs. of  33 variables:
 #>  $ grid_res:'data.frame':	11205 obs. of  33 variables:
-#>  $ fml     :Class 'formula'  language abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 + env8 + env9 + env10 + trait_cont1 +      trait_cont2| __truncated__ ...
-#>   .. ..- attr(*, ".Environment")=<environment: 0x89207ccf0> 
+#>  $ fml     :Class 'formula'  language abundance ~ env1 + env2 + env3 + env4 + env5 + env6 + env7 + env8 + env9 +      env10 + trait_cont1 + trait_cont2| __truncated__ ...
+#>   .. ..- attr(*, ".Environment")=<environment: 0xbee8e0078> 
 #>  $ r_js    : num [1:415, 1:27] 1.061 0.957 1.218 1.247 1.415 ...
 #>   ..- attr(*, "dimnames")=List of 2
 #>  $ mu_js   : num [1:415, 1:27] 2.89 2.6 3.38 3.48 4.12 ...
@@ -1433,8 +1434,8 @@ str(fit$sensitivities, 1)
 #>  $ fit_coeffs           :List of 7
 #>   ..- attr(*, "class")= chr "glmmTMB"
 #>  $ data_used            : tibble [11,205 × 8] (S3: tbl_df/tbl/data.frame)
-#>  $ formula              :Class 'formula'  language log1p(abundance) ~ (r_z + C_z + S_z) * (tr1 + tr2) + (1 | species) + (1 | site) + (0 + r_z ||      site) + (0 + C_z || site)
-#>   .. ..- attr(*, ".Environment")=<environment: 0x89d569e70> 
+#>  $ formula              :Class 'formula'  language log1p(abundance) ~ (r_z + C_z + S_z) * (tr1 + tr2) + (1 | species) + (1 |      site) + (0 + r_z || site) + (0 + C_z || site)
+#>   .. ..- attr(*, ".Environment")=<environment: 0xbebbd0a18> 
 #>  $ alpha_i              : Named num [1:10] 0.982 0.964 0.973 0.981 0.937 ...
 #>   ..- attr(*, "names")= chr [1:10] "inv1" "inv2" "inv3" "inv4" ...
 #>  $ alpha_signed_i       : Named num [1:10] 0.982 0.964 0.973 0.981 0.937 ...
@@ -1562,21 +1563,21 @@ S_is_z = fit$invaders$S_is_z
 
 inv_predict_df = fit$invaders$df
 summary(inv_predict_df)
-#>       site        invader              r_link             r_z                 C_z         
-#>  82     :  10   Length:4150        Min.   :-1.9422   Min.   :-8.447911   Min.   :-1.0035  
-#>  83     :  10   Class :character   1st Qu.: 0.6978   1st Qu.:-0.830539   1st Qu.: 0.5128  
-#>  84     :  10   Mode  :character   Median : 1.2211   Median : 0.136880   Median : 0.9441  
-#>  117    :  10                      Mean   : 1.1506   Mean   :-0.008854   Mean   : 0.9597  
-#>  118    :  10                      3rd Qu.: 1.6929   3rd Qu.: 0.993591   3rd Qu.: 1.3796  
-#>  119    :  10                      Max.   : 3.6457   Max.   : 6.559607   Max.   : 3.3913  
-#>  (Other):4090                                                                             
-#>       S_z         
-#>  Min.   :-1.5449  
-#>  1st Qu.:-0.7173  
-#>  Median :-0.1541  
-#>  Mean   : 0.0000  
-#>  3rd Qu.: 0.4529  
-#>  Max.   : 5.6963  
+#>       site        invader              r_link             r_z           
+#>  82     :  10   Length:4150        Min.   :-1.9422   Min.   :-8.447911  
+#>  83     :  10   Class :character   1st Qu.: 0.6978   1st Qu.:-0.830539  
+#>  84     :  10   Mode  :character   Median : 1.2211   Median : 0.136880  
+#>  117    :  10                      Mean   : 1.1506   Mean   :-0.008854  
+#>  118    :  10                      3rd Qu.: 1.6929   3rd Qu.: 0.993591  
+#>  119    :  10                      Max.   : 3.6457   Max.   : 6.559607  
+#>  (Other):4090                                                           
+#>       C_z               S_z         
+#>  Min.   :-1.0035   Min.   :-1.5449  
+#>  1st Qu.: 0.5128   1st Qu.:-0.7173  
+#>  Median : 0.9441   Median :-0.1541  
+#>  Mean   : 0.9597   Mean   : 0.0000  
+#>  3rd Qu.: 1.3796   3rd Qu.: 0.4529  
+#>  Max.   : 3.3913   Max.   : 5.6963  
 #> 
 ```
 
@@ -1937,7 +1938,7 @@ Final guardrails for robust runs and reproducibility.
 sessionInfo()
 #> R version 4.5.3 (2026-03-11)
 #> Platform: aarch64-apple-darwin20
-#> Running under: macOS Tahoe 26.5
+#> Running under: macOS Tahoe 26.6.2
 #> 
 #> Matrix products: default
 #> BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
@@ -1953,49 +1954,72 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] fs_2.1.0         rmarkdown_2.31   ggplot2_4.0.3    invasimapr_0.2.0 b3doc_0.3.0.9000
-#> [6] here_1.0.2       purrr_1.2.2      yaml_2.3.12     
+#>  [1] frictionless_2.0.1 virtualspecies_1.6 geodata_0.6-9     
+#>  [4] terra_1.9-50       ggExtra_0.11.0     tidyterra_0.7.2   
+#>  [7] dplyr_1.2.1        sf_1.1-3           gcube_1.4.4       
+#> [10] ggplot2_4.0.3      invasimapr_0.2.1   here_1.0.2        
+#> [13] purrr_1.2.2        yaml_2.3.12       
 #> 
 #> loaded via a namespace (and not attached):
-#>   [1] splines_4.5.3        later_1.4.8          fields_17.3          tibble_3.3.1        
-#>   [5] R.oo_1.27.1          hardhat_1.4.3        pROC_1.19.0.1        rpart_4.1.24        
-#>   [9] factoextra_2.0.0     lifecycle_1.0.5      rstatix_0.7.2        Rdpack_2.6.4        
-#>  [13] sf_1.1-1             rprojroot_2.1.1      globals_0.19.1       processx_3.9.0      
-#>  [17] lattice_0.22-9       MASS_7.3-65          backports_1.5.1      dendextend_1.19.1   
-#>  [21] NbClust_3.0.1        magrittr_2.0.5       otel_0.2.0           spam_2.11-1         
-#>  [25] sp_2.2-1             pbapply_1.7-4        chromote_0.5.1       DBI_1.3.0           
-#>  [29] minqa_1.2.8          RColorBrewer_1.1-3   lubridate_1.9.5      abind_1.4-8         
-#>  [33] multcomp_1.4-30      maps_3.4.3           rvest_1.0.4          glmmTMB_1.1.14      
-#>  [37] R.utils_2.13.0       nnet_7.3-20          TH.data_1.1-3        rappdirs_0.3.4      
-#>  [41] sandwich_3.1-1       ipred_0.9-15         lava_1.9.1           ggrepel_0.9.8       
-#>  [45] listenv_0.10.1       terra_1.9-34         pheatmap_1.0.13      vegan_2.7-1         
-#>  [49] units_1.0-1          parallelly_1.47.0    permute_0.9-10       codetools_0.2-20    
-#>  [53] xml2_1.6.0           tidyselect_1.2.1     dissmapr_0.2.0       clValid_0.7         
-#>  [57] farver_2.1.2         lme4_2.0-1           viridis_0.6.5        matrixStats_1.5.0   
-#>  [61] stats4_4.5.3         jsonlite_2.0.0       caret_7.0-1          e1071_1.7-17        
-#>  [65] Formula_1.2-5        survival_3.8-6       iterators_1.0.14     emmeans_2.0.3       
-#>  [69] foreach_1.5.2        geodata_0.6-9        tools_4.5.3          stringdist_0.9.15   
-#>  [73] pak_0.10.0           Rcpp_1.1.1-1.1       glue_1.8.1           prodlim_2026.03.11  
-#>  [77] gridExtra_2.3        xfun_0.59            mgcv_1.9-4           websocket_1.4.4     
-#>  [81] dplyr_1.2.1          scam_1.2-22          withr_3.0.3          numDeriv_2016.8-1.1 
-#>  [85] fastmap_1.2.0        boot_1.3-32          entropy_1.3.2        callr_3.8.0         
-#>  [89] digest_0.6.39        timechange_0.4.0     R6_2.6.1             estimability_1.5.1  
-#>  [93] wk_0.9.5             fuzzyjoin_0.1.8      dichromat_2.0-0.1    R.methodsS3_1.8.2   
-#>  [97] utf8_1.2.6           tidyr_1.3.2          generics_0.1.4       data.table_1.18.4   
-#> [101] recipes_1.3.1        class_7.3-23         httr_1.4.8           ModelMetrics_1.2.2.2
-#> [105] pkgconfig_2.0.3      gtable_0.3.6         timeDate_4041.110    rsconnect_1.5.0     
-#> [109] S7_0.2.2             selectr_0.5-1        htmltools_0.5.9      carData_3.0-6       
-#> [113] dotCall64_1.2        TMB_1.9.17           scales_1.4.0         gower_1.0.2         
-#> [117] reformulas_0.4.4     corrplot_0.95        knitr_1.51           rstudioapi_0.17.1   
-#> [121] geosphere_1.6-8      reshape2_1.4.5       coda_0.19-4.1        nlme_3.1-169        
-#> [125] curl_7.1.0           nloptr_2.2.1         zetadiv_1.3.0        proxy_0.4-29        
-#> [129] zoo_1.8-15           stringr_1.6.0        KernSmooth_2.23-26   parallel_4.5.3      
-#> [133] s2_1.1.11            pillar_1.11.1        grid_4.5.3           vctrs_0.7.3         
-#> [137] ggpubr_0.6.3         promises_1.5.0       car_3.1-5            xtable_1.8-8        
-#> [141] cluster_2.1.8.2      evaluate_1.0.5       magick_2.9.1         mvtnorm_1.4-1       
-#> [145] cli_3.6.6            compiler_4.5.3       rlang_1.2.0          ggsignif_0.6.4      
-#> [149] future.apply_1.20.2  labeling_0.4.3       mclust_6.1.2         classInt_0.4-11     
-#> [153] ps_1.9.3             forcats_1.0.1        plyr_1.8.9           stringi_1.8.7       
-#> [157] viridisLite_0.4.3    Matrix_1.7-5         patchwork_1.3.2      future_1.70.0       
-#> [161] rbibutils_2.3        broom_1.0.13
+#>   [1] fs_2.1.0             matrixStats_1.5.0    lubridate_1.9.5     
+#>   [4] httr_1.4.9           RColorBrewer_1.1-3   insight_1.5.1       
+#>   [7] numDeriv_2016.8-1.1  tools_4.5.3          backports_1.5.1     
+#>  [10] utf8_1.2.6           R6_2.6.1             vegan_2.7-6         
+#>  [13] mgcv_1.9-4           permute_0.10-0       withr_3.0.3         
+#>  [16] clValid_0.7          sp_2.2-1             gridExtra_2.3.1     
+#>  [19] cli_3.6.6            performance_0.17.0   factoextra_2.2.0    
+#>  [22] sandwich_3.1-1       labeling_0.4.3       entropy_1.3.2       
+#>  [25] mvtnorm_1.4-2        S7_0.2.2             readr_2.2.0         
+#>  [28] proxy_0.4-29         pbapply_1.7-5        R.utils_2.13.0      
+#>  [31] stringdist_0.9.15    dichromat_2.0-0.1    scico_1.5.0         
+#>  [34] parallelly_1.50.0    maps_3.4.4           rstudioapi_0.17.1   
+#>  [37] FNN_1.1.4.1          shape_1.4.6.1        generics_0.1.4      
+#>  [40] b3doc_0.3.0.9000     car_3.1-5            dendextend_1.19.1   
+#>  [43] scam_1.2-23          Matrix_1.7-5         abind_1.4-8         
+#>  [46] R.methodsS3_1.8.2    lifecycle_1.0.5      dissmapr_0.2.2      
+#>  [49] multcomp_1.4-30      carData_3.0-6        recipes_1.4.0       
+#>  [52] grid_4.5.3           promises_1.5.0       miniUI_0.1.2        
+#>  [55] lattice_0.22-9       chromote_0.5.1       magick_2.9.1        
+#>  [58] pillar_1.11.1        knitr_1.52           boot_1.3-32         
+#>  [61] spacetime_1.3-3      estimability_2.0.0   pak_0.10.0          
+#>  [64] future.apply_1.21.0  codetools_0.2-20     wk_0.9.5            
+#>  [67] glue_1.8.1           data.table_1.18.6.1  vctrs_0.7.3         
+#>  [70] spam_2.11-4          Rdpack_2.6.6         gtable_0.3.6        
+#>  [73] assertthat_0.2.1     gower_1.0.2          xfun_0.62           
+#>  [76] rbibutils_2.4.1      mime_0.13            prodlim_2026.03.11  
+#>  [79] rnaturalearth_1.0.1  coda_0.19-4.1        reformulas_0.4.4    
+#>  [82] survival_3.8-6       timeDate_4052.112    pheatmap_1.0.13     
+#>  [85] iterators_1.0.14     hardhat_1.4.3        units_1.0-1         
+#>  [88] lava_1.10            fields_18.0          TH.data_1.1-3       
+#>  [91] ipred_0.9-16         nlme_3.1-169         xts_0.14.2          
+#>  [94] zetadiv_1.3.0        rprojroot_2.1.1      TMB_1.9.17          
+#>  [97] KernSmooth_2.23-26   otel_0.3.0           rpart_4.1.24        
+#> [100] DBI_1.3.0            raster_3.6-32        nnet_7.3-20         
+#> [103] ade4_1.7-24          mnormt_2.1.2         tidyselect_1.2.1    
+#> [106] processx_3.9.0       emmeans_2.0.4        compiler_4.5.3      
+#> [109] curl_8.1.0           glmnet_5.0           rvest_1.0.4         
+#> [112] gstat_2.1-6          xml2_1.6.0           scales_1.4.0        
+#> [115] classInt_0.4-11      fuzzyjoin_0.1.8      callr_3.8.0         
+#> [118] rappdirs_0.3.4       stringr_1.6.0        digest_0.6.39       
+#> [121] minqa_1.2.8          rmarkdown_2.32       htmltools_0.5.9     
+#> [124] pkgconfig_2.0.3      lme4_2.1-0           fastmap_1.2.0       
+#> [127] rlang_1.3.0          shiny_1.11.1         farver_2.1.2        
+#> [130] zoo_1.9-1            jsonlite_2.0.0       mclust_6.1.3        
+#> [133] ModelMetrics_1.2.2.2 R.oo_1.27.1          magrittr_2.0.5      
+#> [136] Formula_1.2-6        s2_1.1.13            dotCall64_1.2       
+#> [139] NbClust_3.0.1        patchwork_1.3.2      geosphere_1.6-8     
+#> [142] Rcpp_1.1.2           viridis_0.6.5        stringi_1.8.9       
+#> [145] pROC_1.19.1          MASS_7.3-66          plyr_1.8.9          
+#> [148] parallel_4.5.3       listenv_1.1.0        ggrepel_0.9.8       
+#> [151] forcats_1.0.1        splines_4.5.3        hms_1.1.4           
+#> [154] ps_1.9.3             ggpubr_1.0.0         ggsignif_0.6.4      
+#> [157] reshape2_1.4.5       stats4_4.5.3         evaluate_1.0.5      
+#> [160] nloptr_2.2.1         tzdb_0.5.0           selectr_0.5-1       
+#> [163] foreach_1.5.2        httpuv_1.6.17        tidyr_1.3.2         
+#> [166] future_1.82.0        broom_1.0.13         xtable_1.8-8        
+#> [169] ClustGeo_2.1         e1071_1.7-17         rstatix_1.1.0       
+#> [172] later_1.4.8          viridisLite_0.4.3    class_7.3-23        
+#> [175] intervals_0.15.5     tibble_3.3.1         websocket_1.4.4     
+#> [178] glmmTMB_1.1.14       cluster_2.1.8.2      corrplot_0.95       
+#> [181] timechange_0.4.0     globals_0.20.0       caret_7.0-1
 ```

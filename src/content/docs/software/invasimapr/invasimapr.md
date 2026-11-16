@@ -3,7 +3,7 @@ title: Introduction to invasimapr
 output: rmarkdown::html_vignette
 vignette: '%\VignetteIndexEntry{Introduction to invasimapr} %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}'
-lastUpdated: 2026-07-07
+lastUpdated: 2026-11-16
 sidebar:
   label: Introduction to invasimapr
   order: 2
