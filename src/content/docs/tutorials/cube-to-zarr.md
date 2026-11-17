@@ -1,7 +1,7 @@
 ---
-title: Converting GBIF data cubes in cloud-native data formats
+title: Create a species occurrence cube to a cloud-native data format
 sidebar:
-  label: Build a cloud native data cube
+  label: Build a cloud-native data cube
   order: 3
 ---
 

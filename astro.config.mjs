@@ -68,7 +68,8 @@ export default defineConfig({
   ],
   redirects: {
     '/dev-guide/': '/guides/software-development/',
-    '/occurrence-cube/specification/': '/guides/occurrence-cube/'
+    '/occurrence-cube/specification/': '/guides/occurrence-cube/',
+    '/tutorials/conversion-cube-to-zarr/': '/tutorials/cube-to-zarr/'
   },
   markdown: {
     gfm: true,
