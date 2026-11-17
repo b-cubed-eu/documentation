@@ -25,11 +25,30 @@ authors:
     email: laura.abraham@plantentuinmeise.be
     affiliation: Meise Botanic Garden
     orcid: 'https://orcid.org/0000-0003-4070-2982'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19632903
 repository-code: 'https://github.com/b-cubed-eu/documentation'
 url: 'https://docs.b-cubed.eu/'
+abstract: >-
+  The B-Cubed documentation website (https://docs.b-cubed.eu/) serves as the
+  public, searchable and peer-reviewed access point for all technical knowledge
+  produced within the project. The platform hosts guides, tutorials, and 
+  technical documentation, ensuring accessibility for both developers and end 
+  users.
+
+  The website is built using the [Astro](https://docs.astro.build/)/
+  [Starlight](https://starlight.astro.build/) static site generator and hosted
+  on GitHub Pages, providing a low-maintenance and sustainable infrastructure.
+  All content undergoes peer review through GitHub Pull Request to ensure high
+  editorial and technical standards. A semi-automated workflow integrates 
+  externally maintained tutorials (such as R vignettes) directly into the main
+  documentation platform, maintaining coherence while enabling distributed 
+  contributions.
 keywords:
   - documentation
   - tutorials
   - guides
+  - software
   - B-Cubed
 license: CC-BY-4.0
