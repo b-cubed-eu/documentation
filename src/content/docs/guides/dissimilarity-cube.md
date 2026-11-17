@@ -5,8 +5,8 @@ sidebar:
   order: 4
 ---
 
-:::tip[Learn by doing]
-Want to run a Compositional Dissimilarity and Biodiversity Turnover Analysis? See [this tutorial](/software/dissmapr/readme/).
+:::tip[Tip]
+Want to create a Dissimilarity Cube? Use the [dissmapr](/software/dissmapr/readme/) R package and/or watch the recorded [training video](https://youtu.be/PDn5e5dwmgI).
 :::
 
 This guide introduces **Dissimilarity Cubes (DCs)**—a reproducible, spatially explicit framework for analysing **compositional turnover and community reorganisation** using species occurrence data. The Dissimilarity Cube operates at the **community level**, mapping how assemblages differ across space, environment, and scenarios, and how these patterns may change under future conditions.

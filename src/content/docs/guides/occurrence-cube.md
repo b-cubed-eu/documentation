@@ -7,8 +7,8 @@ tableOfContents:
   maxHeadingLevel: 4
 ---
 
-:::tip[Learn by doing]
-Want to create a species occurrence cube? See [this tutorial](/tutorials/download-a-cube-from-gbif/).
+:::tip[Tip]
+Want to create a species occurrence cube? See [this tutorial](/tutorials/download-a-cube-from-gbif/) and/or watch the recorded [training video](https://youtu.be/vWzb4qEs8eY).
 :::
 
 This document presents the specification for “species occurrence cubes”, a format to summarize species occurrence data. It also outlines the requirements for software to produce such cubes and how it can be integrated in services provided by the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org).
