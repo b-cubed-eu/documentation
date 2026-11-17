@@ -11,8 +11,8 @@ knit: (function(inputFile, ...) {
 
 <!-- b3verse.md is generated from b3verse.Rmd Please edit that file -->
 
-:::tip[Explore]
-Explore the [b3verse website](https://b-cubed-eu.r-universe.dev/).
+:::tip[Tip]
+Explore the [b3verse website](https://b-cubed-eu.r-universe.dev/) and/or watch the recorded [training video](https://youtu.be/YPY8DZNBs7M).
 :::
 
 

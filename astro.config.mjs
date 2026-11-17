@@ -41,7 +41,12 @@ export default defineConfig({
           label: 'Tutorials',
           autogenerate: { directory: 'tutorials' },
           collapsed: true,
-        }
+        },
+        {
+          label: 'Support',
+          autogenerate: { directory: 'support' },
+          collapsed: true,
+        },
       ],
       components: {
         PageTitle: './src/components/PageTitle.astro',
